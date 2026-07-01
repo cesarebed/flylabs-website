@@ -1,23 +1,39 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Display serif for headlines — caratteriale, "meno vibe-AI".
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Body sans — pulito e credibile.
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
+// Micro-label / annotazioni da quaderno tecnico.
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// metadataBase di sicurezza (le pagine lo sovrascrivono con il siteUrl da
+// Sanity). Il template si applica alle eventuali sotto-pagine che non usano
+// un titolo assoluto.
 export const metadata: Metadata = {
+  metadataBase: new URL("https://flylabs.ai"),
   title: {
-    default: "flylabs-website",
-    template: "%s | flylabs-website",
+    default: "flylabs.ai — AI concreta per la tua azienda",
+    template: "%s | flylabs.ai",
   },
-  description: "flylabs-website",
+  description:
+    "Costruiamo soluzioni AI concrete: chatbot, automazioni, risposta lead. Prezzo fisso, niente lock-in.",
 };
 
 export const viewport: Viewport = {
@@ -35,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

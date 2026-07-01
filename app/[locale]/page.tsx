@@ -1,14 +1,35 @@
 import type { Metadata } from "next";
-import { sanityFetch } from "@/sanity/fetch";
-import { SITE_SETTINGS_QUERY } from "@/sanity/queries";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
+import { getSiteSettings } from "@/sanity/site-settings";
+import { buildMetadata } from "@/lib/seo";
+import { Nav } from "@/components/landing/nav";
+import { Hero } from "@/components/landing/hero";
+import { WhatWeBuild } from "@/components/landing/what-we-build";
+import { Work } from "@/components/landing/work";
+import { Method } from "@/components/landing/method";
+import { Offer } from "@/components/landing/offer";
+import { Why } from "@/components/landing/why";
+import { Faq } from "@/components/landing/faq";
+import { ToolsStrip } from "@/components/landing/tools-strip";
+import { FinalCta } from "@/components/landing/final-cta";
+import { Footer } from "@/components/landing/footer";
 
 export const revalidate = 3600;
 
-type SiteSettings = {
-  title?: Record<Locale, string | null> | null;
-  description?: Record<Locale, string | null> | null;
-} | null;
+// Titolo e descrizione della home arrivano da Sanity (siteSettings); questi
+// restano come fallback se il CMS è vuoto o irraggiungibile.
+const META: Record<Locale, { title: string; description: string }> = {
+  it: {
+    title: "flylabs.ai — AI concreta per la tua azienda",
+    description:
+      "Costruiamo soluzioni AI concrete: chatbot, automazioni, risposta lead. Prezzo fisso, niente lock-in. Parli con chi costruisce.",
+  },
+  en: {
+    title: "flylabs.ai — Concrete AI for your business",
+    description:
+      "We build concrete AI solutions: chatbots, automations, lead response. Fixed price, no lock-in. You talk to the people who build.",
+  },
+};
 
 export async function generateMetadata({
   params,
@@ -17,15 +38,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
-  const settings = await sanityFetch<SiteSettings>({
-    query: SITE_SETTINGS_QUERY,
-    tags: ["siteSettings"],
-  });
-  return {
-    // absolute: the homepage shows the bare site name, not "name | name"
-    title: { absolute: settings?.title?.[lang] ?? "flylabs-website" },
-    description: settings?.description?.[lang] ?? undefined,
-  };
+  const settings = await getSiteSettings();
+  const title = settings?.title?.[lang] || META[lang].title;
+  const description = settings?.description?.[lang] || META[lang].description;
+  return buildMetadata(lang, { title, description }, settings);
 }
 
 export default async function HomePage({
@@ -35,18 +51,20 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
-  const settings = await sanityFetch<SiteSettings>({
-    query: SITE_SETTINGS_QUERY,
-    tags: ["siteSettings"],
-  });
-  const title = settings?.title?.[lang] ?? "flylabs-website";
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 p-8">
-      <h1 className="text-3xl font-semibold tracking-tight">{title}</h1>
-      <p className="text-zinc-500">
-        {lang === "it" ? "Sito in costruzione." : "Site under construction."}
-      </p>
+    <main className="flex-1">
+      <Nav lang={lang} />
+      <Hero lang={lang} />
+      <WhatWeBuild lang={lang} />
+      <Work lang={lang} />
+      <Method lang={lang} />
+      <Offer lang={lang} />
+      <Why lang={lang} />
+      <Faq lang={lang} />
+      <ToolsStrip lang={lang} />
+      <FinalCta lang={lang} />
+      <Footer lang={lang} />
     </main>
   );
 }
