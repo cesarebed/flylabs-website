@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-02 (Federico).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-02 (Federico — stato accessi Vercel/Sanity/MCP).
 
 ---
 
@@ -16,8 +16,10 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-02 (Federico).
 
 | Fase | Cosa | Owner | Branch/PR | Stato |
 |---|---|---|---|---|
-| 0 | Accessi: invito Federico al progetto Sanity (`hjdsajnv`) e al team Vercel | Cesare | — | ⏳ da fare |
-| 0 | MCP Sanity per Claude Code (`claude mcp add Sanity -t http https://mcp.sanity.io --scope user`) | Federico | — | ⏳ da fare |
+| 0 | Accesso Sanity per Federico (progetto `hjdsajnv`) | Cesare | — | ✅ |
+| 0 | Team Vercel: **non fattibile** (piano Hobby personale, niente membri). Vedi decisione sotto | — | — | ❌ chiuso |
+| 0 | MCP Sanity per Claude Code: registrato, manca l'OAuth (sessione `claude` interattiva → `/mcp` → authenticate) | Federico | — | 🔨 in corso |
+| 0 | `npx sanity login` sulla macchina di Federico (serve ai seed script via CLI) | Federico | — | ⏳ da fare |
 | 1 | Migrare contenuti landing da `lib/landing-content.ts` a Sanity (quando il design è bloccato) + metriche reali al posto dei placeholder | Cesare | — | ⏳ in attesa design |
 | 2 | Casi di successo: tipo `caseStudy`, route `/[locale]/lavori`, seed script | Federico | `feat/case-study` | 🔨 in corso |
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
@@ -28,6 +30,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-02 (Federico).
 - **Contenuti su Sanity, codice su GitHub**: testi/post/casi studio/FAQ editabili dallo Studio; layout, comportamento e schemi nel repo.
 - **La landing non si tocca finché la Fase 2 non ha contenuti reali**: le card "Lavori" restano hardcoded; passeranno a riferimenti `caseStudy` solo dopo il seed dei dati veri.
 - Ordine fasi 2 → 3: per un'agency i casi studio convertono più del blog.
+- **Vercel su piano Hobby di Cesare**: niente team, quindi le preview delle PR con commit di Federico falliscono sempre con "Git author must have access". Workaround: Cesare pusha un commit vuoto sul branch (`git commit --allow-empty -m "chore: trigger preview" && git push`) per generare la preview a suo nome; il deploy di produzione al merge funziona comunque (il merge commit è suo). Solo Cesare fa merge.
 
 ## Task aperti (fuori roadmap)
 
