@@ -1,26 +1,238 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ------------------------------------------------------------------ *
+ * Design tokens — "Concrete & clean" con tonalità Glean.
+ * Esposti a Tailwind v4 via @theme: bg-paper, text-ink, border-line,
+ * text-accent, font-display, ecc.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-paper: #fafaf8;
+  --color-ink: #15151a;
+  --color-muted: #6b6b72;
+  --color-line: #e7e5e0;
+  --color-accent: #343bec;
+  --color-mark: #ffda47;
+  --color-warm: #ff7e4c;
+  --color-peach: #ffcfbd;
+  --color-lilac: #f1b7ff;
+  --color-peri: #a5a8f7;
+  --color-dark: #131217;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--font-display), Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Ingrandimento globale del sito marketing: equivale a un browser zoom ~115%,
+   scala px e rem in modo uniforme. Applicato solo alle pagine pubbliche (non
+   allo Studio) tramite la classe sui rispettivi <main>. */
+.site-zoom {
+  zoom: 1.15;
+}
+
+/* ------------------------------------------------------------------ *
+ * Sfondi
+ * ------------------------------------------------------------------ */
+
+/* griglia a punti chiara + alone caldo (sezioni light) */
+.dot-paper {
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(120% 70% at 50% -15%, rgba(255, 126, 76, 0.07), transparent 60%),
+    radial-gradient(rgba(21, 21, 26, 0.09) 1.1px, transparent 1.1px);
+  background-size: auto, 22px 22px;
+  background-position: center top, center top;
+}
+
+/* hero scuro — gradiente firma Glean: indaco → arancio + periwinkle */
+.dark-paper {
+  background-color: var(--color-dark);
+  background-image:
+    radial-gradient(115% 75% at 82% -15%, rgba(52, 59, 237, 0.45), transparent 55%),
+    radial-gradient(85% 65% at 6% 112%, rgba(255, 126, 76, 0.22), transparent 55%),
+    radial-gradient(55% 50% at 58% 55%, rgba(165, 168, 247, 0.16), transparent 60%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1.1px, transparent 1.1px);
+  background-size: auto, auto, auto, 22px 22px;
+  background-position: center, center, center, center top;
+}
+
+/* barra bianca semitrasparente */
+.nav-light {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+/* sezione scura (ritmo) — più sobria dell'hero: un solo glow indaco + dots */
+.dark-section {
+  background-color: #15151a;
+  background-image:
+    radial-gradient(95% 85% at 100% 0%, rgba(52, 59, 237, 0.22), transparent 55%),
+    radial-gradient(70% 60% at 0% 110%, rgba(165, 168, 247, 0.1), transparent 55%),
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: auto, auto, 22px 22px;
+}
+
+/* logo: ".ai" in gradiente indaco → viola, bold & engaging */
+.logo-ai {
+  background-image: linear-gradient(90deg, var(--color-accent), #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* alone pastello sfocato dietro la finestra-flusso */
+.pastel-halo {
+  background: linear-gradient(147deg, var(--color-peach), var(--color-peri) 55%, var(--color-lilac));
+  filter: blur(46px);
+  opacity: 0.55;
+}
+
+/* ------------------------------------------------------------------ *
+ * Marker scritto a mano
+ * ------------------------------------------------------------------ */
+/* evidenziatore: copre quasi tutta l'altezza del testo così il testo
+   (anche scuro su hero scuro) resta sempre leggibile sul giallo.
+   box-decoration-break: clone → ogni riga evidenziata quando va a capo. */
+.mark {
+  background: linear-gradient(
+    180deg,
+    transparent 12%,
+    var(--color-mark) 12%,
+    var(--color-mark) 92%,
+    transparent 92%
+  );
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.uline {
+  background: linear-gradient(
+    180deg,
+    transparent 88%,
+    var(--color-warm) 88%,
+    var(--color-warm) 96%,
+    transparent 96%
+  );
+}
+
+/* ------------------------------------------------------------------ *
+ * Micro-label monospace
+ * ------------------------------------------------------------------ */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.secno {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+}
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------ *
+ * Bottoni — nero su chiaro, blu (Glean) per la CTA hero, bianco su scuro
+ * ------------------------------------------------------------------ */
+.btn-ink {
+  background: var(--color-ink);
+  color: #fff;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn-ink:hover {
+  background: #2c2b33;
+  transform: translateY(-1px);
+}
+.btn-accent {
+  background: var(--color-accent);
+  color: #fff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 10px 30px -12px rgba(52, 59, 237, 0.7);
+}
+.btn-accent:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px -12px rgba(52, 59, 237, 0.8);
+}
+.btn-light {
+  background: #fff;
+  color: var(--color-ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+}
+.btn-light:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------------------------------------------ *
+ * Flow-canvas (hero)
+ * ------------------------------------------------------------------ */
+.flow-dot {
+  background-image: radial-gradient(rgba(21, 21, 26, 0.07) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.flow-node {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px -10px rgba(21, 21, 26, 0.35);
+}
+.wire {
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 5 4;
+  animation: dash 1.1s linear infinite;
+  opacity: 0.7;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Card hover + fade-in
+ * ------------------------------------------------------------------ */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -18px rgba(21, 21, 26, 0.4);
+  border-color: #cfc8b8;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade {
+  animation: fade 0.6s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade,
+  .wire {
+    animation: none;
+  }
 }

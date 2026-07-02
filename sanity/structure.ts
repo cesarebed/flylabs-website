@@ -12,5 +12,13 @@ export const structure: StructureResolver = (S) =>
           S.document().schemaType("siteSettings").documentId("siteSettings")
         ),
       S.divider(),
+      S.listItem()
+        .title("Richieste di contatto")
+        .child(
+          S.documentTypeList("contactSubmission")
+            .title("Richieste di contatto")
+            .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
+        ),
+      S.divider(),
       S.documentTypeListItem("page").title("Pagine"),
     ]);

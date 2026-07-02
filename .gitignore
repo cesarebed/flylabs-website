@@ -43,3 +43,6 @@ next-env.d.ts
 
 # playwright artifacts
 .playwright-mcp/
+
+# context / brief (locale, non versionato)
+.context/
