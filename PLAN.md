@@ -18,8 +18,8 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-02 (Federico — st
 |---|---|---|---|---|
 | 0 | Accesso Sanity per Federico (progetto `hjdsajnv`) | Cesare | — | ✅ |
 | 0 | Team Vercel: **non fattibile** (piano Hobby personale, niente membri). Vedi decisione sotto | — | — | ❌ chiuso |
-| 0 | MCP Sanity per Claude Code: registrato, manca l'OAuth (sessione `claude` interattiva → `/mcp` → authenticate) | Federico | — | 🔨 in corso |
-| 0 | `npx sanity login` sulla macchina di Federico (serve ai seed script via CLI) | Federico | — | ⏳ da fare |
+| 0 | MCP Sanity per Claude Code: connesso e autenticato | Federico | — | ✅ |
+| 0 | `npx sanity login` sulla macchina di Federico (serve solo ai seed script via CLI; opzionale ora che c'è l'MCP) | Federico | — | ⏳ opzionale |
 | 1 | Migrare contenuti landing da `lib/landing-content.ts` a Sanity (quando il design è bloccato) + metriche reali al posto dei placeholder | Cesare | — | ⏳ in attesa design |
 | 2 | Casi di successo: tipo `caseStudy`, route `/[locale]/lavori`, seed script | Federico | `feat/case-study` | 🔨 in corso |
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
