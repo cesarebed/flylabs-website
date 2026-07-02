@@ -9,4 +9,8 @@ export const client = createClient({
   // delay that would defeat on-demand revalidation. Vercel ISR already
   // caches responses for us.
   useCdn: false,
+  // Read token (server-side): il dataset limita la lettura pubblica ad alcuni
+  // tipi, quindi leggiamo autenticati. `published` = mai contenuti draft.
+  token: process.env.SANITY_API_READ_TOKEN,
+  perspective: "published",
 });
