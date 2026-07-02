@@ -38,6 +38,9 @@ sicuro, con la regola d'oro: **niente numeri inventati**.
   Se non c'è lì, cercala (`~/Documents/Github/flylabs-brain` o simili) o chiedi il path.
 - Leggi la convenzione completa dei case study nel brain: `docs/stack.md` §9 e il
   template `03_Resources/templates/case-study.md`. Ti dicono cosa è pubblicabile.
+  ⚠️ Dove la §9 parla di pagine **MDX in `content/use-cases/`** è superata: il formato
+  attuale è **JSON `caseStudy` in `content/case-studies/`** (schema Sanity + importer di
+  questa skill). Segui questa skill, non la §9, sul formato dei file.
 - Leggi lo **schema del sito** per i campi esatti e obbligatori:
   `sanity/schemas/documents/caseStudy.ts` in questo repo (oppure vedi
   `assets/case-study.template.json` in questa skill).
@@ -76,7 +79,9 @@ modo naturale (non letterale). Mappatura:
 | — | `cover` | opzionale; caricata in Studio, NON qui |
 | data del progetto | `date` | per l'ordinamento |
 
-Lo `slug` deriva dal titolo (kebab-case) o dallo slug esistente del brain; l'`_id` del
+Lo `slug` deriva dal **titolo anonimizzato** (kebab-case). ⚠️ Se `anonymize: true`, NON
+riusare lo slug della nota del brain: spesso contiene il nome del cliente (es.
+`isola-dei-gabbiani-...`) e finirebbe nell'URL pubblico — sarebbe una fuga. L'`_id` del
 documento è `caseStudy.<slug>`.
 
 ### 4. Regola della metrica — non inventare mai
@@ -99,14 +104,22 @@ In ordine di preferenza:
 **Sito** — scrivi `content/case-studies/<slug>.json` con la forma esatta del documento
 Sanity (vedi `assets/case-study.template.json`). Usa oggetti localizzati completi di
 `_type` (`localeString`/`localeText`), es.
-`"title": { "_type": "localeString", "it": "...", "en": "..." }`.
+`"title": { "_type": "localeString", "it": "...", "en": "..." }`. **Ometti del tutto** le
+chiavi opzionali (`body`, `testimonial`, `cover`, `date`) se non hai il dato reale — non
+lasciare placeholder (il template le mostra solo come riferimento di forma). Se la
+cartella `content/case-studies/` non esiste ancora, creala.
 
 ### 6. Verifica di sicurezza (obbligatoria)
-Prima di considerarti finito, **cerca il nome reale del cliente** (dai campi
-`client`/`company` del frontmatter brain) dentro `content/case-studies/<slug>.json`:
-se compare, hai una fuga di dati — correggi. Controlla anche che il JSON sia valido e
-che i campi obbligatori (`title.it`, `slug`, `sector`, `problem`, `solution`, `metric`,
-`metricLabel`) ci siano.
+Prima di considerarti finito, cerca dentro `content/case-studies/<slug>.json` **e nello
+`slug`/`_id`** tutti i dati identificanti o interni, e assicurati che NON compaiano:
+- **nome del cliente / azienda** (campi `client`/`company` del frontmatter brain);
+- **referente, città esatta, URL o dominio** del cliente;
+- **importi e dati commerciali** (campi `amount_eur`/`phase2_eur`, simboli `€`/`$`, prezzi).
+
+Se trovi uno di questi, è una fuga: correggi. Poi verifica che il JSON sia valido e che i
+campi obbligatori (`title.it`, `slug`, `sector`, `problem`, `solution`, `metric`,
+`metricLabel`) ci siano. I numeri ammessi sono solo quelli non identificanti usati come
+metrica/racconto (es. conteggi aggregati).
 
 ### 7. Caricamento su Sanity (passo esplicito, non automatico)
 Generare i file NON li carica su Sanity: caricare è un'azione verso l'esterno, va fatta
