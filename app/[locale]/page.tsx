@@ -53,7 +53,7 @@ export default async function HomePage({
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
 
   return (
-    <main className="flex-1">
+    <main className="site-zoom flex-1">
       <Nav lang={lang} />
       <Hero lang={lang} />
       <WhatWeBuild lang={lang} />

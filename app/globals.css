@@ -29,6 +29,13 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Ingrandimento globale del sito marketing: equivale a un browser zoom ~115%,
+   scala px e rem in modo uniforme. Applicato solo alle pagine pubbliche (non
+   allo Studio) tramite la classe sui rispettivi <main>. */
+.site-zoom {
+  zoom: 1.15;
+}
+
 /* ------------------------------------------------------------------ *
  * Sfondi
  * ------------------------------------------------------------------ */

@@ -438,6 +438,47 @@ export const landing = {
     },
   },
 
+  // Form di contatto (nel blocco CTA finale). Le richieste finiscono su Sanity.
+  contact: {
+    labels: {
+      name: { it: "Nome", en: "Name" },
+      company: { it: "Azienda", en: "Company" },
+      email: { it: "Email", en: "Email" },
+      message: { it: "Messaggio", en: "Message" },
+    },
+    optional: { it: "facoltativo", en: "optional" },
+    messagePlaceholder: {
+      it: "Cosa ti fa perdere tempo? Raccontaci in due righe.",
+      en: "What's eating your time? Tell us in a couple of lines.",
+    },
+    submit: { it: "Invia richiesta", en: "Send request" },
+    sending: { it: "Invio…", en: "Sending…" },
+    success: {
+      title: {
+        it: "Grazie, ci sentiamo presto.",
+        en: "Thanks, we'll be in touch soon.",
+      },
+      body: {
+        it: "Abbiamo ricevuto la tua richiesta e ti rispondiamo al più presto.",
+        en: "We got your request and will get back to you shortly.",
+      },
+    },
+    errors: {
+      missing: {
+        it: "Compila i campi obbligatori.",
+        en: "Please fill in the required fields.",
+      },
+      email: {
+        it: "Inserisci un'email valida.",
+        en: "Please enter a valid email.",
+      },
+      server: {
+        it: "Qualcosa è andato storto. Riprova tra poco.",
+        en: "Something went wrong. Please try again shortly.",
+      },
+    },
+  },
+
   // Teaser in fondo alla home → rimanda alla pagina /stack (non in menu).
   toolsStrip: {
     kicker: { it: "Sotto il cofano", en: "Under the hood" },

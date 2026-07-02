@@ -36,7 +36,7 @@ export default async function PrivacyPage({
   const back = { it: "← Torna alla home", en: "← Back home" };
 
   return (
-    <main className="flex-1">
+    <main className="site-zoom flex-1">
       <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
         <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
           <Link
