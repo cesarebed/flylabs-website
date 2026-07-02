@@ -40,6 +40,10 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-02 (Claude/Cesare â
 - [ ] Seedare i `caseStudy` con dati REALI (Isola dei Gabbiani anonimizzato + altri), poi linkare `/lavori` in nav (Cesare/Federico)
 - [ ] (nit review PR #3) allineare l'ordinamento Studio dei `caseStudy` a quello del sito (`coalesce(date,_createdAt)`) o rendere `date` obbligatorio (Federico)
 
+## Tooling / skill
+
+- Skill **`use-case-publish`** (`.claude/skills/use-case-publish/`): genera use case ANONIMIZZATI da flylabs-brain â†’ aggiorna la nota nel brain + crea `content/case-studies/<slug>.json` pronto per Sanity, con importer dedicato. Regola d'oro: niente metriche inventate. Branch `feat/skill-use-case` (Claude/Cesare). Disponibile a Federico via git dopo il merge.
+
 ---
 
 ## Regole d'uso di questo file
