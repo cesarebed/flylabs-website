@@ -17,6 +17,16 @@ Stesso livello di accesso e competenze. Niente onboarding "non tecnico", niente 
 
 ---
 
+## Coordinamento: PLAN.md
+
+`PLAN.md` è la roadmap viva del sito e la mappa di chi sta lavorando a cosa (Cesare, Federico e i rispettivi agenti).
+
+MUST leggere `PLAN.md` all'inizio di ogni task non banale: se la fase/area è già "in corso" da qualcun altro, fermati e segnalalo invece di lavorarci.
+MUST aggiornare `PLAN.md` quando prendi in carico un lavoro (owner, branch, stato), quando apri la PR (link) e quando viene mergiata (✅) — di norma nella stessa PR del lavoro.
+MUST registrare in `PLAN.md → Decisioni prese` le decisioni di prodotto/architettura concordate in chat o in call.
+
+---
+
 ## MUST / MUST NOT
 
 MUST usare sempre la skill più rilevante per il task (vedi `.claude/skills/` e le skill globali); se manca una skill per un flusso ricorrente, creala in `.claude/skills/`.
