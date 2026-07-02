@@ -20,5 +20,13 @@ export const structure: StructureResolver = (S) =>
             .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
         ),
       S.divider(),
+      S.listItem()
+        .title("Casi di successo")
+        .child(
+          S.documentTypeList("caseStudy")
+            .title("Casi di successo")
+            .defaultOrdering([{ field: "date", direction: "desc" }])
+        ),
+      S.divider(),
       S.documentTypeListItem("page").title("Pagine"),
     ]);

@@ -15,6 +15,76 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type CaseStudy = {
+  _id: string;
+  _type: "caseStudy";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocaleString;
+  slug?: Slug;
+  sector?: LocaleString;
+  problem?: LocaleText;
+  solution?: LocaleText;
+  metric?: string;
+  metricLabel?: LocaleString;
+  body?: LocaleText;
+  testimonial?: {
+    quote?: LocaleText;
+    author?: string;
+  };
+  cover?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: LocaleString;
+    _type: "image";
+  };
+  date?: string;
+};
+
+export type LocaleString = {
+  _type: "localeString";
+  it?: string;
+  en?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type LocaleText = {
+  _type: "localeText";
+  it?: string;
+  en?: string;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
 export type ContactSubmission = {
   _id: string;
   _type: "contactSubmission";
@@ -40,25 +110,6 @@ export type Page = {
   slug?: Slug;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type LocaleString = {
-  _type: "localeString";
-  it?: string;
-  en?: string;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-};
-
 export type SiteSettings = {
   _id: string;
   _type: "siteSettings";
@@ -76,28 +127,6 @@ export type SiteSettings = {
     _type: "image";
   };
   keywords?: Array<string>;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type LocaleText = {
-  _type: "localeText";
-  it?: string;
-  en?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -198,15 +227,16 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-  | ContactSubmission
-  | Page
-  | Slug
-  | LocaleString
   | SanityImageAssetReference
-  | SiteSettings
+  | CaseStudy
+  | LocaleString
   | SanityImageCrop
   | SanityImageHotspot
   | LocaleText
+  | Slug
+  | ContactSubmission
+  | Page
+  | SiteSettings
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -227,10 +257,61 @@ export type SITE_SETTINGS_QUERY_RESULT = {
   keywords: Array<string> | null;
 } | null;
 
+// Source: sanity/queries.ts
+// Variable: CASE_STUDIES_QUERY
+// Query: *[_type == "caseStudy" && defined(slug.current)]    | order(coalesce(date, _createdAt) desc){    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metric,    metricLabel  }
+export type CASE_STUDIES_QUERY_RESULT = Array<{
+  _id: string;
+  title: LocaleString | null;
+  slug: string | null;
+  sector: LocaleString | null;
+  problem: LocaleText | null;
+  solution: LocaleText | null;
+  metric: string | null;
+  metricLabel: LocaleString | null;
+}>;
+
+// Source: sanity/queries.ts
+// Variable: CASE_STUDY_BY_SLUG_QUERY
+// Query: *[_type == "caseStudy" && slug.current == $slug][0]{    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metric,    metricLabel,    body,    testimonial,    cover,    "coverAlt": cover.alt,    date  }
+export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
+  _id: string;
+  title: LocaleString | null;
+  slug: string | null;
+  sector: LocaleString | null;
+  problem: LocaleText | null;
+  solution: LocaleText | null;
+  metric: string | null;
+  metricLabel: LocaleString | null;
+  body: LocaleText | null;
+  testimonial: {
+    quote?: LocaleText;
+    author?: string;
+  } | null;
+  cover: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: LocaleString;
+    _type: "image";
+  } | null;
+  coverAlt: LocaleString | null;
+  date: string | null;
+} | null;
+
+// Source: sanity/queries.ts
+// Variable: CASE_STUDY_SLUGS_QUERY
+// Query: *[_type == "caseStudy" && defined(slug.current)].slug.current
+export type CASE_STUDY_SLUGS_QUERY_RESULT = Array<string | null>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "siteSettings"][0]{\n    title,\n    description,\n    siteUrl,\n    "ogImage": ogImage.asset->url,\n    keywords\n  }': SITE_SETTINGS_QUERY_RESULT;
+    '*[_type == "caseStudy" && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc){\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metric,\n    metricLabel\n  }': CASE_STUDIES_QUERY_RESULT;
+    '*[_type == "caseStudy" && slug.current == $slug][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metric,\n    metricLabel,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    date\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;
+    '*[_type == "caseStudy" && defined(slug.current)].slug.current': CASE_STUDY_SLUGS_QUERY_RESULT;
   }
 }
