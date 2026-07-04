@@ -138,4 +138,4 @@ scelta di prodotto: proponila all'utente, non farla di default.
 
 ## Nota sul coordinamento
 Se stai lavorando su un branch, aggiorna `PLAN.md` (chi/branch/stato) come da regole del
-file. E ricorda: sul repo su piano Vercel Hobby, solo Cesare fa merge.
+file. Merge: sia Cesare che Federico (repo pubblica; regola aggiornata 2026-07-04, dettagli in PLAN.md).
