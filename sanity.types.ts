@@ -97,6 +97,7 @@ export type ContactSubmission = {
   message?: string;
   submittedAt?: string;
   locale?: string;
+  ipHash?: string;
   handled?: boolean;
 };
 
@@ -305,6 +306,11 @@ export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
 // Query: *[_type == "caseStudy" && defined(slug.current)].slug.current
 export type CASE_STUDY_SLUGS_QUERY_RESULT = Array<string | null>;
 
+// Source: sanity/queries.ts
+// Variable: CONTACT_RATE_COUNT_QUERY
+// Query: count(*[_type == "contactSubmission" && submittedAt > $since &&    (email == $email || (defined(ipHash) && ipHash == $ipHash))])
+export type CONTACT_RATE_COUNT_QUERY_RESULT = number;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -313,5 +319,6 @@ declare module "@sanity/client" {
     '*[_type == "caseStudy" && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc){\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metric,\n    metricLabel\n  }': CASE_STUDIES_QUERY_RESULT;
     '*[_type == "caseStudy" && slug.current == $slug][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metric,\n    metricLabel,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    date\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)].slug.current': CASE_STUDY_SLUGS_QUERY_RESULT;
+    'count(*[_type == "contactSubmission" && submittedAt > $since &&\n    (email == $email || (defined(ipHash) && ipHash == $ipHash))])': CONTACT_RATE_COUNT_QUERY_RESULT;
   }
 }

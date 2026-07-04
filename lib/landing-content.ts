@@ -476,6 +476,10 @@ export const landing = {
         it: "Qualcosa è andato storto. Riprova tra poco.",
         en: "Something went wrong. Please try again shortly.",
       },
+      rate: {
+        it: "Troppe richieste ravvicinate. Riprova tra qualche minuto.",
+        en: "Too many requests in a short time. Please try again in a few minutes.",
+      },
     },
   },
 

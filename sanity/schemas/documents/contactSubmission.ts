@@ -44,6 +44,14 @@ export const contactSubmission = defineType({
       type: "string",
     }),
     defineField({
+      name: "ipHash",
+      title: "Hash IP (anti-spam)",
+      description:
+        "SHA-256 dell'IP del mittente, usato solo per il rate limit. Non è l'IP in chiaro.",
+      type: "string",
+      hidden: true,
+    }),
+    defineField({
       name: "handled",
       title: "Gestito",
       description: "Segna la richiesta come già presa in carico.",

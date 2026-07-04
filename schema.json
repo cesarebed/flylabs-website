@@ -470,6 +470,13 @@
         },
         "optional": true
       },
+      "ipHash": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "handled": {
         "type": "objectAttribute",
         "value": {

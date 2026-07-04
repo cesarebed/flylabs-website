@@ -48,3 +48,9 @@ export const CASE_STUDY_BY_SLUG_QUERY = defineQuery(
 export const CASE_STUDY_SLUGS_QUERY = defineQuery(
   `*[_type == "caseStudy" && defined(slug.current)].slug.current`
 );
+
+// Rate limit del form contatti: richieste recenti con stessa email o stesso IP.
+export const CONTACT_RATE_COUNT_QUERY = defineQuery(
+  `count(*[_type == "contactSubmission" && submittedAt > $since &&
+    (email == $email || (defined(ipHash) && ipHash == $ipHash))])`
+);
