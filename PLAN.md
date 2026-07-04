@@ -41,6 +41,10 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-04 (Federico — ha
 - [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
 
+## Tooling / skill
+
+- Skill **`use-case-publish`** (`.claude/skills/use-case-publish/`): genera use case ANONIMIZZATI da flylabs-brain → aggiorna la nota nel brain + crea `content/case-studies/<slug>.json` pronto per Sanity, con importer dedicato. Regola d'oro: niente metriche inventate. Branch `feat/skill-use-case` (Claude/Cesare). Disponibile a Federico via git dopo il merge.
+
 ---
 
 ## Regole d'uso di questo file

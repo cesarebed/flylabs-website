@@ -1,0 +1,45 @@
+{
+  "_id": "caseStudy.<slug>",
+  "_type": "caseStudy",
+  "title": {
+    "_type": "localeString",
+    "it": "Titolo del caso (obbligatorio in IT)",
+    "en": "Case title"
+  },
+  "slug": { "_type": "slug", "current": "<slug>" },
+  "sector": {
+    "_type": "localeString",
+    "it": "Settore anonimo, es. Struttura ricettiva",
+    "en": "Anonymous sector, e.g. Hospitality"
+  },
+  "problem": {
+    "_type": "localeText",
+    "it": "Cosa non funzionava prima, 1-2 frasi.",
+    "en": "What wasn't working before, 1-2 sentences."
+  },
+  "solution": {
+    "_type": "localeText",
+    "it": "Cosa abbiamo costruito, 1-2 frasi.",
+    "en": "What we built, 1-2 sentences."
+  },
+  "metric": "428",
+  "metricLabel": {
+    "_type": "localeString",
+    "it": "recensioni analizzate",
+    "en": "reviews analysed"
+  },
+  "body": {
+    "_type": "localeText",
+    "it": "Racconto esteso (opzionale): contesto, come abbiamo lavorato, risultati.",
+    "en": "Extended story (optional): context, how we worked, results."
+  },
+  "testimonial": {
+    "quote": {
+      "_type": "localeText",
+      "it": "Citazione del cliente (opzionale, autore anonimizzato).",
+      "en": "Client quote (optional, anonymised author)."
+    },
+    "author": "Ruolo, settore (senza nome se anonimo)"
+  },
+  "date": "2026-06-01"
+}
