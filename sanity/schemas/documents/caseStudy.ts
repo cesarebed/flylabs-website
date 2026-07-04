@@ -106,8 +106,10 @@ export const caseStudy = defineType({
       name: "date",
       title: "Data del progetto",
       description:
-        "Usata per ordinare i casi (dal più recente). Se manca vale la data di creazione.",
+        "Usata per ordinare i casi (dal più recente), nello Studio e sul sito. Precompilata con oggi.",
       type: "date",
+      initialValue: () => new Date().toISOString().slice(0, 10),
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
