@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-03 (Federico — hardening form contatti, issue #5/#6).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-04 (Federico — hardening form contatti #5/#6 + nit ordinamento `date` + doc read token).
 
 ---
 
@@ -38,7 +38,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-03 (Federico — ha
 
 - [ ] Sostituire i numeri placeholder delle work card con dati reali dei clienti (Cesare)
 - [ ] Seedare i `caseStudy` con dati REALI (Isola dei Gabbiani anonimizzato + altri), poi linkare `/lavori` in nav (Cesare/Federico)
-- [ ] (nit review PR #3) allineare l'ordinamento Studio dei `caseStudy` a quello del sito (`coalesce(date,_createdAt)`) o rendere `date` obbligatorio (Federico) → PR #9
+- [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
 
 ---

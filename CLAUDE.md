@@ -67,6 +67,7 @@ MUST NOT scrivere a mano le interfacce TypeScript dei documenti Sanity quando lo
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | ID progetto Sanity |
 | `NEXT_PUBLIC_SANITY_DATASET` | Dataset (`production`) |
 | `SANITY_REVALIDATE_SECRET` | Firma del webhook Sanity → `/api/revalidate` (publish nello Studio = sito aggiornato in secondi) |
+| `SANITY_API_READ_TOKEN` | Read token (Viewer) usato dal client server-side: il dataset limita la lettura pubblica di alcuni tipi (es. `caseStudy`) |
 
 ### Comandi
 
