@@ -22,7 +22,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-14 (Federico — se
 | 0 | `npx sanity login` sulla macchina di Federico (serve solo ai seed script via CLI; opzionale ora che c'è l'MCP) | Federico | — | ⏳ opzionale |
 | 1 | Migrare contenuti landing da `lib/landing-content.ts` a Sanity (quando il design è bloccato) + metriche reali al posto dei placeholder | Cesare | — | ⏳ in attesa design |
 | 2 | Casi di successo: tipo `caseStudy`, route `/[locale]/lavori`, seed script | Federico | PR #3 | ✅ mergiata (+ fix da review: read token, remotePatterns) |
-| 2b | Homepage "Alcune delle nostre soluzioni" da Sanity (metriche 1-2, badge tech, `featured`, diagrammi) + use case Isola dei Gabbiani (issue #11) | Federico | `feat/soluzioni-home` | 🔨 in corso |
+| 2b | Homepage "Alcune delle nostre soluzioni" da Sanity (metriche 1-2, badge tech, `featured`, diagrammi) + use case Isola dei Gabbiani (issue #11) | Federico | PR #17 | 🔍 in review (manca solo l'import su Sanity) |
 | 2c | Use case Meta Ads optimizer + Zoho CRM → form Enel (issue #12) | Cesare | — | ⏳ da fare |
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
 | 4 | SEO tecnica: sitemap dinamica, robots, JSON-LD, typegen come fonte unica dei tipi | — | — | ⏳ da fare |
