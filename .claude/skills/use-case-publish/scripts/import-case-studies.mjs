@@ -9,8 +9,9 @@
  * PRESERVA la cover se è già stata caricata dallo Studio, così non perdi le
  * immagini rifacendo l'import.
  */
+import { createReadStream } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 import { createClient } from "next-sanity";
 
 const DIR = "content/case-studies";
@@ -66,11 +67,34 @@ async function main() {
       console.error(`  ✗ ${file}: manca _id o _type, salto.`);
       continue;
     }
-    // Preserva la cover caricata nello Studio se il JSON non ne porta una.
-    if (!doc.cover) {
-      const existing = await client.getDocument(doc._id).catch(() => null);
-      if (existing?.cover) doc.cover = existing.cover;
+    // I diagrammi possono arrivare come file locali (`_localFile` accanto ad
+    // alt/caption): l'importer carica l'asset su Sanity e collega il ref.
+    // L'upload avviene solo se l'asset con lo stesso filename non è già
+    // collegato al documento esistente (re-import idempotente).
+    const existing = await client.getDocument(doc._id).catch(() => null);
+    if (Array.isArray(doc.diagrams)) {
+      for (const diagram of doc.diagrams) {
+        const localFile = diagram._localFile;
+        delete diagram._localFile;
+        if (!localFile || diagram.asset) continue;
+        const prev = existing?.diagrams?.find((d) => d._key === diagram._key);
+        if (prev?.asset) {
+          diagram.asset = prev.asset;
+          continue;
+        }
+        const asset = await client.assets.upload(
+          "image",
+          createReadStream(localFile),
+          { filename: basename(localFile) }
+        );
+        diagram.asset = { _type: "reference", _ref: asset._id };
+        console.log(`    ↑ asset ${basename(localFile)}`);
+      }
     }
+    // Preserva le immagini caricate nello Studio (cover, diagrammi) se il
+    // JSON non le porta: ri-lanciare l'import non deve perderle.
+    if (!doc.cover && existing?.cover) doc.cover = existing.cover;
+    if (!doc.diagrams && existing?.diagrams) doc.diagrams = existing.diagrams;
     await client.createOrReplace(doc);
     console.log(`  ✓ ${doc._id}`);
   }

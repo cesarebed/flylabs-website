@@ -22,12 +22,47 @@
     "it": "Cosa abbiamo costruito, 1-2 frasi.",
     "en": "What we built, 1-2 sentences."
   },
-  "metric": "428",
-  "metricLabel": {
-    "_type": "localeString",
-    "it": "recensioni analizzate",
-    "en": "reviews analysed"
-  },
+  "metrics": [
+    {
+      "_type": "metric",
+      "_key": "m1",
+      "value": "428",
+      "label": {
+        "_type": "localeString",
+        "it": "recensioni analizzate",
+        "en": "reviews analysed"
+      }
+    },
+    {
+      "_type": "metric",
+      "_key": "m2",
+      "value": "17%",
+      "label": {
+        "_type": "localeString",
+        "it": "seconda metrica (opzionale, max 2)",
+        "en": "second metric (optional, max 2)"
+      }
+    }
+  ],
+  "tech": ["Claude", "Make.com"],
+  "featured": false,
+  "diagrams": [
+    {
+      "_type": "image",
+      "_key": "d1",
+      "_localFile": "content/case-studies/assets/<slug>-nome-diagramma.png",
+      "alt": {
+        "_type": "localeString",
+        "it": "Descrizione del diagramma per accessibilità",
+        "en": "Diagram description for accessibility"
+      },
+      "caption": {
+        "_type": "localeString",
+        "it": "Didascalia sotto il diagramma",
+        "en": "Caption below the diagram"
+      }
+    }
+  ],
   "body": {
     "_type": "localeText",
     "it": "Racconto esteso (opzionale): contesto, come abbiamo lavorato, risultati.",

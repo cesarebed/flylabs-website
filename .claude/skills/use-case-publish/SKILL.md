@@ -73,7 +73,10 @@ modo naturale (non letterale). Mappatura:
 | (angolo/titolo) | `title` | es. "Recensioni gestite dall'AI, tono calibrato" |
 | Problema / sfida | `problem` | 1-2 frasi |
 | Soluzione | `solution` | 1-2 frasi |
-| Risultati / impatto | `metric` + `metricLabel` | vedi regola metrica sotto |
+| Risultati / impatto | `metrics` | array di 1-2 `{_type:"metric", _key, value, label}`; vedi regola metrica sotto |
+| frontmatter `tech: [...]` | `tech` | badge dello stack (array di stringhe, nomi invariati nelle lingue) |
+| scelta editoriale | `featured` | `true` = card nella sezione homepage "Alcune delle nostre soluzioni" (max 3) |
+| diagrammi in `diagrams/` | `diagrams` | array di image (alt + caption bilingui). Export PNG del flusso Excalidraw in `content/case-studies/assets/`, referenziato nel JSON con `_localFile`: l'importer carica l'asset e collega il ref (idempotente per `_key`; per forzare il re-upload cambia `_key`) |
 | Come funziona / Risultati | `body` | racconto esteso (opzionale) |
 | (testimonianza, se c'è) | `testimonial` {quote, author} | opzionale; anonimizza l'autore |
 | — | `cover` | opzionale; caricata in Studio, NON qui |
@@ -85,15 +88,17 @@ riusare lo slug della nota del brain: spesso contiene il nome del cliente (es.
 documento è `caseStudy.<slug>`.
 
 ### 4. Regola della metrica — non inventare mai
-`metric` è **obbligatorio** ed è il numero grande sulla card. Nel brain i numeri
-d'impatto sono spesso "da consolidare": in quel caso NON inventare un "+48".
-In ordine di preferenza:
+`metrics` è **obbligatorio** (da 1 a 2 voci) ed è il blocco di numeri grandi sulla
+card. Nel brain i numeri d'impatto sono spesso "da consolidare": in quel caso NON
+inventare un "+48". In ordine di preferenza:
 1. Un numero **reale e validato** dal brain (es. tempo risparmiato misurato).
 2. Un **fatto reale** come metrica, onesto anche se meno "wow" (es. `428` →
    "recensioni analizzate", `17%` → "recensioni multilingua").
-3. Se davvero non c'è nulla di solido: metti `metric` a `"—"` e in `metricLabel`
-   scrivi `"[metrica da validare]"`, e **avvisa esplicitamente l'utente** che va
+3. Se davvero non c'è nulla di solido: una sola voce con `value: "—"` e `label`
+   `"[metrica da validare]"`, e **avvisa esplicitamente l'utente** che va
    completata prima di pubblicare. Non pubblicare mai un numero non verificato.
+Meglio una metrica solida che due deboli: la seconda voce si aggiunge solo se
+regge da sola.
 
 ### 5. Scrivi i due output
 **Brain** — aggiorna la nota del progetto:
@@ -117,8 +122,8 @@ Prima di considerarti finito, cerca dentro `content/case-studies/<slug>.json` **
 - **importi e dati commerciali** (campi `amount_eur`/`phase2_eur`, simboli `€`/`$`, prezzi).
 
 Se trovi uno di questi, è una fuga: correggi. Poi verifica che il JSON sia valido e che i
-campi obbligatori (`title.it`, `slug`, `sector`, `problem`, `solution`, `metric`,
-`metricLabel`) ci siano. I numeri ammessi sono solo quelli non identificanti usati come
+campi obbligatori (`title.it`, `slug`, `sector`, `problem`, `solution`, `metrics` con
+1-2 voci complete di `_key`) ci siano. I numeri ammessi sono solo quelli non identificanti usati come
 metrica/racconto (es. conteggi aggregati).
 
 ### 7. Caricamento su Sanity (passo esplicito, non automatico)

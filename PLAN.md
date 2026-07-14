@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-04 (Federico — hardening form contatti #5/#6 + nit ordinamento `date` + doc read token).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-14 (Federico — sezione "soluzioni" homepage + use case Isola dei Gabbiani, issue #11-#16).
 
 ---
 
@@ -22,6 +22,8 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-04 (Federico — ha
 | 0 | `npx sanity login` sulla macchina di Federico (serve solo ai seed script via CLI; opzionale ora che c'è l'MCP) | Federico | — | ⏳ opzionale |
 | 1 | Migrare contenuti landing da `lib/landing-content.ts` a Sanity (quando il design è bloccato) + metriche reali al posto dei placeholder | Cesare | — | ⏳ in attesa design |
 | 2 | Casi di successo: tipo `caseStudy`, route `/[locale]/lavori`, seed script | Federico | PR #3 | ✅ mergiata (+ fix da review: read token, remotePatterns) |
+| 2b | Homepage "Alcune delle nostre soluzioni" da Sanity (metriche 1-2, badge tech, `featured`, diagrammi) + use case Isola dei Gabbiani (issue #11) | Federico | `feat/soluzioni-home` | 🔨 in corso |
+| 2c | Use case Meta Ads optimizer + Zoho CRM → form Enel (issue #12) | Cesare | — | ⏳ da fare |
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
 | 4 | SEO tecnica: sitemap dinamica, robots, JSON-LD, typegen come fonte unica dei tipi | — | — | ⏳ da fare |
 
@@ -33,11 +35,14 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-04 (Federico — ha
 - **Vercel su piano Hobby di Cesare**: la repo è **pubblica** (dal 2026-07), quindi il vincolo "Git author must have access" non si applica più: preview e deploy di produzione funzionano per commit di chiunque. **Sia Cesare che Federico possono fare merge** (regola aggiornata 2026-07-04 su decisione di Federico; se la repo tornasse privata, torna valida la vecchia regola "solo Cesare fa merge" col workaround del commit vuoto).
 - **Read token Sanity per il sito**: il dataset `production` limita la lettura pubblica ad alcuni tipi (es. `caseStudy` NON è leggibile senza auth, mentre `siteSettings` sì), quindi il client server-side (`sanity/client.ts`) legge con un **read token** (`SANITY_API_READ_TOKEN`, su Vercel prod) e `perspective: "published"`. Emerso dalla code review della PR #3.
 - **`/lavori` in produzione parte VUOTA**: i 3 casi seedati da `feat/case-study` avevano metriche placeholder → cancellati per non pubblicare numeri finti sul dominio live; la route non è ancora linkata in nav. Va seedato con dati REALI e poi linkato.
+- **Sezione homepage "Alcune delle nostre soluzioni" (weekly 2026-07-14)**: 2-3 card di use case REALI da Sanity (tag settore, breve descrizione, 1-2 metriche, badge tecnologie) → pagina dettaglio con diagramma Excalidraw + testo esteso + stack. Primi due use case: Isola dei Gabbiani (Federico) e progetto di Cesare (Meta Ads optimizer + Zoho→Enel, issue #12). Finché non ci sono casi `featured` su Sanity, la home mostra le card hardcoded di prima (fallback).
+- **Modello metrica → `metrics` (1-2 voci)**: la card mostra 1 o 2 numeri reali (decisione call: "una o due metriche"); sostituiti i campi `metric`/`metricLabel` senza migrazione perché in produzione non esisteva alcun documento `caseStudy`.
+- **Brand formalizzato nel vault** (2026-07-14): palette UI, tipografia e voce documentate in `flylabs-brain/03_Resources/materials/brand/` (`ui-style.md`, `voce.md`, `tipografia.md`); palette UI del sito e palette diagrammi restano volutamente separate. Fonte di verità tecnica: `app/globals.css`.
 
 ## Task aperti (fuori roadmap)
 
-- [ ] Sostituire i numeri placeholder delle work card con dati reali dei clienti (Cesare)
-- [ ] Seedare i `caseStudy` con dati REALI (Isola dei Gabbiani anonimizzato + altri), poi linkare `/lavori` in nav (Cesare/Federico)
+- [ ] Sostituire i numeri placeholder delle work card con dati reali dei clienti → superato da Fase 2b: quando i casi `featured` sono su Sanity, le card hardcoded spariscono da sole (fallback)
+- [ ] Seedare i `caseStudy` con dati REALI: JSON Isola dei Gabbiani pronto in `content/case-studies/` con asset diagrammi; **manca solo l'import** (`node .claude/skills/use-case-publish/scripts/import-case-studies.mjs`, serve `SANITY_API_WRITE_TOKEN` in `.env.local` — il classifier di Claude Code blocca la creazione autonoma di token di scrittura). Poi decidere il link `/lavori` in nav (issue #13)
 - [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
 
