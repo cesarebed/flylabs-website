@@ -47,19 +47,56 @@ export const caseStudy = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "metric",
-      title: "Metrica principale",
+      name: "metrics",
+      title: "Metriche (1 o 2)",
       description:
-        "Il numero in grande sulla card, es. \"+48\", \"12h\", \"<60s\". Uguale in tutte le lingue.",
-      type: "string",
-      validation: (rule) => rule.required(),
+        "I numeri in grande sulla card. Solo dati reali, mai stime inventate. Con 2 metriche la card le affianca.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "metric",
+          title: "Metrica",
+          fields: [
+            defineField({
+              name: "value",
+              title: "Valore",
+              description:
+                "Il numero, es. \"428\", \"12h\", \"<60s\". Uguale in tutte le lingue.",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "label",
+              title: "Cosa misura",
+              description: "Es. \"recensioni analizzate\".",
+              type: "localeString",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: "value", subtitle: "label.it" },
+          },
+        },
+      ],
+      validation: (rule) => rule.required().min(1).max(2),
     }),
     defineField({
-      name: "metricLabel",
-      title: "Descrizione della metrica",
-      description: "Cosa misura il numero, es. \"richieste · primo mese\".",
-      type: "localeString",
-      validation: (rule) => rule.required(),
+      name: "tech",
+      title: "Tecnologie usate",
+      description:
+        "Badge dello stack mostrati su card e pagina di dettaglio, es. \"Claude\", \"Make.com\". Nomi uguali in tutte le lingue.",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { layout: "tags" },
+    }),
+    defineField({
+      name: "featured",
+      title: "In evidenza in homepage",
+      description:
+        "Se attivo, il caso appare tra le card della sezione \"Alcune delle nostre soluzioni\" (i 3 più recenti tra quelli in evidenza).",
+      type: "boolean",
+      initialValue: false,
     }),
     defineField({
       name: "body",
@@ -100,6 +137,34 @@ export const caseStudy = defineType({
           description: "Descrizione dell'immagine per accessibilità e SEO.",
           type: "localeString",
         }),
+      ],
+    }),
+    defineField({
+      name: "diagrams",
+      title: "Diagrammi della soluzione",
+      description:
+        "Export dei flussi Excalidraw (stile FlyLabs, convenzione nel brain: 03_Resources/materials/brand/diagram-style.md). Mostrati nella pagina di dettaglio nell'ordine dato.",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Testo alternativo",
+              description:
+                "Descrizione del diagramma per accessibilità e SEO.",
+              type: "localeString",
+            }),
+            defineField({
+              name: "caption",
+              title: "Didascalia",
+              description:
+                "Riga sotto il diagramma, es. \"La pipeline giornaliera\".",
+              type: "localeString",
+            }),
+          ],
+        },
       ],
     }),
     defineField({

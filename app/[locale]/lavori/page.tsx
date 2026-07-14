@@ -8,6 +8,7 @@ import { CASE_STUDIES_QUERY } from "@/sanity/queries";
 import type { CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
 import { Footer } from "@/components/landing/footer";
 import { LangToggle } from "@/components/landing/lang-toggle";
+import { TechBadges } from "@/components/landing/tech-badges";
 
 export const revalidate = 3600;
 
@@ -87,15 +88,28 @@ export default async function CasesPage({
                 <p className="mb-1 font-semibold">
                   {pickLocale(study.problem, lang)}
                 </p>
-                <p className="mb-6 text-sm text-muted">
+                <p className="mb-4 text-sm text-muted">
                   {pickLocale(study.solution, lang)}
                 </p>
+                <TechBadges tech={study.tech} className="mb-6" />
                 <div className="mt-auto border-t border-line pt-6">
-                  <div className="font-display text-6xl font-semibold leading-none text-accent">
-                    {study.metric}
-                  </div>
-                  <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
-                    {pickLocale(study.metricLabel, lang)}
+                  <div className="flex flex-wrap gap-x-8 gap-y-4">
+                    {(study.metrics ?? []).map((metric) => (
+                      <div key={metric._key}>
+                        <div
+                          className={`font-display font-semibold leading-none text-accent ${
+                            (study.metrics?.length ?? 1) > 1
+                              ? "text-4xl"
+                              : "text-6xl"
+                          }`}
+                        >
+                          {metric.value}
+                        </div>
+                        <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
+                          {pickLocale(metric.label, lang)}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                   <div className="mt-4 text-sm font-medium text-ink/70">
                     {cases.cta[lang]}
