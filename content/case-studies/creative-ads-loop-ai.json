@@ -1,0 +1,69 @@
+{
+  "_id": "caseStudy.creative-ads-loop-ai",
+  "_type": "caseStudy",
+  "title": {
+    "_type": "localeString",
+    "it": "Creative pubblicitarie sempre fresche, senza autopilota",
+    "en": "Always-fresh ad creatives, without autopilot"
+  },
+  "slug": { "_type": "slug", "current": "creative-ads-loop-ai" },
+  "sector": {
+    "_type": "localeString",
+    "it": "Retail",
+    "en": "Retail"
+  },
+  "problem": {
+    "_type": "localeText",
+    "it": "Le campagne lead-gen su Meta erano gestite in proprio, senza agenzia. Le creative si consumano in silenzio: stesso budget, ma alcuni gruppi pagano i contatti il doppio di altri, e produrre ricambi richiedeva giorni.",
+    "en": "The Meta lead-gen campaigns were run in-house, without an agency. Creatives wear out silently: same budget, but some ad sets pay twice as much per lead as others, and producing replacements took days."
+  },
+  "solution": {
+    "_type": "localeText",
+    "it": "Un assistente AI fa ogni settimana il giro completo — misura, propone, produce e carica le creative — ma niente va online da solo: il codice decide i numeri, l'AI l'angolo creativo, il cliente approva prima della messa online.",
+    "en": "An AI assistant runs the full loop every week — measure, propose, produce and upload creatives — but nothing goes live on its own: code decides the numbers, AI the creative angle, the client approves before anything goes online."
+  },
+  "metrics": [
+    {
+      "_type": "metric",
+      "_key": "m1",
+      "value": "1 sessione",
+      "label": {
+        "_type": "localeString",
+        "it": "per un giro completo di creative, da giorni",
+        "en": "for a full round of creatives, down from days"
+      }
+    }
+  ],
+  "tech": ["Claude Code", "Python", "Meta Marketing API", "MCP", "Higgsfield", "GitHub Actions"],
+  "featured": true,
+  "diagrams": [
+    {
+      "_type": "diagram",
+      "_key": "d1",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/creative-ads-loop-ai-loop.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/creative-ads-loop-ai-loop-en.png"
+      },
+      "alt": {
+        "_type": "localeString",
+        "it": "Diagramma del loop settimanale: analisi dei gruppi che costano di più, idee di nuovi angoli scelte dall'AI, produzione con foto AI e testo dal codice, approvazione del cliente e messa online controllata con ogni annuncio che nasce in pausa",
+        "en": "Weekly loop diagram: analysis of the ad sets that cost more, new angle ideas chosen by AI, production with AI photos and code-assembled text, client approval and controlled go-live with every ad created paused"
+      },
+      "caption": {
+        "_type": "localeString",
+        "it": "Il loop settimanale: misura, proponi, produci, carica — con il cliente che approva",
+        "en": "The weekly loop: measure, propose, produce, upload — with the client approving"
+      }
+    }
+  ],
+  "body": {
+    "_type": "localeText",
+    "it": "Le campagne erano gestite in proprio, senza agenzia. Il problema del settore è la fatica creativa: gli annunci si consumano e il costo per contatto sale in silenzio, mentre produrre ricambi è lento. Il cliente voleva tenere il controllo — niente autopilota — senza però fare l'operatore tecnico.\n\nC'era anche un rischio concreto: l'AI generativa, lasciata libera sulle pubblicità, al primo test ha inventato di sana pianta un brand concorrente dentro una foto. Da lì la regola cardine: l'AI genera solo l'immagine pulita, il testo e i prezzi li monta il codice dal listino ufficiale del cliente. Niente numeri inventati.\n\nOgni settimana un assistente in Claude Code fa il giro completo, con una divisione dei ruoli netta: il codice decide tutto ciò che è misurabile a soglia fissa (quali gruppi costano di più, quando sostituire una creativa, quale vince con che margine statistico); l'AI sceglie l'angolo creativo e controlla il layout; il cliente approva due momenti — il piano e le creative — e poi la messa online, tutto in linguaggio semplice.\n\nNessun annuncio va online da solo: ogni creativa nasce in pausa e l'attivazione è un passo separato che parte solo su ok esplicito. I vincitori, misurati con un verdetto statistico, si propagano agli altri gruppi.",
+    "en": "The campaigns were run in-house, without an agency. The industry's real problem is creative fatigue: ads wear out and the cost per lead climbs silently, while producing replacements is slow. The client wanted to keep control — no autopilot — without becoming the technical operator.\n\nThere was also a concrete risk: generative AI, left free on ads, invented a competitor brand out of thin air inside a photo on the very first test. Hence the core rule: AI only generates the clean image, while text and prices are assembled by code from the client's official price list. No made-up numbers.\n\nEvery week an assistant in Claude Code runs the full loop, with a clear division of roles: code decides everything measurable against fixed thresholds (which ad sets cost more, when to replace a creative, which one wins and by what statistical margin); AI picks the creative angle and checks the layout; the client approves two moments — the plan and the creatives — and then going live, all in plain language.\n\nNothing goes online on its own: every creative is created paused and activation is a separate step that only happens on an explicit OK. Winners, measured with a statistical verdict, propagate to the other ad sets."
+  },
+  "date": "2026-07-05"
+}
