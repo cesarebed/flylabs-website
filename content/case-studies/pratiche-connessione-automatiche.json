@@ -14,13 +14,13 @@
   },
   "problem": {
     "_type": "localeText",
-    "it": "Ogni impianto venduto apre una pratica di connessione da compilare a mano sul portale del distributore: 30–60 minuti di lavoro esperto, tutto ricopiato dal gestionale, con il rischio di sbagliare dati critici.",
-    "en": "Every system sold opens a grid-connection request that has to be filled in by hand on the operator's portal: 30–60 minutes of expert work, all re-typed from the CRM, with the risk of getting critical data wrong."
+    "it": "Pratiche di connessione compilate a mano sul portale, una per una.",
+    "en": "Grid-connection requests filled in by hand on the portal, one by one."
   },
   "solution": {
     "_type": "localeText",
-    "it": "Un sistema AI lavora la pratica da sé: controlla i dati, compila il portale in modo deterministico, verifica e inoltra. L'operatore scrive solo il nome del cliente.",
-    "en": "An AI system handles the request on its own: it checks the data, fills the portal deterministically, verifies and submits. The operator only types the client's name."
+    "it": "Un sistema AI la compila da sé: l'operatore scrive il nome del cliente, il resto è automatico.",
+    "en": "An AI system fills it out itself: the operator types the client's name, the rest is automatic."
   },
   "metrics": [
     {

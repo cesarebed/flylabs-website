@@ -14,13 +14,13 @@
   },
   "problem": {
     "_type": "localeText",
-    "it": "Le campagne lead-gen su Meta erano gestite in proprio, senza agenzia. Le creative si consumano in silenzio: stesso budget, ma alcuni gruppi pagano i contatti il doppio di altri, e produrre ricambi richiedeva giorni.",
-    "en": "The Meta lead-gen campaigns were run in-house, without an agency. Creatives wear out silently: same budget, but some ad sets pay twice as much per lead as others, and producing replacements took days."
+    "it": "Le creative si consumano in fretta e produrne di nuove richiedeva giorni.",
+    "en": "Ad creatives wear out fast, and producing new ones took days."
   },
   "solution": {
     "_type": "localeText",
-    "it": "Un assistente AI fa ogni settimana il giro completo — misura, propone, produce e carica le creative — ma niente va online da solo: il codice decide i numeri, l'AI l'angolo creativo, il cliente approva prima della messa online.",
-    "en": "An AI assistant runs the full loop every week — measure, propose, produce and upload creatives — but nothing goes live on its own: code decides the numbers, AI the creative angle, the client approves before anything goes online."
+    "it": "Ogni settimana un'AI misura, propone e produce nuove creative; niente va online senza l'ok del cliente.",
+    "en": "Each week an AI measures, proposes and produces new creatives; nothing goes live without the client's OK."
   },
   "metrics": [
     {
