@@ -104,18 +104,65 @@
         },
         "optional": true
       },
-      "metric": {
+      "metrics": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "value": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "label": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "inline",
+                  "name": "localeString"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "metric"
+                }
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
         },
         "optional": true
       },
-      "metricLabel": {
+      "tech": {
         "type": "objectAttribute",
         "value": {
-          "type": "inline",
-          "name": "localeString"
+          "type": "array",
+          "of": {
+            "type": "string"
+          }
+        },
+        "optional": true
+      },
+      "featured": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
         },
         "optional": true
       },
@@ -200,6 +247,146 @@
               "value": {
                 "type": "string",
                 "value": "image"
+              }
+            }
+          }
+        },
+        "optional": true
+      },
+      "diagrams": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "it": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "asset": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageAsset.reference"
+                      },
+                      "optional": true
+                    },
+                    "media": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "unknown"
+                      },
+                      "optional": true
+                    },
+                    "hotspot": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageHotspot"
+                      },
+                      "optional": true
+                    },
+                    "crop": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageCrop"
+                      },
+                      "optional": true
+                    },
+                    "_type": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string",
+                        "value": "image"
+                      }
+                    }
+                  }
+                },
+                "optional": true
+              },
+              "en": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "asset": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageAsset.reference"
+                      },
+                      "optional": true
+                    },
+                    "media": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "unknown"
+                      },
+                      "optional": true
+                    },
+                    "hotspot": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageHotspot"
+                      },
+                      "optional": true
+                    },
+                    "crop": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageCrop"
+                      },
+                      "optional": true
+                    },
+                    "_type": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string",
+                        "value": "image"
+                      }
+                    }
+                  }
+                },
+                "optional": true
+              },
+              "alt": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "inline",
+                  "name": "localeString"
+                },
+                "optional": true
+              },
+              "caption": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "inline",
+                  "name": "localeString"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "diagram"
+                }
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }

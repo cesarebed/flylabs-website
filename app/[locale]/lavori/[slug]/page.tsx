@@ -17,6 +17,7 @@ import type {
 } from "@/sanity.types";
 import { Footer } from "@/components/landing/footer";
 import { LangToggle } from "@/components/landing/lang-toggle";
+import { TechBadges } from "@/components/landing/tech-badges";
 
 export const revalidate = 3600;
 
@@ -91,14 +92,22 @@ export default async function CaseStudyPage({
         <h1 className="font-display text-4xl font-semibold leading-tight md:text-5xl">
           {pickLocale(study.title, lang)}
         </h1>
+        <TechBadges tech={study.tech} className="mt-6" />
 
-        <div className="mt-8 inline-block rounded-xl border border-line bg-paper px-7 py-6">
-          <div className="font-display text-6xl font-semibold leading-none text-accent">
-            {study.metric}
-          </div>
-          <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
-            {pickLocale(study.metricLabel, lang)}
-          </div>
+        <div className="mt-8 flex flex-wrap gap-4">
+          {(study.metrics ?? []).map((metric) => (
+            <div
+              key={metric._key}
+              className="inline-block rounded-xl border border-line bg-paper px-7 py-6"
+            >
+              <div className="font-display text-6xl font-semibold leading-none text-accent">
+                {metric.value}
+              </div>
+              <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
+                {pickLocale(metric.label, lang)}
+              </div>
+            </div>
+          ))}
         </div>
 
         {study.cover?.asset && (
@@ -128,6 +137,31 @@ export default async function CaseStudyPage({
               {pickLocale(study.solution, lang)}
             </p>
           </section>
+          {(study.diagrams ?? []).map((diagram) => {
+            // Immagine nella lingua della pagina, con fallback sull'italiano.
+            const image =
+              lang === "en" && diagram.en?.asset ? diagram.en : diagram.it;
+            if (!image?.asset) return null;
+            return (
+              <figure key={diagram._key}>
+                <Image
+                  src={urlFor(image).width(1600).url()}
+                  alt={
+                    pickLocale(diagram.alt, lang) ||
+                    pickLocale(study.title, lang)
+                  }
+                  width={image.dims?.width ?? 1600}
+                  height={image.dims?.height ?? 900}
+                  className="rounded-xl border border-line bg-white"
+                />
+                {pickLocale(diagram.caption, lang) && (
+                  <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-wider text-muted">
+                    {pickLocale(diagram.caption, lang)}
+                  </figcaption>
+                )}
+              </figure>
+            );
+          })}
           {pickLocale(study.body, lang) && (
             <div className="flex flex-col gap-3">
               {pickLocale(study.body, lang)

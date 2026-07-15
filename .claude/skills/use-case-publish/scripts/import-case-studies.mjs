@@ -9,8 +9,9 @@
  * PRESERVA la cover se è già stata caricata dallo Studio, così non perdi le
  * immagini rifacendo l'import.
  */
+import { createReadStream } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 import { createClient } from "next-sanity";
 
 const DIR = "content/case-studies";
@@ -66,11 +67,40 @@ async function main() {
       console.error(`  ✗ ${file}: manca _id o _type, salto.`);
       continue;
     }
-    // Preserva la cover caricata nello Studio se il JSON non ne porta una.
-    if (!doc.cover) {
-      const existing = await client.getDocument(doc._id).catch(() => null);
-      if (existing?.cover) doc.cover = existing.cover;
+    // I diagrammi sono bilingui: ogni voce ha un'immagine `it` (obbligatoria)
+    // e una `en` (opzionale, il sito fa fallback su it). Le immagini arrivano
+    // come file locali (`_localFile`): l'importer carica l'asset su Sanity e
+    // collega il ref. Re-import idempotente: se il documento esistente ha già
+    // l'asset per quella voce (_key) e lingua, lo riusa senza ri-caricare.
+    const existing = await client.getDocument(doc._id).catch(() => null);
+    if (Array.isArray(doc.diagrams)) {
+      for (const diagram of doc.diagrams) {
+        const prev = existing?.diagrams?.find((d) => d._key === diagram._key);
+        for (const lang of ["it", "en"]) {
+          const image = diagram[lang];
+          if (!image) continue;
+          const localFile = image._localFile;
+          delete image._localFile;
+          if (!localFile || image.asset) continue;
+          const prevAsset = prev?.[lang]?.asset;
+          if (prevAsset) {
+            image.asset = prevAsset;
+            continue;
+          }
+          const asset = await client.assets.upload(
+            "image",
+            createReadStream(localFile),
+            { filename: basename(localFile) }
+          );
+          image.asset = { _type: "reference", _ref: asset._id };
+          console.log(`    ↑ asset ${basename(localFile)}`);
+        }
+      }
     }
+    // Preserva le immagini caricate nello Studio (cover, diagrammi) se il
+    // JSON non le porta: ri-lanciare l'import non deve perderle.
+    if (!doc.cover && existing?.cover) doc.cover = existing.cover;
+    if (!doc.diagrams && existing?.diagrams) doc.diagrams = existing.diagrams;
     await client.createOrReplace(doc);
     console.log(`  ✓ ${doc._id}`);
   }

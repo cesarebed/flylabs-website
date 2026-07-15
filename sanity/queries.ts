@@ -22,8 +22,24 @@ export const CASE_STUDIES_QUERY = defineQuery(
     sector,
     problem,
     solution,
-    metric,
-    metricLabel
+    metrics,
+    tech
+  }`
+);
+
+// Card della sezione homepage "Alcune delle nostre soluzioni":
+// solo i casi marcati in evidenza, massimo 3.
+export const FEATURED_CASE_STUDIES_QUERY = defineQuery(
+  `*[_type == "caseStudy" && featured == true && defined(slug.current)]
+    | order(coalesce(date, _createdAt) desc)[0...3]{
+    _id,
+    title,
+    "slug": slug.current,
+    sector,
+    problem,
+    solution,
+    metrics,
+    tech
   }`
 );
 
@@ -35,12 +51,19 @@ export const CASE_STUDY_BY_SLUG_QUERY = defineQuery(
     sector,
     problem,
     solution,
-    metric,
-    metricLabel,
+    metrics,
+    tech,
     body,
     testimonial,
     cover,
     "coverAlt": cover.alt,
+    "diagrams": diagrams[]{
+      _key,
+      alt,
+      caption,
+      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },
+      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }
+    },
     date
   }`
 );

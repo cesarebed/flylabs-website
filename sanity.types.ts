@@ -33,8 +33,14 @@ export type CaseStudy = {
   sector?: LocaleString;
   problem?: LocaleText;
   solution?: LocaleText;
-  metric?: string;
-  metricLabel?: LocaleString;
+  metrics?: Array<{
+    value?: string;
+    label?: LocaleString;
+    _type: "metric";
+    _key: string;
+  }>;
+  tech?: Array<string>;
+  featured?: boolean;
   body?: LocaleText;
   testimonial?: {
     quote?: LocaleText;
@@ -48,6 +54,26 @@ export type CaseStudy = {
     alt?: LocaleString;
     _type: "image";
   };
+  diagrams?: Array<{
+    it?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    en?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    alt?: LocaleString;
+    caption?: LocaleString;
+    _type: "diagram";
+    _key: string;
+  }>;
   date?: string;
 };
 
@@ -260,7 +286,7 @@ export type SITE_SETTINGS_QUERY_RESULT = {
 
 // Source: sanity/queries.ts
 // Variable: CASE_STUDIES_QUERY
-// Query: *[_type == "caseStudy" && defined(slug.current)]    | order(coalesce(date, _createdAt) desc){    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metric,    metricLabel  }
+// Query: *[_type == "caseStudy" && defined(slug.current)]    | order(coalesce(date, _createdAt) desc){    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metrics,    tech  }
 export type CASE_STUDIES_QUERY_RESULT = Array<{
   _id: string;
   title: LocaleString | null;
@@ -268,13 +294,37 @@ export type CASE_STUDIES_QUERY_RESULT = Array<{
   sector: LocaleString | null;
   problem: LocaleText | null;
   solution: LocaleText | null;
-  metric: string | null;
-  metricLabel: LocaleString | null;
+  metrics: Array<{
+    value?: string;
+    label?: LocaleString;
+    _type: "metric";
+    _key: string;
+  }> | null;
+  tech: Array<string> | null;
+}>;
+
+// Source: sanity/queries.ts
+// Variable: FEATURED_CASE_STUDIES_QUERY
+// Query: *[_type == "caseStudy" && featured == true && defined(slug.current)]    | order(coalesce(date, _createdAt) desc)[0...3]{    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metrics,    tech  }
+export type FEATURED_CASE_STUDIES_QUERY_RESULT = Array<{
+  _id: string;
+  title: LocaleString | null;
+  slug: string | null;
+  sector: LocaleString | null;
+  problem: LocaleText | null;
+  solution: LocaleText | null;
+  metrics: Array<{
+    value?: string;
+    label?: LocaleString;
+    _type: "metric";
+    _key: string;
+  }> | null;
+  tech: Array<string> | null;
 }>;
 
 // Source: sanity/queries.ts
 // Variable: CASE_STUDY_BY_SLUG_QUERY
-// Query: *[_type == "caseStudy" && slug.current == $slug][0]{    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metric,    metricLabel,    body,    testimonial,    cover,    "coverAlt": cover.alt,    date  }
+// Query: *[_type == "caseStudy" && slug.current == $slug][0]{    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metrics,    tech,    body,    testimonial,    cover,    "coverAlt": cover.alt,    "diagrams": diagrams[]{      _key,      alt,      caption,      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }    },    date  }
 export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
   _id: string;
   title: LocaleString | null;
@@ -282,8 +332,13 @@ export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
   sector: LocaleString | null;
   problem: LocaleText | null;
   solution: LocaleText | null;
-  metric: string | null;
-  metricLabel: LocaleString | null;
+  metrics: Array<{
+    value?: string;
+    label?: LocaleString;
+    _type: "metric";
+    _key: string;
+  }> | null;
+  tech: Array<string> | null;
   body: LocaleText | null;
   testimonial: {
     quote?: LocaleText;
@@ -298,6 +353,33 @@ export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
     _type: "image";
   } | null;
   coverAlt: LocaleString | null;
+  diagrams: Array<{
+    _key: string;
+    alt: LocaleString | null;
+    caption: LocaleString | null;
+    it: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      dims: {
+        width: number | null;
+        height: number | null;
+      } | null;
+    } | null;
+    en: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      dims: {
+        width: number | null;
+        height: number | null;
+      } | null;
+    } | null;
+  }> | null;
   date: string | null;
 } | null;
 
@@ -316,8 +398,9 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "siteSettings"][0]{\n    title,\n    description,\n    siteUrl,\n    "ogImage": ogImage.asset->url,\n    keywords\n  }': SITE_SETTINGS_QUERY_RESULT;
-    '*[_type == "caseStudy" && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc){\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metric,\n    metricLabel\n  }': CASE_STUDIES_QUERY_RESULT;
-    '*[_type == "caseStudy" && slug.current == $slug][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metric,\n    metricLabel,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    date\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;
+    '*[_type == "caseStudy" && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc){\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech\n  }': CASE_STUDIES_QUERY_RESULT;
+    '*[_type == "caseStudy" && featured == true && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc)[0...3]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech\n  }': FEATURED_CASE_STUDIES_QUERY_RESULT;
+    '*[_type == "caseStudy" && slug.current == $slug][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    "diagrams": diagrams[]{\n      _key,\n      alt,\n      caption,\n      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },\n      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }\n    },\n    date\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)].slug.current': CASE_STUDY_SLUGS_QUERY_RESULT;
     'count(*[_type == "contactSubmission" && submittedAt > $since &&\n    (email == $email || (defined(ipHash) && ipHash == $ipHash))])': CONTACT_RATE_COUNT_QUERY_RESULT;
   }
