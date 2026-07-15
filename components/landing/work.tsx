@@ -53,13 +53,7 @@ export async function Work({ lang }: { lang: Locale }) {
                 >
                   {(study.metrics ?? []).map((metric) => (
                     <div key={metric._key}>
-                      <div
-                        className={`font-display font-semibold leading-none text-accent ${
-                          (study.metrics?.length ?? 1) > 1
-                            ? "text-4xl"
-                            : "text-6xl"
-                        }`}
-                      >
+                      <div className="whitespace-nowrap font-display text-4xl font-semibold leading-none text-accent">
                         {metric.value}
                       </div>
                       <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
