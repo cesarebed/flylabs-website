@@ -67,28 +67,34 @@ async function main() {
       console.error(`  ✗ ${file}: manca _id o _type, salto.`);
       continue;
     }
-    // I diagrammi possono arrivare come file locali (`_localFile` accanto ad
-    // alt/caption): l'importer carica l'asset su Sanity e collega il ref.
-    // L'upload avviene solo se l'asset con lo stesso filename non è già
-    // collegato al documento esistente (re-import idempotente).
+    // I diagrammi sono bilingui: ogni voce ha un'immagine `it` (obbligatoria)
+    // e una `en` (opzionale, il sito fa fallback su it). Le immagini arrivano
+    // come file locali (`_localFile`): l'importer carica l'asset su Sanity e
+    // collega il ref. Re-import idempotente: se il documento esistente ha già
+    // l'asset per quella voce (_key) e lingua, lo riusa senza ri-caricare.
     const existing = await client.getDocument(doc._id).catch(() => null);
     if (Array.isArray(doc.diagrams)) {
       for (const diagram of doc.diagrams) {
-        const localFile = diagram._localFile;
-        delete diagram._localFile;
-        if (!localFile || diagram.asset) continue;
         const prev = existing?.diagrams?.find((d) => d._key === diagram._key);
-        if (prev?.asset) {
-          diagram.asset = prev.asset;
-          continue;
+        for (const lang of ["it", "en"]) {
+          const image = diagram[lang];
+          if (!image) continue;
+          const localFile = image._localFile;
+          delete image._localFile;
+          if (!localFile || image.asset) continue;
+          const prevAsset = prev?.[lang]?.asset;
+          if (prevAsset) {
+            image.asset = prevAsset;
+            continue;
+          }
+          const asset = await client.assets.upload(
+            "image",
+            createReadStream(localFile),
+            { filename: basename(localFile) }
+          );
+          image.asset = { _type: "reference", _ref: asset._id };
+          console.log(`    ↑ asset ${basename(localFile)}`);
         }
-        const asset = await client.assets.upload(
-          "image",
-          createReadStream(localFile),
-          { filename: basename(localFile) }
-        );
-        diagram.asset = { _type: "reference", _ref: asset._id };
-        console.log(`    ↑ asset ${basename(localFile)}`);
       }
     }
     // Preserva le immagini caricate nello Studio (cover, diagrammi) se il

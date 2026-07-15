@@ -58,8 +58,11 @@ export const CASE_STUDY_BY_SLUG_QUERY = defineQuery(
     cover,
     "coverAlt": cover.alt,
     "diagrams": diagrams[]{
-      ...,
-      "dims": asset->metadata.dimensions{ width, height }
+      _key,
+      alt,
+      caption,
+      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },
+      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }
     },
     date
   }`

@@ -147,8 +147,25 @@ export const caseStudy = defineType({
       type: "array",
       of: [
         {
-          type: "image",
+          type: "object",
+          name: "diagram",
+          title: "Diagramma",
           fields: [
+            defineField({
+              name: "it",
+              title: "Immagine (italiano)",
+              description:
+                "Export con i testi in italiano. Senza questa il diagramma non si vede.",
+              type: "image",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "en",
+              title: "Immagine (inglese)",
+              description:
+                "Export con i testi in inglese. Se manca, la pagina EN mostra la versione italiana.",
+              type: "image",
+            }),
             defineField({
               name: "alt",
               title: "Testo alternativo",
@@ -164,6 +181,9 @@ export const caseStudy = defineType({
               type: "localeString",
             }),
           ],
+          preview: {
+            select: { title: "caption.it", media: "it" },
+          },
         },
       ],
     }),

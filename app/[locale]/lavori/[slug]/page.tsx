@@ -137,18 +137,21 @@ export default async function CaseStudyPage({
               {pickLocale(study.solution, lang)}
             </p>
           </section>
-          {(study.diagrams ?? [])
-            .filter((diagram) => diagram.asset)
-            .map((diagram) => (
+          {(study.diagrams ?? []).map((diagram) => {
+            // Immagine nella lingua della pagina, con fallback sull'italiano.
+            const image =
+              lang === "en" && diagram.en?.asset ? diagram.en : diagram.it;
+            if (!image?.asset) return null;
+            return (
               <figure key={diagram._key}>
                 <Image
-                  src={urlFor(diagram).width(1600).url()}
+                  src={urlFor(image).width(1600).url()}
                   alt={
                     pickLocale(diagram.alt, lang) ||
                     pickLocale(study.title, lang)
                   }
-                  width={diagram.dims?.width ?? 1600}
-                  height={diagram.dims?.height ?? 900}
+                  width={image.dims?.width ?? 1600}
+                  height={image.dims?.height ?? 900}
                   className="rounded-xl border border-line bg-white"
                 />
                 {pickLocale(diagram.caption, lang) && (
@@ -157,7 +160,8 @@ export default async function CaseStudyPage({
                   </figcaption>
                 )}
               </figure>
-            ))}
+            );
+          })}
           {pickLocale(study.body, lang) && (
             <div className="flex flex-col gap-3">
               {pickLocale(study.body, lang)

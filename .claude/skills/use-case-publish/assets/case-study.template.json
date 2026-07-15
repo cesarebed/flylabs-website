@@ -48,9 +48,16 @@
   "featured": false,
   "diagrams": [
     {
-      "_type": "image",
+      "_type": "diagram",
       "_key": "d1",
-      "_localFile": "content/case-studies/assets/<slug>-nome-diagramma.png",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/<slug>-nome-diagramma.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/<slug>-nome-diagramma-en.png"
+      },
       "alt": {
         "_type": "localeString",
         "it": "Descrizione del diagramma per accessibilità",

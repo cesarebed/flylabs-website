@@ -14,19 +14,19 @@
   },
   "problem": {
     "_type": "localeText",
-    "it": "Il titolare rispondeva a mano a ogni recensione TripAdvisor, anche in altre lingue, cercando di tenere un tono coerente con la voce della struttura. Un primo tentativo fai-da-te con un agente autonomo, senza controllo su costi e permessi, aveva convinto che serviva un approccio governato.",
-    "en": "The owner was replying to every TripAdvisor review by hand, across languages, trying to keep a tone consistent with the house voice. An earlier DIY attempt with an unconstrained autonomous agent, with no control over costs or permissions, made it clear a governed approach was needed."
+    "it": "Risposte alle recensioni scritte a mano, una a una, in più lingue.",
+    "en": "Review replies written by hand, one by one, across languages."
   },
   "solution": {
     "_type": "localeText",
-    "it": "Una pipeline che monitora le nuove recensioni, genera una bozza di risposta nel tono calibrato sullo storico, rileva la lingua e segnala i casi delicati. L'operatore rivede e pubblica: human-in-the-loop, a costi prevedibili.",
-    "en": "A pipeline that monitors new reviews, drafts a reply in a tone calibrated on the historical record, detects the language and flags sensitive cases. A human reviews and publishes: human-in-the-loop, at predictable cost."
+    "it": "Una pipeline AI prepara le bozze nel tono della struttura: l'operatore rivede e pubblica.",
+    "en": "An AI pipeline drafts replies in the house tone: a human reviews and publishes."
   },
   "metrics": [
     {
       "_type": "metric",
       "_key": "m1",
-      "value": "428",
+      "value": "1000+",
       "label": {
         "_type": "localeString",
         "it": "recensioni analizzate",
@@ -48,9 +48,16 @@
   "featured": true,
   "diagrams": [
     {
-      "_type": "image",
+      "_type": "diagram",
       "_key": "d1",
-      "_localFile": "content/case-studies/assets/risposte-recensioni-ai-pipeline-giornaliera.png",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/risposte-recensioni-ai-pipeline-giornaliera.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/risposte-recensioni-ai-pipeline-giornaliera-en.png"
+      },
       "alt": {
         "_type": "localeString",
         "it": "Diagramma della pipeline giornaliera: scrape delle nuove recensioni, dedup, bozza generata da Claude nel tono della struttura, foglio di lavoro, email di riepilogo, revisione dell'operatore",
@@ -63,9 +70,16 @@
       }
     },
     {
-      "_type": "image",
+      "_type": "diagram",
       "_key": "d2",
-      "_localFile": "content/case-studies/assets/risposte-recensioni-ai-loop-settimanale.png",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/risposte-recensioni-ai-loop-settimanale.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/risposte-recensioni-ai-loop-settimanale-en.png"
+      },
       "alt": {
         "_type": "localeString",
         "it": "Diagramma del loop settimanale: prompt attuale e feedback dell'operatore consolidati da Claude, con aggiornamento del prompt o email di nessun cambiamento",
@@ -80,8 +94,8 @@
   ],
   "body": {
     "_type": "localeText",
-    "it": "Prima di automatizzare abbiamo analizzato lo storico: 428 recensioni con le relative risposte del titolare. Da lì Claude ha estratto una guida di tono e stile (registro, formule di apertura e chiusura, gestione dei reclami), validata dal cliente su bozze di esempio prima di accendere la pipeline.\n\nOgni mattina la pipeline controlla le nuove recensioni sulla pagina pubblica, scarta quelle già viste e per ognuna genera una bozza nella lingua della recensione, con la traduzione italiana a fianco. I casi delicati, come valutazioni molto basse o reclami concreti, vengono evidenziati e non si pubblicano mai alla cieca.\n\nL'operatore trova tutto in un foglio di lavoro condiviso: rivede la bozza, la pubblica con un copia-incolla dal gestionale della piattaforma e può lasciare un feedback su ogni risposta.\n\nUna volta a settimana un secondo processo rilegge i feedback dell'operatore e il prompt in uso: se serve, lo riscrive in una versione consolidata, archivia la precedente e notifica le differenze. Il sistema migliora da solo, con l'umano sempre nel ciclo.",
-    "en": "Before automating anything we analysed the historical record: 428 reviews with the owner's replies. From those, Claude distilled a tone and style guide (register, opening and closing formulas, complaint handling), validated by the client on sample drafts before the pipeline went live.\n\nEvery morning the pipeline checks the public page for new reviews, discards the ones already seen and drafts a reply for each in the review's own language, with an Italian translation alongside. Sensitive cases, such as very low ratings or concrete complaints, are highlighted and never published blindly.\n\nThe operator finds everything in a shared worksheet: they review the draft, publish it via the platform's management console and can leave feedback on every reply.\n\nOnce a week a second process re-reads the operator's feedback and the prompt in use: when needed, it rewrites a consolidated version, archives the previous one and reports the differences. The system improves itself, with a human in the loop at all times."
+    "it": "Il cliente arrivava da un tentativo fai-da-te con un agente autonomo, senza controllo su costi e permessi: serviva un approccio governato. Prima di automatizzare abbiamo analizzato l'intero storico delle recensioni con le risposte del titolare: da lì Claude ha estratto una guida di tono e stile (registro, formule di apertura e chiusura, gestione dei reclami), validata dal cliente su bozze di esempio prima di accendere la pipeline.\n\nOgni mattina la pipeline controlla le nuove recensioni sulla pagina pubblica, scarta quelle già viste e per ognuna genera una bozza nella lingua della recensione, con la traduzione italiana a fianco. I casi delicati, come valutazioni molto basse o reclami concreti, vengono evidenziati e non si pubblicano mai alla cieca.\n\nL'operatore trova tutto in un foglio di lavoro condiviso: rivede la bozza, la pubblica con un copia-incolla dal gestionale della piattaforma e può lasciare un feedback su ogni risposta.\n\nUna volta a settimana un secondo processo rilegge i feedback dell'operatore e il prompt in uso: se serve, lo riscrive in una versione consolidata, archivia la precedente e notifica le differenze. Il sistema migliora da solo, con l'umano sempre nel ciclo.",
+    "en": "The client came from a DIY attempt with an unconstrained autonomous agent, with no control over costs or permissions: a governed approach was needed. Before automating anything we analysed the full historical record of reviews and the owner's replies: from those, Claude distilled a tone and style guide (register, opening and closing formulas, complaint handling), validated by the client on sample drafts before the pipeline went live.\n\nEvery morning the pipeline checks the public page for new reviews, discards the ones already seen and drafts a reply for each in the review's own language, with an Italian translation alongside. Sensitive cases, such as very low ratings or concrete complaints, are highlighted and never published blindly.\n\nThe operator finds everything in a shared worksheet: they review the draft, publish it via the platform's management console and can leave feedback on every reply.\n\nOnce a week a second process re-reads the operator's feedback and the prompt in use: when needed, it rewrites a consolidated version, archives the previous one and reports the differences. The system improves itself, with a human in the loop at all times."
   },
   "date": "2026-06-29"
 }

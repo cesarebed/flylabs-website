@@ -76,7 +76,7 @@ modo naturale (non letterale). Mappatura:
 | Risultati / impatto | `metrics` | array di 1-2 `{_type:"metric", _key, value, label}`; vedi regola metrica sotto |
 | frontmatter `tech: [...]` | `tech` | badge dello stack (array di stringhe, nomi invariati nelle lingue) |
 | scelta editoriale | `featured` | `true` = card nella sezione homepage "Alcune delle nostre soluzioni" (max 3) |
-| diagrammi in `diagrams/` | `diagrams` | array di image (alt + caption bilingui). Export PNG del flusso Excalidraw in `content/case-studies/assets/`, referenziato nel JSON con `_localFile`: l'importer carica l'asset e collega il ref (idempotente per `_key`; per forzare il re-upload cambia `_key`) |
+| diagrammi in `diagrams/` | `diagrams` | array di oggetti `{it: image, en: image, alt, caption}`: i PIXEL del diagramma sono in lingua, quindi servono due export (IT obbligatorio, EN opzionale con fallback su IT). PNG in `content/case-studies/assets/` (suffisso `-en` per l'inglese), referenziati con `_localFile` dentro `it`/`en`: l'importer carica gli asset e collega i ref (idempotente per `_key`+lingua; per forzare il re-upload cambia `_key`). Le due versioni Excalidraw vivono nel brain (`diagrams/`, file `-en.excalidraw.md` accanto all'IT) |
 | Come funziona / Risultati | `body` | racconto esteso (opzionale) |
 | (testimonianza, se c'è) | `testimonial` {quote, author} | opzionale; anonimizza l'autore |
 | — | `cover` | opzionale; caricata in Studio, NON qui |
