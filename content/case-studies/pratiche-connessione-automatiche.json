@@ -1,0 +1,55 @@
+{
+  "_id": "caseStudy.pratiche-connessione-automatiche",
+  "_type": "caseStudy",
+  "title": {
+    "_type": "localeString",
+    "it": "Pratiche di connessione che si lavorano da sole",
+    "en": "Grid-connection paperwork that runs itself"
+  },
+  "slug": { "_type": "slug", "current": "pratiche-connessione-automatiche" },
+  "sector": {
+    "_type": "localeString",
+    "it": "Installatore fotovoltaico",
+    "en": "Solar installer"
+  },
+  "problem": {
+    "_type": "localeText",
+    "it": "Ogni impianto venduto apre una pratica di connessione da compilare a mano sul portale del distributore: 30–60 minuti di lavoro esperto, tutto ricopiato dal gestionale, con il rischio di sbagliare dati critici.",
+    "en": "Every system sold opens a grid-connection request that has to be filled in by hand on the operator's portal: 30–60 minutes of expert work, all re-typed from the CRM, with the risk of getting critical data wrong."
+  },
+  "solution": {
+    "_type": "localeText",
+    "it": "Un sistema AI lavora la pratica da sé: controlla i dati, compila il portale in modo deterministico, verifica e inoltra. L'operatore scrive solo il nome del cliente.",
+    "en": "An AI system handles the request on its own: it checks the data, fills the portal deterministically, verifies and submits. The operator only types the client's name."
+  },
+  "metrics": [
+    {
+      "_type": "metric",
+      "_key": "m1",
+      "value": "~5 min",
+      "label": {
+        "_type": "localeString",
+        "it": "a pratica, da 30–60 min di lavoro",
+        "en": "per request, down from 30–60 min of work"
+      }
+    },
+    {
+      "_type": "metric",
+      "_key": "m2",
+      "value": "5",
+      "label": {
+        "_type": "localeString",
+        "it": "pratiche reali già lavorate in automatico",
+        "en": "real requests already handled automatically"
+      }
+    }
+  ],
+  "tech": ["Claude Code", "Playwright", "Zoho CRM", "GitHub Actions", "Python"],
+  "featured": true,
+  "body": {
+    "_type": "localeText",
+    "it": "Ogni impianto fotovoltaico venduto apre una pratica di connessione sul portale del distributore: dati anagrafici, tecnici e documenti da riportare a mano dal gestionale, con controlli delicati su codici identificativi, contatori e potenze. Un lavoro da tecnico esperto, ripetitivo e a rischio di errore.\n\nAbbiamo costruito un sistema che lavora la pratica da solo, senza server né webhook: l'operatore scrive il nome del cliente e il resto avviene in automatico.\n\nPrima di toccare il portale, il sistema fa un preflight sui dati: rilegge i campi del gestionale e i documenti allegati con un modello linguistico, verifica i dati critici con controlli di coerenza e si ferma se qualcosa manca o è illeggibile — mai indovinare. Poi un bot deterministico compila il portale passo per passo, carica gli allegati e firma i moduli con il timbro aziendale. Un controllo automatico valida il risultato e, solo dopo che il cliente ha verificato le prime pratiche firmate, l'inoltro al distributore avviene senza un ok umano per ogni pratica. Alla fine il sistema riscrive sul gestionale lo stato e il documento firmato.\n\nC'è anche un pezzo che rende il sistema più solido nel tempo: ogni intoppo diventa un incidente tracciato e ogni soluzione un accorgimento datato e conservato, così gli stessi errori non si ripetono.",
+    "en": "Every solar system sold opens a grid-connection request on the operator's portal: personal, technical and document data to be re-entered by hand from the CRM, with delicate checks on identifiers, meter data and system capacities. Expert, repetitive work with a real risk of error.\n\nWe built a system that handles the request on its own, with no servers or webhooks: the operator types the client's name and the rest happens automatically.\n\nBefore touching the portal, the system runs a preflight on the data: it re-reads the CRM fields and the attached documents with a language model, validates the critical data with consistency checks, and stops if anything is missing or unreadable — never guessing. Then a deterministic bot fills the portal step by step, uploads the attachments and signs the forms with the company stamp. An automated check validates the result and, only after the client had verified the first signed requests, submission to the operator happens without a per-request human sign-off. Finally the system writes the status and the signed document back to the CRM.\n\nThere's also a part that makes the system sturdier over time: every hiccup becomes a tracked incident and every fix a dated, preserved note, so the same errors don't happen twice."
+  },
+  "date": "2026-07-09"
+}
