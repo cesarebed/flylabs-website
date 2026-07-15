@@ -1,0 +1,51 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>excalidraw export</title>
+<div id="status">loading…</div>
+<pre id="log"></pre>
+<script>
+  window.EXCALIDRAW_ASSET_PATH = "https://esm.sh/@excalidraw/excalidraw@0.18.0/dist/prod/";
+</script>
+<script type="module">
+  // Legge manifest.json (scritto da extract_scene.py) ed esporta ogni scena
+  // in PNG 2x + SVG con il motore ufficiale di Excalidraw (font hand-drawn
+  // vero), salvando via POST /save sul server locale (serve.py).
+  const status = (m) => (document.getElementById("status").textContent = m);
+  const log = (m) => (document.getElementById("log").textContent += m + "\n");
+  try {
+    const Ex = await import(
+      "https://esm.sh/@excalidraw/excalidraw@0.18.0?bundle&deps=react@18.2.0,react-dom@18.2.0"
+    );
+    const manifest = await (await fetch("./manifest.json")).json();
+    for (const { name, file } of manifest) {
+      status("rendering " + name);
+      const scene = await (await fetch(`./${file}`)).json();
+      const common = {
+        elements: scene.elements,
+        files: scene.files ?? {},
+        appState: { viewBackgroundColor: "#ffffff", exportBackground: true },
+      };
+      const blob = await Ex.exportToBlob({
+        ...common,
+        mimeType: "image/png",
+        exportPadding: 32,
+        getDimensions: (w, h) => ({
+          width: Math.round(w * 2),
+          height: Math.round(h * 2),
+          scale: 2,
+        }),
+      });
+      await fetch(`/save?name=${name}.png`, { method: "POST", body: blob });
+      log(`${name}.png salvato (${blob.size} byte)`);
+      const svg = await Ex.exportToSvg({ ...common, exportPadding: 32 });
+      await fetch(`/save?name=${name}.svg`, {
+        method: "POST",
+        body: new Blob([svg.outerHTML], { type: "image/svg+xml" }),
+      });
+      log(`${name}.svg salvato`);
+    }
+    status("DONE");
+  } catch (e) {
+    status("ERROR: " + (e?.stack || e));
+  }
+</script>
