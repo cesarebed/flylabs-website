@@ -26,21 +26,11 @@
     {
       "_type": "metric",
       "_key": "m1",
-      "value": "~5 min",
+      "value": "5 min",
       "label": {
         "_type": "localeString",
-        "it": "a pratica, da 30–60 min di lavoro",
-        "en": "per request, down from 30–60 min of work"
-      }
-    },
-    {
-      "_type": "metric",
-      "_key": "m2",
-      "value": "5",
-      "label": {
-        "_type": "localeString",
-        "it": "pratiche reali già lavorate in automatico",
-        "en": "real requests already handled automatically"
+        "it": "a pratica, da 45 min di media",
+        "en": "per request, down from 45 min on average"
       }
     }
   ],
