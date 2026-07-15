@@ -23,7 +23,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-15 (Federico — PR
 | 1 | Migrare contenuti landing da `lib/landing-content.ts` a Sanity (quando il design è bloccato) + metriche reali al posto dei placeholder | Cesare | — | ⏳ in attesa design |
 | 2 | Casi di successo: tipo `caseStudy`, route `/[locale]/lavori`, seed script | Federico | PR #3 | ✅ mergiata (+ fix da review: read token, remotePatterns) |
 | 2b | Homepage "Alcune delle nostre soluzioni" da Sanity (metriche 1-2, badge tech con logo, `featured`, diagrammi bilingui IT/EN) + use case Isola dei Gabbiani | Federico | PR #17 | ✅ mergiata e LIVE (2026-07-15, contenuto importato su Sanity) |
-| 2c | Use case Meta Ads optimizer + Zoho CRM → form Enel (issue #12) | Cesare | — | ⏳ da fare |
+| 2c | Use case Solair (issue #12): **pratiche RPA** (JSON generato, bilingue, anonimo, senza regione — branch `feat/use-case-solair-rpa`, draft: manca diagramma + import) · Meta Ads optimizer da fare | Cesare | PR aperta | 🔨 in corso |
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
 | 4 | SEO tecnica: sitemap dinamica, robots, JSON-LD, typegen come fonte unica dei tipi | — | — | ⏳ da fare |
 
