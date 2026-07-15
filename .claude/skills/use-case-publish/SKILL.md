@@ -32,6 +32,11 @@ mano è ripetitivo e rischioso: è facile lasciare il nome del cliente, copiare 
 non validati, o dimenticare una lingua. Questa skill rende il passaggio ripetibile e
 sicuro, con la regola d'oro: **niente numeri inventati**.
 
+## Skill collegata
+Per generare/esportare i diagrammi Excalidraw del caso (fonte per il campo `diagrams`, passo 3),
+usa la skill **`excalidraw-diagram`** prima o durante questa: produce i PNG bilingui IT/EN pronti
+da referenziare qui.
+
 ## Prima di iniziare: trova i repo e leggi le convenzioni
 
 - **flylabs-brain**: di norma è una cartella sorella di questo repo (`../flylabs-brain`).
@@ -76,7 +81,7 @@ modo naturale (non letterale). Mappatura:
 | Risultati / impatto | `metrics` | array di 1-2 `{_type:"metric", _key, value, label}`; vedi regola metrica sotto |
 | frontmatter `tech: [...]` | `tech` | badge dello stack (array di stringhe, nomi invariati nelle lingue) |
 | scelta editoriale | `featured` | `true` = card nella sezione homepage "Alcune delle nostre soluzioni" (max 3) |
-| diagrammi in `diagrams/` | `diagrams` | array di oggetti `{it: image, en: image, alt, caption}`: i PIXEL del diagramma sono in lingua, quindi servono due export (IT obbligatorio, EN opzionale con fallback su IT). PNG in `content/case-studies/assets/` (suffisso `-en` per l'inglese), referenziati con `_localFile` dentro `it`/`en`: l'importer carica gli asset e collega i ref (idempotente per `_key`+lingua; per forzare il re-upload cambia `_key`). Le due versioni Excalidraw vivono nel brain (`diagrams/`, file `-en.excalidraw.md` accanto all'IT) |
+| diagrammi in `diagrams/` | `diagrams` | array di oggetti `{it: image, en: image, alt, caption}`. **Autoring + export bilingue: skill `excalidraw-diagram`** (`.claude/skills/excalidraw-diagram/`) — produce i PNG in `content/case-studies/assets/` (suffisso `-en` per l'inglese) partendo dai `.excalidraw.md` nel brain. Qui devi solo referenziarli con `_localFile` dentro `it`/`en`: l'importer carica gli asset e collega i ref (idempotente per `_key`+lingua; per forzare il re-upload cambia `_key`) |
 | Come funziona / Risultati | `body` | racconto esteso (opzionale) |
 | (testimonianza, se c'è) | `testimonial` {quote, author} | opzionale; anonimizza l'autore |
 | — | `cover` | opzionale; caricata in Studio, NON qui |

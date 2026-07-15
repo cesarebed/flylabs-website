@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-15 (Federico — PR #17 live: sezione soluzioni + primo use case; NB: le preview Vercel dei PR falliscono ancora anche con repo pubblica, i deploy production su main funzionano).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-15 (Federico — PR #17 live: sezione soluzioni + primo use case; PR #18 skill excalidraw-diagram in review; NB: le preview Vercel dei PR falliscono ancora anche con repo pubblica, i deploy production su main funzionano).
 
 ---
 
