@@ -36,6 +36,30 @@
   ],
   "tech": ["Claude Code", "Playwright", "Zoho CRM", "GitHub Actions", "Python"],
   "featured": true,
+  "diagrams": [
+    {
+      "_type": "diagram",
+      "_key": "d1",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/pratiche-connessione-automatiche-architettura.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/pratiche-connessione-automatiche-architettura-en.png"
+      },
+      "alt": {
+        "_type": "localeString",
+        "it": "Diagramma dell'architettura: l'operatore scrive il nome del cliente, l'AI fa il preflight sui dati, un bot deterministico compila il portale e firma i moduli, un controllo automatico valida e la pratica viene inoltrata al distributore con writeback sul gestionale",
+        "en": "Architecture diagram: the operator types the client's name, AI runs a preflight on the data, a deterministic bot fills the portal and signs the forms, an automated check validates and the request is submitted to the operator with writeback to the CRM"
+      },
+      "caption": {
+        "_type": "localeString",
+        "it": "L'architettura: dal nome del cliente alla pratica inoltrata, in automatico",
+        "en": "The architecture: from the client's name to a submitted request, automatically"
+      }
+    }
+  ],
   "body": {
     "_type": "localeText",
     "it": "Ogni impianto fotovoltaico venduto apre una pratica di connessione sul portale del distributore: dati anagrafici, tecnici e documenti da riportare a mano dal gestionale, con controlli delicati su codici identificativi, contatori e potenze. Un lavoro da tecnico esperto, ripetitivo e a rischio di errore.\n\nAbbiamo costruito un sistema che lavora la pratica da solo, senza server né webhook: l'operatore scrive il nome del cliente e il resto avviene in automatico.\n\nPrima di toccare il portale, il sistema fa un preflight sui dati: rilegge i campi del gestionale e i documenti allegati con un modello linguistico, verifica i dati critici con controlli di coerenza e si ferma se qualcosa manca o è illeggibile — mai indovinare. Poi un bot deterministico compila il portale passo per passo, carica gli allegati e firma i moduli con il timbro aziendale. Un controllo automatico valida il risultato e, solo dopo che il cliente ha verificato le prime pratiche firmate, l'inoltro al distributore avviene senza un ok umano per ogni pratica. Alla fine il sistema riscrive sul gestionale lo stato e il documento firmato.\n\nC'è anche un pezzo che rende il sistema più solido nel tempo: ogni intoppo diventa un incidente tracciato e ogni soluzione un accorgimento datato e conservato, così gli stessi errori non si ripetono.",
