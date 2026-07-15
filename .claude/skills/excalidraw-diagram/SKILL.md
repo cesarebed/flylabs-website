@@ -53,8 +53,20 @@ mezzo EN pubblicati per distrazione.
 
 ## Fase 2 — Export (sempre uguale, indipendentemente da come hai disegnato)
 
-Serve una sessione con accesso al Browser pane (l'export usa il motore ufficiale di Excalidraw via
-browser, per il font hand-drawn vero — non è riproducibile con un semplice screenshot dei rettangoli).
+L'export usa il motore ufficiale di Excalidraw **in un browser vero** (per il font hand-drawn reale —
+non è riproducibile con uno screenshot dei rettangoli grezzi). Il modo di aprire il browser dipende da
+cosa ha disponibile la sessione corrente: la pagina è auto-contenuta e il salvataggio passa sempre dal
+server locale via `POST`, quindi funziona con **qualunque** browser la apra, non solo con un tool
+specifico. In ordine di preferenza:
+- MCP browser della sessione corrente, qualunque esso sia (pane di preview integrato, `claude-in-chrome`,
+  o equivalente) — apri l'URL, aspetta qualche secondo.
+- Se la sessione non ha nessun tool browser: **chiedi all'utente di aprire l'URL lui stesso** in un
+  qualsiasi browser (anche solo `open http://127.0.0.1:8123/render.html` da terminale su macOS) — la
+  pagina esporta comunque da sola, non serve interazione umana oltre ad averla aperta.
+
+La verifica di riuscita **non dipende da come hai aperto la pagina**: dopo un'attesa breve, controlla che
+i file `out/<nome>.png` esistano e pesino un po' (qualche centinaio di KB, non pochi byte — un file
+vuoto/minuscolo indica un export fallito silenziosamente).
 
 1. **Estrai le scene** (allarga i box di testo che l'export ufficiale non wrappa automaticamente):
    ```
@@ -70,9 +82,10 @@ browser, per il font hand-drawn vero — non è riproducibile con un semplice sc
    python3 .claude/skills/excalidraw-diagram/scripts/serve.py /tmp/excalidraw-export
    ```
 
-3. **Apri `http://127.0.0.1:8123/render.html` nel Browser pane**, aspetta che lo stato passi a
-   `DONE` (leggi il testo della pagina, non serve uno screenshot). Gli export finiscono in
-   `/tmp/excalidraw-export/out/<nome>.png` (2x) e `.svg`.
+3. **Apri `http://127.0.0.1:8123/render.html`** (vedi sopra per come, a seconda dei tool disponibili).
+   Se hai un modo di leggere il testo della pagina, aspetta che lo stato passi a `DONE`; altrimenti
+   aspetta qualche secondo e verifica direttamente i file di output (vedi sopra). Gli export finiscono
+   in `/tmp/excalidraw-export/out/<nome>.png` (2x) e `.svg`.
 
 4. **Copia i PNG** in `content/case-studies/assets/` con la convenzione di naming
    `<slug-caso>-<nome-diagramma>.png` (IT) e `<slug-caso>-<nome-diagramma>-en.png` (EN).

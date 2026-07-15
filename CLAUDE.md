@@ -27,9 +27,20 @@ MUST registrare in `PLAN.md → Decisioni prese` le decisioni di prodotto/archit
 
 ---
 
+## Skill disponibili (`.claude/skills/`, indice in `.claude/skills/README.md`)
+
+| Skill | Quando |
+|---|---|
+| `cms-change` | nuova sezione, nuovo tipo di documento o nuovi campi nel content model Sanity |
+| `use-case-publish` | trasformare un progetto/cliente di `flylabs-brain` (repo gemella, di norma `../flylabs-brain`) in un caso di successo pubblicabile su `/lavori` — anonimizzazione, JSON `caseStudy`, import su Sanity |
+| `excalidraw-diagram` | disegnare o esportare (bilingue IT/EN) un diagramma di flusso per un use case — di solito il passo prima di `use-case-publish` quando il caso ha un diagramma |
+| `visual-check` | dopo ogni modifica UI, prima di dichiararla finita |
+
+Il brand (palette, tipografia, tono di voce, palette diagrammi) vive in `flylabs-brain/03_Resources/materials/brand/` — non duplicarlo qui, le skill lo leggono da lì.
+
 ## MUST / MUST NOT
 
-MUST usare sempre la skill più rilevante per il task (vedi `.claude/skills/` e le skill globali); se manca una skill per un flusso ricorrente, creala in `.claude/skills/`.
+MUST usare sempre la skill più rilevante per il task (vedi tabella sopra); se manca una skill per un flusso ricorrente, creala in `.claude/skills/` e aggiungila all'indice.
 MUST verificare visivamente ogni modifica UI con Playwright (browser MCP o skill `webapp-testing`): avvia `npm run dev`, naviga, screenshot. Mai dichiarare finita una modifica UI senza averla vista.
 MUST usare App Router, mai Pages Router.
 MUST fare fetch dei dati in Server Components, mai useEffect+fetch per dati di render.
