@@ -93,7 +93,13 @@ export default async function CasesPage({
                 </p>
                 <TechBadges tech={study.tech} className="mb-6" />
                 <div className="mt-auto border-t border-line pt-6">
-                  <div className="flex flex-wrap gap-x-8 gap-y-4">
+                  <div
+                    className={
+                      (study.metrics?.length ?? 0) > 1
+                        ? "grid grid-cols-2 gap-4"
+                        : ""
+                    }
+                  >
                     {(study.metrics ?? []).map((metric) => (
                       <div key={metric._key}>
                         <div

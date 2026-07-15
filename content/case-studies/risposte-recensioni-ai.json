@@ -29,8 +29,8 @@
       "value": "428",
       "label": {
         "_type": "localeString",
-        "it": "recensioni analizzate per calibrare il tono",
-        "en": "reviews analysed to calibrate the tone"
+        "it": "recensioni analizzate",
+        "en": "reviews analysed"
       }
     },
     {
@@ -39,8 +39,8 @@
       "value": "17%",
       "label": {
         "_type": "localeString",
-        "it": "recensioni multilingua gestite",
-        "en": "multilingual reviews handled"
+        "it": "recensioni multilingua",
+        "en": "multilingual reviews"
       }
     }
   ],
