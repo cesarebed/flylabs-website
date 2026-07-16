@@ -8,7 +8,7 @@ import type { FEATURED_CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
 import { TechBadges } from "./tech-badges";
 
 export async function Work({ lang }: { lang: Locale }) {
-  const { section, cards } = landing.work;
+  const { section, cards, allLink } = landing.work;
   // Casi reali marcati "in evidenza" su Sanity; finché non ce ne sono,
   // restano le card hardcoded (placeholder storici, vedi PLAN.md).
   const studies = await sanityFetch<FEATURED_CASE_STUDIES_QUERY_RESULT>({
@@ -26,47 +26,57 @@ export async function Work({ lang }: { lang: Locale }) {
         </h2>
 
         {studies.length > 0 ? (
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            {studies.map((study) => (
-              <Link
-                key={study._id}
-                href={`/${lang}/lavori/${study.slug}`}
-                className="card-hover flex flex-col rounded-xl border border-line bg-paper p-7"
-              >
-                <span className="stamp mb-6 text-muted">
-                  {pickLocale(study.sector, lang)}
-                </span>
-                <p className="mb-1 font-semibold">
-                  {pickLocale(study.problem, lang)}
-                </p>
-                <p className="mb-4 text-sm text-muted">
-                  {pickLocale(study.solution, lang)}
-                </p>
-                <TechBadges tech={study.tech} className="mb-6" />
-                <div
-                  className={`mt-auto border-t border-line pt-6 ${
-                    (study.metrics?.length ?? 0) > 1
-                      ? "grid grid-cols-2 gap-4"
-                      : ""
-                  }`}
+          <>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              {studies.map((study) => (
+                <Link
+                  key={study._id}
+                  href={`/${lang}/lavori/${study.slug}`}
+                  className="card-hover flex flex-col rounded-xl border border-line bg-paper p-7"
                 >
-                  {(study.metrics ?? []).map((metric) => (
-                    <div key={metric._key}>
-                      <div className="whitespace-nowrap font-display text-4xl font-semibold leading-none text-accent">
-                        {metric.value}
+                  <span className="stamp mb-6 text-muted">
+                    {pickLocale(study.sector, lang)}
+                  </span>
+                  <p className="mb-1 font-semibold">
+                    {pickLocale(study.problem, lang)}
+                  </p>
+                  <p className="mb-4 text-sm text-muted">
+                    {pickLocale(study.solution, lang)}
+                  </p>
+                  <TechBadges tech={study.tech} className="mb-6" />
+                  <div
+                    className={`mt-auto border-t border-line pt-6 ${
+                      (study.metrics?.length ?? 0) > 1
+                        ? "grid grid-cols-2 gap-4"
+                        : ""
+                    }`}
+                  >
+                    {(study.metrics ?? []).map((metric) => (
+                      <div key={metric._key}>
+                        <div className="whitespace-nowrap font-display text-4xl font-semibold leading-none text-accent">
+                          {metric.value}
+                        </div>
+                        <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
+                          {pickLocale(metric.label, lang)}
+                        </div>
                       </div>
-                      <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
-                        {pickLocale(metric.label, lang)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 text-sm font-medium text-ink/70">
-                  {cases.cta[lang]}
-                </div>
+                    ))}
+                  </div>
+                  <div className="mt-5 text-sm font-medium text-ink/70">
+                    {cases.cta[lang]}
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-8 text-right">
+              <Link
+                href={`/${lang}${allLink.href}`}
+                className="text-sm font-semibold text-accent hover:underline"
+              >
+                {allLink.label[lang]}
               </Link>
-            ))}
-          </div>
+            </div>
+          </>
         ) : (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {cards.map((card) => (

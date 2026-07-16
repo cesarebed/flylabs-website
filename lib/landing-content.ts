@@ -277,6 +277,12 @@ export const landing = {
         },
       },
     ] satisfies WorkCard[],
+    // Link alla pagina archivio /lavori, mostrato solo quando le card
+    // vengono dai casi reali su Sanity (issue #13).
+    allLink: {
+      label: { it: "Tutti i lavori →", en: "All work →" },
+      href: "/lavori",
+    },
   },
 
   method: {
