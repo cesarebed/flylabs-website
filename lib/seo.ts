@@ -6,6 +6,17 @@ const FALLBACK_SITE_URL = "https://flylabs.ai";
 const SITE_NAME = "flylabs.ai";
 
 /**
+ * URL base del sito (senza slash finale): il siteUrl gestito su Sanity,
+ * con fallback hardcoded. Unica fonte per canonical, sitemap e robots.
+ */
+export async function getSiteUrl(
+  settings?: SiteSettings | null
+): Promise<string> {
+  const s = settings ?? (await getSiteSettings());
+  return (s?.siteUrl || FALLBACK_SITE_URL).replace(/\/+$/, "");
+}
+
+/**
  * Costruisce i metadata di una pagina arricchendoli con le impostazioni SEO
  * gestite da Sanity (URL del sito, immagine OG, keywords). title/description
  * li decide la pagina; il resto dei contenuti resta hardcoded.

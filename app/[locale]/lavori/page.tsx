@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { isLocale, defaultLocale, pickLocale, type Locale } from "@/lib/i18n";
 import { cases } from "@/lib/cases-content";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, getSiteUrl } from "@/lib/seo";
+import { breadcrumbLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/fetch";
 import { CASE_STUDIES_QUERY } from "@/sanity/queries";
 import type { CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
@@ -38,9 +40,16 @@ export default async function CasesPage({
     query: CASE_STUDIES_QUERY,
     tags: ["caseStudy"],
   });
+  const siteUrl = await getSiteUrl();
 
   return (
     <main className="site-zoom flex-1">
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: `${siteUrl}/${lang}` },
+          { name: cases.kicker[lang], url: `${siteUrl}/${lang}/lavori` },
+        ])}
+      />
       <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
         <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
           <Link

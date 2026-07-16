@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { JsonLd } from "@/components/json-ld";
+import { getSiteUrl } from "@/lib/seo";
+import { organizationLd } from "@/lib/structured-data";
 import "./globals.css";
 
 // Display serif for headlines — caratteriale, "meno vibe-AI".
@@ -43,17 +46,21 @@ export const viewport: Viewport = {
 
 // lang is the default locale; per-locale pages live under app/[locale].
 // When real content lands, consider moving to next-intl for full i18n.
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl = await getSiteUrl();
   return (
     <html
       lang="it"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <JsonLd data={organizationLd(siteUrl)} />
+        {children}
+      </body>
     </html>
   );
 }

@@ -64,12 +64,21 @@ export const CASE_STUDY_BY_SLUG_QUERY = defineQuery(
       "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },
       "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }
     },
-    date
+    date,
+    "updatedAt": _updatedAt
   }`
 );
 
 export const CASE_STUDY_SLUGS_QUERY = defineQuery(
   `*[_type == "caseStudy" && defined(slug.current)].slug.current`
+);
+
+// Voci del sitemap: slug + ultima modifica reale del documento (_updatedAt).
+export const CASE_STUDY_SITEMAP_QUERY = defineQuery(
+  `*[_type == "caseStudy" && defined(slug.current)]{
+    "slug": slug.current,
+    "updatedAt": _updatedAt
+  }`
 );
 
 // Rate limit del form contatti: richieste recenti con stessa email o stesso IP.
