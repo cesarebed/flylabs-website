@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-15 (Federico — giornata chiusa: 3/3 use case featured live, skill excalidraw-diagram condivisa e già usata da Cesare in autonomia; NB: le preview Vercel dei PR falliscono ancora anche con repo pubblica, i deploy production su main funzionano).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser chatbot rimosso; a seguire #13, #7/#16 SEO, #8).
 
 ---
 
@@ -45,7 +45,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-15 (Federico — gi
 
 - [x] Sostituire i numeri placeholder delle work card con dati reali dei clienti → fatto: 3 casi `featured` reali su Sanity, le card hardcoded non compaiono più
 - [x] Seedare i `caseStudy` con dati REALI: 3/3 use case importati e LIVE (2026-07-15). Resta da decidere il link `/lavori` in nav (issue #13, ora più sensato con 3 casi invece di 1)
-- [ ] Issue #14 (teaser chatbot con CTA morta in home): ancora aperta, non toccata oggi
+- [x] Issue #14 (teaser chatbot con CTA morta in home): teaser rimosso il 2026-07-16 come proposto nella issue — si riaggiunge quando il widget esiste davvero
 - [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
 

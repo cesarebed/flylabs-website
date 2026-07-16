@@ -5,11 +5,10 @@ import { cases } from "@/lib/cases-content";
 import { sanityFetch } from "@/sanity/fetch";
 import { FEATURED_CASE_STUDIES_QUERY } from "@/sanity/queries";
 import type { FEATURED_CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
-import { Icon } from "./icon";
 import { TechBadges } from "./tech-badges";
 
 export async function Work({ lang }: { lang: Locale }) {
-  const { section, cards, live } = landing.work;
+  const { section, cards } = landing.work;
   // Casi reali marcati "in evidenza" su Sanity; finché non ce ne sono,
   // restano le card hardcoded (placeholder storici, vedi PLAN.md).
   const studies = await sanityFetch<FEATURED_CASE_STUDIES_QUERY_RESULT>({
@@ -27,7 +26,7 @@ export async function Work({ lang }: { lang: Locale }) {
         </h2>
 
         {studies.length > 0 ? (
-          <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {studies.map((study) => (
               <Link
                 key={study._id}
@@ -69,7 +68,7 @@ export async function Work({ lang }: { lang: Locale }) {
             ))}
           </div>
         ) : (
-          <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {cards.map((card) => (
               <div
                 key={card.tag[lang]}
@@ -91,22 +90,6 @@ export async function Work({ lang }: { lang: Locale }) {
           </div>
         )}
 
-        {/* banda scura: chatbot live teaser */}
-        <div className="flex flex-col items-center justify-between gap-6 rounded-xl bg-ink p-8 text-white md:flex-row">
-          <div className="flex items-center gap-4">
-            <Icon icon="lucide:sparkles" className="text-2xl text-warm" aria-hidden />
-            <div>
-              <p className="font-semibold">{live.title[lang]}</p>
-              <p className="text-sm text-white/60">{live.body[lang]}</p>
-            </div>
-          </div>
-          <a
-            href="#"
-            className="rounded-md bg-white px-6 py-3 text-sm font-bold text-ink transition-colors hover:bg-mark"
-          >
-            {live.cta[lang]}
-          </a>
-        </div>
       </div>
     </section>
   );

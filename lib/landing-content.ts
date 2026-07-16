@@ -277,17 +277,6 @@ export const landing = {
         },
       },
     ] satisfies WorkCard[],
-    live: {
-      title: {
-        it: "La quarta prova è viva su questa pagina.",
-        en: "The fourth proof is live on this page.",
-      },
-      body: {
-        it: "Il nostro assistente è in basso a destra. Provalo, l'abbiamo costruito noi.",
-        en: "Our assistant is bottom-right. Try it, we built it.",
-      },
-      cta: { it: "Inizia la conversazione", en: "Start the conversation" },
-    },
   },
 
   method: {
