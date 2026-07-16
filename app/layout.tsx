@@ -3,6 +3,7 @@ import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
 import { getSiteUrl } from "@/lib/seo";
 import { organizationLd } from "@/lib/structured-data";
+import { getSiteSettings } from "@/sanity/site-settings";
 import "./globals.css";
 
 // Display serif for headlines — caratteriale, "meno vibe-AI".
@@ -51,14 +52,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const siteUrl = await getSiteUrl();
+  const settings = await getSiteSettings();
+  const siteUrl = await getSiteUrl(settings);
+  // sameAs = URL dei profili social gestiti su Sanity (vuoto = omesso).
+  const sameAs = (settings?.socialLinks ?? [])
+    .map((link) => link.url)
+    .filter((url): url is string => Boolean(url));
   return (
     <html
       lang="it"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <JsonLd data={organizationLd(siteUrl)} />
+        <JsonLd data={organizationLd(siteUrl, sameAs)} />
         {children}
       </body>
     </html>

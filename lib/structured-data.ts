@@ -1,14 +1,16 @@
 import type { Locale } from "@/lib/i18n";
 
-// Costruttori dei payload JSON-LD (issue #16). Solo dati reali: logo e
-// sameAs si aggiungono quando esisteranno un file logo e profili social.
+// Costruttori dei payload JSON-LD (issue #16). Solo dati reali: sameAs
+// arriva dai profili social su Sanity (vuoto = omesso); il logo si aggiunge
+// quando esisterà un file logo.
 
-export function organizationLd(siteUrl: string) {
+export function organizationLd(siteUrl: string, sameAs?: string[]) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "flylabs.ai",
     url: siteUrl,
+    ...(sameAs?.length ? { sameAs } : {}),
   };
 }
 

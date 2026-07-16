@@ -9,6 +9,10 @@ export type SiteSettings = {
   siteUrl: string | null;
   ogImage: string | null;
   keywords: string[] | null;
+  socialLinks:
+    | { _key: string; label: string | null; url: string | null }[]
+    | null;
+  contactEmail: string | null;
 };
 
 /**
