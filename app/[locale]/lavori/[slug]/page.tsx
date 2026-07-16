@@ -4,7 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, defaultLocale, pickLocale, type Locale } from "@/lib/i18n";
 import { cases } from "@/lib/cases-content";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, getSiteUrl } from "@/lib/seo";
+import { breadcrumbLd, caseStudyArticleLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/fetch";
 import { urlFor } from "@/sanity/image";
 import {
@@ -65,8 +67,42 @@ export default async function CaseStudyPage({
 
   const coverAlt = pickLocale(study.coverAlt, lang) || pickLocale(study.title, lang);
 
+  const siteUrl = await getSiteUrl();
+  const pageUrl = `${siteUrl}/${lang}/lavori/${slug}`;
+  // Le stesse immagini mostrate in pagina (cover + diagrammi nella lingua
+  // giusta), riusate nel JSON-LD dell'articolo.
+  const ldImages = [
+    ...(study.cover?.asset
+      ? [urlFor(study.cover).width(1600).height(900).url()]
+      : []),
+    ...(study.diagrams ?? []).flatMap((diagram) => {
+      const image =
+        lang === "en" && diagram.en?.asset ? diagram.en : diagram.it;
+      return image?.asset ? [urlFor(image).width(1600).url()] : [];
+    }),
+  ];
+
   return (
     <main className="site-zoom flex-1">
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: `${siteUrl}/${lang}` },
+          { name: cases.kicker[lang], url: `${siteUrl}/${lang}/lavori` },
+          { name: pickLocale(study.title, lang), url: pageUrl },
+        ])}
+      />
+      <JsonLd
+        data={caseStudyArticleLd({
+          siteUrl,
+          lang,
+          url: pageUrl,
+          headline: pickLocale(study.title, lang),
+          description: pickLocale(study.solution, lang),
+          datePublished: study.date,
+          dateModified: study.updatedAt,
+          images: ldImages,
+        })}
+      />
       <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
         <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
           <Link

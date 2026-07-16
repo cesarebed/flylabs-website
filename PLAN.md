@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser rimosso, #13 link /lavori in home; a seguire #7/#16 SEO, #8).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser rimosso, #13 link /lavori in home, #7+#16 SEO tecnica; a seguire #8).
 
 ---
 
@@ -25,7 +25,8 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — se
 | 2b | Homepage "Alcune delle nostre soluzioni" da Sanity (metriche 1-2, badge tech con logo, `featured`, diagrammi bilingui IT/EN) + use case Isola dei Gabbiani | Federico | PR #17 | ✅ mergiata e LIVE (2026-07-15, contenuto importato su Sanity) |
 | 2c | Use case Solair (issue #12): **pratiche RPA/connessione** + **creative ads loop** (Meta Ads), entrambi bilingui con diagramma (skill `excalidraw-diagram`, usata da Cesare da solo) | Cesare | PR #19, #20 | ✅ mergiate e LIVE |
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
-| 4 | SEO tecnica: sitemap dinamica, robots, JSON-LD, typegen come fonte unica dei tipi | — | — | ⏳ da fare |
+| 4 | SEO tecnica: `robots.ts`, `sitemap.ts` (hreflang it/en, slug da Sanity), JSON-LD (Organization, BreadcrumbList, Article sui casi) | Federico | PR #24 | 🔍 in review (issue #7+#16) |
+| 4b | Typegen come fonte unica dei tipi (via `any`/interfacce a mano residue) | — | — | ⏳ da fare |
 
 ## Decisioni prese
 
