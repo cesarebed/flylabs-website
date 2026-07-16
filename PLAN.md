@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser chatbot rimosso; a seguire #13, #7/#16 SEO, #8).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser rimosso, #13 link /lavori in home; a seguire #7/#16 SEO, #8).
 
 ---
 
@@ -40,11 +40,12 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — se
 - **Brand formalizzato nel vault** (2026-07-14): palette UI, tipografia e voce documentate in `flylabs-brain/03_Resources/materials/brand/` (`ui-style.md`, `voce.md`, `tipografia.md`); palette UI del sito e palette diagrammi restano volutamente separate. Fonte di verità tecnica: `app/globals.css`.
 - **Generatore diagrammi condiviso, non più nel vault personale di Federico** (2026-07-15): modulo Python in `flylabs-brain/03_Resources/materials/brand/diagrams/flylabs_excalidraw.py` + skill Claude Code `excalidraw-diagram` in questo repo per l'export bilingue PNG. Confermato funzionante da entrambi: Cesare l'ha già usata in autonomia per i suoi 2 use case.
 - **Homepage "piena" (3/3 card featured)**: la query prende i 3 più recenti; un 4° caso `featured` fa uscire il più vecchio dalla home (resta comunque su `/lavori`). Se si vuole un carosello o più di 3 card, è una modifica di prodotto da decidere insieme, non implicita.
+- **`/lavori` raggiungibile dalla home (issue #13, 2026-07-16)**: la voce nav resta l'ancora `#lavori` (è una landing one-page); in fondo alla sezione c'è "Tutti i lavori →" verso `/[locale]/lavori`, mostrato solo quando le card vengono dai casi reali su Sanity (col fallback hardcoded la pagina archivio sarebbe fuorviante). Una voce nav dedicata resta un'opzione futura se i casi crescono.
 
 ## Task aperti (fuori roadmap)
 
 - [x] Sostituire i numeri placeholder delle work card con dati reali dei clienti → fatto: 3 casi `featured` reali su Sanity, le card hardcoded non compaiono più
-- [x] Seedare i `caseStudy` con dati REALI: 3/3 use case importati e LIVE (2026-07-15). Resta da decidere il link `/lavori` in nav (issue #13, ora più sensato con 3 casi invece di 1)
+- [x] Seedare i `caseStudy` con dati REALI: 3/3 use case importati e LIVE (2026-07-15). Link `/lavori` dalla home: fatto il 2026-07-16 (issue #13, vedi Decisioni)
 - [x] Issue #14 (teaser chatbot con CTA morta in home): teaser rimosso il 2026-07-16 come proposto nella issue — si riaggiunge quando il widget esiste davvero
 - [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
