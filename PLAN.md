@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser rimosso, #13 link /lavori in home, #7+#16 SEO tecnica; a seguire #8).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser rimosso, #13 link /lavori in home, #7+#16 SEO tecnica; poi footer social/email dal CMS, PR #27 stacked su #24).
 
 ---
 
@@ -50,6 +50,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — se
 - [x] Issue #14 (teaser chatbot con CTA morta in home): teaser rimosso il 2026-07-16 come proposto nella issue — si riaggiunge quando il widget esiste davvero
 - [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
+- [ ] Footer: link "LinkedIn"/"Email" morti (`href="#"`) → campi `socialLinks` + `contactEmail` su `siteSettings`; il footer nasconde i link senza valore, gli URL social alimentano il `sameAs` del JSON-LD Organization (Federico, `feat/footer-social-links`, PR #27 — stacked su #24, mergiare #24 prima) 🔨 Mancano i valori reali (pagina LinkedIn? email pubblica?): appena decisi vanno in Studio → Impostazioni sito
 
 ## Tooling / skill
 
