@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { isLocale, defaultLocale, pickLocale, type Locale } from "@/lib/i18n";
+import {
+  isLocale,
+  defaultLocale,
+  pickLocale,
+  pickLocaleLoose,
+  type Locale,
+} from "@/lib/i18n";
 import { cases } from "@/lib/cases-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { breadcrumbLd, caseStudyArticleLd } from "@/lib/structured-data";
@@ -137,7 +143,7 @@ export default async function CaseStudyPage({
               className="inline-block rounded-xl border border-line bg-paper px-7 py-6"
             >
               <div className="font-display text-6xl font-semibold leading-none text-accent">
-                {metric.value}
+                {pickLocaleLoose(metric.value, lang)}
               </div>
               <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
                 {pickLocale(metric.label, lang)}

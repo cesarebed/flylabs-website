@@ -26,7 +26,11 @@
     {
       "_type": "metric",
       "_key": "m1",
-      "value": "5 min",
+      "value": {
+        "_type": "localeString",
+        "it": "5 min",
+        "en": "5 min"
+      },
       "label": {
         "_type": "localeString",
         "it": "a pratica, da 45 min di media",

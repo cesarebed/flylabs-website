@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { isLocale, defaultLocale, pickLocale, type Locale } from "@/lib/i18n";
+import {
+  isLocale,
+  defaultLocale,
+  pickLocale,
+  pickLocaleLoose,
+  type Locale,
+} from "@/lib/i18n";
 import { cases } from "@/lib/cases-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { breadcrumbLd } from "@/lib/structured-data";
@@ -118,7 +124,7 @@ export default async function CasesPage({
                               : "text-6xl"
                           }`}
                         >
-                          {metric.value}
+                          {pickLocaleLoose(metric.value, lang)}
                         </div>
                         <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
                           {pickLocale(metric.label, lang)}

@@ -17,3 +17,20 @@ export function pickLocale(
 ): string {
   return value?.[lang] ?? value?.it ?? "";
 }
+
+/**
+ * Come pickLocale, ma tollera anche una stringa semplice: metric.value era
+ * `string` fino al 2026-07-16 e i documenti su Sanity migrano al formato
+ * localeString solo dopo il deploy (re-import). Evita pagine rotte nella
+ * finestra codice-nuovo + dati-vecchi.
+ */
+export function pickLocaleLoose(
+  value:
+    | string
+    | { it?: string | null; en?: string | null }
+    | null
+    | undefined,
+  lang: Locale
+): string {
+  return typeof value === "string" ? value : pickLocale(value, lang);
+}

@@ -62,8 +62,8 @@ export const caseStudy = defineType({
               name: "value",
               title: "Valore",
               description:
-                "Il numero, es. \"428\", \"12h\", \"<60s\". Uguale in tutte le lingue.",
-              type: "string",
+                "Il numero, es. \"428\", \"12h\", \"1 sessione\". Se contiene una parola va tradotto; se è uguale in tutte le lingue (\"17%\"), compila solo l'italiano.",
+              type: "localeString",
               validation: (rule) => rule.required(),
             }),
             defineField({
@@ -75,7 +75,7 @@ export const caseStudy = defineType({
             }),
           ],
           preview: {
-            select: { title: "value", subtitle: "label.it" },
+            select: { title: "value.it", subtitle: "label.it" },
           },
         },
       ],
