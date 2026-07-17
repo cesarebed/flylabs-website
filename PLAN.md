@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser rimosso, #13 link /lavori in home, #7+#16 SEO tecnica; a seguire #8).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — sessione autonoma sul backlog: #14 teaser rimosso, #13 link /lavori in home, #7+#16 SEO tecnica, #8 lifecycle JSON documentato).
 
 ---
 

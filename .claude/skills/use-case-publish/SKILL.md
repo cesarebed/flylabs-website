@@ -141,10 +141,20 @@ Legge tutti i `content/case-studies/*.json`, li fa `createOrReplace` su Sanity u
 `SANITY_API_WRITE_TOKEN` da `.env.local`, e **preserva la cover** eventualmente
 caricata in Studio. Poi verifica che il caso compaia su `/lavori` (skill `visual-check`).
 
-## Dopo: linkare /lavori in nav
-Il primo caso reale pubblicato è anche il momento di decidere se collegare `/lavori`
-nel menu (oggi la voce "Lavori" punta alla sezione della homepage `#lavori`). È una
-scelta di prodotto: proponila all'utente, non farla di default.
+## Ciclo di vita dei file in `content/case-studies/` (issue #8)
+I JSON generati (e i PNG/SVG dei diagrammi in `assets/`) **si committano**: sono
+l'input dell'importer (`createOrReplace` idempotente), passano dalla review di PR —
+che fa anche da secondo paio d'occhi sulla verifica anti-fughe del passo 6 — e
+restano come storico versionato di ciò che è pubblicato. Niente bozze locali non
+tracciate: se un caso non deve ancora andare online, resta `public_status: draft`
+nel brain e il JSON non si genera. Per **togliere** un caso dal sito: cancella il
+documento su Sanity E il JSON dal repo nella stessa occasione, altrimenti il
+prossimo import lo ripubblica.
+
+## Dopo: /lavori è raggiungibile dalla home
+Dal 2026-07-16 (issue #13) in fondo alla sezione lavori della home c'è
+"Tutti i lavori →" verso `/[locale]/lavori`, visibile quando le card vengono dai
+casi reali su Sanity: per i nuovi casi non c'è nulla da collegare a mano.
 
 ## Nota sul coordinamento
 Se stai lavorando su un branch, aggiorna `PLAN.md` (chi/branch/stato) come da regole del
