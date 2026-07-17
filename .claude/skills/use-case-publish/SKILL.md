@@ -78,7 +78,7 @@ modo naturale (non letterale). Mappatura:
 | (angolo/titolo) | `title` | es. "Recensioni gestite dall'AI, tono calibrato" |
 | Problema / sfida | `problem` | 1-2 frasi |
 | Soluzione | `solution` | 1-2 frasi |
-| Risultati / impatto | `metrics` | array di 1-2 `{_type:"metric", _key, value, label}`; vedi regola metrica sotto |
+| Risultati / impatto | `metrics` | array di 1-2 `{_type:"metric", _key, value, label}`; `value` e `label` sono `localeString` (dal 2026-07-16: anche il valore va tradotto se contiene parole, es. "1 sessione" → "1 session"); vedi regola metrica sotto |
 | frontmatter `tech: [...]` | `tech` | badge dello stack (array di stringhe, nomi invariati nelle lingue) |
 | scelta editoriale | `featured` | `true` = card nella sezione homepage "Alcune delle nostre soluzioni" (max 3) |
 | diagrammi in `diagrams/` | `diagrams` | array di oggetti `{it: image, en: image, alt, caption}`. **Autoring + export bilingue: skill `excalidraw-diagram`** (`.claude/skills/excalidraw-diagram/`) — produce i PNG in `content/case-studies/assets/` (suffisso `-en` per l'inglese) partendo dai `.excalidraw.md` nel brain. Qui devi solo referenziarli con `_localFile` dentro `it`/`en`: l'importer carica gli asset e collega i ref (idempotente per `_key`+lingua; per forzare il re-upload cambia `_key`) |
@@ -99,7 +99,7 @@ inventare un "+48". In ordine di preferenza:
 1. Un numero **reale e validato** dal brain (es. tempo risparmiato misurato).
 2. Un **fatto reale** come metrica, onesto anche se meno "wow" (es. `428` →
    "recensioni analizzate", `17%` → "recensioni multilingua").
-3. Se davvero non c'è nulla di solido: una sola voce con `value: "—"` e `label`
+3. Se davvero non c'è nulla di solido: una sola voce con value "—" e `label`
    `"[metrica da validare]"`, e **avvisa esplicitamente l'utente** che va
    completata prima di pubblicare. Non pubblicare mai un numero non verificato.
 Meglio una metrica solida che due deboli: la seconda voce si aggiunge solo se
@@ -141,10 +141,20 @@ Legge tutti i `content/case-studies/*.json`, li fa `createOrReplace` su Sanity u
 `SANITY_API_WRITE_TOKEN` da `.env.local`, e **preserva la cover** eventualmente
 caricata in Studio. Poi verifica che il caso compaia su `/lavori` (skill `visual-check`).
 
-## Dopo: linkare /lavori in nav
-Il primo caso reale pubblicato è anche il momento di decidere se collegare `/lavori`
-nel menu (oggi la voce "Lavori" punta alla sezione della homepage `#lavori`). È una
-scelta di prodotto: proponila all'utente, non farla di default.
+## Ciclo di vita dei file in `content/case-studies/` (issue #8)
+I JSON generati (e i PNG/SVG dei diagrammi in `assets/`) **si committano**: sono
+l'input dell'importer (`createOrReplace` idempotente), passano dalla review di PR —
+che fa anche da secondo paio d'occhi sulla verifica anti-fughe del passo 6 — e
+restano come storico versionato di ciò che è pubblicato. Niente bozze locali non
+tracciate: se un caso non deve ancora andare online, resta `public_status: draft`
+nel brain e il JSON non si genera. Per **togliere** un caso dal sito: cancella il
+documento su Sanity E il JSON dal repo nella stessa occasione, altrimenti il
+prossimo import lo ripubblica.
+
+## Dopo: /lavori è raggiungibile dalla home
+Dal 2026-07-16 (issue #13) in fondo alla sezione lavori della home c'è
+"Tutti i lavori →" verso `/[locale]/lavori`, visibile quando le card vengono dai
+casi reali su Sanity: per i nuovi casi non c'è nulla da collegare a mano.
 
 ## Nota sul coordinamento
 Se stai lavorando su un branch, aggiorna `PLAN.md` (chi/branch/stato) come da regole del

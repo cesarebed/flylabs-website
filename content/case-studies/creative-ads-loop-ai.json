@@ -26,7 +26,11 @@
     {
       "_type": "metric",
       "_key": "m1",
-      "value": "1 sessione",
+      "value": {
+        "_type": "localeString",
+        "it": "1 sessione",
+        "en": "1 session"
+      },
       "label": {
         "_type": "localeString",
         "it": "per un giro completo di creative, da giorni",

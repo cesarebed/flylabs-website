@@ -34,7 +34,7 @@ export type CaseStudy = {
   problem?: LocaleText;
   solution?: LocaleText;
   metrics?: Array<{
-    value?: string;
+    value?: LocaleString;
     label?: LocaleString;
     _type: "metric";
     _key: string;
@@ -308,7 +308,7 @@ export type CASE_STUDIES_QUERY_RESULT = Array<{
   problem: LocaleText | null;
   solution: LocaleText | null;
   metrics: Array<{
-    value?: string;
+    value?: LocaleString;
     label?: LocaleString;
     _type: "metric";
     _key: string;
@@ -327,7 +327,7 @@ export type FEATURED_CASE_STUDIES_QUERY_RESULT = Array<{
   problem: LocaleText | null;
   solution: LocaleText | null;
   metrics: Array<{
-    value?: string;
+    value?: LocaleString;
     label?: LocaleString;
     _type: "metric";
     _key: string;
@@ -346,7 +346,7 @@ export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
   problem: LocaleText | null;
   solution: LocaleText | null;
   metrics: Array<{
-    value?: string;
+    value?: LocaleString;
     label?: LocaleString;
     _type: "metric";
     _key: string;
