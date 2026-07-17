@@ -26,7 +26,11 @@
     {
       "_type": "metric",
       "_key": "m1",
-      "value": "428",
+      "value": {
+        "_type": "localeString",
+        "it": "1 sessione",
+        "en": "1 session"
+      },
       "label": {
         "_type": "localeString",
         "it": "recensioni analizzate",
@@ -36,7 +40,7 @@
     {
       "_type": "metric",
       "_key": "m2",
-      "value": "17%",
+      "value": { "_type": "localeString", "it": "17%", "en": "17%" },
       "label": {
         "_type": "localeString",
         "it": "seconda metrica (opzionale, max 2)",

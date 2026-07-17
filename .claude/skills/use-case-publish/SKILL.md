@@ -78,7 +78,7 @@ modo naturale (non letterale). Mappatura:
 | (angolo/titolo) | `title` | es. "Recensioni gestite dall'AI, tono calibrato" |
 | Problema / sfida | `problem` | 1-2 frasi |
 | Soluzione | `solution` | 1-2 frasi |
-| Risultati / impatto | `metrics` | array di 1-2 `{_type:"metric", _key, value, label}`; vedi regola metrica sotto |
+| Risultati / impatto | `metrics` | array di 1-2 `{_type:"metric", _key, value, label}`; `value` e `label` sono `localeString` (dal 2026-07-16: anche il valore va tradotto se contiene parole, es. "1 sessione" → "1 session"); vedi regola metrica sotto |
 | frontmatter `tech: [...]` | `tech` | badge dello stack (array di stringhe, nomi invariati nelle lingue) |
 | scelta editoriale | `featured` | `true` = card nella sezione homepage "Alcune delle nostre soluzioni" (max 3) |
 | diagrammi in `diagrams/` | `diagrams` | array di oggetti `{it: image, en: image, alt, caption}`. **Autoring + export bilingue: skill `excalidraw-diagram`** (`.claude/skills/excalidraw-diagram/`) — produce i PNG in `content/case-studies/assets/` (suffisso `-en` per l'inglese) partendo dai `.excalidraw.md` nel brain. Qui devi solo referenziarli con `_localFile` dentro `it`/`en`: l'importer carica gli asset e collega i ref (idempotente per `_key`+lingua; per forzare il re-upload cambia `_key`) |
@@ -99,7 +99,7 @@ inventare un "+48". In ordine di preferenza:
 1. Un numero **reale e validato** dal brain (es. tempo risparmiato misurato).
 2. Un **fatto reale** come metrica, onesto anche se meno "wow" (es. `428` →
    "recensioni analizzate", `17%` → "recensioni multilingua").
-3. Se davvero non c'è nulla di solido: una sola voce con `value: "—"` e `label`
+3. Se davvero non c'è nulla di solido: una sola voce con value "—" e `label`
    `"[metrica da validare]"`, e **avvisa esplicitamente l'utente** che va
    completata prima di pubblicare. Non pubblicare mai un numero non verificato.
 Meglio una metrica solida che due deboli: la seconda voce si aggiunge solo se

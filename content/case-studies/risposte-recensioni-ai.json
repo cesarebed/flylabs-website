@@ -26,7 +26,11 @@
     {
       "_type": "metric",
       "_key": "m1",
-      "value": "1000+",
+      "value": {
+        "_type": "localeString",
+        "it": "1000+",
+        "en": "1000+"
+      },
       "label": {
         "_type": "localeString",
         "it": "recensioni analizzate",
@@ -36,7 +40,11 @@
     {
       "_type": "metric",
       "_key": "m2",
-      "value": "17%",
+      "value": {
+        "_type": "localeString",
+        "it": "17%",
+        "en": "17%"
+      },
       "label": {
         "_type": "localeString",
         "it": "recensioni multilingua",

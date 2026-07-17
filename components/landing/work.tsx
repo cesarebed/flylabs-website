@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { pickLocale, type Locale } from "@/lib/i18n";
+import { pickLocale, pickLocaleLoose, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { cases } from "@/lib/cases-content";
 import { sanityFetch } from "@/sanity/fetch";
@@ -54,7 +54,7 @@ export async function Work({ lang }: { lang: Locale }) {
                     {(study.metrics ?? []).map((metric) => (
                       <div key={metric._key}>
                         <div className="whitespace-nowrap font-display text-4xl font-semibold leading-none text-accent">
-                          {metric.value}
+                          {pickLocaleLoose(metric.value, lang)}
                         </div>
                         <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
                           {pickLocale(metric.label, lang)}
