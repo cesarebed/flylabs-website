@@ -8,7 +8,9 @@ export const SITE_SETTINGS_QUERY = defineQuery(
     description,
     siteUrl,
     "ogImage": ogImage.asset->url,
-    keywords
+    keywords,
+    socialLinks[]{ _key, label, url },
+    contactEmail
   }`
 );
 

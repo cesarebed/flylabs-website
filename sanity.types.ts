@@ -154,6 +154,13 @@ export type SiteSettings = {
     _type: "image";
   };
   keywords?: Array<string>;
+  socialLinks?: Array<{
+    label?: string;
+    url?: string;
+    _type: "socialLink";
+    _key: string;
+  }>;
+  contactEmail?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -275,13 +282,19 @@ export type AllSanitySchemaTypes =
 
 // Source: sanity/queries.ts
 // Variable: SITE_SETTINGS_QUERY
-// Query: *[_type == "siteSettings"][0]{    title,    description,    siteUrl,    "ogImage": ogImage.asset->url,    keywords  }
+// Query: *[_type == "siteSettings"][0]{    title,    description,    siteUrl,    "ogImage": ogImage.asset->url,    keywords,    socialLinks[]{ _key, label, url },    contactEmail  }
 export type SITE_SETTINGS_QUERY_RESULT = {
   title: LocaleString | null;
   description: LocaleText | null;
   siteUrl: string | null;
   ogImage: string | null;
   keywords: Array<string> | null;
+  socialLinks: Array<{
+    _key: string;
+    label: string | null;
+    url: string | null;
+  }> | null;
+  contactEmail: string | null;
 } | null;
 
 // Source: sanity/queries.ts
@@ -406,7 +419,7 @@ export type CONTACT_RATE_COUNT_QUERY_RESULT = number;
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "siteSettings"][0]{\n    title,\n    description,\n    siteUrl,\n    "ogImage": ogImage.asset->url,\n    keywords\n  }': SITE_SETTINGS_QUERY_RESULT;
+    '*[_type == "siteSettings"][0]{\n    title,\n    description,\n    siteUrl,\n    "ogImage": ogImage.asset->url,\n    keywords,\n    socialLinks[]{ _key, label, url },\n    contactEmail\n  }': SITE_SETTINGS_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc){\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech\n  }': CASE_STUDIES_QUERY_RESULT;
     '*[_type == "caseStudy" && featured == true && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc)[0...3]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech\n  }': FEATURED_CASE_STUDIES_QUERY_RESULT;
     '*[_type == "caseStudy" && slug.current == $slug][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    "diagrams": diagrams[]{\n      _key,\n      alt,\n      caption,\n      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },\n      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }\n    },\n    date,\n    "updatedAt": _updatedAt\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;

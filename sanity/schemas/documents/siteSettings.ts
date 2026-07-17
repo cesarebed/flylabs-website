@@ -1,7 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-// Singleton: configurazione del sito usata per la SEO e le anteprime social.
-// Tutto il resto dei contenuti resta hardcoded in lib/landing-content.ts.
+// Singleton: configurazione del sito usata per SEO, anteprime social e
+// contatti del footer. Il resto dei contenuti resta hardcoded in
+// lib/landing-content.ts.
 export const siteSettings = defineType({
   name: "siteSettings",
   title: "Impostazioni sito",
@@ -46,6 +47,49 @@ export const siteSettings = defineType({
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },
+    }),
+    defineField({
+      name: "socialLinks",
+      title: "Profili social",
+      description:
+        "Link ai profili pubblici (es. LinkedIn), mostrati nel footer e segnalati a Google (sameAs). Se la lista è vuota, nel footer non compare nessun link social.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "socialLink",
+          title: "Profilo social",
+          fields: [
+            defineField({
+              name: "label",
+              title: "Nome",
+              description:
+                "Testo del link nel footer, es. \"LinkedIn\". Uguale in tutte le lingue.",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "URL",
+              description:
+                "Indirizzo completo del profilo, es. https://www.linkedin.com/company/flylabs-ai. Senza URL il link non compare.",
+              type: "url",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: "label", subtitle: "url" },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: "contactEmail",
+      title: "Email di contatto pubblica",
+      description:
+        "Mostrata nel footer come link \"Email\" (mailto). Se vuota, il link non compare. Attenzione: è leggibile da chiunque, usa una casella pensata per il pubblico.",
+      type: "string",
+      validation: (rule) => rule.email(),
     }),
   ],
   preview: {
