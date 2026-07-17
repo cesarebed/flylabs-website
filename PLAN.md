@@ -42,6 +42,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — se
 - **Generatore diagrammi condiviso, non più nel vault personale di Federico** (2026-07-15): modulo Python in `flylabs-brain/03_Resources/materials/brand/diagrams/flylabs_excalidraw.py` + skill Claude Code `excalidraw-diagram` in questo repo per l'export bilingue PNG. Confermato funzionante da entrambi: Cesare l'ha già usata in autonomia per i suoi 2 use case.
 - **Homepage "piena" (3/3 card featured)**: la query prende i 3 più recenti; un 4° caso `featured` fa uscire il più vecchio dalla home (resta comunque su `/lavori`). Se si vuole un carosello o più di 3 card, è una modifica di prodotto da decidere insieme, non implicita.
 - **`/lavori` raggiungibile dalla home (issue #13, 2026-07-16)**: la voce nav resta l'ancora `#lavori` (è una landing one-page); in fondo alla sezione c'è "Tutti i lavori →" verso `/[locale]/lavori`, mostrato solo quando le card vengono dai casi reali su Sanity (col fallback hardcoded la pagina archivio sarebbe fuorviante). Una voce nav dedicata resta un'opzione futura se i casi crescono.
+- **Email pubblica di contatto = `info@flylabs.ai`** (2026-07-17, deciso da Federico in sessione): vive in `siteSettings.contactEmail` (campo introdotto dalla PR #27) e alimenta il link "Email" del footer come mailto. La **pagina LinkedIn aziendale non esiste ancora**: il link resta nascosto finché non c'è; quando esisterà, URL in Studio → Impostazioni sito → Profili social (finisce anche nel `sameAs` del JSON-LD).
 
 ## Task aperti (fuori roadmap)
 
@@ -50,7 +51,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-16 (Federico — se
 - [x] Issue #14 (teaser chatbot con CTA morta in home): teaser rimosso il 2026-07-16 come proposto nella issue — si riaggiunge quando il widget esiste davvero
 - [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
-- [ ] Footer: link "LinkedIn"/"Email" morti (`href="#"`) → campi `socialLinks` + `contactEmail` su `siteSettings`; il footer nasconde i link senza valore, gli URL social alimentano il `sameAs` del JSON-LD Organization (Federico, `feat/footer-social-links`, PR #27 — stacked su #24, mergiare #24 prima) 🔨 Mancano i valori reali (pagina LinkedIn? email pubblica?): appena decisi vanno in Studio → Impostazioni sito
+- [ ] Footer: link "LinkedIn"/"Email" morti (`href="#"`) → campi `socialLinks` + `contactEmail` su `siteSettings`; il footer nasconde i link senza valore, gli URL social alimentano il `sameAs` del JSON-LD Organization (Federico, `feat/footer-social-links`, PR #27 — stacked su #24, mergiare #24 prima) 🔨 Email decisa (`info@flylabs.ai`, vedi Decisioni): il seed via script è bloccato dal classifier in sessione autonoma → dopo il merge inserirla in Studio → Impostazioni sito e Publish. LinkedIn: non esiste ancora, link nascosto by design
 
 ## Tooling / skill
 
