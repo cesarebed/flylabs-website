@@ -115,7 +115,15 @@ export function WorkCarousel({
   return (
     <div>
       <div className="mb-6 flex items-center justify-end gap-4">
-        <span className="font-mono text-[11px] tracking-[0.14em] text-muted tabular-nums">
+        {/* Finché le card non sono misurate `perView` vale 1 e il server
+            renderizzerebbe "01–01 / 05", corretto solo dopo l'hydration.
+            Meglio tenerlo invisibile (spazio riservato, niente salti) che
+            mostrare per un istante un intervallo sbagliato. */}
+        <span
+          className={`font-mono text-[11px] tracking-[0.14em] text-muted tabular-nums ${
+            step > 0 ? "" : "invisible"
+          }`}
+        >
           {pad(from)}–{pad(to)} / {pad(items.length)}
         </span>
         <div className="flex gap-2">
