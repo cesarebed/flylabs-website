@@ -33,8 +33,34 @@ const TECH_ICONS: Record<string, string> = {
   python: "logos:python",
   playwright: "logos:playwright",
   mcp: "simple-icons:modelcontextprotocol",
+  wordpress: "logos:wordpress-icon",
+  // Modelli: mostrarli affiancati racconta la flessibilità di scelta.
+  gpt: "logos:openai-icon",
+  gemini: "logos:google-gemini",
+  deepseek: "logos:deepseek",
+  // Canali: mostrarli affiancati racconta il multi-piattaforma.
+  instagram: "logos:instagram-icon",
+  messenger: "logos:messenger",
+  "facebook messenger": "logos:messenger",
+  // Superfici Meta usate per l'integrazione WhatsApp Business.
+  "meta business management api": "logos:meta-icon",
+  "meta developer apps": "logos:meta-icon",
+};
+
+/**
+ * Loghi che non esistono su Iconify e vivono come immagine in `public/logos/`
+ * (es. prodotti nostri). Renderizzati con next/image dai badge.
+ */
+const TECH_IMAGE_LOGOS: Record<string, { src: string; alt: string }> = {
+  "gpt chatbot": { src: "/logos/gpt-chatbot.png", alt: "Logo GPT Chatbot" },
 };
 
 export function techIcon(name: string): string | undefined {
   return TECH_ICONS[name.trim().toLowerCase()];
+}
+
+export function techImageLogo(
+  name: string
+): { src: string; alt: string } | undefined {
+  return TECH_IMAGE_LOGOS[name.trim().toLowerCase()];
 }
