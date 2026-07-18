@@ -52,6 +52,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-17 (Federico — ri
 - [x] Seedare i `caseStudy` con dati REALI: 3/3 use case importati e LIVE (2026-07-15). Link `/lavori` dalla home: fatto il 2026-07-16 (issue #13, vedi Decisioni)
 - [x] Issue #14 (teaser chatbot con CTA morta in home): teaser rimosso il 2026-07-16 come proposto nella issue — si riaggiunge quando il widget esiste davvero
 - [x] (nit review PR #3) ordinamento Studio/sito allineato: `date` ora required con initialValue = oggi (Federico, `fix/case-study-date-ordering`) + `SANITY_API_READ_TOKEN` documentato in `.env.example` e CLAUDE.md
+- [x] Badge tech uniformati (2026-07-17, richiesta di Federico): "Claude" → "Claude Code" e aggiunto "MCP" al caso struttura ricettiva; testi delle 3 card verificati già allineati (stile, lunghezze, terminologia "AI", formato metriche)
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
 - [x] Footer: link "LinkedIn"/"Email" morti (`href="#"`) → campi `socialLinks` + `contactEmail` su `siteSettings`; il footer nasconde i link senza valore, gli URL social alimentano il `sameAs` del JSON-LD Organization (Federico, `feat/footer-social-links`, PR #27 riaperta e mergiata il 2026-07-17). Email `info@flylabs.ai` da valorizzare su Sanity (`scripts/` con write token, oppure Studio → Impostazioni sito → Publish); LinkedIn nascosto finché la pagina aziendale non esiste
 
