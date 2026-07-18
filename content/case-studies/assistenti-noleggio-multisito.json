@@ -44,8 +44,43 @@
       }
     }
   ],
-  "tech": ["OpenAI", "RAG"],
+  "tech": [
+    "GPT Chatbot",
+    "WordPress",
+    "Meta Business Management API",
+    "Claude",
+    "GPT",
+    "Gemini",
+    "DeepSeek",
+    "WhatsApp",
+    "Instagram",
+    "Facebook Messenger"
+  ],
   "featured": false,
+  "diagrams": [
+    {
+      "_type": "diagram",
+      "_key": "d1",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/assistenti-noleggio-multisito-flusso.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/assistenti-noleggio-multisito-flusso-en.png"
+      },
+      "alt": {
+        "_type": "localeString",
+        "it": "Diagramma del flusso: visitatore su uno dei 3 siti con la stessa voce, GPT Chatbot addestrato sui contenuti di quel sito, risposte su mezzi, taglie, sedi e prezzi con appuntamenti e prenotazione online, escalation a operatore per richieste same-day e problemi durante il noleggio",
+        "en": "Flow diagram: visitor on one of the 3 sites sharing one voice, GPT Chatbot trained on that site's own content, answers on bikes, sizes, locations and prices with appointments and online booking, escalation to a human for same-day requests and issues during the rental"
+      },
+      "caption": {
+        "_type": "localeString",
+        "it": "Lo stesso flusso su ogni sito del gruppo, con l'operatore per gli urgenti",
+        "en": "The same flow on every site of the group, with a human for urgent cases"
+      }
+    }
+  ],
   "body": {
     "_type": "localeText",
     "it": "Il cliente gestisce il noleggio su più siti di prenotazione diversi, ognuno con il suo marchio e il suo pubblico. Le domande arrivavano a ogni ora, in più lingue, e finivano tutte sulle spalle del team: orari, taglie, sedi, disponibilità, prezzi, vicinanza ai sentieri.\n\nAbbiamo messo su ogni sito un assistente AI addestrato sui contenuti di quel sito: conosce i tipi di mezzo e le fasce di prezzo, consiglia la taglia giusta a partire dall'altezza, indica le sedi con gli orari e, per la mountain bike, la distanza dai sentieri migliori. Ogni sito ha la sua identità (nome, volto, colori), ma tutti si comportano nello stesso modo e con la stessa qualità, su desktop e su mobile.\n\nLa regola è portare l'utente alla prenotazione online (niente accessi senza prenotazione) con i link giusti. Quando la richiesta è urgente, come una prenotazione per lo stesso giorno o un problema durante il noleggio, l'assistente passa la palla a una persona con il contatto diretto del negozio. L'AI risponde, l'operatore interviene dove serve.\n\nOggi il sistema regge oltre 100 conversazioni al giorno tra i vari siti, con una voce coerente ovunque e il team libero dalle domande ripetitive.",

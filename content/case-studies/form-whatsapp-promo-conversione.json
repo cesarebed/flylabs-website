@@ -44,8 +44,45 @@
       }
     }
   ],
-  "tech": ["WhatsApp", "OpenAI", "RAG"],
+  "tech": [
+    "GPT Chatbot",
+    "WordPress",
+    "Make.com",
+    "Meta Business Management API",
+    "Meta Developer Apps",
+    "Claude",
+    "GPT",
+    "Gemini",
+    "DeepSeek",
+    "WhatsApp",
+    "Instagram",
+    "Facebook Messenger"
+  ],
   "featured": false,
+  "diagrams": [
+    {
+      "_type": "diagram",
+      "_key": "d1",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/form-whatsapp-promo-conversione-flusso.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/form-whatsapp-promo-conversione-flusso-en.png"
+      },
+      "alt": {
+        "_type": "localeString",
+        "it": "Diagramma del flusso: form sul sito WordPress con idea del tatuaggio e immagini, Make.com che estrae uno sconto casuale tra 50 e 200 euro, messaggio WhatsApp outbound via Meta Business Management API e Meta Developer App, GPT Chatbot che su WhatsApp qualifica il contatto, risponde alle FAQ e fissa gli appuntamenti, escalation a umano quando serve l'artista",
+        "en": "Flow diagram: form on the WordPress site with tattoo idea and reference images, Make.com drawing a random discount between 50 and 200 euros, outbound WhatsApp message via Meta Business Management API and Meta Developer App, GPT Chatbot on WhatsApp qualifying the lead, answering FAQs and booking appointments, escalation to a human when the artist is needed"
+      },
+      "caption": {
+        "_type": "localeString",
+        "it": "Dal form del sito alla chat WhatsApp, con l'artista come ultimo passaggio",
+        "en": "From the website form to the WhatsApp chat, with the artist as the final step"
+      }
+    }
+  ],
   "body": {
     "_type": "localeText",
     "it": "Lo studio riceve richieste dal sito: chi è interessato compila un form con la propria idea di tatuaggio e qualche immagine di riferimento. Il problema era il vuoto che si crea dopo: l'artista non può rispondere a tutti subito, e nell'attesa il contatto si raffredda o la promo che gli è stata proposta finisce dimenticata.\n\nAbbiamo chiuso quel vuoto. Appena arriva il form parte in automatico un messaggio WhatsApp che assegna alla persona un importo promozionale estratto a caso: lo sconto diventa una piccola sorpresa personale, non un banner uguale per tutti. Da lì in poi risponde un assistente AI direttamente su WhatsApp, nella lingua dell'utente (gestisce inglese, spagnolo e tedesco): conferma che la richiesta è arrivata e che l'artista la sta guardando, risponde alle domande su stili, cura e come funziona il processo, e raccoglie i dettagli utili (stile, dimensione, posizione).\n\nL'assistente non fa preventivi, perché il prezzo lo definisce l'artista in base al progetto: il suo lavoro è tenere viva la conversazione, far sentire la persona seguita e spingerla con garbo a usare la promo, fino a quando l'artista prende in mano il contatto.\n\nRisultato: gli sconti che prima restavano lettera morta vengono riscattati circa il doppio delle volte, perché qualcuno (l'AI) accompagna davvero la persona dal form alla decisione.",
