@@ -1,8 +1,9 @@
+import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 
 export function Offer({ lang }: { lang: Locale }) {
-  const { section, tracks, cta, badgeFeatured } = landing.offer;
+  const { section, tracks, cta, badgeFeatured, deepLink } = landing.offer;
   return (
     <section id="offerta" className="border-y border-line bg-white py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
@@ -33,11 +34,29 @@ export function Offer({ lang }: { lang: Locale }) {
                     {badgeFeatured[lang]}
                   </span>
                 )}
-                <span className="stamp mb-6 text-muted">{track.kind[lang]}</span>
+                <div className="mb-6 flex items-center justify-between gap-3">
+                  <span className="stamp text-muted">{track.kind[lang]}</span>
+                  <span className="font-mono text-[11px] tracking-wider text-muted">
+                    {track.timeline[lang]}
+                  </span>
+                </div>
                 <h3 className="mb-2 text-xl font-bold">{track.title[lang]}</h3>
-                <p className="mb-6 text-[15px] leading-relaxed text-muted">
+                <p className="mb-5 text-[15px] leading-relaxed text-muted">
                   {track.body[lang]}
                 </p>
+                <ul className="mb-6 space-y-2">
+                  {track.includes.map((line) => (
+                    <li
+                      key={line[lang]}
+                      className="flex gap-2 text-[14px] leading-snug text-ink/80"
+                    >
+                      <span aria-hidden className="text-accent">
+                        ✓
+                      </span>
+                      {line[lang]}
+                    </li>
+                  ))}
+                </ul>
                 <div className="mt-auto border-t border-line pt-6">
                   <div className="mb-5 font-mono text-[13px] text-accent">
                     {track.price[lang]}
@@ -56,6 +75,15 @@ export function Offer({ lang }: { lang: Locale }) {
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-8 text-right">
+          <Link
+            href={`/${lang}${deepLink.href}`}
+            className="text-sm font-semibold text-accent hover:underline"
+          >
+            {deepLink.label[lang]}
+          </Link>
         </div>
       </div>
     </section>
