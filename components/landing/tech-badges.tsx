@@ -7,14 +7,20 @@ import { Icon } from "./icon";
 export function TechBadges({
   tech,
   className = "",
+  max,
 }: {
   tech: string[] | null | undefined;
   className?: string;
+  /** Mostra solo i primi N badge + un chip "+resto". Per le card, dove uno
+   *  stack lungo occuperebbe più spazio del contenuto. */
+  max?: number;
 }) {
   if (!tech || tech.length === 0) return null;
+  const shown = max ? tech.slice(0, max) : tech;
+  const hidden = tech.length - shown.length;
   return (
     <div className={`flex flex-wrap gap-1.5 ${className}`}>
-      {tech.map((name) => {
+      {shown.map((name) => {
         const icon = techIcon(name);
         const logo = techImageLogo(name);
         return (
@@ -37,6 +43,11 @@ export function TechBadges({
           </span>
         );
       })}
+      {hidden > 0 && (
+        <span className="inline-flex items-center rounded-md border border-line bg-white px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-muted">
+          +{hidden}
+        </span>
+      )}
     </div>
   );
 }
