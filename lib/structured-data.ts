@@ -42,6 +42,12 @@ export function caseStudyArticleLd(args: {
     name: "flylabs.ai",
     url: args.siteUrl,
   };
+  // La `date` di Sanity è un giorno secco (YYYY-MM-DD); il Rich Results Test
+  // segnala il fuso mancante, quindi la promuoviamo a datetime ISO in UTC.
+  const datePublished =
+    args.datePublished && args.datePublished.length === 10
+      ? `${args.datePublished}T00:00:00Z`
+      : args.datePublished;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -49,7 +55,7 @@ export function caseStudyArticleLd(args: {
     description: args.description,
     inLanguage: args.lang === "it" ? "it-IT" : "en-US",
     mainEntityOfPage: args.url,
-    ...(args.datePublished ? { datePublished: args.datePublished } : {}),
+    ...(datePublished ? { datePublished } : {}),
     ...(args.dateModified ? { dateModified: args.dateModified } : {}),
     ...(args.images?.length ? { image: args.images } : {}),
     author: org,
