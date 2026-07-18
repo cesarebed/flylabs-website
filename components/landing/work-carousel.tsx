@@ -39,6 +39,10 @@ export function WorkCarousel({
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  // Parte `true` di proposito: se l'IntersectionObserver non emettesse mai un
+  // callback, il carosello continuerebbe comunque a scorrere invece di restare
+  // fermo per sempre. L'observer semmai lo spegne quando la sezione esce.
+  const [visible, setVisible] = useState(true);
   const [step, setStep] = useState(0);
   const [perView, setPerView] = useState(1);
 
@@ -81,25 +85,38 @@ export function WorkCarousel({
     [lastIndex]
   );
 
+  // Scorre solo quando la sezione è davvero sullo schermo: altrimenti il
+  // movimento avviene mentre l'utente è altrove e la sezione sembra ferma.
   useEffect(() => {
-    if (paused || lastIndex === 0) return;
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (paused || !visible || lastIndex === 0) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => go(1), AUTOPLAY_MS);
     return () => clearInterval(id);
-  }, [paused, lastIndex, go]);
+  }, [paused, visible, lastIndex, go]);
 
   const pad = (n: number) => String(n).padStart(2, "0");
+  // Intervallo invece della sola posizione: "01–03 / 05" dice quante card
+  // stai vedendo e quante ce ne sono, senza il salto controintuitivo di un
+  // contatore singolo che arriva a 03 e riparte da 01.
+  const from = safeIndex + 1;
+  const to = Math.min(safeIndex + perView, items.length);
 
   return (
-    <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
-    >
+    <div>
       <div className="mb-6 flex items-center justify-end gap-4">
         <span className="font-mono text-[11px] tracking-[0.14em] text-muted tabular-nums">
-          {pad(safeIndex + 1)} / {pad(items.length)}
+          {pad(from)}–{pad(to)} / {pad(items.length)}
         </span>
         <div className="flex gap-2">
           <button
@@ -121,12 +138,19 @@ export function WorkCarousel({
         </div>
       </div>
 
+      {/* La pausa vive qui, non sul blocco intero: hover o focus su una card
+          fermano lo scorrimento, ma usare le frecce (che stanno fuori) no,
+          altrimenti il focus del bottone lo terrebbe in pausa per sempre. */}
       <div
         ref={viewportRef}
         role="region"
         aria-label={labels.region}
         aria-roledescription="carousel"
         className="overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={() => setPaused(false)}
       >
         <div
           ref={trackRef}

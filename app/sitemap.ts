@@ -20,6 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: { path: string; lastModified?: string }[] = [
     { path: "" },
     { path: "/lavori" },
+    { path: "/servizi" },
     { path: "/stack" },
     { path: "/privacy" },
     ...studies

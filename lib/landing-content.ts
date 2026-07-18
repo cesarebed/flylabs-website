@@ -64,7 +64,12 @@ export type OfferTrack = {
   title: Localized;
   body: Localized;
   price: Localized; // segnale di prezzo trasparente
+  timeline: Localized; // quanto ci vuole, detto prima
+  includes: Localized[]; // cosa c'è dentro davvero (3 voci)
   featured?: boolean; // evidenzia il binario di punta
+  // Approfondimento usato solo dalla pagina /servizi: per chi è e come va.
+  who: Localized;
+  steps: Localized[];
 };
 
 export type StackTool = { icon: string; name: string; desc: Localized };
@@ -191,6 +196,42 @@ export const landing = {
         claim: {
           it: "→ meno lavoro a mano, meno errori",
           en: "→ less work by hand, fewer mistakes",
+        },
+      },
+      {
+        icon: "lucide:file-search",
+        title: { it: "Ricerca nei documenti", en: "Search across documents" },
+        body: {
+          it: "Contratti, manuali e listini diventano risposte immediate, con la fonte citata.",
+          en: "Contracts, manuals and price lists turn into instant answers, with the source cited.",
+        },
+        claim: {
+          it: "→ basta cercare a mano",
+          en: "→ no more digging by hand",
+        },
+      },
+      {
+        icon: "lucide:chart-no-axes-column",
+        title: { it: "Report e analisi", en: "Reports and analysis" },
+        body: {
+          it: "Dati sparsi su più sistemi diventano un report leggibile, ogni settimana senza chiederlo.",
+          en: "Data scattered across systems becomes one readable report, every week without asking.",
+        },
+        claim: {
+          it: "→ decidi sui numeri, non a sensazione",
+          en: "→ decide on numbers, not gut feel",
+        },
+      },
+      {
+        icon: "lucide:star",
+        title: { it: "Recensioni e reputazione", en: "Reviews and reputation" },
+        body: {
+          it: "Bozze di risposta nel tono della tua azienda, in ogni lingua. Tu rivedi e pubblichi.",
+          en: "Draft replies in your company's tone, in any language. You review and publish.",
+        },
+        claim: {
+          it: "→ nessuna recensione senza risposta",
+          en: "→ no review left unanswered",
         },
       },
       {
@@ -352,6 +393,39 @@ export const landing = {
           en: "Hands-on sessions for you and your team, on your real work. You leave able to use AI on your own.",
         },
         price: { it: "su misura sul team", en: "tailored to the team" },
+        timeline: { it: "1-2 sessioni", en: "1 to 2 sessions" },
+        includes: [
+          {
+            it: "Sessioni sul vostro lavoro reale, non slide",
+            en: "Sessions on your real work, not slides",
+          },
+          {
+            it: "Prompt e flussi pronti da riusare il giorno dopo",
+            en: "Prompts and flows ready to reuse the next day",
+          },
+          {
+            it: "Registrazione e materiali che restano al team",
+            en: "Recording and materials the team keeps",
+          },
+        ],
+        who: {
+          it: "Per team che usano già l'AI a intuito e vogliono smettere di improvvisare.",
+          en: "For teams already using AI by instinct who want to stop improvising.",
+        },
+        steps: [
+          {
+            it: "Ci dite su cosa perdete tempo: raccogliamo i casi veri prima della sessione.",
+            en: "You tell us where time goes: we collect the real cases before the session.",
+          },
+          {
+            it: "Lavoriamo insieme su quei casi, dal vivo, sui vostri strumenti.",
+            en: "We work through those cases together, live, on your own tools.",
+          },
+          {
+            it: "Restano prompt, flussi e una guida scritta per il team.",
+            en: "You keep the prompts, the flows and a written guide for the team.",
+          },
+        ],
       },
       {
         kind: { it: "soluzione", en: "solution" },
@@ -361,7 +435,44 @@ export const landing = {
           en: "We design, build and deliver the solution. Training included: you run it, without depending on us.",
         },
         price: { it: "prezzo fisso, deciso prima", en: "fixed price, agreed upfront" },
+        timeline: { it: "2-4 settimane", en: "2 to 4 weeks" },
+        includes: [
+          {
+            it: "Analisi del processo e scelta del modello adatto",
+            en: "Process analysis and the right model for the job",
+          },
+          {
+            it: "Soluzione in produzione, integrata con i sistemi che usate",
+            en: "Solution in production, integrated with the systems you use",
+          },
+          {
+            it: "Formazione del team e documentazione per gestirla da soli",
+            en: "Team training and documentation to run it yourselves",
+          },
+        ],
         featured: true,
+        who: {
+          it: "Per chi ha un processo che si ripete ogni giorno e costa ore o clienti persi.",
+          en: "For anyone with a process that repeats daily and costs hours or lost customers.",
+        },
+        steps: [
+          {
+            it: "Mappiamo il processo con chi lo fa davvero e fissiamo il risultato atteso.",
+            en: "We map the process with the people who run it and agree on the target result.",
+          },
+          {
+            it: "Costruiamo la prima versione utile in pochi giorni e la provate sul lavoro vero.",
+            en: "We build the first useful version in days and you try it on real work.",
+          },
+          {
+            it: "Andiamo in produzione con la persona nel punto delicato, mai in automatico cieco.",
+            en: "We go to production with a person at the sensitive step, never blind automation.",
+          },
+          {
+            it: "Formiamo il team, lasciamo la documentazione e restate autonomi.",
+            en: "We train the team, hand over the documentation and you stay independent.",
+          },
+        ],
       },
       {
         kind: { it: "consulenza", en: "consulting" },
@@ -371,8 +482,45 @@ export const landing = {
           en: "A strategic call to find where AI actually pays off. No commitment, just concrete answers.",
         },
         price: { it: "a ore · prezzo trasparente", en: "hourly · transparent rate" },
+        timeline: { it: "una call", en: "a single call" },
+        includes: [
+          {
+            it: "Una mappa di dove l'AI conviene davvero, e dove no",
+            en: "A map of where AI actually pays off, and where it doesn't",
+          },
+          {
+            it: "Stima onesta di tempi e costi per ogni idea",
+            en: "An honest time and cost estimate for each idea",
+          },
+          {
+            it: "Che cosa fare per primo, con quale ritorno atteso",
+            en: "What to do first, and the return to expect",
+          },
+        ],
+        who: {
+          it: "Per chi ha molte idee sull'AI e vuole sapere quale regge prima di investirci.",
+          en: "For anyone with lots of AI ideas who wants to know which one holds up before investing.",
+        },
+        steps: [
+          {
+            it: "Ci raccontate il problema e come lavorate oggi.",
+            en: "You walk us through the problem and how you work today.",
+          },
+          {
+            it: "Mettiamo le idee in ordine per impatto e difficoltà, davanti a voi.",
+            en: "We rank the ideas by impact and difficulty, with you in the room.",
+          },
+          {
+            it: "Vi lasciamo il piano. Se lo volete costruire con noi, bene; altrimenti è vostro.",
+            en: "You leave with the plan. Build it with us if you want; either way it's yours.",
+          },
+        ],
       },
     ] satisfies OfferTrack[],
+    deepLink: {
+      label: { it: "Come lavoriamo, nel dettaglio →", en: "How we work, in detail →" },
+      href: "/servizi",
+    },
   },
 
   why: {
@@ -422,6 +570,51 @@ export const landing = {
         a: {
           it: "No. Costruiamo, ti formiamo, e decidi tu se restare per farla evolvere.",
           en: "No. We build it, we train you, and you decide whether to stay for further work.",
+        },
+      },
+      {
+        q: { it: "Quanto ci vuole?", en: "How long does it take?" },
+        a: {
+          it: "Dalla prima call alla soluzione in produzione di solito passano 2-4 settimane. Se il caso è grande lo spezziamo, partendo dal pezzo che ti fa risparmiare tempo subito.",
+          en: "From the first call to a solution in production it's usually 2 to 4 weeks. If the case is big we split it, starting with the piece that saves you time right away.",
+        },
+      },
+      {
+        q: { it: "E se l'AI sbaglia?", en: "What if the AI gets it wrong?" },
+        a: {
+          it: "Progettiamo perché sbagliare costi poco: nei punti delicati l'AI prepara e una persona conferma. Niente invii o pubblicazioni alla cieca.",
+          en: "We design so mistakes stay cheap: at the sensitive steps the AI drafts and a person confirms. Nothing gets sent or published blindly.",
+        },
+      },
+      {
+        q: {
+          it: "Si integra con i software che usiamo già?",
+          en: "Does it work with the software we already use?",
+        },
+        a: {
+          it: "Di solito sì: CRM, gestionali, fogli di lavoro, WhatsApp e i canali social. Se un sistema non ha API, spesso si automatizza lo stesso.",
+          en: "Usually yes: CRMs, business software, spreadsheets, WhatsApp and social channels. If a system has no API, it can often be automated anyway.",
+        },
+      },
+      {
+        q: { it: "Quale modello AI usate?", en: "Which AI model do you use?" },
+        a: {
+          it: "Quello che serve al problema. Lavoriamo con Claude, GPT, Gemini e DeepSeek e scegliamo in base a qualità, costo e privacy: non sei legato a un fornitore.",
+          en: "Whichever fits the problem. We work with Claude, GPT, Gemini and DeepSeek and choose on quality, cost and privacy: you're not tied to one vendor.",
+        },
+      },
+      {
+        q: { it: "I nostri dati dove finiscono?", en: "Where does our data end up?" },
+        a: {
+          it: "Restano dove sono già: costruiamo sopra i sistemi che usi. Prima di partire ti diciamo quali servizi tocca il flusso e quali dati ci passano, così puoi validarlo con chi si occupa di privacy.",
+          en: "It stays where it already is: we build on top of the systems you use. Before we start we tell you which services the flow touches and what data goes through, so you can clear it with whoever handles privacy.",
+        },
+      },
+      {
+        q: { it: "Cosa vi serve da noi?", en: "What do you need from us?" },
+        a: {
+          it: "Poche ore di chi conosce il processo, gli accessi ai sistemi coinvolti e qualche esempio reale. Il resto è lavoro nostro.",
+          en: "A few hours from whoever knows the process, access to the systems involved and a handful of real examples. The rest is on us.",
         },
       },
     ] satisfies Faq[],
@@ -510,6 +703,49 @@ export const landing = {
   },
 
   // Pagina dedicata /stack (raggiungibile solo dal teaser, non dal menu).
+  // Pagina /servizi: approfondimento dei tre modi di lavorare insieme.
+  // I contenuti dei binari vivono in `offer.tracks` (who/steps/includes):
+  // qui stanno solo le etichette e la cornice della pagina.
+  services: {
+    meta: {
+      it: {
+        title: "Come lavoriamo insieme — flylabs.ai",
+        description:
+          "I tre modi di lavorare con flylabs: consulenza spot, soluzione chiave in mano, formazione AI. Tempi, prezzi e cosa è incluso, detti prima.",
+      },
+      en: {
+        title: "How we work together — flylabs.ai",
+        description:
+          "The three ways to work with flylabs: spot consulting, turnkey solution, AI training. Timelines, pricing and what's included, stated upfront.",
+      },
+    },
+    kicker: { it: "Servizi", en: "Services" },
+    title: { it: "Come lavoriamo insieme", en: "How we work together" },
+    intro: {
+      it: "Tre punti di ingresso, un metodo solo: capire il problema vero, costruire la cosa più piccola che lo risolve, lasciarti in grado di gestirla da solo.",
+      en: "Three entry points, one method: understand the real problem, build the smallest thing that solves it, leave you able to run it yourself.",
+    },
+    back: { it: "← Torna alla home", en: "← Back home" },
+    labels: {
+      who: { it: "Per chi è", en: "Who it's for" },
+      includes: { it: "Cosa è incluso", en: "What's included" },
+      steps: { it: "Come funziona", en: "How it works" },
+      timeline: { it: "Tempi", en: "Timeline" },
+      price: { it: "Prezzo", en: "Price" },
+    },
+    closing: {
+      title: {
+        it: "Non sai quale dei tre ti serve?",
+        en: "Not sure which one you need?",
+      },
+      body: {
+        it: "Nemmeno noi, finché non ci racconti il problema. La prima call serve a capirlo insieme, ed è gratuita.",
+        en: "Neither do we, until you tell us the problem. The first call is there to figure it out together, and it's free.",
+      },
+      cta: { it: "Parliamone →", en: "Let's talk →" },
+    },
+  },
+
   stack: {
     meta: {
       it: {
