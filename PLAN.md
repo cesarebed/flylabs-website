@@ -49,8 +49,8 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-18 (Federico — se
 
 ## Task aperti (fuori roadmap)
 
-- [ ] Use case **bike rental Tucson** (RAG chatbot su 3 siti + Instagram/Messenger/WhatsApp, escalation a umano): nota skeleton creata nel brain (`01_Projects/bike-rental-tucson-chatbot/`) il 2026-07-18; in attesa da Federico di metriche reali, stack e anonimizzazione, poi skill `use-case-publish`
-- [ ] Use case **Close Tattoo** (form sito → WhatsApp outbound con promo casuale → chatbot su WhatsApp): nota skeleton creata nel brain (`01_Projects/close-tattoo-whatsapp-promo/`) il 2026-07-18; stessi buchi da riempire, poi skill `use-case-publish`
+- [x] Use case **noleggio bici multi-sito** (ex "bike rental Tucson"): scheda anonimizzata `content/case-studies/assistenti-noleggio-multisito.json` (PR #35, metriche 100+ msg/giorno e 3 siti). Ricerca da email nel vault `sbf` (`clients/bike-tucson/`), NON in flylabs-brain (lavoro solo di Federico via GPT Chatbot SaaS). `featured: false` (non tocca la home 3/3): flippare in Studio se lo si vuole in evidenza
+- [x] Use case **Close Tattoo** (form sito → WhatsApp promo casuale → chatbot WhatsApp): scheda anonimizzata `content/case-studies/form-whatsapp-promo-conversione.json` (PR #35, metriche 2x riscatto promo, 3 lingue). Ricostruito dal chatbot "Mario" su gptchatbot.it + descrizione di Federico; nota in `sbf` (`clients/close-tattoo.md`). `featured: false`. > TODO Federico: confermare tool outbound (Make/Brevo?) per il badge, e ri-condividere il `_chat.txt` (non era su disco) se servono più dettagli
 - [ ] **Vercel: env var mancanti sull'ambiente Preview** (causa più probabile dei preview rossi su tutte le PR) — solo Cesare può verificare/sistemare dal suo account: Settings → Environment Variables → abilitare Preview
 - [x] Sostituire i numeri placeholder delle work card con dati reali dei clienti → fatto: 3 casi `featured` reali su Sanity, le card hardcoded non compaiono più
 - [x] Seedare i `caseStudy` con dati REALI: 3/3 use case importati e LIVE (2026-07-15). Link `/lavori` dalla home: fatto il 2026-07-16 (issue #13, vedi Decisioni)
