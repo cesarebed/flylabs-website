@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
