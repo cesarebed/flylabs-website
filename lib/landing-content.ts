@@ -219,13 +219,22 @@ export const landing = {
   work: {
     section: {
       no: "02",
-      kicker: { it: "Lavori", en: "Work" },
+      kicker: { it: "Casi di successo", en: "Case studies" },
       titleBefore: {
-        it: "Alcune delle nostre ",
-        en: "Some of our ",
+        it: "Clienti veri, risultati ",
+        en: "Real clients, ",
       },
-      titleMark: { it: "soluzioni", en: "solutions" },
-      titleAfter: { it: "", en: "" },
+      titleMark: { it: "misurati", en: "measured" },
+      titleAfter: { it: "", en: " results" },
+    },
+    deck: {
+      it: "Ogni caso qui sotto è in produzione da un cliente vero, con numeri misurati. Scorri per vederli tutti.",
+      en: "Every case below runs in production for a real client, with measured numbers. Scroll through them all.",
+    },
+    nav: {
+      prev: { it: "Caso precedente", en: "Previous case" },
+      next: { it: "Caso successivo", en: "Next case" },
+      region: { it: "Casi di successo", en: "Case studies" },
     },
     cards: [
       {

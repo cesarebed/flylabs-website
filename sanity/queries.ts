@@ -29,11 +29,12 @@ export const CASE_STUDIES_QUERY = defineQuery(
   }`
 );
 
-// Card della sezione homepage "Alcune delle nostre soluzioni":
-// solo i casi marcati in evidenza, massimo 3.
+// Card del carosello dei casi di successo in homepage: tutti i casi marcati
+// "in evidenza", dal più recente. Nessun tetto: il carosello scorre, e la
+// selezione la fa l'editor con il flag su Sanity.
 export const FEATURED_CASE_STUDIES_QUERY = defineQuery(
   `*[_type == "caseStudy" && featured == true && defined(slug.current)]
-    | order(coalesce(date, _createdAt) desc)[0...3]{
+    | order(coalesce(date, _createdAt) desc){
     _id,
     title,
     "slug": slug.current,
