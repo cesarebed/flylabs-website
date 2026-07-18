@@ -1,19 +1,9 @@
 import { projectId } from "./env";
 import { SITE_SETTINGS_QUERY } from "./queries";
+import type { SITE_SETTINGS_QUERY_RESULT } from "@/sanity.types";
 
-type Localized = { it?: string | null; en?: string | null };
-
-export type SiteSettings = {
-  title: Localized | null;
-  description: Localized | null;
-  siteUrl: string | null;
-  ogImage: string | null;
-  keywords: string[] | null;
-  socialLinks:
-    | { _key: string; label: string | null; url: string | null }[]
-    | null;
-  contactEmail: string | null;
-};
+// Tipo generato da `npm run typegen` — mai riscriverlo a mano (Fase 4b).
+export type SiteSettings = NonNullable<SITE_SETTINGS_QUERY_RESULT>;
 
 /**
  * Legge le impostazioni SEO del sito da Sanity. Difensivo di proposito:
@@ -25,7 +15,7 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
   if (!projectId) return null;
   try {
     const { sanityFetch } = await import("./fetch");
-    return await sanityFetch<SiteSettings | null>({
+    return await sanityFetch<SITE_SETTINGS_QUERY_RESULT>({
       query: SITE_SETTINGS_QUERY,
       tags: ["siteSettings"],
     });

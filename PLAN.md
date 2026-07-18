@@ -26,7 +26,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-17 (Federico — ri
 | 2c | Use case Solair (issue #12): **pratiche RPA/connessione** + **creative ads loop** (Meta Ads), entrambi bilingui con diagramma (skill `excalidraw-diagram`, usata da Cesare da solo) | Cesare | PR #19, #20 | ✅ mergiate e LIVE |
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
 | 4 | SEO tecnica: `robots.ts`, `sitemap.ts` (hreflang it/en, slug da Sanity), JSON-LD (Organization, BreadcrumbList, Article sui casi) | Federico | PR #24 | ✅ mergiata e LIVE (2026-07-16, issue #7+#16; Rich Results Test da fare a mano sull'URL pubblico) |
-| 4b | Typegen come fonte unica dei tipi (via `any`/interfacce a mano residue) | — | — | ⏳ da fare |
+| 4b | Typegen come fonte unica dei tipi (via `any`/interfacce a mano residue) | Federico | PR #30 | ✅ mergiata (2026-07-17: `SiteSettings` ora deriva da `SITE_SETTINGS_QUERY_RESULT`, nuovo `npm run typegen`, `SANITY_API_WRITE_TOKEN` documentato in `.env.example`) |
 
 ## Decisioni prese
 
