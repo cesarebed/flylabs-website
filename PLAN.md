@@ -27,7 +27,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-18 (Federico — se
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
 | 4 | SEO tecnica: `robots.ts`, `sitemap.ts` (hreflang it/en, slug da Sanity), JSON-LD (Organization, BreadcrumbList, Article sui casi) | Federico | PR #24 | ✅ mergiata e LIVE (2026-07-16, issue #7+#16). Rich Results Test eseguito il 2026-07-18 sull'URL pubblico: **Article + Breadcrumb validi e idonei**; unico nit facoltativo (datePublished senza fuso) fixato in PR #32 |
 | 4b | Typegen come fonte unica dei tipi (via `any`/interfacce a mano residue) | Federico | PR #30 | ✅ mergiata (2026-07-17: `SiteSettings` ora deriva da `SITE_SETTINGS_QUERY_RESULT`, nuovo `npm run typegen`, `SANITY_API_WRITE_TOKEN` documentato in `.env.example`) |
-| 5 | **Chatbot AI sul sito**, formato su tutto il materiale del sito (richiesta Federico 2026-07-18) — riporta in vita il teaser rimosso con la #14 | Federico | — | 🔨 in decisione: embed del GPT Chatbot SaaS di Federico vs build nativa (Claude + AI SDK); proposta e domande in chat |
+| 5 | **Chatbot AI sul sito**, formato sul materiale del sito (richiesta Federico 2026-07-18) | Federico | PR #34 | 🔨 deciso: **embed del GPT Chatbot SaaS** di Federico (opzione A). Chatbot provisionato via API `gptchatbot_api` (UUID `30d345be…`, agente bilingue IT/EN, 9 pagine flylabs.ai come sorgenti RAG, testato). Widget via `next/script` in `app/[locale]/layout.tsx`. **Manca 1 step manuale in dashboard app.gptchatbot.it: aggiungere `flylabs.ai`/`www.flylabs.ai` alle "Custom domains"** (non esposto via API, serve login) → poi mergiare PR #34 |
 
 ## Decisioni prese
 
