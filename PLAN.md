@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-17 (Federico — ripresa e merge del footer dal CMS (PR #27, era stata chiusa con preview rossa); scoperto che i preview Vercel sono rossi per TUTTE le PR dalla #3 in poi, problema di configurazione del progetto e non degli autori — vedi Decisioni).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-18 (Federico — sessione autonoma: footer CMS mergiato e live (PR #29, riprende la #27), Fase 4b typegen (PR #30), badge uniformati Claude Code+MCP (PR #31), Rich Results Test eseguito e nit fixato (PR #32). Nuovo fronte: chatbot AI sul sito + 2 nuovi use case, vedi righe 5 e task aperti).
 
 ---
 
@@ -27,6 +27,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-17 (Federico — ri
 | 3 | Blog: tipo `post` (Portable Text bilingue), `/[locale]/blog` + `[slug]`, RSS | Federico | — | ⏳ da fare |
 | 4 | SEO tecnica: `robots.ts`, `sitemap.ts` (hreflang it/en, slug da Sanity), JSON-LD (Organization, BreadcrumbList, Article sui casi) | Federico | PR #24 | ✅ mergiata e LIVE (2026-07-16, issue #7+#16). Rich Results Test eseguito il 2026-07-18 sull'URL pubblico: **Article + Breadcrumb validi e idonei**; unico nit facoltativo (datePublished senza fuso) fixato in PR #32 |
 | 4b | Typegen come fonte unica dei tipi (via `any`/interfacce a mano residue) | Federico | PR #30 | ✅ mergiata (2026-07-17: `SiteSettings` ora deriva da `SITE_SETTINGS_QUERY_RESULT`, nuovo `npm run typegen`, `SANITY_API_WRITE_TOKEN` documentato in `.env.example`) |
+| 5 | **Chatbot AI sul sito**, formato su tutto il materiale del sito (richiesta Federico 2026-07-18) — riporta in vita il teaser rimosso con la #14 | Federico | — | 🔨 in decisione: embed del GPT Chatbot SaaS di Federico vs build nativa (Claude + AI SDK); proposta e domande in chat |
 
 ## Decisioni prese
 
@@ -48,6 +49,9 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-17 (Federico — ri
 
 ## Task aperti (fuori roadmap)
 
+- [ ] Use case **bike rental Tucson** (RAG chatbot su 3 siti + Instagram/Messenger/WhatsApp, escalation a umano): nota skeleton creata nel brain (`01_Projects/bike-rental-tucson-chatbot/`) il 2026-07-18; in attesa da Federico di metriche reali, stack e anonimizzazione, poi skill `use-case-publish`
+- [ ] Use case **Close Tattoo** (form sito → WhatsApp outbound con promo casuale → chatbot su WhatsApp): nota skeleton creata nel brain (`01_Projects/close-tattoo-whatsapp-promo/`) il 2026-07-18; stessi buchi da riempire, poi skill `use-case-publish`
+- [ ] **Vercel: env var mancanti sull'ambiente Preview** (causa più probabile dei preview rossi su tutte le PR) — solo Cesare può verificare/sistemare dal suo account: Settings → Environment Variables → abilitare Preview
 - [x] Sostituire i numeri placeholder delle work card con dati reali dei clienti → fatto: 3 casi `featured` reali su Sanity, le card hardcoded non compaiono più
 - [x] Seedare i `caseStudy` con dati REALI: 3/3 use case importati e LIVE (2026-07-15). Link `/lavori` dalla home: fatto il 2026-07-16 (issue #13, vedi Decisioni)
 - [x] Issue #14 (teaser chatbot con CTA morta in home): teaser rimosso il 2026-07-16 come proposto nella issue — si riaggiunge quando il widget esiste davvero
