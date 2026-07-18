@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-18 (Federico — sessione autonoma: footer CMS (PR #29), typegen (PR #30), badge (PR #31), SEO nit (PR #32), 2 nuovi use case anonimizzati con diagrammi (PR #35), **chatbot del sito live** (PR #34) e **carosello dei casi di successo in home** con rewording (PR #36)).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-18 (Federico — sessione autonoma: footer CMS (PR #29), typegen (PR #30), badge (PR #31), SEO nit (PR #32), 2 nuovi use case anonimizzati con diagrammi (PR #35), **chatbot del sito live** (PR #34) e **carosello dei casi di successo in home** con rewording (PR #37)).
 
 ---
 
@@ -28,7 +28,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-07-18 (Federico — se
 | 4 | SEO tecnica: `robots.ts`, `sitemap.ts` (hreflang it/en, slug da Sanity), JSON-LD (Organization, BreadcrumbList, Article sui casi) | Federico | PR #24 | ✅ mergiata e LIVE (2026-07-16, issue #7+#16). Rich Results Test eseguito il 2026-07-18 sull'URL pubblico: **Article + Breadcrumb validi e idonei**; unico nit facoltativo (datePublished senza fuso) fixato in PR #32 |
 | 4b | Typegen come fonte unica dei tipi (via `any`/interfacce a mano residue) | Federico | PR #30 | ✅ mergiata (2026-07-17: `SiteSettings` ora deriva da `SITE_SETTINGS_QUERY_RESULT`, nuovo `npm run typegen`, `SANITY_API_WRITE_TOKEN` documentato in `.env.example`) |
 | 5 | **Chatbot AI sul sito**, formato sul materiale del sito (richiesta Federico 2026-07-18) | Federico | PR #34 | ✅ mergiata e LIVE: **embed del GPT Chatbot SaaS** di Federico (opzione A). Chatbot provisionato via API `gptchatbot_api` (UUID `30d345be…`, agente bilingue IT/EN, 9 pagine di flylabs.ai come sorgenti RAG). Widget via `next/script` in `app/[locale]/layout.tsx`. Dominio autorizzato in dashboard da Federico |
-| 6 | **Carosello dei casi di successo in home** + rewording (richiesta Federico 2026-07-18) | Federico | PR #36 | 🔨 vedi Decisioni: transform-based, autoplay lento, frecce + contatore, badge limitati a 5 sulle card |
+| 6 | **Carosello dei casi di successo in home** + rewording (richiesta Federico 2026-07-18) | Federico | PR #37 | 🔨 vedi Decisioni: transform-based, autoplay lento, frecce + contatore, badge limitati a 5 sulle card |
 
 ## Decisioni prese
 
