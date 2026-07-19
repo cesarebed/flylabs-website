@@ -60,7 +60,7 @@
   "diagrams": [
     {
       "_type": "diagram",
-      "_key": "d1",
+      "_key": "d2",
       "it": {
         "_type": "image",
         "_localFile": "content/case-studies/assets/assistenti-noleggio-multisito-flusso.png"
@@ -71,13 +71,13 @@
       },
       "alt": {
         "_type": "localeString",
-        "it": "Diagramma del flusso: visitatore su uno dei 3 siti con la stessa voce, GPT Chatbot addestrato sui contenuti di quel sito, risposte su mezzi, taglie, sedi e prezzi con appuntamenti e prenotazione online, escalation a operatore per richieste same-day e problemi durante il noleggio",
-        "en": "Flow diagram: visitor on one of the 3 sites sharing one voice, GPT Chatbot trained on that site's own content, answers on bikes, sizes, locations and prices with appointments and online booking, escalation to a human for same-day requests and issues during the rental"
+        "it": "Diagramma del flusso: i 3 siti del gruppo confluiscono su un unico GPT Chatbot, che gestisce i messaggi su più canali (sito, Instagram, Facebook Messenger, WhatsApp Business) rispondendo su mezzi, taglie, sedi e prezzi con appuntamenti e prenotazione online, ed effettua l'escalation a un operatore per richieste same-day e problemi durante il noleggio",
+        "en": "Flow diagram: the group's 3 sites feed into a single GPT Chatbot, which handles messages across multiple channels (website, Instagram, Facebook Messenger, WhatsApp Business), answering on bikes, sizes, locations and prices with appointments and online booking, and escalates to a human for same-day requests and issues during the rental"
       },
       "caption": {
         "_type": "localeString",
-        "it": "Lo stesso flusso su ogni sito del gruppo, con l'operatore per gli urgenti",
-        "en": "The same flow on every site of the group, with a human for urgent cases"
+        "it": "Un assistente, tre siti, quattro canali, con l'operatore per gli urgenti",
+        "en": "One assistant, three sites, four channels, with a human for urgent cases"
       }
     }
   ],

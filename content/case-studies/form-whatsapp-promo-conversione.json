@@ -14,13 +14,13 @@
   },
   "problem": {
     "_type": "localeText",
-    "it": "Chi compila il form con la sua idea di tatuaggio si raffredda prima che l'artista lo ricontatti, e gli sconti inviati restano inutilizzati.",
-    "en": "People who submit the form with their tattoo idea go cold before the artist follows up, and the discounts sent out go unused."
+    "it": "Chi compila il form con la sua idea di tatuaggio si raffredda prima che lo studio lo ricontatti, e gli sconti inviati restano inutilizzati.",
+    "en": "People who submit the form with their tattoo idea go cold before the studio follows up, and the discounts sent out go unused."
   },
   "solution": {
     "_type": "localeText",
-    "it": "Al form parte un WhatsApp automatico con un importo promo estratto a caso; poi un assistente AI continua la conversazione in 3 lingue, raccoglie i dettagli e tiene caldo il contatto fino all'artista.",
-    "en": "On form submit an automated WhatsApp goes out with a randomly drawn discount; then an AI assistant continues the chat in 3 languages, collects the details and keeps the lead warm until the artist takes over."
+    "it": "Al form parte un WhatsApp automatico con un importo promo estratto a caso; poi un assistente AI continua la conversazione in 3 lingue, raccoglie i dettagli e tiene caldo il contatto fino allo studio.",
+    "en": "On form submit an automated WhatsApp goes out with a randomly drawn discount; then an AI assistant continues the chat in 3 languages, collects the details and keeps the lead warm until the studio takes over."
   },
   "metrics": [
     {
@@ -62,7 +62,7 @@
   "diagrams": [
     {
       "_type": "diagram",
-      "_key": "d1",
+      "_key": "d2",
       "it": {
         "_type": "image",
         "_localFile": "content/case-studies/assets/form-whatsapp-promo-conversione-flusso.png"
@@ -73,20 +73,20 @@
       },
       "alt": {
         "_type": "localeString",
-        "it": "Diagramma del flusso: form sul sito WordPress con idea del tatuaggio e immagini, Make.com che estrae uno sconto casuale tra 50 e 200 euro, messaggio WhatsApp outbound via Meta Business Management API e Meta Developer App, GPT Chatbot che su WhatsApp qualifica il contatto, risponde alle FAQ e fissa gli appuntamenti, escalation a umano quando serve l'artista",
-        "en": "Flow diagram: form on the WordPress site with tattoo idea and reference images, Make.com drawing a random discount between 50 and 200 euros, outbound WhatsApp message via Meta Business Management API and Meta Developer App, GPT Chatbot on WhatsApp qualifying the lead, answering FAQs and booking appointments, escalation to a human when the artist is needed"
+        "it": "Diagramma del flusso: form sul sito WordPress con idea del tatuaggio e immagini, Make.com che estrae uno sconto casuale tra 50 e 200 euro, messaggio WhatsApp outbound via Meta Business Management API e Meta Developer App, GPT Chatbot che su WhatsApp qualifica il contatto, risponde alle FAQ e fissa gli appuntamenti, escalation a umano quando serve lo studio",
+        "en": "Flow diagram: form on the WordPress site with tattoo idea and reference images, Make.com drawing a random discount between 50 and 200 euros, outbound WhatsApp message via Meta Business Management API and Meta Developer App, GPT Chatbot on WhatsApp qualifying the lead, answering FAQs and booking appointments, escalation to a human when the studio is needed"
       },
       "caption": {
         "_type": "localeString",
-        "it": "Dal form del sito alla chat WhatsApp, con l'artista come ultimo passaggio",
-        "en": "From the website form to the WhatsApp chat, with the artist as the final step"
+        "it": "Dal form del sito alla chat WhatsApp, con lo studio come ultimo passaggio",
+        "en": "From the website form to the WhatsApp chat, with the studio as the final step"
       }
     }
   ],
   "body": {
     "_type": "localeText",
-    "it": "Lo studio riceve richieste dal sito: chi è interessato compila un form con la propria idea di tatuaggio e qualche immagine di riferimento. Il problema era il vuoto che si crea dopo: l'artista non può rispondere a tutti subito, e nell'attesa il contatto si raffredda o la promo che gli è stata proposta finisce dimenticata.\n\nAbbiamo chiuso quel vuoto. Appena arriva il form parte in automatico un messaggio WhatsApp che assegna alla persona un importo promozionale estratto a caso: lo sconto diventa una piccola sorpresa personale, non un banner uguale per tutti. Da lì in poi risponde un assistente AI direttamente su WhatsApp, nella lingua dell'utente (gestisce inglese, spagnolo e tedesco): conferma che la richiesta è arrivata e che l'artista la sta guardando, risponde alle domande su stili, cura e come funziona il processo, e raccoglie i dettagli utili (stile, dimensione, posizione).\n\nL'assistente non fa preventivi, perché il prezzo lo definisce l'artista in base al progetto: il suo lavoro è tenere viva la conversazione, far sentire la persona seguita e spingerla con garbo a usare la promo, fino a quando l'artista prende in mano il contatto.\n\nRisultato: gli sconti che prima restavano lettera morta vengono riscattati circa il doppio delle volte, perché qualcuno (l'AI) accompagna davvero la persona dal form alla decisione.",
-    "en": "The studio gets requests from its website: interested people fill in a form with their tattoo idea and a few reference images. The problem was the gap that opens up next: the artist can't reply to everyone right away, and while they wait the lead goes cold or the discount they were offered is forgotten.\n\nWe closed that gap. As soon as the form comes in, an automated WhatsApp message goes out assigning the person a randomly drawn promotional amount: the discount becomes a small personal surprise, not a one-size-fits-all banner. From there an AI assistant replies right on WhatsApp, in the user's language (it handles English, Spanish and German): it confirms the request has arrived and that the artist is reviewing it, answers questions about styles, aftercare and how the process works, and collects the useful details (style, size, placement).\n\nThe assistant doesn't quote prices, because the artist sets those based on the project: its job is to keep the conversation alive, make the person feel looked after and gently nudge them to use the offer, until the artist takes over the lead.\n\nThe result: discounts that used to go unused are redeemed about twice as often, because someone (the AI) actually walks the person from the form to the decision."
+    "it": "Lo studio riceve richieste dal sito: chi è interessato compila un form con la propria idea di tatuaggio e qualche immagine di riferimento. Il problema era il vuoto che si crea dopo: lo studio non può rispondere a tutti subito, e nell'attesa il contatto si raffredda o la promo che gli è stata proposta finisce dimenticata.\n\nAbbiamo chiuso quel vuoto. Appena arriva il form parte in automatico un messaggio WhatsApp che assegna alla persona un importo promozionale estratto a caso: lo sconto diventa una piccola sorpresa personale, non un banner uguale per tutti. Da lì in poi risponde un assistente AI direttamente su WhatsApp, nella lingua dell'utente (gestisce inglese, spagnolo e tedesco): conferma che la richiesta è arrivata e che lo studio la sta guardando, risponde alle domande su stili, cura e come funziona il processo, e raccoglie i dettagli utili (stile, dimensione, posizione).\n\nL'assistente non fa preventivi, perché il prezzo lo definisce lo studio in base al progetto: il suo lavoro è tenere viva la conversazione, far sentire la persona seguita e spingerla con garbo a usare la promo, fino a quando lo studio prende in mano il contatto.\n\nRisultato: gli sconti che prima restavano lettera morta vengono riscattati circa il doppio delle volte, perché qualcuno (l'AI) accompagna davvero la persona dal form alla decisione.",
+    "en": "The studio gets requests from its website: interested people fill in a form with their tattoo idea and a few reference images. The problem was the gap that opens up next: the studio can't reply to everyone right away, and while they wait the lead goes cold or the discount they were offered is forgotten.\n\nWe closed that gap. As soon as the form comes in, an automated WhatsApp message goes out assigning the person a randomly drawn promotional amount: the discount becomes a small personal surprise, not a one-size-fits-all banner. From there an AI assistant replies right on WhatsApp, in the user's language (it handles English, Spanish and German): it confirms the request has arrived and that the studio is reviewing it, answers questions about styles, aftercare and how the process works, and collects the useful details (style, size, placement).\n\nThe assistant doesn't quote prices, because the studio sets those based on the project: its job is to keep the conversation alive, make the person feel looked after and gently nudge them to use the offer, until the studio takes over the lead.\n\nThe result: discounts that used to go unused are redeemed about twice as often, because someone (the AI) actually walks the person from the form to the decision."
   },
   "date": "2026-05-15"
 }
