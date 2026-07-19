@@ -172,9 +172,11 @@ export function WorkCarousel({
               // Se l'utente arriva con il tab su una card fuori vista, il
               // carosello la porta in vista invece di lasciare il focus cieco.
               onFocus={() => setIndex(Math.min(i, lastIndex))}
-              // Larghezze che lasciano intravedere la card successiva: il
-              // "peek" dice che ce n'è dell'altra, prima ancora delle frecce.
-              className="card-hover flex w-[85%] shrink-0 flex-col rounded-xl border border-line bg-paper p-7 sm:w-[46%] lg:w-[31.5%]"
+              // Su mobile una card piena per pagina (niente "peek": con lo
+              // schermo stretto un pezzo di card successiva sembra tagliata
+              // a metà). Dal breakpoint `sm` in su torna il peek, a dire che
+              // ce n'è dell'altra, prima ancora delle frecce.
+              className="card-hover flex w-full shrink-0 flex-col rounded-xl border border-line bg-paper p-7 sm:w-[46%] lg:w-[31.5%]"
             >
               <span className="stamp mb-6 text-muted">{item.sector}</span>
               <p className="mb-1 font-semibold">{item.problem}</p>
