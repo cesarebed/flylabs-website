@@ -28,7 +28,7 @@ export const siteSettings = defineType({
       name: "siteUrl",
       title: "URL del sito",
       description:
-        "Dominio di produzione (es. https://flylabs.ai). Serve per i link canonical e le anteprime social.",
+        "Dominio di produzione, con www se il dominio ci redirige (es. https://www.flylabs.ai). Serve per i link canonical e le anteprime social: dev'essere l'host che risponde 200, non uno che redirige.",
       type: "url",
     }),
     defineField({
