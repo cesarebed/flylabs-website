@@ -46,3 +46,7 @@ next-env.d.ts
 
 # context / brief (locale, non versionato)
 .context/
+
+# .env.tpl resta ignorato (già coperto da .env*): è un template con valori di
+# riferimento, non va condiviso nel repo pubblico.
+.env.tpl
