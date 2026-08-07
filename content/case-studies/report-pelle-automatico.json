@@ -1,0 +1,69 @@
+{
+  "_id": "caseStudy.report-pelle-automatico",
+  "_type": "caseStudy",
+  "title": {
+    "_type": "localeString",
+    "it": "Il referto VISIA diventa una presentazione pronta in pochi minuti",
+    "en": "The VISIA skin report turns into a ready deck in minutes"
+  },
+  "slug": { "_type": "slug", "current": "report-pelle-automatico" },
+  "sector": {
+    "_type": "localeString",
+    "it": "Medicina estetica",
+    "en": "Aesthetic medicine"
+  },
+  "problem": {
+    "_type": "localeText",
+    "it": "Il referto VISIA veniva letto e riscritto a mano in una presentazione per il paziente, referto per referto.",
+    "en": "The VISIA skin report had to be read and rewritten by hand into a patient presentation, one report at a time."
+  },
+  "solution": {
+    "_type": "localeText",
+    "it": "Un bot Telegram raccoglie il link del referto: uno scraper estrae i dati, un'AI li trasforma in sintesi e piano di trattamento, e il sistema genera da solo una presentazione Google Slides pronta da condividere.",
+    "en": "A Telegram bot takes the report link: a scraper pulls the data, AI turns it into a summary and treatment plan, and the system builds a ready-to-share Google Slides deck on its own."
+  },
+  "metrics": [
+    {
+      "_type": "metric",
+      "_key": "m1",
+      "value": "1-3 min",
+      "label": {
+        "_type": "localeString",
+        "it": "dal link del referto alla presentazione pronta per il paziente",
+        "en": "from report link to a patient-ready deck"
+      }
+    }
+  ],
+  "tech": ["Telegram", "n8n", "Python", "OpenRouter", "Google Slides API"],
+  "featured": false,
+  "diagrams": [
+    {
+      "_type": "diagram",
+      "_key": "d1",
+      "it": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/report-pelle-automatico-architettura.png"
+      },
+      "en": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/report-pelle-automatico-architettura-en.png"
+      },
+      "alt": {
+        "_type": "localeString",
+        "it": "Diagramma dell'architettura: lo staff incolla il link del referto su Telegram, uno scraper estrae i dati, quattro agenti AI generano sintesi pelle e piano trattamenti, il sistema genera la presentazione con QR code e la consegna torna su Telegram",
+        "en": "Architecture diagram: staff pastes the report link into Telegram, a scraper extracts the data, four AI agents generate the skin summary and treatment plan, the system generates the deck with a QR code and delivery comes back on Telegram"
+      },
+      "caption": {
+        "_type": "localeString",
+        "it": "L'architettura: dal link del referto alla presentazione pronta, in automatico",
+        "en": "The architecture: from the report link to a ready deck, automatically"
+      }
+    }
+  ],
+  "body": {
+    "_type": "localeText",
+    "it": "Uno studio di medicina estetica riceve dal dispositivo VISIA un referto tecnico dell'analisi della pelle di ogni paziente: dati su pori, macchie, rughe, texture. Prima di questo progetto, trasformarlo in qualcosa da consegnare al paziente, comprensibile e con un piano di trattamento, significava leggere il referto e ricostruirlo a mano in una presentazione.\n\nAbbiamo costruito un sistema che parte da un semplice messaggio Telegram: lo staff incolla il link al referto VISIA del paziente. Da lì in automatico: uno scraper legge ed estrae i dati grezzi del referto, quattro agenti AI in sequenza li trasformano in un'analisi della pelle in linguaggio comprensibile, un piano di trattamenti consigliati e una routine skincare per mattina e sera. Il sistema genera una presentazione Google Slides a partire da un template, con un QR code che rimanda al referto originale, e rimanda il link della presentazione pronta direttamente su Telegram.\n\nL'intera pipeline, dall'estrazione dei dati alla presentazione finita, gira in 1-3 minuti. Il sistema è self-hosted sull'infrastruttura dello studio, con autenticazione OAuth 2.0 per Google Slides e template e prompt modificabili senza toccare il codice.",
+    "en": "An aesthetic medicine practice gets a technical skin-analysis printout from the VISIA device for every patient: data on pores, spots, wrinkles, texture. Before this project, turning that into something to hand the patient, readable and with a treatment plan, meant reading the report and rebuilding it by hand in a presentation.\n\nWe built a system that starts from a simple Telegram message: staff paste the patient's VISIA report link. From there, everything happens automatically: a scraper reads and extracts the raw report data, four AI agents in sequence turn it into a plain-language skin analysis, a recommended treatment plan, and a morning/evening skincare routine. The system generates a Google Slides presentation from a template, complete with a QR code linking back to the original report, and sends the finished presentation link straight back on Telegram.\n\nThe whole pipeline, from data extraction to the finished deck, runs in 1-3 minutes. The system is self-hosted on the practice's own infrastructure, with OAuth 2.0 for Google Slides and prompts and template that can be edited without touching the code."
+  },
+  "date": "2026-02-18"
+}
