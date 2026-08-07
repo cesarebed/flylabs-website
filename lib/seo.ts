@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n";
 import { getSiteSettings, type SiteSettings } from "@/sanity/site-settings";
 
-const FALLBACK_SITE_URL = "https://flylabs.ai";
+const FALLBACK_SITE_URL = "https://www.flylabs.ai";
 const SITE_NAME = "flylabs.ai";
 
 /**
