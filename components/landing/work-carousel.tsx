@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import Link from "next/link";
 import { TechBadges } from "./tech-badges";
 
@@ -16,17 +17,45 @@ export type WorkItem = {
 };
 
 const AUTOPLAY_MS = 5000;
+const GAP_REM = 1.25; // gap-5
+
+// Stessi breakpoint delle classi di larghezza delle card (sm:w-[46%]
+// lg:w-[31.5%] più sotto): niente più misura via ResizeObserver /
+// getBoundingClientRect per calcolare il passo di scorrimento.
+//
+// Perché: il sito applica `zoom: 1.15` a <main> (.site-zoom, vedi
+// globals.css). getBoundingClientRect() restituisce dimensioni GIÀ
+// zoomate; se quel numero in px viene rimesso dentro un
+// `transform: translateX(...px)` sullo stesso sottoalbero zoomato, il
+// browser applica lo zoom una SECONDA volta a quel valore, quindi ogni
+// passo scorre più del dovuto. L'overshoot si accumula ad ogni step:
+// alla fine del carosello la card "corrente" finisce con il bordo
+// sinistro tagliato (bug osservato in produzione, cresce con l'indice).
+// Con calc() espresso in % + rem — le stesse unità delle classi di
+// larghezza — il browser applica lo zoom una volta sola, come per
+// qualunque altra dimensione della pagina: nessuna card viene più
+// tagliata, a nessun indice.
+const BREAKPOINTS = [
+  { minWidth: 1024, perView: 3, cardPercent: 31.5 },
+  { minWidth: 640, perView: 2, cardPercent: 46 },
+  { minWidth: 0, perView: 1, cardPercent: 100 },
+] as const;
+
+function getBreakpoint(width: number) {
+  return BREAKPOINTS.find((b) => width >= b.minWidth) ?? BREAKPOINTS[BREAKPOINTS.length - 1];
+}
+
+const SWIPE_THRESHOLD_PX = 40;
 
 /**
  * Carosello dei casi di successo.
  *
- * Il movimento è una `transform` sul track, non uno scroll del container:
- * su questa pagina lo scroll programmatico è inaffidabile (scroll-snap +
- * scroll-behavior smooth + `zoom` del layout si rincorrono e la posizione
- * torna indietro). Con la transform il passo è deterministico e non serve
- * un listener di scroll, quindi niente loop stato -> scroll -> stato.
- *
- * Scorre da solo, lentamente, e si ferma appena l'utente interagisce.
+ * Scorre da solo, lentamente, e si ferma appena l'utente interagisce
+ * (hover, focus, drag). Oltre a frecce e autoplay, si può trascinare con
+ * mouse/touch: il drag riconosce solo direzione e soglia (non segue il
+ * dito a pixel), per lo stesso motivo dello zoom spiegato sopra — un
+ * delta di trascinamento in px avrebbe lo stesso problema se usato per
+ * posizionare la card invece che per decidere "avanti" o "indietro".
  */
 export function WorkCarousel({
   items,
@@ -36,39 +65,33 @@ export function WorkCarousel({
   labels: { prev: string; next: string; region: string };
 }) {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   // Parte `true` di proposito: se l'IntersectionObserver non emettesse mai un
   // callback, il carosello continuerebbe comunque a scorrere invece di restare
   // fermo per sempre. L'observer semmai lo spegne quando la sezione esce.
   const [visible, setVisible] = useState(true);
-  const [step, setStep] = useState(0);
-  const [perView, setPerView] = useState(1);
+  const [bp, setBp] = useState(BREAKPOINTS[BREAKPOINTS.length - 1]);
+  const [ready, setReady] = useState(false);
+  const [dragging, setDragging] = useState(false);
 
-  // Passo e card visibili si misurano dal DOM: così restano corretti a ogni
-  // breakpoint senza duplicare i numeri fra CSS e JS.
   useEffect(() => {
-    const viewport = viewportRef.current;
-    const track = trackRef.current;
-    if (!viewport || !track) return;
-    const measure = () => {
-      const card = track.children[0] as HTMLElement | undefined;
-      if (!card) return;
-      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      const cardWidth = card.getBoundingClientRect().width;
-      const next = cardWidth + gap;
-      setStep(next);
-      setPerView(
-        Math.max(1, Math.round(viewport.getBoundingClientRect().width / next))
-      );
+    // Il breakpoint iniziale va letto solo lato client (SSR-safe): rimandato
+    // a un rAF, non chiamato in modo sincrono nel corpo dell'effect (regola
+    // react-hooks/set-state-in-effect), un frame di ritardo è impercettibile.
+    const update = () => {
+      setBp(getBreakpoint(window.innerWidth));
+      setReady(true);
     };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(viewport);
-    return () => observer.disconnect();
-  }, [items.length]);
+    const raf = requestAnimationFrame(update);
+    window.addEventListener("resize", update);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
+  const { perView, cardPercent } = bp;
   const lastIndex = Math.max(0, items.length - perView);
   // Clamp derivato in render, non corretto in un effect: dopo un resize che
   // mostra più card l'indice salvato può essere oltre l'ultima posizione utile.
@@ -105,6 +128,31 @@ export function WorkCarousel({
     return () => clearInterval(id);
   }, [paused, visible, lastIndex, go]);
 
+  const dragStartX = useRef<number | null>(null);
+
+  const endDrag = (clientX: number) => {
+    const startX = dragStartX.current;
+    dragStartX.current = null;
+    setDragging(false);
+    setPaused(false);
+    if (startX === null) return;
+    const delta = clientX - startX;
+    if (delta > SWIPE_THRESHOLD_PX) go(-1);
+    else if (delta < -SWIPE_THRESHOLD_PX) go(1);
+  };
+
+  const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    dragStartX.current = e.clientX;
+    setDragging(true);
+    setPaused(true);
+  };
+  const onPointerUp = (e: ReactPointerEvent<HTMLDivElement>) => endDrag(e.clientX);
+  const onPointerCancel = () => {
+    dragStartX.current = null;
+    setDragging(false);
+    setPaused(false);
+  };
+
   const pad = (n: number) => String(n).padStart(2, "0");
   // Intervallo invece della sola posizione: "01–03 / 05" dice quante card
   // stai vedendo e quante ce ne sono, senza il salto controintuitivo di un
@@ -112,16 +160,18 @@ export function WorkCarousel({
   const from = safeIndex + 1;
   const to = Math.min(safeIndex + perView, items.length);
 
+  const step = `(${cardPercent}% + ${GAP_REM}rem)`;
+
   return (
     <div>
       <div className="mb-6 flex items-center justify-end gap-4">
-        {/* Finché le card non sono misurate `perView` vale 1 e il server
-            renderizzerebbe "01–01 / 05", corretto solo dopo l'hydration.
-            Meglio tenerlo invisibile (spazio riservato, niente salti) che
-            mostrare per un istante un intervallo sbagliato. */}
+        {/* Finché il breakpoint non è misurato lato client, `perView` vale 1
+            e il server renderizzerebbe "01–01 / 05", corretto solo dopo
+            l'hydration. Meglio tenerlo invisibile (spazio riservato, niente
+            salti) che mostrare per un istante un intervallo sbagliato. */}
         <span
           className={`font-mono text-[11px] tracking-[0.14em] text-muted tabular-nums ${
-            step > 0 ? "" : "invisible"
+            ready ? "" : "invisible"
           }`}
         >
           {pad(from)}–{pad(to)} / {pad(items.length)}
@@ -154,16 +204,25 @@ export function WorkCarousel({
         role="region"
         aria-label={labels.region}
         aria-roledescription="carousel"
-        className="overflow-hidden"
+        className={`touch-pan-y overflow-hidden select-none ${
+          dragging ? "cursor-grabbing" : "cursor-grab"
+        }`}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerCancel}
+        onPointerLeave={(e) => {
+          if (dragStartX.current !== null) endDrag(e.clientX);
+        }}
       >
         <div
-          ref={trackRef}
-          className="flex gap-5 motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out"
-          style={{ transform: `translate3d(-${safeIndex * step}px, 0, 0)` }}
+          className={`flex gap-5 motion-safe:transition-[transform,scale] motion-safe:duration-700 motion-safe:ease-out ${
+            dragging ? "scale-[0.99] motion-safe:duration-150" : ""
+          }`}
+          style={{ transform: `translateX(calc(-1 * ${safeIndex} * ${step}))` }}
         >
           {items.map((item, i) => (
             <Link
@@ -172,6 +231,11 @@ export function WorkCarousel({
               // Se l'utente arriva con il tab su una card fuori vista, il
               // carosello la porta in vista invece di lasciare il focus cieco.
               onFocus={() => setIndex(Math.min(i, lastIndex))}
+              // Gli <a> sono trascinabili di default: senza questo, uno swipe
+              // avvia il drag-and-drop nativo del browser, che scatta un
+              // pointerleave prematuro e interrompe il tracking dello swipe
+              // prima che l'utente finisca il gesto.
+              draggable={false}
               // Su mobile una card piena per pagina (niente "peek": con lo
               // schermo stretto un pezzo di card successiva sembra tagliata
               // a metà). Dal breakpoint `sm` in su torna il peek, a dire che
