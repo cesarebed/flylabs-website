@@ -32,7 +32,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-26 (Federico - Fase
 | 6 | **Carosello dei casi di successo in home** + rewording (richiesta Federico 2026-07-18) | Federico | PR #37 | ✅ mergiata e LIVE. Fix successivi in PR #38 (autoplay + contatore a intervallo) |
 | 7 | **Arricchimento contenuti**: +6 FAQ, +3 card "Cosa costruiamo", offerta con tempi/incluso + pagina `/servizi` (richiesta Federico 2026-07-18) | Federico | PR #38 | ✅ mergiata e LIVE. Fix carosello (autoplay/hover/contatore) inclusi nella stessa PR; lampeggio SSR del contatore fixato in PR #40 |
 | 8 | **Rifiniture carosello + wording + diagramma bici** (richiesta Federico 2026-07-19): card intera su mobile (niente peek tagliato), "l'artista" → "lo studio" nel caso Close Tattoo (testi + diagramma), diagramma bici ridisegnato hub-and-spoke (3 siti → 1 assistente → 4 canali) | Federico | PR #41 | 🔨 |
-| 9 | **Redesign layout landing** (skill `design-taste-frontend`, richiesta Federico 2026-08-26): rework strutturale, brand invariato — bento in "Cosa costruiamo", flusso connesso (`.wire`) in "Come lavoriamo", header impilato in "Offerta", FAQ → accordion, scroll-reveal (`motion`), em-dash → `-`/`\|` nelle stringhe visibili | Federico | `feat/landing-redesign-taste-skill` | 🔨 |
+| 9 | **Redesign layout landing** (skill `design-taste-frontend`, richiesta Federico 2026-08-26): rework strutturale, brand invariato — bento in "Cosa costruiamo", flusso connesso (`.wire`) in "Come lavoriamo", header impilato in "Offerta", FAQ → accordion, scroll-reveal (`motion`), em-dash → `-`/`\|` nelle stringhe visibili | Federico | PR #44 | 🔨 |
 
 ## Decisioni prese
 
