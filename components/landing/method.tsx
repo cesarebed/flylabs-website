@@ -31,7 +31,7 @@ export function Method({ lang }: { lang: Locale }) {
                 <svg
                   viewBox="0 0 100 4"
                   preserveAspectRatio="none"
-                  className="mt-6 h-1 w-12 flex-none lg:w-16"
+                  className="mt-6 h-1 w-full min-w-8 flex-1"
                   aria-hidden
                 >
                   <line x1="0" y1="2" x2="100" y2="2" className="wire" />
