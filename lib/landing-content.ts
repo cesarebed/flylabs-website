@@ -1145,5 +1145,11 @@ export const landing = {
       it: "AI concreta per chi lavora",
       en: "Concrete AI for people who work",
     },
+    nav: [
+      { href: "", label: { it: "Home", en: "Home" } },
+      { href: "/lavori", label: { it: "Lavori", en: "Work" } },
+      { href: "/servizi", label: { it: "Servizi", en: "Services" } },
+      { href: "/stack", label: { it: "Stack", en: "Stack" } },
+    ],
   },
 } as const;

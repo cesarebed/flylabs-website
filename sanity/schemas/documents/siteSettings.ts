@@ -91,6 +91,20 @@ export const siteSettings = defineType({
       type: "string",
       validation: (rule) => rule.email(),
     }),
+    defineField({
+      name: "legalName",
+      title: "Ragione sociale",
+      description:
+        "Nome legale dell'azienda mostrato in fondo al footer (es. \"Flylabs S.r.l.\"). Obbligo di legge per un sito aziendale italiano. Se vuoto, la riga non compare.",
+      type: "string",
+    }),
+    defineField({
+      name: "vatNumber",
+      title: "Partita IVA",
+      description:
+        "Mostrata accanto alla ragione sociale nel footer (es. \"P.IVA 01234567890\"). Se vuota, la riga non compare.",
+      type: "string",
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Impostazioni sito" }),

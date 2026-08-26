@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Il root layout vive sotto [locale] (segmento dinamico): senza un vero
+  // app/layout.tsx, Next non ha dove comporre un app/not-found.tsx classico
+  // (vedi docs not-found.md, caso "root layout con segmento dinamico top
+  // level"). global-not-found.tsx sostituisce quel fallback: rende la sua
+  // <html>/<body>, bypassando del tutto il rendering normale.
+  experimental: {
+    globalNotFound: true,
+  },
   images: {
     // Le cover dei caseStudy sono servite dalla CDN immagini di Sanity.
     // next/image richiede di dichiarare l'host remoto (Next 16).

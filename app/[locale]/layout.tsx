@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { isLocale, locales } from "@/lib/i18n";
 import { fontVars } from "@/lib/fonts";
 import { JsonLd } from "@/components/json-ld";
@@ -58,6 +60,10 @@ export default async function LocaleLayout({
         <JsonLd data={organizationLd(siteUrl, sameAs)} />
         {children}
         <ChatbotWidget />
+        {/* Cookieless (nessun banner GDPR necessario), utile per misurare il
+            traffico da subito appena il sito viene condiviso sui social. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

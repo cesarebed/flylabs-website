@@ -118,10 +118,10 @@ export default async function CasesPage({
                     {(study.metrics ?? []).map((metric) => (
                       <div key={metric._key}>
                         <div
-                          className={`font-display font-semibold leading-none text-accent ${
+                          className={`whitespace-nowrap font-display font-semibold leading-none text-accent ${
                             (study.metrics?.length ?? 1) > 1
                               ? "text-4xl"
-                              : "text-6xl"
+                              : "text-5xl"
                           }`}
                         >
                           {pickLocaleLoose(metric.value, lang)}
