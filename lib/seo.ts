@@ -29,8 +29,14 @@ export async function buildMetadata(
   const s = settings ?? (await getSiteSettings());
   const siteUrl = s?.siteUrl || FALLBACK_SITE_URL;
   const canonical = `/${lang}${page.path ?? ""}`;
-  const ogImages = s?.ogImage ? [s.ogImage] : undefined;
+  const ogImage = s?.ogImage || undefined;
 
+  // IMPORTANTE: la chiave `images` va inclusa SOLO se c'è davvero un'immagine
+  // dal CMS. Se la settassimo a `undefined`, Next la considera comunque
+  // "gestita dai metadata" e NON inietta più l'immagine file-based generata da
+  // `opengraph-image.tsx` → nessun og:image in pagina. Con la chiave assente,
+  // la convenzione file-based (OG dinamica generica + per caso studio) vince.
+  // Se `siteSettings.ogImage` viene valorizzato su Sanity, quello ha la meglio.
   return {
     metadataBase: new URL(siteUrl),
     title: { absolute: page.title },
@@ -44,13 +50,13 @@ export async function buildMetadata(
       siteName: SITE_NAME,
       locale: lang === "it" ? "it_IT" : "en_US",
       type: "website",
-      images: ogImages?.map((url) => ({ url })),
+      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: page.title,
       description: page.description,
-      images: ogImages,
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
   };
 }
