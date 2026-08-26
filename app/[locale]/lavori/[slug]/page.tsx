@@ -55,7 +55,7 @@ export async function generateMetadata({
   const study = await getStudy(slug);
   if (!study) return buildMetadata(lang, cases.meta[lang]);
   return buildMetadata(lang, {
-    title: `${pickLocale(study.title, lang)} — flylabs.ai`,
+    title: `${pickLocale(study.title, lang)} | flylabs.ai`,
     description: pickLocale(study.solution, lang),
     path: `/lavori/${slug}`,
   });

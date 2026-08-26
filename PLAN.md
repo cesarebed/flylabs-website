@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-06 (Cesare — Fase 4c: fix SEO P0 da audit, canonical su `www` + `<html lang>` per-locale, PR #42).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-26 (Federico - Fase 9: redesign layout landing con skill `design-taste-frontend`).
 
 ---
 
@@ -32,6 +32,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-06 (Cesare — Fase
 | 6 | **Carosello dei casi di successo in home** + rewording (richiesta Federico 2026-07-18) | Federico | PR #37 | ✅ mergiata e LIVE. Fix successivi in PR #38 (autoplay + contatore a intervallo) |
 | 7 | **Arricchimento contenuti**: +6 FAQ, +3 card "Cosa costruiamo", offerta con tempi/incluso + pagina `/servizi` (richiesta Federico 2026-07-18) | Federico | PR #38 | ✅ mergiata e LIVE. Fix carosello (autoplay/hover/contatore) inclusi nella stessa PR; lampeggio SSR del contatore fixato in PR #40 |
 | 8 | **Rifiniture carosello + wording + diagramma bici** (richiesta Federico 2026-07-19): card intera su mobile (niente peek tagliato), "l'artista" → "lo studio" nel caso Close Tattoo (testi + diagramma), diagramma bici ridisegnato hub-and-spoke (3 siti → 1 assistente → 4 canali) | Federico | PR #41 | 🔨 |
+| 9 | **Redesign layout landing** (skill `design-taste-frontend`, richiesta Federico 2026-08-26): rework strutturale, brand invariato — bento in "Cosa costruiamo", flusso connesso (`.wire`) in "Come lavoriamo", header impilato in "Offerta", FAQ → accordion, scroll-reveal (`motion`), em-dash → `-`/`\|` nelle stringhe visibili | Federico | `feat/landing-redesign-taste-skill` | 🔨 |
 
 ## Decisioni prese
 
@@ -62,6 +63,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-06 (Cesare — Fase
 
 - **Due root layout, uno per il sito e uno per lo Studio (2026-08-06, Fase 4c)**: per avere `<html lang>` corretto per lingua, `<html>`/`<body>` sono stati spostati dal vecchio `app/layout.tsx` (rimosso) dentro `app/[locale]/layout.tsx`, che ora è il **root layout del sito** con `lang={locale}`. `app/studio/layout.tsx` è diventato un **root layout separato** (`<html lang="en">`, resta `noindex`) perché lo Studio non vive sotto `[locale]`. La root `/` non ha più una pagina: redirige a `/it` via `next.config.ts`. Le istanze `next/font` sono condivise in `lib/fonts.ts`. Pattern idiomatico Next 16 (docs: si omette `app/layout.tsx` e i layout delle sottocartelle diventano root). **Chi aggiunge una route fuori da `[locale]`/`studio` deve darle un proprio root layout** (o un route group), altrimenti non ha `<html>`/`<body>`.
 - **Canonical = host che risponde 200, non l'apex (2026-08-06, Fase 4c)**: `siteSettings.siteUrl` deve essere `https://www.flylabs.ai` perché l'apex `flylabs.ai` fa 308→www; `getSiteUrl` (`lib/seo.ts`) è l'unica fonte runtime per canonical, sitemap e robots, quindi il campo su Sanity li corregge tutti. Se un giorno si invertisse il redirect (www→apex), aggiornare il campo di conseguenza.
+- **Skill `design-taste-frontend` installata (2026-08-26, Federico)**: skill anti-slop per redesign frontend, sorgente `Leonxlnx/taste-skill` (vedi `skills-lock.json`). Usata in modalità **Redesign-Preserve** per il rework di layout della landing: brand (palette/font/voce documentati in `flylabs-brain/.../brand/`) resta intatto, si è rilavorata solo la struttura (monocultura "H2 + griglia 3 card" su 4 sezioni consecutive, header split-pattern in Offerta, FAQ come lista piatta a 9 voci) + aggiunto un layer di motion misurato (`whileInView`, libreria `motion` nuova dipendenza) e ripulito l'em-dash dalle stringhe visibili. Dettagli architetturali (bento in WhatWeBuild, connettore `.wire` in Method riusato dall'hero mai attivato, accordion FAQ) restano nel diff della PR, non duplicati qui.
 
 ## Task aperti (fuori roadmap)
 

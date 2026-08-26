@@ -6,6 +6,7 @@ import { sanityFetch } from "@/sanity/fetch";
 import { FEATURED_CASE_STUDIES_QUERY } from "@/sanity/queries";
 import type { FEATURED_CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
 import { WorkCarousel, type WorkItem } from "./work-carousel";
+import { Reveal, RevealGroup, RevealItem } from "./reveal";
 
 export async function Work({ lang }: { lang: Locale }) {
   const { section, cards, allLink, deck, nav } = landing.work;
@@ -36,12 +37,14 @@ export async function Work({ lang }: { lang: Locale }) {
   return (
     <section id="lavori" className="border-y border-line bg-white py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
-        <h2 className="font-display text-4xl font-semibold leading-tight">
-          {section.titleBefore[lang]}
-          <span className="mark">{section.titleMark[lang]}</span>
-          {section.titleAfter[lang]}
-        </h2>
-        <p className="mb-10 mt-4 max-w-[46ch] text-muted">{deck[lang]}</p>
+        <Reveal>
+          <h2 className="font-display text-4xl font-semibold leading-tight">
+            {section.titleBefore[lang]}
+            <span className="mark">{section.titleMark[lang]}</span>
+            {section.titleAfter[lang]}
+          </h2>
+          <p className="mb-10 mt-4 max-w-[46ch] text-muted">{deck[lang]}</p>
+        </Reveal>
 
         {items.length > 0 ? (
           <>
@@ -63,9 +66,9 @@ export async function Work({ lang }: { lang: Locale }) {
             </div>
           </>
         ) : (
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {cards.map((card) => (
-              <div
+              <RevealItem
                 key={card.tag[lang]}
                 className="flex flex-col rounded-xl border border-line bg-paper p-7"
               >
@@ -80,9 +83,9 @@ export async function Work({ lang }: { lang: Locale }) {
                     {card.metricLabel[lang]}
                   </div>
                 </div>
-              </div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         )}
 
       </div>

@@ -1,12 +1,13 @@
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
+import { Reveal } from "./reveal";
 
 export function Why({ lang }: { lang: Locale }) {
   const { kicker, statementBefore, statementMark, chips } = landing.why;
   return (
     <section className="pb-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
-        <div className="dot-paper rounded-2xl border border-line p-10 md:p-16">
+        <Reveal className="dot-paper rounded-2xl border border-line p-10 md:p-16">
           <div className="max-w-3xl">
             <div className="kicker mb-5">{kicker[lang]}</div>
             <p className="mb-10 font-display text-3xl font-medium leading-[1.18] md:text-[2.5rem]">
@@ -24,7 +25,7 @@ export function Why({ lang }: { lang: Locale }) {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
