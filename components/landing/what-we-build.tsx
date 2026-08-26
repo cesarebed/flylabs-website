@@ -1,6 +1,11 @@
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { Icon } from "./icon";
+import { RevealGroup, RevealItem } from "./reveal";
+
+// Ritmo bento asimmetrico invece di 4 celle identiche: la prima card (feature
+// di apertura) occupa 2 colonne, le altre 3 ne occupano 1 ciascuna.
+const SPANS = ["md:col-span-2", "", "", ""];
 
 export function WhatWeBuild({ lang }: { lang: Locale }) {
   const { section, cards, extra } = landing.build;
@@ -13,30 +18,32 @@ export function WhatWeBuild({ lang }: { lang: Locale }) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {cards.map((card) => (
-            <div
+        <RevealGroup className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {cards.map((card, i) => (
+            <RevealItem
               key={card.title[lang]}
-              className="card-hover rounded-xl border border-line bg-white p-7"
+              className={`card-hover rounded-xl border border-line bg-white p-7 ${SPANS[i] ?? ""}`}
             >
               <Icon icon={card.icon} className="text-2xl text-accent" aria-hidden />
               <h3 className="mb-2 mt-5 text-lg font-bold">{card.title[lang]}</h3>
-              <p className="mb-4 text-[15px] leading-relaxed text-muted">
+              <p className="mb-4 max-w-[46ch] text-[15px] leading-relaxed text-muted">
                 {card.body[lang]}
               </p>
               <p className="font-mono text-[12px] text-accent">{card.claim[lang]}</p>
-            </div>
+            </RevealItem>
           ))}
 
           {/* card "rogna" — personalità, dashed */}
-          <div className="card-hover flex flex-col justify-center rounded-xl border-2 border-dashed border-line bg-transparent p-7">
-            <p className="mb-2 font-display text-xl italic">{extra.title[lang]}</p>
+          <RevealItem className="card-hover flex flex-col justify-center rounded-xl border-2 border-dashed border-line bg-transparent p-7">
+            <p className="mb-2 font-display text-xl italic leading-[1.15] pb-1">
+              {extra.title[lang]}
+            </p>
             <p className="mb-4 text-[15px] text-muted">{extra.body[lang]}</p>
             <a href="#cta" className="font-mono text-[12px] font-medium text-warm">
               {extra.cta[lang]}
             </a>
-          </div>
-        </div>
+          </RevealItem>
+        </RevealGroup>
       </div>
     </section>
   );

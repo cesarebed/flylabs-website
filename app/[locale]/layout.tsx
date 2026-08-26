@@ -15,7 +15,7 @@ import "../globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.flylabs.ai"),
   title: {
-    default: "flylabs.ai — AI concreta per la tua azienda",
+    default: "flylabs.ai | AI concreta per la tua azienda",
     template: "%s | flylabs.ai",
   },
   description:

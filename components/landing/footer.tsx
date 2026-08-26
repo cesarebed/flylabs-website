@@ -19,7 +19,7 @@ export async function Footer({ lang }: { lang: Locale }) {
           flylabs<span className="logo-ai">.ai</span>
         </div>
         <div className="font-mono text-xs text-white/40">
-          © 2026 flylabs.ai — {landing.footer.tagline[lang]}
+          © 2026 flylabs.ai - {landing.footer.tagline[lang]}
         </div>
         <div className="flex gap-6 text-sm text-white/70">
           {socialLinks.map((link) => (

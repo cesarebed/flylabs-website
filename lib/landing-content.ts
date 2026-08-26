@@ -709,12 +709,12 @@ export const landing = {
   services: {
     meta: {
       it: {
-        title: "Come lavoriamo insieme — flylabs.ai",
+        title: "Come lavoriamo insieme | flylabs.ai",
         description:
           "I tre modi di lavorare con flylabs: consulenza spot, soluzione chiave in mano, formazione AI. Tempi, prezzi e cosa è incluso, detti prima.",
       },
       en: {
-        title: "How we work together — flylabs.ai",
+        title: "How we work together | flylabs.ai",
         description:
           "The three ways to work with flylabs: spot consulting, turnkey solution, AI training. Timelines, pricing and what's included, stated upfront.",
       },
@@ -749,12 +749,12 @@ export const landing = {
   stack: {
     meta: {
       it: {
-        title: "Il nostro stack — flylabs.ai",
+        title: "Il nostro stack | flylabs.ai",
         description:
           "I tool AI, di automazione e dati che usiamo per costruire le soluzioni: Claude, n8n, Make, Apify e altri.",
       },
       en: {
-        title: "Our stack — flylabs.ai",
+        title: "Our stack | flylabs.ai",
         description:
           "The AI, automation and data tools we use to build solutions: Claude, n8n, Make, Apify and more.",
       },
@@ -762,8 +762,8 @@ export const landing = {
     kicker: { it: "Sotto il cofano", en: "Under the hood" },
     title: { it: "I tool che usiamo", en: "The tools we use" },
     intro: {
-      it: "Scegliamo lo strumento giusto per ogni pezzo del lavoro — modelli, orchestrazione, dati, web — e li combiniamo sul tuo caso reale. Nessun lock-in su una piattaforma sola.",
-      en: "We pick the right tool for each part of the job — models, orchestration, data, web — and combine them on your real case. No lock-in to a single platform.",
+      it: "Scegliamo lo strumento giusto per ogni pezzo del lavoro (modelli, orchestrazione, dati, web) e li combiniamo sul tuo caso reale. Nessun lock-in su una piattaforma sola.",
+      en: "We pick the right tool for each part of the job (models, orchestration, data, web) and combine them on your real case. No lock-in to a single platform.",
     },
     back: { it: "← Torna alla home", en: "← Back home" },
     groups: [

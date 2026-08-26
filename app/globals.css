@@ -236,3 +236,20 @@ body {
     animation: none;
   }
 }
+
+/* ------------------------------------------------------------------ *
+ * Marquee (striscia loghi "I tool che usiamo")
+ * ------------------------------------------------------------------ */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Il track è duplicato 2x nel markup: -50% riporta esattamente
+       all'inizio della seconda copia, loop impercettibile. */
+    transform: translateX(-50%);
+  }
+}
+@utility animate-marquee {
+  animation: marquee 28s linear infinite;
+}

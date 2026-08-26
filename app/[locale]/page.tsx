@@ -20,12 +20,12 @@ export const revalidate = 3600;
 // restano come fallback se il CMS è vuoto o irraggiungibile.
 const META: Record<Locale, { title: string; description: string }> = {
   it: {
-    title: "flylabs.ai — AI concreta per la tua azienda",
+    title: "flylabs.ai | AI concreta per la tua azienda",
     description:
       "Costruiamo soluzioni AI concrete: chatbot, automazioni, risposta lead. Prezzo fisso, niente lock-in. Parli con chi costruisce.",
   },
   en: {
-    title: "flylabs.ai — Concrete AI for your business",
+    title: "flylabs.ai | Concrete AI for your business",
     description:
       "We build concrete AI solutions: chatbots, automations, lead response. Fixed price, no lock-in. You talk to the people who build.",
   },
