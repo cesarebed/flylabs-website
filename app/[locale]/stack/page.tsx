@@ -6,6 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 import { Icon } from "@/components/landing/icon";
 import { Footer } from "@/components/landing/footer";
 import { LangToggle } from "@/components/landing/lang-toggle";
+import { Reveal } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
 
@@ -69,7 +70,7 @@ export default async function StackPage({
       <div className="mx-auto max-w-[1120px] px-6 py-16">
         <div className="flex flex-col gap-10">
           {groups.map((group) => (
-            <div key={group.name[lang]}>
+            <Reveal key={group.name[lang]}>
               <h2 className="mb-4 font-mono text-[12px] uppercase tracking-[0.14em] text-accent">
                 {group.name[lang]}
               </h2>
@@ -93,7 +94,7 @@ export default async function StackPage({
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
