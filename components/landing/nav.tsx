@@ -8,6 +8,7 @@ import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { Icon } from "./icon";
 import { LangToggle } from "./lang-toggle";
+import { LogoMark } from "./logo-mark";
 
 /**
  * Nav sitewide: prima viveva solo nella homepage e linkava le sezioni della
@@ -66,7 +67,11 @@ export function Nav({ lang }: { lang: Locale }) {
       className="nav-light sticky top-0 z-50 border-b border-line text-ink backdrop-blur"
     >
       <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
-        <Link href={`/${lang}`} className="font-display text-2xl font-bold tracking-tight">
+        <Link
+          href={`/${lang}`}
+          className="flex items-center gap-2 font-display text-2xl font-bold tracking-tight"
+        >
+          <LogoMark className="h-6 w-6 text-ink" />
           flylabs<span className="logo-ai">.ai</span>
         </Link>
 
