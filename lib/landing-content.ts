@@ -14,7 +14,6 @@ import type { Locale } from "@/lib/i18n";
 export type Localized = Record<Locale, string>;
 
 type NavContent = {
-  links: { href: string; label: Localized }[];
   cta: Localized;
 };
 
@@ -76,14 +75,10 @@ export type StackTool = { icon: string; name: string; desc: Localized };
 export type StackGroup = { name: Localized; tools: StackTool[] };
 
 export const landing = {
+  // Le pagine mostrate in nav (sitewide, anche da mobile) sono le stesse del
+  // footer — unica fonte, `footer.nav` più sotto — così le etichette restano
+  // sincronizzate senza doverle duplicare.
   nav: {
-    links: [
-      { href: "#cosa", label: { it: "Cosa costruiamo", en: "What we build" } },
-      { href: "#lavori", label: { it: "Lavori", en: "Work" } },
-      { href: "#metodo", label: { it: "Come lavoriamo", en: "How we work" } },
-      { href: "#offerta", label: { it: "Offerta", en: "Offer" } },
-      { href: "#faq", label: { it: "FAQ", en: "FAQ" } },
-    ],
     cta: { it: "Parliamone", en: "Let's talk" },
   } satisfies NavContent,
 

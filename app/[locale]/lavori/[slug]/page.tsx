@@ -24,7 +24,7 @@ import type {
   CASE_STUDY_SLUGS_QUERY_RESULT,
 } from "@/sanity.types";
 import { Footer } from "@/components/landing/footer";
-import { LangToggle } from "@/components/landing/lang-toggle";
+import { Nav } from "@/components/landing/nav";
 import { TechBadges } from "@/components/landing/tech-badges";
 
 export const revalidate = 3600;
@@ -109,27 +109,15 @@ export default async function CaseStudyPage({
           images: ldImages,
         })}
       />
-      <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
-          <Link
-            href={`/${lang}`}
-            className="font-display text-2xl font-bold tracking-tight"
-          >
-            flylabs<span className="logo-ai">.ai</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <LangToggle lang={lang} />
-            <Link
-              href={`/${lang}/lavori`}
-              className="text-sm font-medium text-ink/70 hover:text-ink"
-            >
-              {cases.backToList[lang]}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Nav lang={lang} />
 
       <article className="mx-auto max-w-3xl px-6 py-[80px]">
+        <Link
+          href={`/${lang}/lavori`}
+          className="mb-5 inline-flex items-center gap-1.5 text-sm font-medium text-ink/60 hover:text-ink"
+        >
+          {cases.backToList[lang]}
+        </Link>
         <div className="kicker mb-5">{pickLocale(study.sector, lang)}</div>
         <h1 className="font-display text-4xl font-semibold leading-tight md:text-5xl">
           {pickLocale(study.title, lang)}

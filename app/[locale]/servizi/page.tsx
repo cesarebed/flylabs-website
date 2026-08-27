@@ -6,7 +6,7 @@ import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { Footer } from "@/components/landing/footer";
-import { LangToggle } from "@/components/landing/lang-toggle";
+import { Nav } from "@/components/landing/nav";
 
 export const revalidate = 3600;
 
@@ -45,17 +45,7 @@ export default async function ServicesPage({
         ])}
       />
 
-      <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
-          <Link
-            href={`/${lang}`}
-            className="font-display text-2xl font-bold tracking-tight"
-          >
-            flylabs<span className="logo-ai">.ai</span>
-          </Link>
-          <LangToggle lang={lang} />
-        </div>
-      </header>
+      <Nav lang={lang} />
 
       <section className="dot-paper border-b border-line py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">

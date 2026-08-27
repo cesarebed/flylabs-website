@@ -17,7 +17,7 @@ export async function Footer({ lang }: { lang: Locale }) {
   return (
     <footer className="bg-ink text-white">
       <div className="mx-auto max-w-[1120px] px-6 py-14">
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="mb-3 font-display text-2xl font-bold">
               flylabs<span className="logo-ai">.ai</span>
@@ -25,34 +25,39 @@ export async function Footer({ lang }: { lang: Locale }) {
             <p className="max-w-xs text-sm text-white/50">{landing.footer.tagline[lang]}</p>
           </div>
 
-          <nav className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
-            {landing.footer.nav.map((item) => (
-              <a key={item.href} href={`/${lang}${item.href}`} className="hover:text-mark">
-                {item.label[lang]}
+          {/* Nav e contatti restano vicini tra loro (gap fisso) invece di
+              essere spinti ai due estremi da un justify-between a 3 colonne
+              — con pochi item reali lasciava un vuoto enorme al centro. */}
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-16">
+            <nav className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
+              {landing.footer.nav.map((item) => (
+                <a key={item.href} href={`/${lang}${item.href}`} className="hover:text-mark">
+                  {item.label[lang]}
+                </a>
+              ))}
+              <a href={`/${lang}/privacy`} className="hover:text-mark">
+                Privacy
               </a>
-            ))}
-            <a href={`/${lang}/privacy`} className="hover:text-mark">
-              Privacy
-            </a>
-          </nav>
+            </nav>
 
-          <div className="flex gap-6 text-sm text-white/70">
-            {socialLinks.map((link) => (
-              <a
-                key={link._key}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-mark"
-              >
-                {link.label}
-              </a>
-            ))}
-            {contactEmail && (
-              <a href={`mailto:${contactEmail}`} className="hover:text-mark">
-                Email
-              </a>
-            )}
+            <div className="flex gap-6 text-sm text-white/70">
+              {socialLinks.map((link) => (
+                <a
+                  key={link._key}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-mark"
+                >
+                  {link.label}
+                </a>
+              ))}
+              {contactEmail && (
+                <a href={`mailto:${contactEmail}`} className="hover:text-mark">
+                  Email
+                </a>
+              )}
+            </div>
           </div>
         </div>
 
