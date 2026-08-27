@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { buildMetadata } from "@/lib/seo";
 import { Icon } from "@/components/landing/icon";
 import { Footer } from "@/components/landing/footer";
-import { LangToggle } from "@/components/landing/lang-toggle";
+import { Nav } from "@/components/landing/nav";
 import { Reveal } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
@@ -18,7 +17,6 @@ export async function generateMetadata({
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const m = landing.stack.meta[lang];
-  // Pagina volutamente non in menu: comunque indicizzabile via link diretto.
   return buildMetadata(lang, {
     title: m.title,
     description: m.description,
@@ -33,29 +31,11 @@ export default async function StackPage({
 }) {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
-  const { kicker, title, intro, back, groups } = landing.stack;
+  const { kicker, title, intro, groups } = landing.stack;
 
   return (
     <main className="site-zoom flex-1">
-      <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
-          <Link
-            href={`/${lang}`}
-            className="font-display text-2xl font-bold tracking-tight"
-          >
-            flylabs<span className="logo-ai">.ai</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <LangToggle lang={lang} />
-            <Link
-              href={`/${lang}`}
-              className="text-sm font-medium text-ink/70 hover:text-ink"
-            >
-              {back[lang]}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Nav lang={lang} />
 
       <section className="dot-paper border-b border-line py-16">
         <div className="mx-auto max-w-[1120px] px-6">
