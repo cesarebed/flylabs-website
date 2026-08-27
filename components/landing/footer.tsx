@@ -22,7 +22,9 @@ export async function Footer({ lang }: { lang: Locale }) {
           <div>
             <div className="mb-3 flex items-center gap-2 font-display text-2xl font-bold">
               <LogoMark className="h-6 w-6" />
-              flylabs<span className="logo-ai">.ai</span>
+              <span>
+                flylabs<span className="logo-ai">.ai</span>
+              </span>
             </div>
             <p className="max-w-xs text-sm text-white/50">{landing.footer.tagline[lang]}</p>
           </div>
