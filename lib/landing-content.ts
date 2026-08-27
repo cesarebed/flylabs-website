@@ -88,11 +88,13 @@ export type ProductMode = {
 export type Product = {
   slug: string;
   icon: string;
+  logo: string; // path in /public, logo reale del prodotto (non un'icona generica)
   name: string; // nome del brand, non tradotto
   tagline: Localized;
   sector: Localized;
   href: string;
   external?: boolean;
+  note?: Localized; // nota facoltativa mostrata sotto la card
 };
 
 export const landing = {
@@ -638,8 +640,8 @@ export const landing = {
 
   finalCta: {
     title: {
-      it: "Raccontaci cosa ti porta via tempo.",
-      en: "Tell us what's eating your time.",
+      it: "Il primo passo è capire il problema vero.",
+      en: "The first step is understanding the real problem.",
     },
     body: {
       it: "Venti minuti per capire cosa si può automatizzare e da dove partire.",
@@ -1219,6 +1221,7 @@ export const landing = {
       {
         slug: "gpt-chatbot",
         icon: "lucide:message-circle",
+        logo: "/logos/gpt-chatbot.png",
         name: "GPT Chatbot",
         tagline: {
           it: "Chatbot AI addestrato sui tuoi contenuti, sul tuo sito in pochi minuti.",
@@ -1227,10 +1230,15 @@ export const landing = {
         sector: { it: "Assistenza e vendita online", en: "Support and online sales" },
         href: "https://gptchatbot.it/",
         external: true,
+        note: {
+          it: "È lo stesso chatbot che vedi in basso a destra su questo sito.",
+          en: "It's the same chatbot you see in the bottom-right corner of this site.",
+        },
       },
       {
         slug: "stellar-reviews",
         icon: "lucide:star",
+        logo: "/products/stellar-reviews/logo.svg",
         name: "Stellar Reviews",
         tagline: {
           it: "Audit e risposte alle recensioni, da Google, TripAdvisor e Booking.",
@@ -1242,6 +1250,7 @@ export const landing = {
       {
         slug: "wegrocery",
         icon: "lucide:shopping-basket",
+        logo: "/products/wegrocery/logo.png",
         name: "WeGrocery",
         tagline: {
           it: "Piattaforma open source per gli ordini di gruppo dei GAS.",
@@ -1271,6 +1280,7 @@ export const landing = {
     },
     kicker: { it: "Prodotti", en: "Products" },
     title: { it: "Stellar Reviews", en: "Stellar Reviews" },
+    logo: "/products/stellar-reviews/logo.svg",
     tagline: {
       it: "Le recensioni della tua struttura, lette e riassunte ogni giorno.",
       en: "Your business reviews, read and summarised every day.",
@@ -1340,6 +1350,25 @@ export const landing = {
     },
     kicker: { it: "Prodotti", en: "Products" },
     title: { it: "WeGrocery", en: "WeGrocery" },
+    logo: "/products/wegrocery/logo.png",
+    media: {
+      demoGif: {
+        src: "/products/wegrocery/demo.gif",
+        width: 340,
+        height: 711,
+        alt: {
+          it: "Schermata della demo pubblica di WeGrocery: accesso come socio o come admin",
+          en: "Screenshot of the WeGrocery public demo: member or admin access",
+        },
+      },
+      launchVideo: {
+        src: "/products/wegrocery/launch.mp4",
+        caption: {
+          it: "Video di lancio di WeGrocery",
+          en: "WeGrocery launch video",
+        },
+      },
+    },
     tagline: {
       it: "Ordini di gruppo e saldo prepagato, senza fogli di calcolo.",
       en: "Group orders and a prepaid balance, no spreadsheets.",
@@ -1352,6 +1381,7 @@ export const landing = {
       it: "WeGrocery è un'unica piattaforma open source (MIT) che ogni gruppo attiva con il proprio marchio, la propria lingua e i propri colori, impostati via variabili d'ambiente. Zero fork, zero codice dedicato: un aggiornamento arriva a tutti i deploy insieme.",
       en: "WeGrocery is a single open-source (MIT) platform that any group activates under its own brand, language and colours, set via environment variables. No forks, no dedicated code: an update reaches every deployment at once.",
     },
+    mediaTitle: { it: "WeGrocery in azione", en: "WeGrocery in action" },
     featuresTitle: { it: "Cosa fa", en: "What it does" },
     features: [
       {
@@ -1374,7 +1404,7 @@ export const landing = {
         it: "Ti attiviamo il tuo deploy white-label: dominio, marchio e integrazioni con i tuoi fornitori, senza doverlo gestire da solo.",
         en: "We activate your own white-label deployment: domain, branding and integrations with your suppliers, without you having to run it yourself.",
       },
-      cta: { it: "Parliamo del tuo gruppo", en: "Let's talk about your group" },
+      cta: { it: "Parliamo del tuo progetto", en: "Let's talk about your project" },
     } satisfies ProductMode,
     modeSaas: {
       title: { it: "Self-service", en: "Self-service" },

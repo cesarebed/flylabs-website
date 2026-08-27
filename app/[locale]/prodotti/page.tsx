@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
@@ -7,7 +8,6 @@ import { breadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { Footer } from "@/components/landing/footer";
 import { Nav } from "@/components/landing/nav";
-import { Icon } from "@/components/landing/icon";
 import { Reveal, RevealGroup, RevealItem } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
@@ -114,20 +114,22 @@ export default async function ProductsPage({
         <div className="mx-auto max-w-[1120px] px-6">
           <RevealGroup className="grid gap-6 md:grid-cols-3">
             {items.map((product) => (
-              <RevealItem key={product.slug}>
+              <RevealItem key={product.slug} className="flex flex-col">
                 <Link
                   href={product.external ? product.href : `/${lang}${product.href}`}
                   target={product.external ? "_blank" : undefined}
                   rel={product.external ? "noopener noreferrer" : undefined}
                   className="card-hover flex h-full flex-col rounded-xl border border-line bg-paper p-8"
                 >
-                  <Icon
-                    icon={product.icon}
-                    className="text-accent"
-                    width={28}
-                    height={28}
-                    aria-hidden
-                  />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-line bg-white p-2">
+                    <Image
+                      src={product.logo}
+                      alt=""
+                      width={40}
+                      height={40}
+                      className="h-auto max-h-10 w-auto max-w-10 object-contain"
+                    />
+                  </div>
                   <span className="stamp mt-6 text-muted">
                     {product.sector[lang]}
                   </span>
@@ -141,6 +143,11 @@ export default async function ProductsPage({
                     {product.external ? cardCtaExternal[lang] : cardCtaInternal[lang]}
                   </div>
                 </Link>
+                {product.note && (
+                  <p className="mt-3 text-[13px] leading-snug text-muted">
+                    {product.note[lang]}
+                  </p>
+                )}
               </RevealItem>
             ))}
           </RevealGroup>

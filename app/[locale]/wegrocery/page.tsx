@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
@@ -46,6 +47,9 @@ export default async function WeGroceryProductPage({
     modeSaas,
     caseLink,
     back,
+    logo,
+    media,
+    mediaTitle,
   } = landing.wegroceryProduct;
   const siteUrl = await getSiteUrl();
 
@@ -66,6 +70,9 @@ export default async function WeGroceryProductPage({
 
       <section className="dot-paper border-b border-line py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
+          <div className="mb-6 flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-white">
+            <Image src={logo} alt="" width={56} height={56} className="object-contain" />
+          </div>
           <div className="kicker mb-4">{kicker[lang]}</div>
           <h1 className="max-w-[20ch] font-display text-5xl font-semibold leading-[1.05]">
             {title[lang]}
@@ -73,6 +80,40 @@ export default async function WeGroceryProductPage({
           <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">
             {tagline[lang]}
           </p>
+        </div>
+      </section>
+
+      <section className="bg-paper py-[88px]">
+        <div className="mx-auto max-w-[1120px] px-6">
+          <Reveal>
+            <h2 className="font-display text-2xl font-semibold">{mediaTitle[lang]}</h2>
+            <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
+              <div className="overflow-hidden rounded-xl border border-line bg-ink">
+                <video
+                  src={media.launchVideo.src}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="aspect-square w-full"
+                >
+                  <track kind="captions" />
+                </video>
+                <p className="stamp px-4 py-3 text-muted">
+                  {media.launchVideo.caption[lang]}
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-xl border border-line bg-white">
+                <Image
+                  src={media.demoGif.src}
+                  alt={media.demoGif.alt[lang]}
+                  width={media.demoGif.width}
+                  height={media.demoGif.height}
+                  unoptimized
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

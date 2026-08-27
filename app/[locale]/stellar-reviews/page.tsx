@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
@@ -46,6 +47,7 @@ export default async function StellarReviewsPage({
     modeSaas,
     caseLink,
     back,
+    logo,
   } = landing.stellarReviews;
   const siteUrl = await getSiteUrl();
 
@@ -66,6 +68,9 @@ export default async function StellarReviewsPage({
 
       <section className="dot-paper border-b border-line py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
+          <div className="mb-6 flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl">
+            <Image src={logo} alt="" width={64} height={64} />
+          </div>
           <div className="kicker mb-4">{kicker[lang]}</div>
           <h1 className="max-w-[20ch] font-display text-5xl font-semibold leading-[1.05]">
             {title[lang]}
