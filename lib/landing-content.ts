@@ -92,13 +92,13 @@ export const landing = {
     titleMark: { it: "al lavoro", en: "work" },
     titleAfter: { it: "nella tua azienda.", en: "for your business." },
     body: {
-      it: "Costruiamo soluzioni concrete per smettere di perdere tempo e clienti. Poi ti insegniamo a gestirle ",
-      en: "We build concrete solutions that stop you from losing time and customers. Then we teach you to run them ",
+      it: "Colmiamo il divario tra le tecnologie AI più avanzate e le esigenze operative della tua azienda, con soluzioni AI su misura. Le integriamo nei tuoi flussi di lavoro e ti mettiamo in condizione di gestirle ",
+      en: "We bridge the gap between frontier AI technology and your specific operational requirements, with custom AI solutions. We integrate them into your workflows and empower you to run them ",
     },
-    bodyMark: { it: "da solo", en: "yourself" },
+    bodyMark: { it: "in autonomia", en: "independently" },
     bodyAfter: {
-      it: ", senza contratti che ti legano.",
-      en: ", with no contracts that tie you down.",
+      it: ", mantenendo il pieno controllo.",
+      en: ", keeping you in complete control.",
     },
     ctaPrimary: { it: "Parliamone →", en: "Let's talk →" },
     ctaSecondary: {
@@ -429,7 +429,7 @@ export const landing = {
       },
       {
         kind: { it: "soluzione", en: "solution" },
-        title: { it: "Chiave in mano", en: "Turnkey solution" },
+        title: { it: "Chiavi in mano", en: "Turnkey solution" },
         body: {
           it: "Progettiamo, costruiamo e consegniamo la soluzione. Formazione inclusa: la gestisci tu, senza dipendere da noi.",
           en: "We design, build and deliver the solution. Training included: you run it, without depending on us.",
@@ -711,7 +711,7 @@ export const landing = {
       it: {
         title: "Come lavoriamo insieme | flylabs.ai",
         description:
-          "I tre modi di lavorare con flylabs: consulenza spot, soluzione chiave in mano, formazione AI. Tempi, prezzi e cosa è incluso, detti prima.",
+          "I tre modi di lavorare con flylabs: consulenza spot, soluzione chiavi in mano, formazione AI. Tempi, prezzi e cosa è incluso, detti prima.",
       },
       en: {
         title: "How we work together | flylabs.ai",
@@ -1142,8 +1142,8 @@ export const landing = {
 
   footer: {
     tagline: {
-      it: "AI concreta per chi lavora",
-      en: "Concrete AI for people who work",
+      it: "AI all'avanguardia. Costruita sulle tue esigenze.",
+      en: "Cutting-Edge AI. Built Around Your Needs.",
     },
     nav: [
       { href: "", label: { it: "Home", en: "Home" } },
