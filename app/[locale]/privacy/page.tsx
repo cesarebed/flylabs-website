@@ -15,14 +15,11 @@ export async function generateMetadata({
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const m = privacy.meta[lang];
-  const base = await buildMetadata(lang, {
+  return buildMetadata(lang, {
     title: m.title,
     description: m.description,
     path: "/privacy",
   });
-  // BOZZA: noindex finché i dati del Titolare non sono compilati. Rimuovere
-  // questa riga quando l'informativa è finalizzata.
-  return { ...base, robots: { index: false, follow: true } };
 }
 
 export default async function PrivacyPage({
