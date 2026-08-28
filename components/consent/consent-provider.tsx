@@ -54,6 +54,11 @@ export function ConsentProvider({
   const [state, setState] = useState<ConsentState>(DENY_ALL);
   const [bannerOpen, setBannerOpen] = useState(false);
 
+  // La scelta salvata vive nel localStorage, che non esiste durante l'SSR:
+  // va letta al mount dentro un effect (non come stato iniziale), altrimenti
+  // server e client renderizzerebbero stati diversi (hydration mismatch). Per
+  // questo qui il setState-in-effect è intenzionale.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const stored = readStoredConsent();
     if (stored) {
@@ -65,6 +70,7 @@ export function ConsentProvider({
     }
     setReady(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const persist = useCallback(
     (next: ConsentState) => {
