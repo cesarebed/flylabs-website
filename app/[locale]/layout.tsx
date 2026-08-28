@@ -9,6 +9,9 @@ import { getSiteUrl } from "@/lib/seo";
 import { organizationLd } from "@/lib/structured-data";
 import { getSiteSettings } from "@/sanity/site-settings";
 import { ChatbotWidget } from "@/components/chatbot-widget";
+import { ConsentProvider } from "@/components/consent/consent-provider";
+import { CookieBanner } from "@/components/consent/cookie-banner";
+import { GoogleAnalytics } from "@/components/consent/google-analytics";
 import "../globals.css";
 
 // metadataBase di sicurezza (le pagine lo sovrascrivono con il siteUrl da
@@ -57,11 +60,16 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${fontVars} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <JsonLd data={organizationLd(siteUrl, sameAs)} />
-        {children}
-        <ChatbotWidget />
-        {/* Cookieless (nessun banner GDPR necessario), utile per misurare il
-            traffico da subito appena il sito viene condiviso sui social. */}
+        <ConsentProvider locale={locale}>
+          <JsonLd data={organizationLd(siteUrl, sameAs)} />
+          {children}
+          {/* Facade: parte solo al click, previo consenso alla categoria. */}
+          <ChatbotWidget lang={locale} />
+          {/* GA4 caricato solo dopo consenso "Statistiche" (blocco preventivo). */}
+          <GoogleAnalytics />
+          <CookieBanner lang={locale} />
+        </ConsentProvider>
+        {/* Vercel Analytics/Speed Insights: cookieless, nessun consenso necessario. */}
         <Analytics />
         <SpeedInsights />
       </body>
