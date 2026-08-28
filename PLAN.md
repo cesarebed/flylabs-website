@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-28 (Cesare - Compliance legale: P.IVA contitolari + piano cookie banner/GA; base allineata a /prodotti di Federico).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-28 (Federico - audit anti-slop: font logo Fraunces→Geist, hero a 2 righe).
 
 ---
 
@@ -37,6 +37,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-08-28 (Cesare - Compli
 | 11 | **Rifiniture review + 3 nuovi use case** (richiesta Federico 2026-08-27): connettori Method scollegati dai cerchi, nuovo slogan/sottotitolo hero, "Chiavi in mano", 3 fonti recensioni (Booking/Google/Tripadvisor) in testo+diagramma, fix homepage 6/6 casi, +use case formazione AI in aula / second brain / WeGrocery | Federico (agente autonomo) | PR #49 (parte 1), PR #50 (parte 2) | ✅ mergiate e LIVE |
 | 12 | **Fix footer + nav sitewide + logo aeroplanino** (richiesta Federico 2026-08-27, bug report con screenshot): gap enorme nel footer desktop tra Privacy ed Email, nav (Home/Lavori/Servizi/Stack) assente da mobile e assente del tutto sulle sottopagine (solo homepage l'aveva), gradiente `.ai` da viola a blu, nuovo logo (mark aeroplanino stilizzato) implementato in nav/footer/favicon | Federico (agente autonomo) | [PR #51](https://github.com/cesarebed/flylabs-website/pull/51), [PR #52](https://github.com/cesarebed/flylabs-website/pull/52), PR #53 (logo) | ✅ mergiate e LIVE |
 | 13 | **Pagina `/prodotti`** (richiesta Federico 2026-08-27): overview + filosofia (custom implementation vs self-service SaaS) + card verso i 3 prodotti flylabs, con i loro loghi reali. `/stellar-reviews` e `/wegrocery` sotto-pagine dedicate (top-level, non nidificate sotto `/prodotti`), cross-linkate ai casi studio esistenti (`/lavori/risposte-recensioni-ai`, `/lavori/wegrocery-ordini-di-gruppo`). WeGrocery ha anche una sezione "in azione" (video di lancio + gif della demo pubblica). GPT Chatbot resta un link esterno a gptchatbot.it, con una nota che è lo stesso chatbot integrato su questo sito. Voce "Prodotti" aggiunta alla nav sitewide (5 voci) | Federico (agente autonomo) | [PR #55](https://github.com/cesarebed/flylabs-website/pull/55) | ✅ mergiata |
+| 14 | **Audit anti-slop** (skill `design-taste-frontend`, richiesta Federico 2026-08-28): font display Fraunces (serif, uno dei due più abusati dai design AI-generated) → Geist (grotesk), causa della "f" del logo che stonava; hero a 2 righe (homepage + `/prodotti`, prima ne occupava 3); en-dash → hyphen in un badge. Resto del sito già pulito (0 eyebrow in homepage, 0 em-dash nel copy, niente Jane Doe/Acme/fake screenshot) | Federico (agente autonomo) | [PR #60](https://github.com/cesarebed/flylabs-website/pull/60) | ✅ mergiata e LIVE (verificato su flylabs.ai) |
 
 ## Decisioni prese
 
