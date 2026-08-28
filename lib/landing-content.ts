@@ -555,7 +555,7 @@ export const landing = {
       { it: "prezzo trasparente", en: "transparent pricing" },
       { it: "no lock-in", en: "no lock-in" },
       { it: "parli con chi costruisce", en: "talk to the builders" },
-      { it: "live in 2–4 settimane", en: "live in 2–4 weeks" },
+      { it: "live in 2-4 settimane", en: "live in 2-4 weeks" },
     ] as Localized[],
   },
 
