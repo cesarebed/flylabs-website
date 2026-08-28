@@ -92,18 +92,39 @@ export const siteSettings = defineType({
       validation: (rule) => rule.email(),
     }),
     defineField({
-      name: "legalName",
-      title: "Ragione sociale",
+      name: "legalEntities",
+      title: "Titolari e P.IVA",
       description:
-        "Nome legale dell'azienda mostrato in fondo al footer (es. \"Flylabs S.r.l.\"). Obbligo di legge per un sito aziendale italiano. Se vuoto, la riga non compare.",
-      type: "string",
-    }),
-    defineField({
-      name: "vatNumber",
-      title: "Partita IVA",
-      description:
-        "Mostrata accanto alla ragione sociale nel footer (es. \"P.IVA 01234567890\"). Se vuota, la riga non compare.",
-      type: "string",
+        "Nome (o ragione sociale) e Partita IVA dei titolari, mostrati in fondo al footer — obbligo di legge per un sito che vende servizi in Italia (art. 35 DPR 633/72 e art. 7 D.Lgs 70/2003). Per due contitolari, aggiungi due voci. Se la lista è vuota, la riga non compare.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "legalEntity",
+          title: "Titolare",
+          fields: [
+            defineField({
+              name: "name",
+              title: "Nome / Ragione sociale",
+              description:
+                "Nome e cognome del professionista o ragione sociale, es. \"Cesare Bedin\" o \"Flylabs S.r.l.\".",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "vatNumber",
+              title: "Partita IVA",
+              description:
+                "Le 11 cifre della P.IVA, con o senza prefisso \"IT\" (es. 05755090288). Mostrata nel footer come \"P.IVA …\".",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: "name", subtitle: "vatNumber" },
+          },
+        },
+      ],
     }),
   ],
   preview: {

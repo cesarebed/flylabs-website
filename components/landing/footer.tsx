@@ -11,8 +11,12 @@ export async function Footer({ lang }: { lang: Locale }) {
       Boolean(link.label && link.url)
   );
   const contactEmail = settings?.contactEmail;
-  const legalName = settings?.legalName;
-  const vatNumber = settings?.vatNumber;
+  // Titolari con dati completi: nome + P.IVA. Con due contitolari compaiono due
+  // voci; se la lista è vuota, la riga legale sparisce.
+  const legalEntities = (settings?.legalEntities ?? []).filter(
+    (entity): entity is { _key: string; name: string; vatNumber: string } =>
+      Boolean(entity.name && entity.vatNumber)
+  );
 
   return (
     <footer className="bg-ink text-white">
@@ -58,11 +62,13 @@ export async function Footer({ lang }: { lang: Locale }) {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 font-mono text-xs text-white/40 md:flex-row md:items-center md:justify-between">
           <div>© 2026 flylabs.ai - {landing.footer.tagline[lang]}</div>
-          {(legalName || vatNumber) && (
-            <div>
-              {legalName}
-              {legalName && vatNumber && " · "}
-              {vatNumber}
+          {legalEntities.length > 0 && (
+            <div className="flex flex-col gap-x-4 gap-y-1 sm:flex-row sm:flex-wrap">
+              {legalEntities.map((entity) => (
+                <span key={entity._key}>
+                  {entity.name} · P.IVA {entity.vatNumber}
+                </span>
+              ))}
             </div>
           )}
         </div>

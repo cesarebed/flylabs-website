@@ -11,8 +11,7 @@ export const SITE_SETTINGS_QUERY = defineQuery(
     keywords,
     socialLinks[]{ _key, label, url },
     contactEmail,
-    legalName,
-    vatNumber
+    legalEntities[]{ _key, name, vatNumber }
   }`
 );
 
