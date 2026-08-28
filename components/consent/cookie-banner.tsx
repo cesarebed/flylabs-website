@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { type ConsentState } from "@/lib/consent";
 import { useConsent } from "./consent-provider";
@@ -51,11 +51,14 @@ export function CookieBanner({ lang }: { lang: string }) {
   const [showPrefs, setShowPrefs] = useState(false);
   const [draft, setDraft] = useState<ConsentState>(state);
 
-  // Riallinea i toggle allo stato corrente ogni volta che il pannello si apre
-  // (es. riaperto da "Gestisci cookie" dopo una scelta precedente).
-  useEffect(() => {
+  // Riallinea i toggle allo stato salvato quando il pannello viene (ri)aperto,
+  // es. da "Gestisci cookie". Reset durante il render (pattern consigliato da
+  // React) invece che in un effect, così non si innescano render a cascata.
+  const [wasOpen, setWasOpen] = useState(bannerOpen);
+  if (bannerOpen !== wasOpen) {
+    setWasOpen(bannerOpen);
     if (bannerOpen) setDraft(state);
-  }, [bannerOpen, state]);
+  }
 
   if (!ready || !bannerOpen) return null;
 

@@ -39,7 +39,7 @@
     }
   ],
   "tech": ["Telegram", "n8n", "Python", "OpenRouter", "Google Slides API"],
-  "featured": false,
+  "featured": true,
   "diagrams": [
     {
       "_type": "diagram",

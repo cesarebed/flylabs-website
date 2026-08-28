@@ -14,7 +14,6 @@ import type { Locale } from "@/lib/i18n";
 export type Localized = Record<Locale, string>;
 
 type NavContent = {
-  links: { href: string; label: Localized }[];
   cta: Localized;
 };
 
@@ -75,15 +74,34 @@ export type OfferTrack = {
 export type StackTool = { icon: string; name: string; desc: Localized };
 export type StackGroup = { name: Localized; tools: StackTool[] };
 
+// Le "due modalità" con cui offriamo ogni prodotto: implementazione custom
+// nel workspace del cliente, o self-service sulla web app SaaS.
+export type ProductMode = {
+  title: Localized;
+  body: Localized;
+  cta?: Localized;
+  href?: string; // se assente, il CTA punta al contatto (#cta)
+  external?: boolean;
+  note?: Localized; // es. "in arrivo" quando la modalità non è ancora attiva
+};
+
+export type Product = {
+  slug: string;
+  icon: string;
+  logo: string; // path in /public, logo reale del prodotto (non un'icona generica)
+  name: string; // nome del brand, non tradotto
+  tagline: Localized;
+  sector: Localized;
+  href: string;
+  external?: boolean;
+  note?: Localized; // nota facoltativa mostrata sotto la card
+};
+
 export const landing = {
+  // Le pagine mostrate in nav (sitewide, anche da mobile) sono le stesse del
+  // footer — unica fonte, `footer.nav` più sotto — così le etichette restano
+  // sincronizzate senza doverle duplicare.
   nav: {
-    links: [
-      { href: "#cosa", label: { it: "Cosa costruiamo", en: "What we build" } },
-      { href: "#lavori", label: { it: "Lavori", en: "Work" } },
-      { href: "#metodo", label: { it: "Come lavoriamo", en: "How we work" } },
-      { href: "#offerta", label: { it: "Offerta", en: "Offer" } },
-      { href: "#faq", label: { it: "FAQ", en: "FAQ" } },
-    ],
     cta: { it: "Parliamone", en: "Let's talk" },
   } satisfies NavContent,
 
@@ -92,13 +110,13 @@ export const landing = {
     titleMark: { it: "al lavoro", en: "work" },
     titleAfter: { it: "nella tua azienda.", en: "for your business." },
     body: {
-      it: "Costruiamo soluzioni concrete per smettere di perdere tempo e clienti. Poi ti insegniamo a gestirle ",
-      en: "We build concrete solutions that stop you from losing time and customers. Then we teach you to run them ",
+      it: "Colmiamo il divario tra le tecnologie AI più avanzate e le esigenze operative della tua azienda, con soluzioni AI su misura. Le integriamo nei tuoi flussi di lavoro e ti mettiamo in condizione di gestirle ",
+      en: "We bridge the gap between frontier AI technology and your specific operational requirements, with custom AI solutions. We integrate them into your workflows and empower you to run them ",
     },
-    bodyMark: { it: "da solo", en: "yourself" },
+    bodyMark: { it: "in autonomia", en: "independently" },
     bodyAfter: {
-      it: ", senza contratti che ti legano.",
-      en: ", with no contracts that tie you down.",
+      it: ", mantenendo il pieno controllo.",
+      en: ", keeping you in complete control.",
     },
     ctaPrimary: { it: "Parliamone →", en: "Let's talk →" },
     ctaSecondary: {
@@ -429,7 +447,7 @@ export const landing = {
       },
       {
         kind: { it: "soluzione", en: "solution" },
-        title: { it: "Chiave in mano", en: "Turnkey solution" },
+        title: { it: "Chiavi in mano", en: "Turnkey solution" },
         body: {
           it: "Progettiamo, costruiamo e consegniamo la soluzione. Formazione inclusa: la gestisci tu, senza dipendere da noi.",
           en: "We design, build and deliver the solution. Training included: you run it, without depending on us.",
@@ -622,8 +640,8 @@ export const landing = {
 
   finalCta: {
     title: {
-      it: "Raccontaci cosa ti porta via tempo.",
-      en: "Tell us what's eating your time.",
+      it: "Il primo passo è capire il problema vero.",
+      en: "The first step is understanding the real problem.",
     },
     body: {
       it: "Venti minuti per capire cosa si può automatizzare e da dove partire.",
@@ -711,7 +729,7 @@ export const landing = {
       it: {
         title: "Come lavoriamo insieme | flylabs.ai",
         description:
-          "I tre modi di lavorare con flylabs: consulenza spot, soluzione chiave in mano, formazione AI. Tempi, prezzi e cosa è incluso, detti prima.",
+          "I tre modi di lavorare con flylabs: consulenza spot, soluzione chiavi in mano, formazione AI. Tempi, prezzi e cosa è incluso, detti prima.",
       },
       en: {
         title: "How we work together | flylabs.ai",
@@ -1140,15 +1158,284 @@ export const landing = {
     ] satisfies StackGroup[],
   },
 
+  // Etichette condivise dalle pagine di dettaglio prodotto (Stellar Reviews,
+  // WeGrocery): stesso "Problema"/"Soluzione" in entrambe, un solo posto da
+  // tradurre invece di duplicarlo per prodotto.
+  productLabels: {
+    problem: { it: "Problema", en: "Problem" },
+    solution: { it: "Soluzione", en: "Solution" },
+  },
+
+  products: {
+    meta: {
+      it: {
+        title: "Prodotti | flylabs.ai",
+        description:
+          "I prodotti che abbiamo costruito e offriamo ai nostri clienti: chatbot AI, gestione recensioni, ordini di gruppo. Implementazione su misura o self-service.",
+      },
+      en: {
+        title: "Products | flylabs.ai",
+        description:
+          "The products we've built and offer to our clients: AI chatbot, review management, group ordering. Custom implementation or self-service.",
+      },
+    },
+    kicker: { it: "Prodotti", en: "Products" },
+    title: {
+      it: "Software che abbiamo costruito, pronto per il tuo caso",
+      en: "Software we've built, ready for your case",
+    },
+    intro: {
+      it: "Ogni prodotto nasce per risolvere il problema vero di un cliente vero. Li teniamo vivi, li manuteniamo, e li offriamo a chiunque abbia lo stesso problema.",
+      en: "Every product started by solving a real problem for a real client. We keep them alive, maintain them, and offer them to anyone with the same problem.",
+    },
+    philosophyTitle: {
+      it: "Perché prodotti, non solo progetti su misura",
+      en: "Why products, not just bespoke projects",
+    },
+    philosophyBody: {
+      it: "Un progetto su misura risolve un problema una volta sola. Quando lo stesso problema si ripete su clienti diversi, lo generalizziamo in un prodotto: stessa qualità, meno tempo per arrivarci, prezzo più accessibile.",
+      en: "A bespoke project solves a problem once. When the same problem shows up across different clients, we generalise it into a product: same quality, less time to get there, a more accessible price.",
+    },
+    modes: {
+      kicker: { it: "Come li offriamo", en: "How we offer them" },
+      title: {
+        it: "Due modalità, la stessa qualità",
+        en: "Two ways to run it, the same quality",
+      },
+      custom: {
+        title: { it: "Implementazione su misura", en: "Custom implementation" },
+        body: {
+          it: "Lo implementiamo noi nel tuo workspace, con le tue chiavi e i tuoi account. Tu mantieni il controllo pieno, noi ci occupiamo di tutto il resto.",
+          en: "We implement it inside your own workspace, with your keys and your accounts. You keep full control, we handle everything else.",
+        },
+      } satisfies ProductMode,
+      saas: {
+        title: { it: "Self-service SaaS", en: "Self-service SaaS" },
+        body: {
+          it: "Ti abboni e usi la web app in autonomia, senza bisogno di noi per partire.",
+          en: "You subscribe and run the web app on your own, with no need for us to get started.",
+        },
+      } satisfies ProductMode,
+    },
+    items: [
+      {
+        slug: "gpt-chatbot",
+        icon: "lucide:message-circle",
+        logo: "/logos/gpt-chatbot.png",
+        name: "GPT Chatbot",
+        tagline: {
+          it: "Chatbot AI addestrato sui tuoi contenuti, sul tuo sito in pochi minuti.",
+          en: "AI chatbot trained on your content, live on your site in minutes.",
+        },
+        sector: { it: "Assistenza e vendita online", en: "Support and online sales" },
+        href: "https://gptchatbot.it/",
+        external: true,
+        note: {
+          it: "È lo stesso chatbot che vedi in basso a destra su questo sito.",
+          en: "It's the same chatbot you see in the bottom-right corner of this site.",
+        },
+      },
+      {
+        slug: "stellar-reviews",
+        icon: "lucide:star",
+        logo: "/products/stellar-reviews/logo.svg",
+        name: "Stellar Reviews",
+        tagline: {
+          it: "Audit e risposte alle recensioni, da Google, TripAdvisor e Booking.",
+          en: "Review audits and replies, from Google, TripAdvisor and Booking.",
+        },
+        sector: { it: "Ricettivo e retail", en: "Hospitality and retail" },
+        href: "/stellar-reviews",
+      },
+      {
+        slug: "wegrocery",
+        icon: "lucide:shopping-basket",
+        logo: "/products/wegrocery/logo.png",
+        name: "WeGrocery",
+        tagline: {
+          it: "Piattaforma open source per gli ordini di gruppo dei GAS.",
+          en: "Open-source platform for buying clubs' group orders.",
+        },
+        sector: { it: "No-profit, gruppi d'acquisto", en: "Non-profit, buying clubs" },
+        href: "/wegrocery",
+      },
+    ] satisfies Product[],
+    cardCtaInternal: { it: "Scopri di più →", en: "Learn more →" },
+    cardCtaExternal: { it: "Vai al sito →", en: "Visit the site →" },
+    back: { it: "← Torna alla home", en: "← Back home" },
+  },
+
+  stellarReviews: {
+    meta: {
+      it: {
+        title: "Stellar Reviews | flylabs.ai",
+        description:
+          "Legge e risponde alle recensioni della tua struttura da Google, TripAdvisor e Booking. Audit gratuito, poi il motore che prepara le bozze ogni giorno.",
+      },
+      en: {
+        title: "Stellar Reviews | flylabs.ai",
+        description:
+          "Reads and drafts replies to your business reviews from Google, TripAdvisor and Booking. Free audit, then a daily engine that drafts replies for you.",
+      },
+    },
+    kicker: { it: "Prodotti", en: "Products" },
+    title: { it: "Stellar Reviews", en: "Stellar Reviews" },
+    logo: "/products/stellar-reviews/logo.svg",
+    tagline: {
+      it: "Le recensioni della tua struttura, lette e riassunte ogni giorno.",
+      en: "Your business reviews, read and summarised every day.",
+    },
+    problem: {
+      it: "I gruppi ricettivi gestiscono le recensioni a mano: si perde tempo a leggerle su tre piattaforme diverse, e chi non ha ancora risposto rischia di restarci per mesi.",
+      en: "Hospitality businesses manage reviews by hand: time is lost reading them across three different platforms, and unanswered ones can sit there for months.",
+    },
+    solution: {
+      it: "Stellar Reviews scarica le recensioni da Google, TripAdvisor e Booking ogni giorno, e prepara le bozze di risposta con Claude, nella lingua di chi ha scritto e nel tono del titolare. La pubblicazione resta sempre una scelta umana.",
+      en: "Stellar Reviews pulls in reviews from Google, TripAdvisor and Booking every day, and drafts replies with Claude, in the reviewer's language and the owner's tone. Publishing stays a human choice, always.",
+    },
+    featuresTitle: { it: "Cosa fa", en: "What it does" },
+    features: [
+      {
+        it: "Audit gratuito: quante recensioni hai, quante senza risposta, come ti posizioni rispetto ai concorrenti della zona",
+        en: "Free audit: how many reviews you have, how many are unanswered, and how you compare to nearby competitors",
+      },
+      {
+        it: "Motore giornaliero: scarica le recensioni nuove e prepara le bozze di risposta, pronte da rivedere",
+        en: "Daily engine: pulls in new reviews and prepares reply drafts, ready for you to review",
+      },
+      {
+        it: "Tre fonti in un colpo solo: Google, TripAdvisor e Booking, senza passare da una piattaforma all'altra",
+        en: "Three sources at once: Google, TripAdvisor and Booking, no need to hop between platforms",
+      },
+    ] satisfies Localized[],
+    modesTitle: { it: "Come lo attivi", en: "How to get it" },
+    modeCustom: {
+      title: { it: "Implementazione su misura", en: "Custom implementation" },
+      body: {
+        it: "Attiviamo l'audit e il motore giornaliero per la tua struttura, con le tue credenziali. Si parte da un audit gratuito.",
+        en: "We set up the audit and the daily engine for your business, with your own credentials. It starts with a free audit.",
+      },
+      cta: { it: "Richiedi l'audit gratuito", en: "Request the free audit" },
+    } satisfies ProductMode,
+    modeSaas: {
+      title: { it: "Self-service SaaS", en: "Self-service SaaS" },
+      body: {
+        it: "Una dashboard a cui abbonarsi in autonomia è il passo successivo: oggi Stellar Reviews si attiva come implementazione su misura.",
+        en: "A dashboard you can subscribe to on your own is the next step: today Stellar Reviews is only available as a custom implementation.",
+      },
+      note: { it: "In arrivo", en: "Coming soon" },
+    } satisfies ProductMode,
+    caseLink: {
+      label: {
+        it: "Caso reale: come lo usa una struttura ricettiva →",
+        en: "Real case: how a hospitality business uses it →",
+      },
+      href: "/lavori/risposte-recensioni-ai",
+    },
+    back: { it: "← Tutti i prodotti", en: "← All products" },
+  },
+
+  wegroceryProduct: {
+    meta: {
+      it: {
+        title: "WeGrocery | flylabs.ai",
+        description:
+          "WeGrocery: la piattaforma open source white-label per gestire gli ordini di gruppo dei GAS. Provala in demo o attiva il tuo deploy.",
+      },
+      en: {
+        title: "WeGrocery | flylabs.ai",
+        description:
+          "WeGrocery: the open-source, white-label platform for buying clubs' group orders. Try the demo or activate your own deployment.",
+      },
+    },
+    kicker: { it: "Prodotti", en: "Products" },
+    title: { it: "WeGrocery", en: "WeGrocery" },
+    logo: "/products/wegrocery/logo.png",
+    media: {
+      demoGif: {
+        src: "/products/wegrocery/demo.gif",
+        width: 340,
+        height: 711,
+        alt: {
+          it: "Schermata della demo pubblica di WeGrocery: accesso come socio o come admin",
+          en: "Screenshot of the WeGrocery public demo: member or admin access",
+        },
+      },
+      launchVideo: {
+        src: "/products/wegrocery/launch.mp4",
+        caption: {
+          it: "Video di lancio di WeGrocery",
+          en: "WeGrocery launch video",
+        },
+      },
+    },
+    tagline: {
+      it: "Ordini di gruppo e saldo prepagato, senza fogli di calcolo.",
+      en: "Group orders and a prepaid balance, no spreadsheets.",
+    },
+    problem: {
+      it: "I gruppi d'acquisto solidale coordinano gli ordini condivisi a mano, tra fogli di calcolo e messaggi WhatsApp, con errori e tempo perso a ogni ciclo.",
+      en: "Group buying clubs coordinate shared orders by hand, between spreadsheets and WhatsApp threads, with mistakes and wasted time on every cycle.",
+    },
+    solution: {
+      it: "WeGrocery è un'unica piattaforma open source (MIT) che ogni gruppo attiva con il proprio marchio, la propria lingua e i propri colori, impostati via variabili d'ambiente. Zero fork, zero codice dedicato: un aggiornamento arriva a tutti i deploy insieme.",
+      en: "WeGrocery is a single open-source (MIT) platform that any group activates under its own brand, language and colours, set via environment variables. No forks, no dedicated code: an update reaches every deployment at once.",
+    },
+    mediaTitle: { it: "WeGrocery in azione", en: "WeGrocery in action" },
+    featuresTitle: { it: "Cosa fa", en: "What it does" },
+    features: [
+      {
+        it: "Cicli d'ordine con finestra di apertura e chiusura, catalogo condiviso e notifiche automatiche",
+        en: "Order cycles with an opening and closing window, a shared catalogue and automatic notifications",
+      },
+      {
+        it: "Saldo prepagato per ogni socio, aggiornato in tempo reale mentre ordina",
+        en: "A prepaid balance for every member, updated in real time as they order",
+      },
+      {
+        it: "White-label per un solo env var: marchio, lingua (italiano o inglese) e colori del tuo gruppo",
+        en: "White-label from a single env var: your group's brand, language (Italian or English) and colours",
+      },
+    ] satisfies Localized[],
+    modesTitle: { it: "Come lo attivi", en: "How to get it" },
+    modeCustom: {
+      title: { it: "Implementazione su misura", en: "Custom implementation" },
+      body: {
+        it: "Ti attiviamo il tuo deploy white-label: dominio, marchio e integrazioni con i tuoi fornitori, senza doverlo gestire da solo.",
+        en: "We activate your own white-label deployment: domain, branding and integrations with your suppliers, without you having to run it yourself.",
+      },
+      cta: { it: "Parliamo del tuo progetto", en: "Let's talk about your project" },
+    } satisfies ProductMode,
+    modeSaas: {
+      title: { it: "Self-service", en: "Self-service" },
+      body: {
+        it: "Il codice è pubblico e gratuito: lo installi e lo gestisci da solo, oppure prima esplori la demo pubblica con dati finti.",
+        en: "The code is public and free: install and run it yourself, or start by exploring the public demo with fake data.",
+      },
+      cta: { it: "Prova la demo", en: "Try the demo" },
+      href: "https://wegrocery-demo.vercel.app",
+      external: true,
+    } satisfies ProductMode,
+    caseLink: {
+      label: {
+        it: "Caso reale: un gruppo d'acquisto a Milano →",
+        en: "Real case: a buying club in Milan →",
+      },
+      href: "/lavori/wegrocery-ordini-di-gruppo",
+    },
+    back: { it: "← Tutti i prodotti", en: "← All products" },
+  },
+
   footer: {
     tagline: {
-      it: "AI concreta per chi lavora",
-      en: "Concrete AI for people who work",
+      it: "AI all'avanguardia. Costruita sulle tue esigenze.",
+      en: "Cutting-Edge AI. Built Around Your Needs.",
     },
     nav: [
       { href: "", label: { it: "Home", en: "Home" } },
       { href: "/lavori", label: { it: "Lavori", en: "Work" } },
       { href: "/servizi", label: { it: "Servizi", en: "Services" } },
+      { href: "/prodotti", label: { it: "Prodotti", en: "Products" } },
       { href: "/stack", label: { it: "Stack", en: "Stack" } },
     ],
   },

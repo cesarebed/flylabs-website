@@ -1,0 +1,55 @@
+{
+  "_id": "caseStudy.wegrocery-ordini-di-gruppo",
+  "_type": "caseStudy",
+  "title": {
+    "_type": "localeString",
+    "it": "WeGrocery: la piattaforma open source per gli ordini di gruppo",
+    "en": "WeGrocery: the open-source platform for group orders"
+  },
+  "slug": { "_type": "slug", "current": "wegrocery-ordini-di-gruppo" },
+  "sector": {
+    "_type": "localeString",
+    "it": "No-profit · Gruppi d'acquisto solidale (GAS)",
+    "en": "Non-profit · Group buying clubs (GAS)"
+  },
+  "problem": {
+    "_type": "localeText",
+    "it": "I gruppi d'acquisto solidale coordinano gli ordini condivisi a mano, tra fogli di calcolo e messaggi WhatsApp, con errori e tempo perso a ogni ciclo.",
+    "en": "Group buying clubs coordinate shared orders by hand, between spreadsheets and WhatsApp threads, with mistakes and wasted time on every cycle."
+  },
+  "solution": {
+    "_type": "localeText",
+    "it": "WeGrocery: un'unica piattaforma open source (MIT) che ogni organizzazione attiva con il proprio marchio via variabili d'ambiente, senza fork né codice dedicato. Cicli d'ordine, notifiche automatiche e due lingue native.",
+    "en": "WeGrocery: a single open-source (MIT) platform that every organisation activates under its own brand via environment variables, with no forks or dedicated code. Order cycles, automatic notifications and two native languages."
+  },
+  "metrics": [
+    {
+      "_type": "metric",
+      "_key": "m1",
+      "value": { "_type": "localeString", "it": "0", "en": "0" },
+      "label": {
+        "_type": "localeString",
+        "it": "fork per cliente: stessa codebase per tutti",
+        "en": "forks per client: the same codebase for everyone"
+      }
+    },
+    {
+      "_type": "metric",
+      "_key": "m2",
+      "value": { "_type": "localeString", "it": "2", "en": "2" },
+      "label": {
+        "_type": "localeString",
+        "it": "lingue native, italiano e inglese",
+        "en": "native languages, Italian and English"
+      }
+    }
+  ],
+  "tech": ["Next.js", "Postgres", "Vercel", "Claude Code"],
+  "featured": true,
+  "body": {
+    "_type": "localeText",
+    "it": "Un'associazione romana gestiva il proprio gruppo d'acquisto solidale (GAS) come fanno quasi tutti: fogli di calcolo condivisi, messaggi WhatsApp per ogni ciclo d'ordine, promemoria mandati a mano. Funzionava, ma ogni ciclo costava tempo e ogni errore di trascrizione diventava un ordine sbagliato.\n\nInvece di costruire un'app su misura per un solo cliente, abbiamo generalizzato il problema: WeGrocery è un'unica codebase open source (Next.js, licenza MIT) che qualsiasi gruppo d'acquisto o buying club può attivare con il proprio marchio, la propria lingua e i propri colori, impostati via variabili d'ambiente. Zero fork, zero branch dedicati: un aggiornamento alla piattaforma arriva a tutti i deploy insieme.\n\nOgni ciclo d'ordine ha una finestra di apertura e chiusura, i soci ordinano da un catalogo condiviso, il sistema manda notifiche automatiche all'apertura del ciclo e tiene traccia di chi ha ordinato cosa. L'interfaccia è bilingue nativamente (italiano e inglese, non tradotta a runtime), pensata per essere adottata anche fuori Italia.\n\nIl primo deploy in produzione è quello dell'associazione che ha fatto nascere il progetto: gestisce ordini reali di soci reali dal 2026. La piattaforma resta pubblica su GitHub, aperta a chiunque voglia adottarla o contribuire, con l'implementazione su misura (dominio, marchio, integrazioni) offerta come servizio a chi vuole il proprio deploy senza gestirselo da solo.",
+    "en": "A Rome-based association ran its own group buying club (GAS) the way almost everyone does: shared spreadsheets, WhatsApp messages for every order cycle, reminders sent by hand. It worked, but every cycle cost time, and every transcription mistake became a wrong order.\n\nInstead of building a one-off app for a single client, we generalised the problem: WeGrocery is a single open-source codebase (Next.js, MIT licence) that any buying club or GAS can activate under its own brand, language and colours, set via environment variables. No forks, no dedicated branches: a platform update reaches every deployment at once.\n\nEvery order cycle has an opening and closing window, members order from a shared catalogue, the system sends automatic notifications when a cycle opens and tracks who ordered what. The interface is natively bilingual (Italian and English, not translated at runtime), built to be adopted outside Italy too.\n\nThe first production deployment is the association that started the project: it has been running real orders for real members since 2026. The platform stays public on GitHub, open to anyone who wants to adopt or contribute to it, with a tailored implementation (domain, branding, integrations) offered as a service to whoever wants their own deployment without running it themselves."
+  },
+  "date": "2026-06-12"
+}
