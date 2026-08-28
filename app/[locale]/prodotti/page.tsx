@@ -61,7 +61,7 @@ export default async function ProductsPage({
       <section className="dot-paper border-b border-line py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <div className="kicker mb-4">{kicker[lang]}</div>
-          <h1 className="max-w-[20ch] font-display text-5xl font-semibold leading-[1.05]">
+          <h1 className="max-w-[34ch] font-display text-5xl font-semibold leading-[1.05]">
             {title[lang]}
           </h1>
           <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">

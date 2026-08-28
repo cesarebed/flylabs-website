@@ -8,10 +8,10 @@ export function Hero({ lang }: { lang: Locale }) {
   const h = landing.hero;
   return (
     <header id="top" className="dark-paper text-white">
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-16 px-6 py-[120px] lg:grid-cols-[1.05fr_.95fr]">
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-16 px-6 py-[120px] lg:grid-cols-[1.15fr_.85fr]">
         {/* copy */}
         <div className="fade">
-          <h1 className="mb-7 font-display text-5xl font-semibold leading-[1.04] md:text-[3.75rem]">
+          <h1 className="mb-7 font-display text-4xl font-semibold leading-[1.08] md:text-5xl">
             {h.titleBefore[lang]} <span className="mark text-ink">{h.titleMark[lang]}</span>{" "}
             {h.titleAfter[lang]}
           </h1>
