@@ -1,0 +1,55 @@
+{
+  "_id": "caseStudy.formazione-ai-in-aula",
+  "_type": "caseStudy",
+  "title": {
+    "_type": "localeString",
+    "it": "Formazione AI in aula, su misura per ogni ruolo",
+    "en": "In-person AI training, tailored to every role"
+  },
+  "slug": { "_type": "slug", "current": "formazione-ai-in-aula" },
+  "sector": {
+    "_type": "localeString",
+    "it": "Cooperativa sociale · formazione aziendale",
+    "en": "Social cooperative · corporate training"
+  },
+  "problem": {
+    "_type": "localeText",
+    "it": "Il team usava l'AI a intuito, ognuno a modo suo, senza un metodo comune né il tempo di impararlo davvero.",
+    "en": "The team was using AI by instinct, everyone their own way, with no shared method and no time to learn it properly."
+  },
+  "solution": {
+    "_type": "localeText",
+    "it": "Formazione in aula, non slide: una sessione comune sui fondamentali, poi moduli su misura per ogni ruolo, costruiti sul lavoro reale del team.",
+    "en": "Hands-on classroom training, not slides: a shared session on the fundamentals, then modules tailored to each role, built on the team's real work."
+  },
+  "metrics": [
+    {
+      "_type": "metric",
+      "_key": "m1",
+      "value": { "_type": "localeString", "it": "28+", "en": "28+" },
+      "label": {
+        "_type": "localeString",
+        "it": "persone formate",
+        "en": "people trained"
+      }
+    },
+    {
+      "_type": "metric",
+      "_key": "m2",
+      "value": { "_type": "localeString", "it": "10h", "en": "10h" },
+      "label": {
+        "_type": "localeString",
+        "it": "di formazione in aula",
+        "en": "of classroom training"
+      }
+    }
+  ],
+  "tech": ["Claude", "GPT", "Claude Code", "Codex"],
+  "featured": true,
+  "body": {
+    "_type": "localeText",
+    "it": "Il team usava già l'AI, ma ognuno a modo suo: chi con qualche prompt improvvisato, chi non l'aveva mai provata sul proprio lavoro. Serviva un metodo comune, non un altro corso teorico su \"cos'è l'intelligenza artificiale\".\n\nAbbiamo costruito la formazione in due strati. Prima una sessione comune per tutti: cos'è davvero l'AI oggi, i suoi limiti, l'uso responsabile (privacy, dati, normative), con esempi concreti presi dal lavoro quotidiano, non da slide generiche. Poi moduli su misura per ogni ruolo: chi scrive documenti, email e comunicazione lavora su produttività e sintesi; chi sviluppa software lavora su coding agent, contesto, revisione del codice generato e automazioni.\n\nOgni sessione è pratica: si lavora su un problema vero portato da chi partecipa, non su un caso d'esempio. A fine corso restano al team i materiali, la registrazione e i prompt/flussi già pronti da riusare il giorno dopo, così l'autonomia non dipende da noi.",
+    "en": "The team was already using AI, but everyone in their own way: some with a few improvised prompts, others who had never tried it on their own work. What was missing was a shared method, not another theory lecture on \"what AI is\".\n\nWe built the training in two layers. First a shared session for everyone: what AI actually does today, its limits, responsible use (privacy, data, regulation), with concrete examples drawn from everyday work, not generic slides. Then modules tailored to each role: people writing documents, emails and communications work on productivity and summarising; developers work on AI coding agents, context, reviewing generated code and automations.\n\nEvery session is hands-on: built around a real problem someone in the room actually has, not a canned example. By the end the team keeps the materials, the recording, and prompts and flows already ready to reuse the next day, so independence doesn't depend on us."
+  },
+  "date": "2026-04-14"
+}

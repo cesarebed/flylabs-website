@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { privacy } from "@/lib/privacy-content";
 import { buildMetadata } from "@/lib/seo";
 import { Footer } from "@/components/landing/footer";
-import { LangToggle } from "@/components/landing/lang-toggle";
+import { Nav } from "@/components/landing/nav";
 
 export const revalidate = 3600;
 
@@ -33,29 +32,10 @@ export default async function PrivacyPage({
 }) {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
-  const back = { it: "← Torna alla home", en: "← Back home" };
 
   return (
     <main className="site-zoom flex-1">
-      <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
-          <Link
-            href={`/${lang}`}
-            className="font-display text-2xl font-bold tracking-tight"
-          >
-            flylabs<span className="logo-ai">.ai</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <LangToggle lang={lang} />
-            <Link
-              href={`/${lang}`}
-              className="text-sm font-medium text-ink/70 hover:text-ink"
-            >
-              {back[lang]}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Nav lang={lang} />
 
       <article className="mx-auto max-w-3xl px-6 py-[80px]">
         <h1 className="font-display text-4xl font-semibold leading-tight md:text-5xl">
