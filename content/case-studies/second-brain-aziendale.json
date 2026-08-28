@@ -1,0 +1,55 @@
+{
+  "_id": "caseStudy.second-brain-aziendale",
+  "_type": "caseStudy",
+  "title": {
+    "_type": "localeString",
+    "it": "Il tuo second brain: struttura e metodo per non ripartire mai da zero",
+    "en": "Your second brain: structure and method so you never start from zero"
+  },
+  "slug": { "_type": "slug", "current": "second-brain-aziendale" },
+  "sector": {
+    "_type": "localeString",
+    "it": "Consulenza e formazione AI",
+    "en": "AI consulting & training"
+  },
+  "problem": {
+    "_type": "localeText",
+    "it": "Informazioni, decisioni e contesto sparsi tra chat, email e documenti: ogni nuova conversazione con l'AI ripartiva da zero.",
+    "en": "Information, decisions and context scattered across chats, emails and documents: every new AI conversation started from scratch."
+  },
+  "solution": {
+    "_type": "localeText",
+    "it": "Un second brain strutturato (metodo PARA) che qualsiasi assistente AI può leggere e aggiornare, con template pronti e regole chiare su cosa va scritto e dove.",
+    "en": "A structured second brain (the PARA method) that any AI assistant can read and update, with ready-made templates and clear rules on what goes where."
+  },
+  "metrics": [
+    {
+      "_type": "metric",
+      "_key": "m1",
+      "value": { "_type": "localeString", "it": "6", "en": "6" },
+      "label": {
+        "_type": "localeString",
+        "it": "template pronti (aree, progetti, risorse, agenti)",
+        "en": "ready templates (areas, projects, resources, agents)"
+      }
+    },
+    {
+      "_type": "metric",
+      "_key": "m2",
+      "value": { "_type": "localeString", "it": "3", "en": "3" },
+      "label": {
+        "_type": "localeString",
+        "it": "coding agent supportati (Claude Code, Codex, Gemini)",
+        "en": "coding agents supported (Claude Code, Codex, Gemini)"
+      }
+    }
+  ],
+  "tech": ["Claude Code", "Codex", "Obsidian", "GitHub"],
+  "featured": true,
+  "body": {
+    "_type": "localeText",
+    "it": "Il problema non è mai stato \"quale AI usare\": è che ogni AI, ogni volta, ripartiva senza sapere niente di decisioni prese, clienti, progetti in corso. Contesto sparso tra note, chat e documenti, mai nello stesso posto due volte.\n\nAbbiamo costruito un second brain: una struttura di cartelle e note (metodo PARA: Progetti, Aree, Risorse, Archivio) con regole esplicite su cosa scrivere e dove, pensata fin dall'inizio per essere letta e aggiornata da un assistente AI, non solo da una persona. Un file di istruzioni guida qualsiasi agente (Claude Code, Codex, Gemini) su come muoversi nella struttura, e uno script di verifica controlla che un nuovo assistente, alla prima apertura, riesca davvero a orientarsi.\n\nLa stessa struttura funziona per una persona sola (il proprio second brain personale) o per un'intera azienda (un company-brain condiviso): la differenza è chi scrive e chi legge, non il metodo. La formazione è parte integrante del lavoro, non un extra: non basta consegnare la struttura, bisogna insegnare al team come tenerla viva, cosa va scritto quando si prende una decisione, come si aggiorna dopo ogni progetto.\n\nIl template di base è pubblico e open source, prova sul campo del metodo prima ancora di parlarne: la versione su misura per un team aggiunge i flussi, le automazioni e le integrazioni specifiche di chi lo usa ogni giorno.",
+    "en": "The problem was never \"which AI to use\": it's that every AI, every time, started knowing nothing about decisions already made, clients, ongoing projects. Context scattered across notes, chats and documents, never in the same place twice.\n\nWe built a second brain: a folder and note structure (the PARA method: Projects, Areas, Resources, Archive) with explicit rules on what to write and where, designed from day one to be read and updated by an AI assistant, not just a person. An instructions file guides any agent (Claude Code, Codex, Gemini) on how to move through the structure, and a verification script checks that a brand-new assistant can actually find its way around on first open.\n\nThe same structure works for a single person (their own personal second brain) or for a whole company (a shared company-brain): the difference is who writes and who reads, not the method. Training is part of the work, not an extra: handing over the structure isn't enough, the team needs to learn how to keep it alive, what to write when a decision gets made, how to update it after every project.\n\nThe base template is public and open source, proof of the method on the ground before even talking about it: the tailored version for a team adds the flows, automations and integrations specific to whoever uses it every day."
+  },
+  "date": "2026-06-04"
+}
