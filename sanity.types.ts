@@ -111,6 +111,21 @@ export type Slug = {
   source?: string;
 };
 
+export type ConsentEvent = {
+  _id: string;
+  _type: "consentEvent";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  analytics?: boolean;
+  assistant?: boolean;
+  version?: number;
+  at?: string;
+  locale?: string;
+  userAgent?: string;
+  ipHash?: string;
+};
+
 export type ContactSubmission = {
   _id: string;
   _type: "contactSubmission";
@@ -274,6 +289,7 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | LocaleText
   | Slug
+  | ConsentEvent
   | ContactSubmission
   | Page
   | SiteSettings

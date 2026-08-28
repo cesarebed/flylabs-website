@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/wegrocery" },
     { path: "/stack" },
     { path: "/privacy" },
+    { path: "/cookie-policy" },
     ...studies
       .filter((s) => s.slug)
       .map((s) => ({

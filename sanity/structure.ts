@@ -19,6 +19,13 @@ export const structure: StructureResolver = (S) =>
             .title("Richieste di contatto")
             .defaultOrdering([{ field: "submittedAt", direction: "desc" }])
         ),
+      S.listItem()
+        .title("Consensi cookie")
+        .child(
+          S.documentTypeList("consentEvent")
+            .title("Consensi cookie")
+            .defaultOrdering([{ field: "at", direction: "desc" }])
+        ),
       S.divider(),
       S.listItem()
         .title("Casi di successo")

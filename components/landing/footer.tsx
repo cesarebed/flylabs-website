@@ -1,6 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { getSiteSettings } from "@/sanity/site-settings";
+import { ManageCookiesLink } from "@/components/consent/manage-cookies-link";
 import { LogoMark } from "./logo-mark";
 
 export async function Footer({ lang }: { lang: Locale }) {
@@ -46,6 +47,13 @@ export async function Footer({ lang }: { lang: Locale }) {
               <a href={`/${lang}/privacy`} className="hover:text-mark">
                 Privacy
               </a>
+              <a href={`/${lang}/cookie-policy`} className="hover:text-mark">
+                Cookie policy
+              </a>
+              <ManageCookiesLink
+                label={lang === "en" ? "Manage cookies" : "Gestisci cookie"}
+                className="cursor-pointer hover:text-mark"
+              />
             </nav>
 
             <div className="flex gap-6 text-sm text-white/70">
