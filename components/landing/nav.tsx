@@ -71,7 +71,7 @@ export function Nav({ lang }: { lang: Locale }) {
           href={`/${lang}`}
           className="flex items-center gap-2 font-display text-2xl font-bold tracking-tight"
         >
-          <LogoMark className="h-6 w-6 text-ink" />
+          <LogoMark className="h-6 w-6" />
           <span>
             flylabs<span className="logo-ai">.ai</span>
           </span>
