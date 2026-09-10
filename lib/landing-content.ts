@@ -277,8 +277,8 @@ export const landing = {
         icon: "lucide:app-window",
         title: { it: "Web app su misura", en: "Custom web apps" },
         body: {
-          it: "Il gestionale o il portale che ti manca, sullo stack moderno (Next.js, Postgres) e collegato ai tuoi dati.",
-          en: "The internal tool or portal you're missing, on a modern stack (Next.js, Postgres) and wired to your data.",
+          it: "Il gestionale o il portale che ti manca, su uno stack moderno (Next.js, Postgres) e collegato ai tuoi dati.",
+          en: "The internal tool or portal you don't have yet, on a modern stack (Next.js, Postgres) and wired to your data.",
         },
         claim: {
           it: "→ lo strumento giusto, non un compromesso",
@@ -289,13 +289,6 @@ export const landing = {
             label: { it: "WeGrocery", en: "WeGrocery" },
             href: "/wegrocery",
             logo: "/products/wegrocery/logo.png",
-          },
-          {
-            label: {
-              it: "Caso: ordini di gruppo GAS",
-              en: "Case: buying-club group orders",
-            },
-            href: "/lavori/wegrocery-ordini-di-gruppo",
           },
         ],
       },
@@ -332,7 +325,7 @@ export const landing = {
         },
         claim: {
           it: "→ i dati che ti servono, aggiornati da soli",
-          en: "→ the data you need, updating itself",
+          en: "→ the data you need, kept current on its own",
         },
       },
       {
@@ -508,7 +501,7 @@ export const landing = {
       },
       {
         n: "03",
-        title: { it: "Ti rendiamo autonomo", en: "We make you self-sufficient" },
+        title: { it: "Ti rendiamo autonomo", en: "We make you autonomous" },
         body: {
           it: "Formiamo il tuo team, sia su come usare l'AI nel quotidiano sia su come usarla dentro i flussi evoluti che costruiamo insieme.",
           en: "We train your team, both on using AI day to day and on using it inside the advanced workflows we build together.",
@@ -682,8 +675,8 @@ export const landing = {
   why: {
     kicker: { it: "Perché flylabs", en: "Why flylabs" },
     statementBefore: {
-      it: "Costruiamo la soluzione su misura sul tuo processo e formiamo il team per gestirla da solo. Prezzo deciso prima, nessun account manager, nessun contratto che ti lega. ",
-      en: "We build the solution around your process and train your team to run it on their own. Price agreed upfront, no account managers, no strings attached. ",
+      it: "Costruiamo la soluzione su misura e formiamo il team per gestirla in autonomia. Prezzo deciso prima, nessun contratto che ti lega. ",
+      en: "We build the solution around your process and train your team to run it on their own. Price agreed upfront, no strings attached. ",
     },
     statementMark: {
       it: "Parli con chi costruisce.",
@@ -692,7 +685,7 @@ export const landing = {
     chips: [
       { it: "prezzo trasparente", en: "transparent pricing" },
       { it: "no lock-in", en: "no lock-in" },
-      { it: "parli con chi costruisce", en: "talk to the builders" },
+      { it: "team formato", en: "trained team" },
       { it: "live in 2-4 settimane", en: "live in 2-4 weeks" },
     ] as Localized[],
   },

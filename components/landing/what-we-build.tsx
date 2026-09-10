@@ -31,10 +31,10 @@ export function WhatWeBuild({ lang }: { lang: Locale }) {
               <p className="mb-4 max-w-[46ch] text-[15px] leading-relaxed text-muted">
                 {card.body[lang]}
               </p>
-              <p className="font-mono text-[12px] text-accent">{card.claim[lang]}</p>
+              <p className="mb-5 font-mono text-[12px] text-accent">{card.claim[lang]}</p>
 
               {card.links && card.links.length > 0 && (
-                <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-line pt-4">
+                <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-line pt-4">
                   {card.links.map((link: BuildCardLink) => {
                     const inner = (
                       <>
