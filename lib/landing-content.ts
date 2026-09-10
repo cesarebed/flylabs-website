@@ -106,9 +106,9 @@ export const landing = {
   } satisfies NavContent,
 
   hero: {
-    titleBefore: { it: "Mettiamo l'AI", en: "Make AI" },
-    titleMark: { it: "al lavoro", en: "work" },
-    titleAfter: { it: "nella tua azienda.", en: "for your business." },
+    titleBefore: { it: "Il partner per", en: "Your partner for" },
+    titleMark: { it: "integrare l'AI", en: "building AI" },
+    titleAfter: { it: "nei tuoi processi.", en: "into your processes." },
     body: {
       it: "Colmiamo il divario tra le tecnologie AI più avanzate e le esigenze operative della tua azienda, con soluzioni AI su misura. Le integriamo nei tuoi flussi di lavoro e ti mettiamo in condizione di gestirle ",
       en: "We bridge the gap between frontier AI technology and your specific operational requirements, with custom AI solutions. We integrate them into your workflows and empower you to run them ",
@@ -364,24 +364,32 @@ export const landing = {
         n: "01",
         title: { it: "Ascoltiamo", en: "We listen" },
         body: {
-          it: "Troviamo dove l'AI ti fa risparmiare di più. Senza gergo.",
-          en: "We find where AI saves you the most. No jargon.",
+          it: "Guardiamo come lavori davvero, quali sono i tuoi processi, dove si inceppano, cosa ti costa tempo o clienti.",
+          en: "We look at how you actually work: what your processes are, where they jam, what costs you time or customers.",
         },
       },
       {
         n: "02",
         title: { it: "Costruiamo", en: "We build" },
         body: {
-          it: "Soluzione a prezzo fisso e scope chiaro. Sai cosa ricevi e quanto costa.",
-          en: "A fixed-price solution with a clear scope. You know what you get and what it costs.",
+          it: "La soluzione è cucita sul tuo processo, non un pacchetto preconfezionato.",
+          en: "The solution is tailored to your process, not an off-the-shelf package.",
         },
       },
       {
         n: "03",
+        title: { it: "Ti rendiamo autonomo", en: "We make you self-sufficient" },
+        body: {
+          it: "Formiamo il tuo team, sia su come usare l'AI nel quotidiano sia su come usarla dentro i flussi evoluti che costruiamo insieme.",
+          en: "We train your team, both on using AI day to day and on using it inside the advanced workflows we build together.",
+        },
+      },
+      {
+        n: "04",
         title: { it: "Misuriamo", en: "We measure" },
         body: {
-          it: "Verifichiamo sui tuoi numeri veri e ti lasciamo gli strumenti in mano.",
-          en: "We check it against your real numbers and leave the tools in your hands.",
+          it: "Monitoriamo le performance nel tempo, sui tuoi numeri veri. Se qualcosa non rende, lo sistemiamo.",
+          en: "We track performance over time, against your real numbers. If something underperforms, we fix it.",
         },
       },
     ] satisfies Step[],
@@ -392,12 +400,12 @@ export const landing = {
       no: "04",
       kicker: { it: "Come possiamo aiutarti", en: "How we can help" },
       title: {
-        it: "Tre modi di lavorare insieme.",
-        en: "Three ways to work together.",
+        it: "Tre modi di lavorare insieme, una direzione sola",
+        en: "Three ways to work together, one direction",
       },
       intro: {
-        it: "Scegli il punto di ingresso. Prezzo chiaro prima di iniziare, nessun retainer obbligato.",
-        en: "Pick your entry point. Clear price before we start, no forced retainer.",
+        it: "Il tuo team adotta l'AI e migliora i processi di oggi senza perderne il controllo. Scegli da dove partire, senza contratti che ti legano.",
+        en: "Your team adopts AI and improves today's processes without losing control of them. Pick where to start, no strings attached.",
       },
     },
     cta: { it: "Parliamone →", en: "Let's talk →" },

@@ -10,17 +10,24 @@ export function Method({ lang }: { lang: Locale }) {
           {section.title[lang]}
         </h2>
 
-        {/* Desktop: 3 nodi collegati da una linea di flusso, non 3 card isolate
+        {/* Desktop: N nodi collegati da una linea di flusso, non N card isolate
             (riusa il linguaggio visivo di globals.css .wire, disegnato per
             l'hero e mai usato). Griglia a colonne UGUALI (non flex-1: con
             colonne di larghezza diversa i connettori, messi in un elemento a
             parte tra le colonne, finivano scollegati dai cerchi veri e
             sembravano "tagliati"). Con colonne di uguale ampiezza il centro
             di ogni cerchio è sempre a `(colonna * larghezza) + 1.5rem` (metà
-            di h-12/w-12): i due connettori sono quindi calcolati per
-            estendersi esattamente dal bordo destro di un cerchio al bordo
-            sinistro del successivo, niente di più. */}
-        <div className="relative hidden md:grid md:grid-cols-3">
+            di h-12/w-12): ogni connettore è quindi calcolato per estendersi
+            esattamente dal bordo destro di un cerchio al bordo sinistro del
+            successivo, niente di più. Il numero di colonne segue
+            `steps.length` (griglia via inline style perché Tailwind non
+            genera classi dinamiche). */}
+        <div
+          className="relative hidden md:grid"
+          style={{
+            gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))`,
+          }}
+        >
           {steps.map((step) => (
             <div key={step.n} className="min-w-0 pr-6">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] font-display text-lg font-semibold text-peri">
@@ -40,8 +47,8 @@ export function Method({ lang }: { lang: Locale }) {
               aria-hidden
               className="absolute top-6 h-1"
               style={{
-                left: `calc(${i} * 100% / 3 + 3rem)`,
-                width: `calc(100% / 3 - 3rem)`,
+                left: `calc(${i} * 100% / ${steps.length} + 3rem)`,
+                width: `calc(100% / ${steps.length} - 3rem)`,
               }}
             >
               <line x1="0" y1="2" x2="100" y2="2" className="wire" />
