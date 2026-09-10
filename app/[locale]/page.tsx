@@ -57,12 +57,12 @@ export default async function HomePage({
       <Nav lang={lang} />
       <Hero lang={lang} />
       <WhatWeBuild lang={lang} />
-      <Work lang={lang} />
-      <Method lang={lang} />
+      <ToolsStrip lang={lang} />
       <Offer lang={lang} />
+      <Method lang={lang} />
+      <Work lang={lang} />
       <Why lang={lang} />
       <Faq lang={lang} />
-      <ToolsStrip lang={lang} />
       <FinalCta lang={lang} />
       <Footer lang={lang} />
     </main>
