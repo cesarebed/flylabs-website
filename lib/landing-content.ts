@@ -40,11 +40,23 @@ type HeroContent = {
 
 type Section = { no: string; kicker: Localized; title: Localized };
 
+// Link "visto in produzione" dentro una card di "Cosa costruiamo": un
+// prodotto flylabs (con logo) o un caso reale. I casi puntano allo slug
+// Sanity del `caseStudy` (`/lavori/<slug>`), hardcoded qui: se lo slug
+// cambia nello Studio va aggiornato a mano.
+export type BuildCardLink = {
+  label: Localized;
+  href: string; // path interno ("/lavori/...", "/wegrocery") o URL esterno
+  logo?: string; // path in /public — presente solo per i prodotti flylabs
+  external?: boolean;
+};
+
 export type BuildCard = {
   icon: string;
   title: Localized;
   body: Localized;
   claim: Localized;
+  links?: BuildCardLink[];
 };
 
 export type WorkCard = {
@@ -106,9 +118,9 @@ export const landing = {
   } satisfies NavContent,
 
   hero: {
-    titleBefore: { it: "Mettiamo l'AI", en: "Make AI" },
-    titleMark: { it: "al lavoro", en: "work" },
-    titleAfter: { it: "nella tua azienda.", en: "for your business." },
+    titleBefore: { it: "Il partner per", en: "Your partner for" },
+    titleMark: { it: "integrare l'AI", en: "building AI" },
+    titleAfter: { it: "nei tuoi processi.", en: "into your processes." },
     body: {
       it: "Colmiamo il divario tra le tecnologie AI più avanzate e le esigenze operative della tua azienda, con soluzioni AI su misura. Le integriamo nei tuoi flussi di lavoro e ti mettiamo in condizione di gestirle ",
       en: "We bridge the gap between frontier AI technology and your specific operational requirements, with custom AI solutions. We integrate them into your workflows and empower you to run them ",
@@ -164,7 +176,10 @@ export const landing = {
     cards: [
       {
         icon: "lucide:messages-square",
-        title: { it: "Chatbot e assistenti", en: "Chatbots and assistants" },
+        title: {
+          it: "Chatbot e Assistenti AI",
+          en: "AI chatbots and assistants",
+        },
         body: {
           it: "Rispondono su sito, WhatsApp, Instagram e Facebook. Anche di notte.",
           en: "They reply on your site, WhatsApp, Instagram and Facebook. Even at night.",
@@ -173,6 +188,21 @@ export const landing = {
           it: "→ nessun cliente senza risposta",
           en: "→ no customer left without an answer",
         },
+        links: [
+          {
+            label: { it: "GPT Chatbot", en: "GPT Chatbot" },
+            href: "https://gptchatbot.it/",
+            logo: "/logos/gpt-chatbot.png",
+            external: true,
+          },
+          {
+            label: {
+              it: "Caso: noleggio bici, USA",
+              en: "Case: bike rental, USA",
+            },
+            href: "/lavori/assistenti-noleggio-multisito",
+          },
+        ],
       },
       {
         icon: "lucide:zap",
@@ -188,6 +218,15 @@ export const landing = {
           it: "→ chi risponde prima vince",
           en: "→ the first to answer wins",
         },
+        links: [
+          {
+            label: {
+              it: "Caso: studio tatuaggi, Spagna",
+              en: "Case: tattoo studio, Spain",
+            },
+            href: "/lavori/form-whatsapp-promo-conversione",
+          },
+        ],
       },
       {
         icon: "lucide:file-text",
@@ -203,6 +242,15 @@ export const landing = {
           it: "→ le ore tornano al lavoro vero",
           en: "→ the hours go back to real work",
         },
+        links: [
+          {
+            label: {
+              it: "Caso: medicina estetica",
+              en: "Case: aesthetic medicine",
+            },
+            href: "/lavori/report-medico-automatico",
+          },
+        ],
       },
       {
         icon: "lucide:workflow",
@@ -215,6 +263,34 @@ export const landing = {
           it: "→ meno lavoro a mano, meno errori",
           en: "→ less work by hand, fewer mistakes",
         },
+        links: [
+          {
+            label: {
+              it: "Caso: installatore fotovoltaico",
+              en: "Case: solar installer",
+            },
+            href: "/lavori/pratiche-connessione-automatiche",
+          },
+        ],
+      },
+      {
+        icon: "lucide:app-window",
+        title: { it: "Web app su misura", en: "Custom web apps" },
+        body: {
+          it: "Il gestionale o il portale che ti manca, su uno stack moderno (Next.js, Postgres) e collegato ai tuoi dati.",
+          en: "The internal tool or portal you don't have yet, on a modern stack (Next.js, Postgres) and wired to your data.",
+        },
+        claim: {
+          it: "→ lo strumento giusto, non un compromesso",
+          en: "→ the right tool, not a workaround",
+        },
+        links: [
+          {
+            label: { it: "WeGrocery", en: "WeGrocery" },
+            href: "/wegrocery",
+            logo: "/products/wegrocery/logo.png",
+          },
+        ],
       },
       {
         icon: "lucide:file-search",
@@ -226,6 +302,30 @@ export const landing = {
         claim: {
           it: "→ basta cercare a mano",
           en: "→ no more digging by hand",
+        },
+        links: [
+          {
+            label: {
+              it: "Caso: second brain aziendale",
+              en: "Case: company second brain",
+            },
+            href: "/lavori/second-brain-aziendale",
+          },
+        ],
+      },
+      {
+        icon: "lucide:globe",
+        title: {
+          it: "Scraping e raccolta dati",
+          en: "Scraping and data collection",
+        },
+        body: {
+          it: "Prezzi, cataloghi, recensioni e mosse della concorrenza: raccolti dal web in automatico e messi in tabella.",
+          en: "Prices, catalogues, reviews and competitor moves: collected from the web automatically and put into a table.",
+        },
+        claim: {
+          it: "→ i dati che ti servono, aggiornati da soli",
+          en: "→ the data you need, kept current on its own",
         },
       },
       {
@@ -251,6 +351,20 @@ export const landing = {
           it: "→ nessuna recensione senza risposta",
           en: "→ no review left unanswered",
         },
+        links: [
+          {
+            label: { it: "Stellar Reviews", en: "Stellar Reviews" },
+            href: "/stellar-reviews",
+            logo: "/products/stellar-reviews/logo.svg",
+          },
+          {
+            label: {
+              it: "Caso: struttura ricettiva, Sardegna",
+              en: "Case: hospitality, Sardinia",
+            },
+            href: "/lavori/risposte-recensioni-ai",
+          },
+        ],
       },
       {
         icon: "lucide:compass",
@@ -263,6 +377,15 @@ export const landing = {
           it: "→ resti autonomo, non dipendente",
           en: "→ you stay independent, not dependent",
         },
+        links: [
+          {
+            label: {
+              it: "Caso: formazione AI in aula",
+              en: "Case: AI training in the classroom",
+            },
+            href: "/lavori/formazione-ai-in-aula",
+          },
+        ],
       },
     ] satisfies BuildCard[],
     extra: {
@@ -364,24 +487,32 @@ export const landing = {
         n: "01",
         title: { it: "Ascoltiamo", en: "We listen" },
         body: {
-          it: "Troviamo dove l'AI ti fa risparmiare di più. Senza gergo.",
-          en: "We find where AI saves you the most. No jargon.",
+          it: "Guardiamo come lavori davvero, quali sono i tuoi processi, dove si inceppano, cosa ti costa tempo o clienti.",
+          en: "We look at how you actually work: what your processes are, where they jam, what costs you time or customers.",
         },
       },
       {
         n: "02",
         title: { it: "Costruiamo", en: "We build" },
         body: {
-          it: "Soluzione a prezzo fisso e scope chiaro. Sai cosa ricevi e quanto costa.",
-          en: "A fixed-price solution with a clear scope. You know what you get and what it costs.",
+          it: "La soluzione è cucita sul tuo processo, non un pacchetto preconfezionato.",
+          en: "The solution is tailored to your process, not an off-the-shelf package.",
         },
       },
       {
         n: "03",
+        title: { it: "Ti rendiamo autonomo", en: "We make you autonomous" },
+        body: {
+          it: "Formiamo il tuo team, sia su come usare l'AI nel quotidiano sia su come usarla dentro i flussi evoluti che costruiamo insieme.",
+          en: "We train your team, both on using AI day to day and on using it inside the advanced workflows we build together.",
+        },
+      },
+      {
+        n: "04",
         title: { it: "Misuriamo", en: "We measure" },
         body: {
-          it: "Verifichiamo sui tuoi numeri veri e ti lasciamo gli strumenti in mano.",
-          en: "We check it against your real numbers and leave the tools in your hands.",
+          it: "Monitoriamo le performance nel tempo, sui tuoi numeri veri. Se qualcosa non rende, lo sistemiamo.",
+          en: "We track performance over time, against your real numbers. If something underperforms, we fix it.",
         },
       },
     ] satisfies Step[],
@@ -392,12 +523,12 @@ export const landing = {
       no: "04",
       kicker: { it: "Come possiamo aiutarti", en: "How we can help" },
       title: {
-        it: "Tre modi di lavorare insieme.",
-        en: "Three ways to work together.",
+        it: "Tre modi di lavorare insieme, una direzione sola",
+        en: "Three ways to work together, one direction",
       },
       intro: {
-        it: "Scegli il punto di ingresso. Prezzo chiaro prima di iniziare, nessun retainer obbligato.",
-        en: "Pick your entry point. Clear price before we start, no forced retainer.",
+        it: "Il tuo team adotta l'AI e migliora i processi di oggi senza perderne il controllo. Scegli da dove partire, senza contratti che ti legano.",
+        en: "Your team adopts AI and improves today's processes without losing control of them. Pick where to start, no strings attached.",
       },
     },
     cta: { it: "Parliamone →", en: "Let's talk →" },
@@ -544,8 +675,8 @@ export const landing = {
   why: {
     kicker: { it: "Perché flylabs", en: "Why flylabs" },
     statementBefore: {
-      it: "Soluzioni su misura, a prezzo fisso, e il team formato per gestirle da solo. Niente account manager, niente retainer obbligati. ",
-      en: "Custom solutions, fixed price, and your team trained to run them. No account managers, no forced retainers. ",
+      it: "Costruiamo la soluzione su misura e formiamo il team per gestirla in autonomia. Prezzo deciso prima, nessun contratto che ti lega. ",
+      en: "We build the solution around your process and train your team to run it on their own. Price agreed upfront, no strings attached. ",
     },
     statementMark: {
       it: "Parli con chi costruisce.",
@@ -554,7 +685,7 @@ export const landing = {
     chips: [
       { it: "prezzo trasparente", en: "transparent pricing" },
       { it: "no lock-in", en: "no lock-in" },
-      { it: "parli con chi costruisce", en: "talk to the builders" },
+      { it: "team formato", en: "trained team" },
       { it: "live in 2-4 settimane", en: "live in 2-4 weeks" },
     ] as Localized[],
   },
