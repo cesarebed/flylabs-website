@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
-import { getSiteUrl } from "@/lib/seo";
+import { getSiteUrl, xDefaultPath } from "@/lib/seo";
 import { sanityFetch } from "@/sanity/fetch";
 import { CASE_STUDY_SITEMAP_QUERY } from "@/sanity/queries";
 import type { CASE_STUDY_SITEMAP_QUERY_RESULT } from "@/sanity.types";
@@ -36,11 +36,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // hreflang bidirezionale: ogni URL localizzato è una voce, e ogni voce
-  // dichiara tutte le versioni linguistiche della stessa pagina.
+  // dichiara tutte le versioni linguistiche della stessa pagina, più
+  // x-default (stessa regola dei <link> nell'HTML, vedi buildMetadata).
   return entries.flatMap(({ path, lastModified }) => {
-    const languages = Object.fromEntries(
-      locales.map((l) => [l, `${base}/${l}${path}`])
-    );
+    const languages = {
+      ...Object.fromEntries(locales.map((l) => [l, `${base}/${l}${path}`])),
+      "x-default": `${base}${xDefaultPath(path)}`,
+    };
     return locales.map((locale) => ({
       url: `${base}/${locale}${path}`,
       ...(lastModified ? { lastModified } : {}),
