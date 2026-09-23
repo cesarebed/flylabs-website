@@ -6,9 +6,6 @@ import type { Locale } from "@/lib/i18n";
  * NOTA: temporaneo. Quando il design è bloccato, questo migra su Sanity
  * (localeString/localeText) — vedi skill cms-change. Tenuto qui come fonte
  * unica e tipizzata per iterare veloce sul visivo.
- *
- * I numeri in `work` sono PLACEHOLDER: vanno sostituiti coi dati reali dei
- * clienti (cfr. .context/positioning.md → "Da fare").
  */
 
 export type Localized = Record<Locale, string>;
@@ -38,7 +35,7 @@ type HeroContent = {
   };
 };
 
-type Section = { no: string; kicker: Localized; title: Localized };
+type Section = { kicker: Localized; title: Localized };
 
 // Link "visto in produzione" dentro una card di "Cosa costruiamo": un
 // prodotto flylabs (con logo) o un caso reale. I casi puntano allo slug
@@ -59,14 +56,6 @@ export type BuildCard = {
   links?: BuildCardLink[];
 };
 
-export type WorkCard = {
-  tag: Localized;
-  problem: Localized;
-  solution: Localized;
-  metric: string;
-  metricLabel: Localized;
-};
-
 export type Step = { n: string; title: Localized; body: Localized };
 export type Faq = { q: Localized; a: Localized };
 
@@ -78,12 +67,15 @@ export type OfferTrack = {
   timeline: Localized; // quanto ci vuole, detto prima
   includes: Localized[]; // cosa c'è dentro davvero (3 voci)
   featured?: boolean; // evidenzia il binario di punta
+  cta: Localized; // CTA del binario: una per scelta, non tre "Parliamone" uguali
   // Approfondimento usato solo dalla pagina /servizi: per chi è e come va.
   who: Localized;
   steps: Localized[];
 };
 
-export type StackTool = { icon: string; name: string; desc: Localized };
+// `icon` assente = il tool non ha un logo su Iconify: la pagina mostra un
+// monogramma neutro (stesso stile per tutti), non un'icona semantica a caso.
+export type StackTool = { icon?: string; name: string; desc: Localized };
 export type StackGroup = { name: Localized; tools: StackTool[] };
 
 // Le "due modalità" con cui offriamo ogni prodotto: implementazione custom
@@ -95,6 +87,10 @@ export type ProductMode = {
   href?: string; // se assente, il CTA punta al contatto (#cta)
   external?: boolean;
   note?: Localized; // es. "in arrivo" quando la modalità non è ancora attiva
+  // CTA secondaria facoltativa (es. "Codice su GitHub" nel self-service).
+  cta2?: Localized;
+  href2?: string;
+  external2?: boolean;
 };
 
 export type Product = {
@@ -169,7 +165,6 @@ export const landing = {
 
   build: {
     section: {
-      no: "01",
       kicker: { it: "Cosa costruiamo", en: "What we build" },
       title: { it: "Cosa costruiamo", en: "What we build" },
     } satisfies Section,
@@ -177,7 +172,7 @@ export const landing = {
       {
         icon: "lucide:messages-square",
         title: {
-          it: "Chatbot e Assistenti AI",
+          it: "Chatbot e assistenti AI",
           en: "AI chatbots and assistants",
         },
         body: {
@@ -239,8 +234,8 @@ export const landing = {
           en: "AI drafts them from the data you already have. You review and send.",
         },
         claim: {
-          it: "→ le ore tornano al lavoro vero",
-          en: "→ the hours go back to real work",
+          it: "→ le ore tornano al lavoro che conta",
+          en: "→ your hours go back to the work that matters",
         },
         links: [
           {
@@ -277,8 +272,8 @@ export const landing = {
         icon: "lucide:app-window",
         title: { it: "Web app su misura", en: "Custom web apps" },
         body: {
-          it: "Il gestionale o il portale che ti manca, su uno stack moderno (Next.js, Postgres) e collegato ai tuoi dati.",
-          en: "The internal tool or portal you don't have yet, on a modern stack (Next.js, Postgres) and wired to your data.",
+          it: "Il gestionale o il portale che ti manca, costruito su misura e collegato ai tuoi dati.",
+          en: "The internal tool or portal you're missing, built to fit and wired to your data.",
         },
         claim: {
           it: "→ lo strumento giusto, non un compromesso",
@@ -296,8 +291,8 @@ export const landing = {
         icon: "lucide:file-search",
         title: { it: "Ricerca nei documenti", en: "Search across documents" },
         body: {
-          it: "Contratti, manuali e listini diventano risposte immediate, con la fonte citata.",
-          en: "Contracts, manuals and price lists turn into instant answers, with the source cited.",
+          it: "Contratti, manuali e listini diventano risposte immediate.",
+          en: "Contracts, manuals and price lists turn into instant answers.",
         },
         claim: {
           it: "→ basta cercare a mano",
@@ -306,8 +301,8 @@ export const landing = {
         links: [
           {
             label: {
-              it: "Caso: second brain aziendale",
-              en: "Case: company second brain",
+              it: "Esempio open source: second brain aziendale",
+              en: "Open-source example: company second brain",
             },
             href: "/lavori/second-brain-aziendale",
           },
@@ -316,8 +311,8 @@ export const landing = {
       {
         icon: "lucide:globe",
         title: {
-          it: "Scraping e raccolta dati",
-          en: "Scraping and data collection",
+          it: "Raccolta dati dal web",
+          en: "Web data collection",
         },
         body: {
           it: "Prezzi, cataloghi, recensioni e mosse della concorrenza: raccolti dal web in automatico e messi in tabella.",
@@ -370,12 +365,12 @@ export const landing = {
         icon: "lucide:compass",
         title: { it: "Formazione operativa", en: "Hands-on training" },
         body: {
-          it: "Insegniamo a te e al team a usare quello che costruiamo, sul vostro lavoro.",
-          en: "We teach you and your team to use what we build, on your real work.",
+          it: "Insegniamo a te e al tuo team a usare quello che costruiamo, sul lavoro di tutti i giorni.",
+          en: "We teach you and your team to use what we build, in your day-to-day work.",
         },
         claim: {
           it: "→ resti autonomo, non dipendente",
-          en: "→ you stay independent, not dependent",
+          en: "→ you stay in charge, not tied to us",
         },
         links: [
           {
@@ -389,7 +384,7 @@ export const landing = {
       },
     ] satisfies BuildCard[],
     extra: {
-      title: { it: "Hai un altro problema?", en: "Got another problem?" },
+      title: { it: "Hai un altro problema?", en: "Something else slowing you down?" },
       body: {
         it: "Se si ripete e ti porta via tempo, quasi sempre si può automatizzare.",
         en: "If it repeats and eats your time, it can almost always be automated.",
@@ -400,7 +395,6 @@ export const landing = {
 
   work: {
     section: {
-      no: "02",
       kicker: { it: "Casi di successo", en: "Case studies" },
       titleBefore: {
         it: "Clienti veri, risultati ",
@@ -410,66 +404,16 @@ export const landing = {
       titleAfter: { it: "", en: " results" },
     },
     deck: {
-      it: "Ogni caso qui sotto è in produzione da un cliente vero, con numeri misurati. Scorri per vederli tutti.",
-      en: "Every case below runs in production for a real client, with measured numbers. Scroll through them all.",
+      it: "Lavori per clienti e progetti nostri: per ognuno il problema di partenza, cosa abbiamo costruito e i numeri che si possono verificare.",
+      en: "Client work and our own projects: for each one, the starting problem, what we built and numbers you can check.",
     },
     nav: {
       prev: { it: "Caso precedente", en: "Previous case" },
       next: { it: "Caso successivo", en: "Next case" },
       region: { it: "Casi di successo", en: "Case studies" },
     },
-    cards: [
-      {
-        tag: { it: "Studio dentistico", en: "Dental practice" },
-        problem: {
-          it: "Perdeva richieste fuori orario.",
-          en: "Was losing requests after hours.",
-        },
-        solution: {
-          it: "Chatbot su sito e WhatsApp, appuntamenti h24.",
-          en: "Chatbot on site and WhatsApp, 24/7 bookings.",
-        },
-        metric: "+48",
-        metricLabel: {
-          it: "richieste · primo mese",
-          en: "requests · first month",
-        },
-      },
-      {
-        tag: { it: "Installatore fotovoltaico", en: "Solar installer" },
-        problem: {
-          it: "Preventivi e pratiche lente.",
-          en: "Slow quotes and paperwork.",
-        },
-        solution: {
-          it: "Automazione delle pratiche ripetitive.",
-          en: "Automation of repetitive paperwork.",
-        },
-        metric: "12h",
-        metricLabel: {
-          it: "liberate a settimana",
-          en: "freed up per week",
-        },
-      },
-      {
-        tag: { it: "Concessionario", en: "Car dealership" },
-        problem: {
-          it: "Lead dai portali ricontattati tardi.",
-          en: "Portal leads contacted too late.",
-        },
-        solution: {
-          it: "Risposta automatica su ogni richiesta.",
-          en: "Automatic reply on every request.",
-        },
-        metric: "<60s",
-        metricLabel: {
-          it: "tempo di prima risposta",
-          en: "first response time",
-        },
-      },
-    ] satisfies WorkCard[],
-    // Link alla pagina archivio /lavori, mostrato solo quando le card
-    // vengono dai casi reali su Sanity (issue #13).
+    // Link alla pagina archivio /lavori, sotto il carosello dei casi Sanity
+    // (issue #13) e anche quando non ce n'è nessuno in evidenza.
     allLink: {
       label: { it: "Tutti i lavori →", en: "All work →" },
       href: "/lavori",
@@ -478,7 +422,6 @@ export const landing = {
 
   method: {
     section: {
-      no: "03",
       kicker: { it: "Come lavoriamo", en: "How we work" },
       title: { it: "Il nostro processo", en: "Our process" },
     } satisfies Section,
@@ -487,7 +430,7 @@ export const landing = {
         n: "01",
         title: { it: "Ascoltiamo", en: "We listen" },
         body: {
-          it: "Guardiamo come lavori davvero, quali sono i tuoi processi, dove si inceppano, cosa ti costa tempo o clienti.",
+          it: "Guardiamo come lavori oggi: quali sono i tuoi processi, dove si inceppano, cosa ti costa tempo o clienti.",
           en: "We look at how you actually work: what your processes are, where they jam, what costs you time or customers.",
         },
       },
@@ -501,18 +444,18 @@ export const landing = {
       },
       {
         n: "03",
-        title: { it: "Ti rendiamo autonomo", en: "We make you autonomous" },
+        title: { it: "Ti rendiamo autonomo", en: "We hand it over" },
         body: {
           it: "Formiamo il tuo team, sia su come usare l'AI nel quotidiano sia su come usarla dentro i flussi evoluti che costruiamo insieme.",
-          en: "We train your team, both on using AI day to day and on using it inside the advanced workflows we build together.",
+          en: "We train your team to use AI day to day and to run what we've built together on their own.",
         },
       },
       {
         n: "04",
         title: { it: "Misuriamo", en: "We measure" },
         body: {
-          it: "Monitoriamo le performance nel tempo, sui tuoi numeri veri. Se qualcosa non rende, lo sistemiamo.",
-          en: "We track performance over time, against your real numbers. If something underperforms, we fix it.",
+          it: "Monitoriamo le performance nel tempo, sui tuoi numeri. Se qualcosa non rende, lo sistemiamo.",
+          en: "We track performance over time, against your own numbers. If something underperforms, we fix it.",
         },
       },
     ] satisfies Step[],
@@ -520,33 +463,31 @@ export const landing = {
 
   offer: {
     section: {
-      no: "04",
       kicker: { it: "Come possiamo aiutarti", en: "How we can help" },
       title: {
         it: "Tre modi di lavorare insieme, una direzione sola",
-        en: "Three ways to work together, one direction",
+        en: "Three ways to work together, one goal: making you self-sufficient",
       },
       intro: {
         it: "Il tuo team adotta l'AI e migliora i processi di oggi senza perderne il controllo. Scegli da dove partire, senza contratti che ti legano.",
         en: "Your team adopts AI and improves today's processes without losing control of them. Pick where to start, no strings attached.",
       },
     },
-    cta: { it: "Parliamone →", en: "Let's talk →" },
-    badgeFeatured: { it: "più richiesto", en: "most popular" },
+    badgeFeatured: { it: "dall'idea alla produzione", en: "from idea to production" },
     tracks: [
       {
         kind: { it: "formazione", en: "training" },
         title: { it: "Formazione AI", en: "AI training" },
         body: {
-          it: "Sessioni pratiche per te e il team, sul vostro lavoro reale. Uscite sapendo usare l'AI da soli.",
-          en: "Hands-on sessions for you and your team, on your real work. You leave able to use AI on your own.",
+          it: "Sessioni pratiche per te e il tuo team, costruite sul tuo lavoro di tutti i giorni. Alla fine il team usa l'AI senza bisogno di noi.",
+          en: "Hands-on sessions for you and your team, built around your day-to-day work. By the end, your team uses AI without needing us.",
         },
-        price: { it: "su misura sul team", en: "tailored to the team" },
+        price: { it: "preventivo in base al team", en: "quoted on team size" },
         timeline: { it: "1-2 sessioni", en: "1 to 2 sessions" },
         includes: [
           {
-            it: "Sessioni sul vostro lavoro reale, non slide",
-            en: "Sessions on your real work, not slides",
+            it: "Sessioni sul tuo lavoro di tutti i giorni, non slide",
+            en: "Sessions on your day-to-day work, not slides",
           },
           {
             it: "Prompt e flussi pronti da riusare il giorno dopo",
@@ -558,16 +499,16 @@ export const landing = {
           },
         ],
         who: {
-          it: "Per team che usano già l'AI a intuito e vogliono smettere di improvvisare.",
-          en: "For teams already using AI by instinct who want to stop improvising.",
+          it: "Team che usano già l'AI a intuito e vogliono smettere di improvvisare.",
+          en: "Teams already using AI by instinct who want to stop improvising.",
         },
         steps: [
           {
-            it: "Ci dite su cosa perdete tempo: raccogliamo i casi veri prima della sessione.",
-            en: "You tell us where time goes: we collect the real cases before the session.",
+            it: "Ci dici dove il team perde tempo: raccogliamo i casi concreti prima della sessione.",
+            en: "You tell us where your team loses time: we collect concrete cases before the session.",
           },
           {
-            it: "Lavoriamo insieme su quei casi, dal vivo, sui vostri strumenti.",
+            it: "Lavoriamo insieme su quei casi, dal vivo, sui tuoi strumenti.",
             en: "We work through those cases together, live, on your own tools.",
           },
           {
@@ -575,6 +516,7 @@ export const landing = {
             en: "You keep the prompts, the flows and a written guide for the team.",
           },
         ],
+        cta: { it: "Organizziamo la formazione →", en: "Let's plan the training →" },
       },
       {
         kind: { it: "soluzione", en: "solution" },
@@ -591,50 +533,51 @@ export const landing = {
             en: "Process analysis and the right model for the job",
           },
           {
-            it: "Soluzione in produzione, integrata con i sistemi che usate",
+            it: "Soluzione in produzione, integrata con i sistemi che usi",
             en: "Solution in production, integrated with the systems you use",
           },
           {
-            it: "Formazione del team e documentazione per gestirla da soli",
-            en: "Team training and documentation to run it yourselves",
+            it: "Formazione del team e documentazione per gestirla in autonomia",
+            en: "Team training and documentation so you can run it yourself",
           },
         ],
         featured: true,
         who: {
-          it: "Per chi ha un processo che si ripete ogni giorno e costa ore o clienti persi.",
-          en: "For anyone with a process that repeats daily and costs hours or lost customers.",
+          it: "Chi ha un processo che si ripete ogni giorno e costa ore o clienti persi.",
+          en: "Anyone with a process that repeats every day and costs hours or lost customers.",
         },
         steps: [
           {
-            it: "Mappiamo il processo con chi lo fa davvero e fissiamo il risultato atteso.",
+            it: "Mappiamo il processo con le persone che lo seguono e fissiamo il risultato atteso.",
             en: "We map the process with the people who run it and agree on the target result.",
           },
           {
-            it: "Costruiamo la prima versione utile in pochi giorni e la provate sul lavoro vero.",
-            en: "We build the first useful version in days and you try it on real work.",
+            it: "Costruiamo in pochi giorni una prima versione funzionante e la provi sul lavoro di tutti i giorni.",
+            en: "We build a first working version in a few days and you try it on your day-to-day work.",
           },
           {
-            it: "Andiamo in produzione con la persona nel punto delicato, mai in automatico cieco.",
-            en: "We go to production with a person at the sensitive step, never blind automation.",
+            it: "Andiamo in produzione con una persona che controlla i passaggi delicati: niente automatismi alla cieca.",
+            en: "We go live with a person checking the sensitive steps: no blind automation.",
           },
           {
-            it: "Formiamo il team, lasciamo la documentazione e restate autonomi.",
-            en: "We train the team, hand over the documentation and you stay independent.",
+            it: "Formiamo il team, lasciamo la documentazione e da lì in poi sei autonomo.",
+            en: "We train the team, hand over the documentation, and from then on you're self-sufficient.",
           },
         ],
+        cta: { it: "Raccontaci il processo →", en: "Tell us about your process →" },
       },
       {
         kind: { it: "consulenza", en: "consulting" },
-        title: { it: "Consulenza spot", en: "Spot consulting" },
+        title: { it: "Consulenza spot", en: "Advisory session" },
         body: {
-          it: "Una call strategica per capire dove l'AI conviene davvero. Zero impegno, solo risposte concrete.",
-          en: "A strategic call to find where AI actually pays off. No commitment, just concrete answers.",
+          it: "Dopo la call gratuita, una sessione di lavoro a ore per capire dove l'AI conviene nella tua azienda e da dove partire. Esci con un piano scritto, che resta tuo.",
+          en: "After the free call, an hourly working session to find where AI pays off in your business and where to start. You leave with a written plan that's yours to keep.",
         },
         price: { it: "a ore · prezzo trasparente", en: "hourly · transparent rate" },
-        timeline: { it: "una call", en: "a single call" },
+        timeline: { it: "una sessione", en: "one session" },
         includes: [
           {
-            it: "Una mappa di dove l'AI conviene davvero, e dove no",
+            it: "Una mappa di dove l'AI conviene, e dove no",
             en: "A map of where AI actually pays off, and where it doesn't",
           },
           {
@@ -647,27 +590,28 @@ export const landing = {
           },
         ],
         who: {
-          it: "Per chi ha molte idee sull'AI e vuole sapere quale regge prima di investirci.",
-          en: "For anyone with lots of AI ideas who wants to know which one holds up before investing.",
+          it: "Chi ha molte idee sull'AI e vuole sapere quale regge prima di investirci.",
+          en: "Anyone with lots of AI ideas who wants to know which one holds up before investing.",
         },
         steps: [
           {
-            it: "Ci raccontate il problema e come lavorate oggi.",
+            it: "Ci racconti il problema e come lavori oggi.",
             en: "You walk us through the problem and how you work today.",
           },
           {
-            it: "Mettiamo le idee in ordine per impatto e difficoltà, davanti a voi.",
+            it: "Mettiamo le idee in ordine per impatto e difficoltà, insieme a te.",
             en: "We rank the ideas by impact and difficulty, with you in the room.",
           },
           {
-            it: "Vi lasciamo il piano. Se lo volete costruire con noi, bene; altrimenti è vostro.",
-            en: "You leave with the plan. Build it with us if you want; either way it's yours.",
+            it: "Ti lasciamo il piano: se vuoi lo costruiamo insieme, altrimenti è tuo.",
+            en: "You leave with the plan: we can build it together if you want, otherwise it's yours.",
           },
         ],
+        cta: { it: "Chiedi una sessione →", en: "Ask for a session →" },
       },
     ] satisfies OfferTrack[],
     deepLink: {
-      label: { it: "Come lavoriamo, nel dettaglio →", en: "How we work, in detail →" },
+      label: { it: "Vedi i servizi nel dettaglio →", en: "See our services in detail →" },
       href: "/servizi",
     },
   },
@@ -692,9 +636,8 @@ export const landing = {
 
   faq: {
     section: {
-      no: "04",
       kicker: { it: "FAQ", en: "FAQ" },
-      title: { it: "Le domande vere.", en: "The real questions." },
+      title: { it: "Le domande che ci fanno tutti.", en: "Questions we always get." },
     } satisfies Section,
     items: [
       {
@@ -717,8 +660,8 @@ export const landing = {
       {
         q: { it: "Resto legato a voi?", en: "Am I locked in?" },
         a: {
-          it: "No. Costruiamo, ti formiamo, e decidi tu se restare per farla evolvere.",
-          en: "No. We build it, we train you, and you decide whether to stay for further work.",
+          it: "No. Costruiamo la soluzione, ti formiamo e da lì è tua. Se vuoi farla crescere ci siamo, ma decidi tu.",
+          en: "No. We build it, train you, and from then on it's yours. If you want to grow it further we're here, but it's your call.",
         },
       },
       {
@@ -755,14 +698,14 @@ export const landing = {
       {
         q: { it: "I nostri dati dove finiscono?", en: "Where does our data end up?" },
         a: {
-          it: "Restano dove sono già: costruiamo sopra i sistemi che usi. Prima di partire ti diciamo quali servizi tocca il flusso e quali dati ci passano, così puoi validarlo con chi si occupa di privacy.",
-          en: "It stays where it already is: we build on top of the systems you use. Before we start we tell you which services the flow touches and what data goes through, so you can clear it with whoever handles privacy.",
+          it: "Nei sistemi che usi già, più i soli servizi che il flusso richiede, come il fornitore del modello AI. Prima di partire ti diciamo quali servizi tocca il flusso, quali dati ci passano e dove vengono trattati.",
+          en: "In the systems you already use, plus only the services the workflow needs, such as the AI model provider. Before we start we tell you which services the workflow touches, what data goes through them and where it's processed.",
         },
       },
       {
         q: { it: "Cosa vi serve da noi?", en: "What do you need from us?" },
         a: {
-          it: "Poche ore di chi conosce il processo, gli accessi ai sistemi coinvolti e qualche esempio reale. Il resto è lavoro nostro.",
+          it: "Poche ore di chi conosce il processo, gli accessi ai sistemi coinvolti e qualche esempio concreto. Il resto è lavoro nostro.",
           en: "A few hours from whoever knows the process, access to the systems involved and a handful of real examples. The rest is on us.",
         },
       },
@@ -771,12 +714,12 @@ export const landing = {
 
   finalCta: {
     title: {
-      it: "Il primo passo è capire il problema vero.",
-      en: "The first step is understanding the real problem.",
+      it: "Il primo passo è capire il tuo problema.",
+      en: "The first step is understanding your problem.",
     },
     body: {
-      it: "Venti minuti per capire cosa si può automatizzare e da dove partire.",
-      en: "Twenty minutes to figure out what can be automated and where to start.",
+      it: "Scrivici in due righe cosa ti fa perdere tempo. Ti risponde uno di noi, Cesare o Federico, e fissiamo una call gratuita per capire cosa si può automatizzare e da dove partire.",
+      en: "Tell us in a couple of lines what's eating your time. One of us, Cesare or Federico, will reply and set up a free call to see what can be automated and where to start.",
     },
     cta: {
       it: "Prenota una call gratuita →",
@@ -793,30 +736,78 @@ export const landing = {
       message: { it: "Messaggio", en: "Message" },
     },
     optional: { it: "facoltativo", en: "optional" },
-    messagePlaceholder: {
+    requiredLegend: {
+      it: "I campi con * sono obbligatori.",
+      en: "Fields marked * are required.",
+    },
+    // Hint visibile sotto la label del messaggio (era il placeholder).
+    messageHint: {
       it: "Cosa ti fa perdere tempo? Raccontaci in due righe.",
       en: "What's eating your time? Tell us in a couple of lines.",
     },
     submit: { it: "Invia richiesta", en: "Send request" },
     sending: { it: "Invio…", en: "Sending…" },
+    // Richiamo all'informativa nel punto di raccolta (primo livello, WP260).
+    privacy: {
+      before: {
+        it: "Usiamo i tuoi dati solo per risponderti e li conserviamo al massimo 24 mesi. Dettagli nella ",
+        en: "We only use your details to reply to you and keep them for up to 24 months. Details in our ",
+      },
+      link: { it: "Privacy Policy", en: "Privacy Policy" },
+      after: { it: ".", en: "." },
+    },
     success: {
       title: {
-        it: "Grazie, ci sentiamo presto.",
-        en: "Thanks, we'll be in touch soon.",
+        it: "Ricevuto, grazie.",
+        en: "Got it, thanks.",
       },
       body: {
-        it: "Abbiamo ricevuto la tua richiesta e ti rispondiamo al più presto.",
-        en: "We got your request and will get back to you shortly.",
+        it: "Ti scrive Cesare o Federico da info@flylabs.ai per fissare la call. Intanto, se vuoi, ",
+        en: "Cesare or Federico will email you from info@flylabs.ai to set up the call. Meanwhile, feel free to ",
+      },
+      link: {
+        label: { it: "guarda i nostri lavori", en: "browse our work" },
+        href: "/lavori",
+      },
+      after: { it: ".", en: "." },
+    },
+    // Precompilazioni del messaggio per le CTA con contesto (B55, WS-10).
+    prefill: {
+      stellarAudit: {
+        it: "Vorrei l'audit gratuito di Stellar Reviews per la mia struttura: [nome o link Google/Booking]",
+        en: "I'd like the free Stellar Reviews audit for my business: [name or Google/Booking link]",
+      },
+      training: {
+        it: "Vorrei organizzare una formazione AI per il mio team di [N] persone.",
+        en: "I'd like to organise AI training for my team of [N] people.",
       },
     },
     errors: {
+      // Fallback generico: la server action indica sempre anche il campo,
+      // e il form mostra il messaggio specifico di `fields`.
       missing: {
         it: "Compila i campi obbligatori.",
         en: "Please fill in the required fields.",
       },
       email: {
-        it: "Inserisci un'email valida.",
-        en: "Please enter a valid email.",
+        it: "Controlla l'email: deve essere tipo nome@azienda.it",
+        en: "Check your email: it should look like name@company.com",
+      },
+      fields: {
+        name: { it: "Scrivi il tuo nome.", en: "Please enter your name." },
+        email: {
+          it: "Controlla l'email: deve essere tipo nome@azienda.it",
+          en: "Check your email: it should look like name@company.com",
+        },
+        message: {
+          it: "Scrivi due righe su cosa ti serve.",
+          en: "Write a couple of lines about what you need.",
+        },
+      },
+      // Aggiunto agli errori server/rate: i campi restano compilati.
+      kept: {
+        it: "Quello che hai scritto è ancora qui.",
+        en: "What you typed is still here.",
       },
       server: {
         it: "Qualcosa è andato storto. Riprova tra poco.",
@@ -834,8 +825,8 @@ export const landing = {
     kicker: { it: "Sotto il cofano", en: "Under the hood" },
     title: { it: "I tool che usiamo", en: "The tools we use" },
     body: {
-      it: "Non reinventiamo la ruota: componiamo i migliori strumenti AI, automazione e dati sul tuo problema.",
-      en: "We don't reinvent the wheel: we compose the best AI, automation and data tools around your problem.",
+      it: "Non reinventiamo la ruota: combiniamo i migliori strumenti di AI, automazione e dati in base al tuo problema.",
+      en: "We don't reinvent the wheel: we combine the best AI, automation and data tools to fit your problem.",
     },
     cta: { it: "Vedi tutto lo stack →", en: "See the full stack →" },
     href: "/stack",
@@ -851,28 +842,27 @@ export const landing = {
     ],
   },
 
-  // Pagina dedicata /stack (raggiungibile solo dal teaser, non dal menu).
   // Pagina /servizi: approfondimento dei tre modi di lavorare insieme.
   // I contenuti dei binari vivono in `offer.tracks` (who/steps/includes):
   // qui stanno solo le etichette e la cornice della pagina.
   services: {
     meta: {
       it: {
-        title: "Come lavoriamo insieme | flylabs.ai",
+        title: "Consulenza, sviluppo e formazione AI | flylabs.ai",
         description:
-          "I tre modi di lavorare con flylabs: consulenza spot, soluzione chiavi in mano, formazione AI. Tempi, prezzi e cosa è incluso, detti prima.",
+          "Formazione AI per il team, soluzioni chiavi in mano e consulenza a ore: tempi, cosa è incluso e come si decide il prezzo, detti prima.",
       },
       en: {
-        title: "How we work together | flylabs.ai",
+        title: "AI consulting, development and training | flylabs.ai",
         description:
-          "The three ways to work with flylabs: spot consulting, turnkey solution, AI training. Timelines, pricing and what's included, stated upfront.",
+          "AI training for your team, turnkey solutions and hourly advisory: timelines, what's included and how pricing works, stated upfront.",
       },
     },
     kicker: { it: "Servizi", en: "Services" },
     title: { it: "Come lavoriamo insieme", en: "How we work together" },
     intro: {
-      it: "Tre punti di ingresso, un metodo solo: capire il problema vero, costruire la cosa più piccola che lo risolve, lasciarti in grado di gestirla da solo.",
-      en: "Three entry points, one method: understand the real problem, build the smallest thing that solves it, leave you able to run it yourself.",
+      it: "Tre punti di partenza, un solo metodo: capire il problema, costruire la soluzione più semplice che lo risolve, lasciarti in grado di gestirla da solo.",
+      en: "Three starting points, one method: understand the problem, build the simplest thing that solves it, and leave you able to run it yourself.",
     },
     back: { it: "← Torna alla home", en: "← Back home" },
     labels: {
@@ -895,15 +885,16 @@ export const landing = {
     },
   },
 
+  // Pagina dedicata /stack: dal teaser in home e dalla nav/footer.
   stack: {
     meta: {
       it: {
-        title: "Il nostro stack | flylabs.ai",
+        title: "Il nostro stack AI e di automazione | flylabs.ai",
         description:
           "I tool AI, di automazione e dati che usiamo per costruire le soluzioni: Claude, n8n, Make, Apify e altri.",
       },
       en: {
-        title: "Our stack | flylabs.ai",
+        title: "Our AI and automation stack | flylabs.ai",
         description:
           "The AI, automation and data tools we use to build solutions: Claude, n8n, Make, Apify and more.",
       },
@@ -911,10 +902,15 @@ export const landing = {
     kicker: { it: "Sotto il cofano", en: "Under the hood" },
     title: { it: "I tool che usiamo", en: "The tools we use" },
     intro: {
-      it: "Scegliamo lo strumento giusto per ogni pezzo del lavoro (modelli, orchestrazione, dati, web) e li combiniamo sul tuo caso reale. Nessun lock-in su una piattaforma sola.",
-      en: "We pick the right tool for each part of the job (models, orchestration, data, web) and combine them on your real case. No lock-in to a single platform.",
+      it: "Scegliamo lo strumento giusto per ogni pezzo del lavoro (modelli, orchestrazione, dati, web) e li combiniamo sul tuo caso. Nessun lock-in su una piattaforma sola.",
+      en: "We pick the right tool for each part of the job (models, orchestration, data, web) and combine them for your case. No lock-in to a single platform.",
     },
     back: { it: "← Torna alla home", en: "← Back home" },
+    // Disclaimer sui marchi di terzi, in fondo alla pagina (B32, WS-5).
+    disclaimer: {
+      it: "Marchi e loghi appartengono ai rispettivi titolari. Li mostriamo per indicare gli strumenti che usiamo: non implicano partnership o sponsorizzazione.",
+      en: "Trademarks and logos belong to their respective owners. We show them to indicate the tools we use: no partnership or endorsement is implied.",
+    },
     groups: [
       {
         name: { it: "AI e modelli", en: "AI & models" },
@@ -965,7 +961,6 @@ export const landing = {
             },
           },
           {
-            icon: "lucide:library",
             name: "LlamaIndex",
             desc: {
               it: "Indicizzazione e retrieval sui tuoi dati.",
@@ -1047,7 +1042,6 @@ export const landing = {
             },
           },
           {
-            icon: "lucide:audio-lines",
             name: "Vapi",
             desc: {
               it: "Voice agent telefonici in tempo reale.",
@@ -1063,7 +1057,7 @@ export const landing = {
             },
           },
           {
-            icon: "lucide:mic",
+            icon: "logos:openai-icon",
             name: "Whisper",
             desc: {
               it: "Trascrizione speech-to-text multilingua.",
@@ -1079,7 +1073,6 @@ export const landing = {
             },
           },
           {
-            icon: "lucide:flame",
             name: "Fireflies",
             desc: {
               it: "Trascrive le call e ne estrae gli action item.",
@@ -1092,7 +1085,7 @@ export const landing = {
         name: { it: "Dati e scraping", en: "Data & scraping" },
         tools: [
           {
-            icon: "lucide:globe",
+            icon: "devicon:apify",
             name: "Apify",
             desc: {
               it: "Scraping di recensioni, social e web a scala.",
@@ -1158,7 +1151,6 @@ export const landing = {
         name: { it: "Marketing e advertising", en: "Marketing & advertising" },
         tools: [
           {
-            icon: "lucide:clapperboard",
             name: "Higgsfield",
             desc: {
               it: "Video AI per creatività social e ads.",
@@ -1211,7 +1203,6 @@ export const landing = {
             },
           },
           {
-            icon: "lucide:calendar-check",
             name: "TidyCal",
             desc: {
               it: "Prenotazione call con domande di qualifica.",
@@ -1300,12 +1291,12 @@ export const landing = {
   products: {
     meta: {
       it: {
-        title: "Prodotti | flylabs.ai",
+        title: "Prodotti AI: chatbot, recensioni, ordini di gruppo | flylabs.ai",
         description:
           "I prodotti che abbiamo costruito e offriamo ai nostri clienti: chatbot AI, gestione recensioni, ordini di gruppo. Implementazione su misura o self-service.",
       },
       en: {
-        title: "Products | flylabs.ai",
+        title: "AI products: chatbot, reviews, group orders | flylabs.ai",
         description:
           "The products we've built and offer to our clients: AI chatbot, review management, group ordering. Custom implementation or self-service.",
       },
@@ -1316,8 +1307,8 @@ export const landing = {
       en: "Software we've built, ready for your case",
     },
     intro: {
-      it: "Ogni prodotto nasce per risolvere il problema vero di un cliente vero. Li teniamo vivi, li manuteniamo, e li offriamo a chiunque abbia lo stesso problema.",
-      en: "Every product started by solving a real problem for a real client. We keep them alive, maintain them, and offer them to anyone with the same problem.",
+      it: "Ogni prodotto nasce dal problema concreto di un cliente. Li manteniamo e aggiorniamo, e li offriamo a chi ha lo stesso problema.",
+      en: "Every product started from one client's concrete problem. We maintain and update them, and offer them to anyone with the same problem.",
     },
     philosophyTitle: {
       it: "Perché prodotti, non solo progetti su misura",
@@ -1372,8 +1363,8 @@ export const landing = {
         logo: "/products/stellar-reviews/logo.svg",
         name: "Stellar Reviews",
         tagline: {
-          it: "Audit e risposte alle recensioni, da Google, TripAdvisor e Booking.",
-          en: "Review audits and replies, from Google, TripAdvisor and Booking.",
+          it: "Audit e risposte alle recensioni, da Google, Tripadvisor e Booking.",
+          en: "Review audits and replies, from Google, Tripadvisor and Booking.",
         },
         sector: { it: "Ricettivo e retail", en: "Hospitality and retail" },
         href: "/stellar-reviews",
@@ -1399,30 +1390,30 @@ export const landing = {
   stellarReviews: {
     meta: {
       it: {
-        title: "Stellar Reviews | flylabs.ai",
+        title: "Stellar Reviews: risposte AI alle recensioni | flylabs.ai",
         description:
-          "Legge e risponde alle recensioni della tua struttura da Google, TripAdvisor e Booking. Audit gratuito, poi il motore che prepara le bozze ogni giorno.",
+          "Legge e risponde alle recensioni della tua struttura da Google, Tripadvisor e Booking. Audit gratuito, poi il motore che prepara le bozze ogni giorno.",
       },
       en: {
-        title: "Stellar Reviews | flylabs.ai",
+        title: "Stellar Reviews: AI replies to your reviews | flylabs.ai",
         description:
-          "Reads and drafts replies to your business reviews from Google, TripAdvisor and Booking. Free audit, then a daily engine that drafts replies for you.",
+          "Reads and drafts replies to your business reviews from Google, Tripadvisor and Booking. Free audit, then a daily engine that drafts replies for you.",
       },
     },
     kicker: { it: "Prodotti", en: "Products" },
     title: { it: "Stellar Reviews", en: "Stellar Reviews" },
     logo: "/products/stellar-reviews/logo.svg",
     tagline: {
-      it: "Le recensioni della tua struttura, lette e riassunte ogni giorno.",
-      en: "Your business reviews, read and summarised every day.",
+      it: "Le recensioni della tua struttura, lette ogni giorno, con la bozza di risposta già pronta.",
+      en: "Your reviews, read every day, with a reply draft ready to go.",
     },
     problem: {
       it: "I gruppi ricettivi gestiscono le recensioni a mano: si perde tempo a leggerle su tre piattaforme diverse, e chi non ha ancora risposto rischia di restarci per mesi.",
       en: "Hospitality businesses manage reviews by hand: time is lost reading them across three different platforms, and unanswered ones can sit there for months.",
     },
     solution: {
-      it: "Stellar Reviews scarica le recensioni da Google, TripAdvisor e Booking ogni giorno, e prepara le bozze di risposta con Claude, nella lingua di chi ha scritto e nel tono del titolare. La pubblicazione resta sempre una scelta umana.",
-      en: "Stellar Reviews pulls in reviews from Google, TripAdvisor and Booking every day, and drafts replies with Claude, in the reviewer's language and the owner's tone. Publishing stays a human choice, always.",
+      it: "Stellar Reviews scarica le recensioni da Google, Tripadvisor e Booking ogni giorno, e prepara le bozze di risposta con Claude, nella lingua di chi ha scritto e nel tono del titolare. La pubblicazione resta sempre una scelta umana.",
+      en: "Stellar Reviews pulls in reviews from Google, Tripadvisor and Booking every day, and drafts replies with Claude, in the reviewer's language and the owner's tone. Publishing stays a human choice, always.",
     },
     featuresTitle: { it: "Cosa fa", en: "What it does" },
     features: [
@@ -1431,20 +1422,20 @@ export const landing = {
         en: "Free audit: how many reviews you have, how many are unanswered, and how you compare to nearby competitors",
       },
       {
-        it: "Motore giornaliero: scarica le recensioni nuove e prepara le bozze di risposta, pronte da rivedere",
-        en: "Daily engine: pulls in new reviews and prepares reply drafts, ready for you to review",
+        it: "Controllo giornaliero: scarica le nuove recensioni e prepara le bozze di risposta, pronte da rivedere",
+        en: "Daily check: pulls in new reviews and drafts replies, ready for you to review",
       },
       {
-        it: "Tre fonti in un colpo solo: Google, TripAdvisor e Booking, senza passare da una piattaforma all'altra",
-        en: "Three sources at once: Google, TripAdvisor and Booking, no need to hop between platforms",
+        it: "Tre fonti in un colpo solo: Google, Tripadvisor e Booking, senza passare da una piattaforma all'altra",
+        en: "Three sources at once: Google, Tripadvisor and Booking, no need to hop between platforms",
       },
     ] satisfies Localized[],
     modesTitle: { it: "Come lo attivi", en: "How to get it" },
     modeCustom: {
       title: { it: "Implementazione su misura", en: "Custom implementation" },
       body: {
-        it: "Attiviamo l'audit e il motore giornaliero per la tua struttura, con le tue credenziali. Si parte da un audit gratuito.",
-        en: "We set up the audit and the daily engine for your business, with your own credentials. It starts with a free audit.",
+        it: "Attiviamo l'audit e il controllo giornaliero per la tua struttura, con le tue credenziali. Si parte da un audit gratuito.",
+        en: "We set up the audit and the daily check for your business, with your own credentials. It starts with a free audit.",
       },
       cta: { it: "Richiedi l'audit gratuito", en: "Request the free audit" },
     } satisfies ProductMode,
@@ -1469,12 +1460,12 @@ export const landing = {
   wegroceryProduct: {
     meta: {
       it: {
-        title: "WeGrocery | flylabs.ai",
+        title: "WeGrocery: ordini di gruppo per GAS, open source | flylabs.ai",
         description:
           "WeGrocery: la piattaforma open source white-label per gestire gli ordini di gruppo dei GAS. Provala in demo o attiva il tuo deploy.",
       },
       en: {
-        title: "WeGrocery | flylabs.ai",
+        title: "WeGrocery: open-source group ordering for buying clubs | flylabs.ai",
         description:
           "WeGrocery: the open-source, white-label platform for buying clubs' group orders. Try the demo or activate your own deployment.",
       },
@@ -1498,6 +1489,12 @@ export const landing = {
           it: "Video di lancio di WeGrocery",
           en: "WeGrocery launch video",
         },
+        // Alternativa testuale del video (senza audio, testi in sovraimpressione):
+        // resa sotto il player da WS-5 (B32, A11Y-09).
+        transcript: {
+          it: "Cosa mostra il video: ogni settimana lo stesso foglio di calcolo, con errori nelle formule. WeGrocery raccoglie gli ordini di tutto il gruppo in un'unica pagina, con un ciclo settimanale. Costo di esercizio: 0 € al mese per hosting, database, job pianificati ed email, tutto su piani gratuiti (Next.js su Vercel, Neon Postgres, GitHub Actions, Resend). È open source con licenza MIT: puoi installarlo per il tuo gruppo.",
+          en: "What the video shows: every week, the same spreadsheet with broken formulas. WeGrocery collects the whole group's orders on one page, in a weekly cycle. Running cost: €0 per month for hosting, database, scheduled jobs and email, all on free tiers (Next.js on Vercel, Neon Postgres, GitHub Actions, Resend). It's open source under the MIT licence: you can run it for your group.",
+        },
       },
     },
     tagline: {
@@ -1509,8 +1506,8 @@ export const landing = {
       en: "Group buying clubs coordinate shared orders by hand, between spreadsheets and WhatsApp threads, with mistakes and wasted time on every cycle.",
     },
     solution: {
-      it: "WeGrocery è un'unica piattaforma open source (MIT) che ogni gruppo attiva con il proprio marchio, la propria lingua e i propri colori, impostati via variabili d'ambiente. Zero fork, zero codice dedicato: un aggiornamento arriva a tutti i deploy insieme.",
-      en: "WeGrocery is a single open-source (MIT) platform that any group activates under its own brand, language and colours, set via environment variables. No forks, no dedicated code: an update reaches every deployment at once.",
+      it: "Un'unica piattaforma open source (licenza MIT) che ogni gruppo attiva con il proprio nome, la propria lingua e i propri colori, senza sviluppi dedicati: quando miglioriamo la piattaforma, l'aggiornamento arriva a tutti i gruppi insieme.",
+      en: "A single open-source platform (MIT licence) that any group can launch under its own name, language and colours, with no custom development: when we improve the platform, every group gets the update at once.",
     },
     mediaTitle: { it: "WeGrocery in azione", en: "WeGrocery in action" },
     featuresTitle: { it: "Cosa fa", en: "What it does" },
@@ -1524,8 +1521,8 @@ export const landing = {
         en: "A prepaid balance for every member, updated in real time as they order",
       },
       {
-        it: "White-label per un solo env var: marchio, lingua (italiano o inglese) e colori del tuo gruppo",
-        en: "White-label from a single env var: your group's brand, language (Italian or English) and colours",
+        it: "Nome, lingua (italiano o inglese) e colori del tuo gruppo, senza toccare il codice",
+        en: "Your group's name, language (Italian or English) and colours, with no code changes",
       },
     ] satisfies Localized[],
     modesTitle: { it: "Come lo attivi", en: "How to get it" },
@@ -1546,6 +1543,9 @@ export const landing = {
       cta: { it: "Prova la demo", en: "Try the demo" },
       href: "https://wegrocery-demo.vercel.app",
       external: true,
+      cta2: { it: "Codice su GitHub →", en: "Code on GitHub →" },
+      href2: "https://github.com/federicodecillia/wegrocery",
+      external2: true,
     } satisfies ProductMode,
     caseLink: {
       label: {
@@ -1560,8 +1560,10 @@ export const landing = {
   footer: {
     tagline: {
       it: "AI all'avanguardia. Costruita sulle tue esigenze.",
-      en: "Cutting-Edge AI. Built Around Your Needs.",
+      en: "Cutting-edge AI. Built around your needs.",
     },
+    vatLabel: { it: "P.IVA", en: "VAT no." },
+    navLabel: { it: "Link del sito", en: "Site links" },
     nav: [
       { href: "", label: { it: "Home", en: "Home" } },
       { href: "/lavori", label: { it: "Lavori", en: "Work" } },

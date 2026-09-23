@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect, useRef } from "react";
 import { submitContact, type ContactState } from "@/lib/actions/contact";
 import type { Locale } from "@/lib/i18n";
@@ -8,6 +9,7 @@ import { landing } from "@/lib/landing-content";
 const initial: ContactState = { ok: false };
 
 const ERROR_ID = "contact-error";
+const MESSAGE_HINT_ID = "contact-message-hint";
 
 // Colori a contrasto AA su bianco: errore/asterisco #b8430f (~5,2:1, stessa
 // famiglia del warm #ff7e4c, che come testo sta a 2,5:1) e bordo dei campi
@@ -50,7 +52,16 @@ export function ContactForm({ lang }: { lang: Locale }) {
         >
           {c.success.title[lang]}
         </p>
-        <p className="mt-2 text-muted">{c.success.body[lang]}</p>
+        <p className="mt-2 text-muted">
+          {c.success.body[lang]}
+          <Link
+            href={`/${lang}${c.success.link.href}`}
+            className="font-medium text-accent underline underline-offset-2"
+          >
+            {c.success.link.label[lang]}
+          </Link>
+          {c.success.after[lang]}
+        </p>
       </div>
     );
   }
@@ -61,6 +72,18 @@ export function ContactForm({ lang }: { lang: Locale }) {
     state.field === field
       ? { "aria-invalid": true as const, "aria-describedby": ERROR_ID }
       : {};
+  // Messaggio d'errore: specifico del campo quando la action lo indica;
+  // su server/rate si aggiunge che il testo scritto è rimasto nel form.
+  const errorText = (() => {
+    if (!state.error) return null;
+    if ((state.error === "missing" || state.error === "email") && state.field) {
+      return c.errors.fields[state.field][lang];
+    }
+    const base = c.errors[state.error][lang];
+    return state.error === "server" || state.error === "rate"
+      ? `${base} ${c.errors.kept[lang]}`
+      : base;
+  })();
   const required = (
     <span className="text-[#b8430f]" aria-hidden>
       *
@@ -72,6 +95,7 @@ export function ContactForm({ lang }: { lang: Locale }) {
       action={action}
       className="mx-auto max-w-xl rounded-2xl border border-line bg-white p-6 text-left md:p-8"
     >
+      <p className="mb-4 text-xs text-muted">{c.requiredLegend[lang]}</p>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <label className="block">
           <span className="mb-1.5 block text-sm font-medium text-ink">
@@ -120,18 +144,23 @@ export function ContactForm({ lang }: { lang: Locale }) {
       </label>
 
       <label className="mt-4 block">
-        <span className="mb-1.5 block text-sm font-medium text-ink">
+        <span className="block text-sm font-medium text-ink">
           {c.labels.message[lang]} {required}
+        </span>
+        <span id={MESSAGE_HINT_ID} className="mb-1.5 mt-0.5 block text-sm text-muted">
+          {c.messageHint[lang]}
         </span>
         <textarea
           ref={messageRef}
           name="message"
           required
           rows={4}
-          placeholder={c.messagePlaceholder[lang]}
           defaultValue={v?.message}
           className={`${fieldClass} resize-y`}
           {...invalid("message")}
+          aria-describedby={
+            state.field === "message" ? `${MESSAGE_HINT_ID} ${ERROR_ID}` : MESSAGE_HINT_ID
+          }
         />
       </label>
 
@@ -146,9 +175,9 @@ export function ContactForm({ lang }: { lang: Locale }) {
       />
       <input type="hidden" name="locale" value={lang} />
 
-      {state.error && (
+      {errorText && (
         <p id={ERROR_ID} className="mt-4 text-sm font-medium text-[#b8430f]" role="alert">
-          {c.errors[state.error][lang]}
+          {errorText}
         </p>
       )}
 
@@ -159,6 +188,16 @@ export function ContactForm({ lang }: { lang: Locale }) {
       >
         {pending ? c.sending[lang] : c.submit[lang]}
       </button>
+      <p className="mt-3 text-xs leading-relaxed text-muted">
+        {c.privacy.before[lang]}
+        <Link
+          href={`/${lang}/privacy`}
+          className="underline underline-offset-2 hover:text-accent"
+        >
+          {c.privacy.link[lang]}
+        </Link>
+        {c.privacy.after[lang]}
+      </p>
     </form>
   );
 }

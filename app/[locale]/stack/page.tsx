@@ -60,11 +60,22 @@ export default async function StackPage({
                     key={tool.name}
                     className="card-hover flex items-start gap-3 rounded-lg border border-line bg-white p-4"
                   >
-                    <Icon
-                      icon={tool.icon}
-                      className="mt-0.5 shrink-0 text-[24px]"
-                      aria-hidden
-                    />
+                    {tool.icon ? (
+                      <Icon
+                        icon={tool.icon}
+                        className="mt-0.5 shrink-0 text-[24px]"
+                        aria-hidden
+                      />
+                    ) : (
+                      // Tool senza logo su Iconify: stesso monogramma neutro
+                      // per tutti, invece di icone semantiche prese a caso.
+                      <span
+                        aria-hidden
+                        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-line bg-paper font-mono text-[12px] font-semibold text-muted"
+                      >
+                        {tool.name.charAt(0)}
+                      </span>
+                    )}
                     <div>
                       <h3 className="text-[15px] font-bold">{tool.name}</h3>
                       <p className="mt-0.5 text-[13px] leading-snug text-muted">

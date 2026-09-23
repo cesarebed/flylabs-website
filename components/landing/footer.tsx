@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { getSiteSettings } from "@/sanity/site-settings";
@@ -21,7 +22,7 @@ export async function Footer({ lang }: { lang: Locale }) {
   );
 
   return (
-    <footer className="bg-ink text-white">
+    <footer className="border-t border-white/10 bg-ink text-white">
       <div className="mx-auto max-w-[1120px] px-6 py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
@@ -39,18 +40,21 @@ export async function Footer({ lang }: { lang: Locale }) {
               estremi da justify-between, e quando il nav andava a capo su
               due righe l'email restava ancorata in alto a destra, isolata
               dal resto. Ora tutto scorre insieme e va a capo insieme. */}
-          <nav className="flex max-w-md flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
+          <nav
+            aria-label={landing.footer.navLabel[lang]}
+            className="flex max-w-md flex-wrap gap-x-8 gap-y-3 text-sm text-white/70"
+          >
             {landing.footer.nav.map((item) => (
-              <a key={item.href} href={`/${lang}${item.href}`} className="hover:text-mark">
+              <Link key={item.href} href={`/${lang}${item.href}`} className="hover:text-mark">
                 {item.label[lang]}
-              </a>
+              </Link>
             ))}
-            <a href={`/${lang}/privacy`} className="hover:text-mark">
+            <Link href={`/${lang}/privacy`} className="hover:text-mark">
               Privacy
-            </a>
-            <a href={`/${lang}/cookie-policy`} className="hover:text-mark">
+            </Link>
+            <Link href={`/${lang}/cookie-policy`} className="hover:text-mark">
               Cookie policy
-            </a>
+            </Link>
             <ManageCookiesLink
               label={lang === "en" ? "Manage cookies" : "Gestisci cookie"}
               className="cursor-pointer hover:text-mark"
@@ -66,21 +70,23 @@ export async function Footer({ lang }: { lang: Locale }) {
                 {link.label}
               </a>
             ))}
+            {/* L'indirizzo in chiaro, non "Email": senza un client di posta
+                configurato il mailto sembra un link rotto (PLAN.md). */}
             {contactEmail && (
               <a href={`mailto:${contactEmail}`} className="hover:text-mark">
-                Email
+                {contactEmail}
               </a>
             )}
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 font-mono text-xs text-white/40 md:flex-row md:items-center md:justify-between">
-          <div>© 2026 flylabs.ai - {landing.footer.tagline[lang]}</div>
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 font-mono text-xs text-white/60 md:flex-row md:items-center md:justify-between">
+          <div>© {new Date().getFullYear()} flylabs.ai</div>
           {legalEntities.length > 0 && (
             <div className="flex flex-col gap-x-4 gap-y-1 sm:flex-row sm:flex-wrap">
               {legalEntities.map((entity) => (
                 <span key={entity._key}>
-                  {entity.name} · P.IVA {entity.vatNumber}
+                  {entity.name} · {landing.footer.vatLabel[lang]} {entity.vatNumber}
                 </span>
               ))}
             </div>
