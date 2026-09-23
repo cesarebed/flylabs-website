@@ -116,6 +116,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-09-13 (Federico - PR #
 - [x] Badge tech uniformati (2026-07-17, richiesta di Federico): "Claude" → "Claude Code" e aggiunto "MCP" al caso struttura ricettiva; testi delle 3 card verificati già allineati (stile, lunghezze, terminologia "AI", formato metriche)
 - [x] Issue #5 + #6 (hardening form contatti): escape HTML nella mail, limiti lunghezza, allowlist locale, rate limit 3/10min per email o hash IP (Federico, `fix/contact-hardening`)
 - [x] Footer: link "LinkedIn"/"Email" morti (`href="#"`) → campi `socialLinks` + `contactEmail` su `siteSettings`; il footer nasconde i link senza valore, gli URL social alimentano il `sameAs` del JSON-LD Organization (Federico, `feat/footer-social-links`, PR #27 riaperta e mergiata il 2026-07-17). Email `info@flylabs.ai` da valorizzare su Sanity (`scripts/` con write token, oppure Studio → Impostazioni sito → Publish); LinkedIn nascosto finché la pagina aziendale non esiste
+- [ ] **AGENTS.md come file istruzioni canonico** (2026-09-23, Federico, `chore/agents-md`, PR_LINK): `CLAUDE.md` unito in `AGENTS.md` (blocco regole Next.js in testa), `CLAUDE.md` resta come symlink per compatibilità; Claude Code legge `AGENTS.md` nativamente da v2.1.277, Codex/Antigravity/Gemini già lo leggono. Symlink da rimuovere in un secondo step quando entrambi siamo su Claude Code ≥ 2.1.277
 
 ## Tooling / skill
 
