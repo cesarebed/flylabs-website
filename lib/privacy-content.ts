@@ -12,20 +12,20 @@ type Section = { heading: L; body: L[] };
 export const privacy = {
   meta: {
     it: {
-      title: "Privacy Policy — flylabs.ai",
+      title: "Privacy Policy | flylabs.ai",
       description:
         "Come flylabs.ai tratta i dati personali degli utenti del sito, in conformità al GDPR.",
     },
     en: {
-      title: "Privacy Policy — flylabs.ai",
+      title: "Privacy Policy | flylabs.ai",
       description:
         "How flylabs.ai handles personal data of site users, in compliance with the GDPR.",
     },
   },
   title: { it: "Privacy Policy", en: "Privacy Policy" },
   updated: {
-    it: "Ultimo aggiornamento: 28 agosto 2026",
-    en: "Last updated: 28 August 2026",
+    it: "Ultimo aggiornamento: 23 settembre 2026",
+    en: "Last updated: 23 September 2026",
   },
   intro: {
     it: "La presente informativa descrive come vengono trattati i dati personali degli utenti che visitano questo sito e ci contattano, ai sensi del Regolamento (UE) 2016/679 (GDPR).",
@@ -74,24 +74,24 @@ export const privacy = {
       heading: { it: "Finalità e basi giuridiche", en: "Purposes and legal bases" },
       body: [
         {
-          it: "Rispondere alle richieste inviate dal form — base giuridica: esecuzione di misure precontrattuali richieste dall'interessato (art. 6.1.b).",
-          en: "Responding to requests sent via the form — legal basis: performance of pre-contractual measures requested by the data subject (art. 6.1.b).",
+          it: "Rispondere alle richieste inviate dal form. Base giuridica: esecuzione di misure precontrattuali richieste dall'interessato (art. 6.1.b).",
+          en: "Responding to requests sent via the form. Legal basis: performance of pre-contractual measures requested by the data subject (art. 6.1.b).",
         },
         {
-          it: "Fornire assistenza tramite il chatbot — base giuridica: legittimo interesse a rispondere alle domande e/o misure precontrattuali.",
-          en: "Providing assistance through the chatbot — legal basis: legitimate interest in answering questions and/or pre-contractual measures.",
+          it: "Rispondere alle tue domande sui nostri servizi tramite il chatbot. Base giuridica: misure precontrattuali su tua richiesta (art. 6.1.b).",
+          en: "Answering your questions about our services through the chatbot. Legal basis: pre-contractual steps at your request (art. 6.1.b).",
         },
         {
-          it: "Garantire funzionamento, sicurezza e prevenzione degli abusi (ad esempio limiti anti-spam sul form) — base giuridica: legittimo interesse del Titolare.",
-          en: "Ensuring operation, security and abuse prevention (for example anti-spam limits on the form) — legal basis: the Controller's legitimate interest.",
+          it: "Garantire funzionamento, sicurezza e prevenzione degli abusi (ad esempio limiti anti-spam sul form). Base giuridica: legittimo interesse del Titolare.",
+          en: "Ensuring operation, security and abuse prevention (for example anti-spam limits on the form). Legal basis: the Controller's legitimate interest.",
         },
         {
-          it: "Misurare in forma aggregata traffico e prestazioni del sito — base giuridica: legittimo interesse tramite strumenti cookieless (Vercel); Google Analytics viene attivato solo previo tuo consenso (art. 6.1.a).",
-          en: "Measuring site traffic and performance in aggregate — legal basis: legitimate interest via cookieless tools (Vercel); Google Analytics is activated only with your prior consent (art. 6.1.a).",
+          it: "Misurare in forma aggregata traffico e prestazioni del sito. Base giuridica: legittimo interesse tramite strumenti cookieless (Vercel); Google Analytics viene attivato solo previo tuo consenso (art. 6.1.a).",
+          en: "Measuring site traffic and performance in aggregate. Legal basis: legitimate interest via cookieless tools (Vercel); Google Analytics is activated only with your prior consent (art. 6.1.a).",
         },
         {
-          it: "Adempiere a obblighi di legge, inclusi quelli fiscali e contabili — base giuridica: obbligo legale.",
-          en: "Complying with legal obligations, including tax and accounting ones — legal basis: legal obligation.",
+          it: "Adempiere a obblighi di legge, inclusi quelli fiscali e contabili. Base giuridica: obbligo legale (art. 6.1.c).",
+          en: "Complying with legal obligations, including tax and accounting ones. Legal basis: legal obligation (art. 6.1.c).",
         },
       ],
     },
@@ -157,8 +157,12 @@ export const privacy = {
       heading: { it: "I tuoi diritti", en: "Your rights" },
       body: [
         {
-          it: "In qualità di interessato hai diritto di accedere ai tuoi dati, chiederne la rettifica o la cancellazione, limitarne od opporti al trattamento e ottenere la portabilità dei dati, oltre a revocare in ogni momento il consenso eventualmente prestato (ad esempio per le statistiche o l'assistente).",
-          en: "As a data subject you have the right to access your data, request its rectification or erasure, restrict or object to its processing and obtain data portability, as well as to withdraw at any time any consent given (for example for analytics or the assistant).",
+          it: "In qualità di interessato hai diritto di accedere ai tuoi dati, chiederne la rettifica o la cancellazione, limitarne il trattamento e ottenere la portabilità dei dati, oltre a revocare in ogni momento il consenso eventualmente prestato (ad esempio per le statistiche o l'assistente).",
+          en: "As a data subject you have the right to access your data, request its rectification or erasure, restrict its processing and obtain data portability, as well as to withdraw at any time any consent given (for example for analytics or the assistant).",
+        },
+        {
+          it: "Diritto di opposizione: puoi opporti in qualsiasi momento ai trattamenti basati sul nostro legittimo interesse (sicurezza del sito, statistiche senza cookie) scrivendo a info@flylabs.ai.",
+          en: "Right to object: you can object at any time to processing based on our legitimate interest (site security, cookieless analytics) by writing to info@flylabs.ai.",
         },
         {
           it: "Puoi esercitare questi diritti scrivendo a info@flylabs.ai. Hai inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali (www.garanteprivacy.it).",
@@ -182,8 +186,8 @@ export const privacy = {
       heading: { it: "Cookie", en: "Cookies" },
       body: [
         {
-          it: "Il sito utilizza cookie tecnici, sempre attivi, e — solo con il tuo consenso — strumenti di statistica (Google Analytics) e l'assistente. Puoi gestire o revocare le tue scelte in ogni momento dalla Cookie Policy o dal link «Gestisci cookie» nel footer.",
-          en: "The site uses technical cookies, always on, and — only with your consent — analytics tools (Google Analytics) and the assistant. You can manage or withdraw your choices at any time from the Cookie Policy or the “Manage cookies” link in the footer.",
+          it: "Il sito usa cookie tecnici, sempre attivi. Solo con il tuo consenso attiviamo le statistiche (Google Analytics) e l'assistente AI. Puoi gestire o revocare le tue scelte in ogni momento dalla Cookie Policy o dal link «Gestisci cookie» nel footer.",
+          en: "The site uses strictly necessary cookies, always on. Analytics (Google Analytics) and the AI assistant run only with your consent. You can manage or withdraw your choices at any time from the Cookie Policy or the “Manage cookies” link in the footer.",
         },
       ],
     },
