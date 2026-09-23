@@ -22,9 +22,21 @@ declare global {
   }
 }
 
+// Pill con testo visibile: dichiara che è un'AI e che il click attiva cookie di
+// terze parti (il title non compare sui dispositivi touch, la microriga sì).
 const labels = {
-  it: { open: "Apri l'assistente", note: "Attiva i cookie del fornitore" },
-  en: { open: "Open the assistant", note: "Activates the provider's cookies" },
+  it: {
+    pill: "Assistente AI",
+    note: "Chat con un'AI · attiva cookie di terze parti",
+    aria: "Apri l'assistente AI (attiva i cookie del fornitore)",
+    loading: "Caricamento dell'assistente",
+  },
+  en: {
+    pill: "AI assistant",
+    note: "Chat with an AI · enables third-party cookies",
+    aria: "Open the AI assistant (enables the provider's cookies)",
+    loading: "Loading the assistant",
+  },
 };
 
 export function ChatbotWidget({ lang }: { lang: string }) {
@@ -67,10 +79,13 @@ export function ChatbotWidget({ lang }: { lang: string }) {
   }, []);
 
   const onClick = useCallback(() => {
+    // Durante il caricamento il bottone è aria-disabled (non disabled, che
+    // farebbe cadere il focus su body): ignoriamo i click ripetuti.
+    if (loading) return;
     // Il click vale come consenso allo strumento di terza parte "assistant".
     if (!state.assistant) grantAssistant();
     load();
-  }, [state.assistant, grantAssistant, load]);
+  }, [loading, state.assistant, grantAssistant, load]);
 
   // Nascondi il nostro bottone quando: si sta ancora scegliendo i cookie
   // (prima il banner), oppure il widget vero è caricato (evita doppia bollicina).
@@ -82,28 +97,43 @@ export function ChatbotWidget({ lang }: { lang: string }) {
     <button
       type="button"
       onClick={onClick}
-      aria-label={`${t.open} — ${t.note}`}
-      title={`${t.open} — ${t.note}`}
-      className="fixed bottom-5 right-5 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-ink text-white shadow-lg transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mark disabled:opacity-70"
-      disabled={loading}
+      aria-label={t.aria}
+      title={t.aria}
+      aria-disabled={loading || undefined}
+      aria-busy={loading || undefined}
+      className="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full bg-ink py-2.5 pl-3.5 pr-5 text-left text-white shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white aria-disabled:cursor-progress aria-disabled:hover:scale-100"
     >
-      {loading ? (
-        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
-      ) : (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-        </svg>
-      )}
+      <span className="flex h-6 w-6 shrink-0 items-center justify-center">
+        {loading ? (
+          <>
+            <span
+              aria-hidden="true"
+              className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white"
+            />
+            <span className="sr-only" role="status">
+              {t.loading}
+            </span>
+          </>
+        ) : (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+        )}
+      </span>
+      <span className="flex flex-col leading-tight">
+        <span className="text-sm font-semibold">{t.pill}</span>
+        <span className="mt-0.5 text-[11px] text-white/75">{t.note}</span>
+      </span>
     </button>
   );
 }
