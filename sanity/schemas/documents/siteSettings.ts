@@ -43,7 +43,7 @@ export const siteSettings = defineType({
       name: "keywords",
       title: "Parole chiave SEO",
       description:
-        "Termini principali con cui vuoi essere trovato. Peso SEO basso oggi, ma utili come promemoria di posizionamento.",
+        "Solo promemoria interno di posizionamento: il sito non le pubblica (Google ignora il meta keywords).",
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },

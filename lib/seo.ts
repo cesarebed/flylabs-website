@@ -70,10 +70,12 @@ export async function buildMetadata(
   // qui scegliamo noi: immagine della pagina > siteSettings.ogImage (override
   // globale da Sanity) > OG generica per lingua. La route
   // `/{lang}/opengraph-image` risponde 200 image/png anche senza hash.
+  // L'immagine di siteSettings la carica l'editor e il suo contenuto non lo
+  // conosciamo (DEFAULT_OG_ALT descrive l'OG generata): alt neutro.
   const image = page.ogImage
     ? { url: page.ogImage, ...OG_SIZE, alt: page.ogImageAlt || page.title }
     : s?.ogImage
-      ? { url: s.ogImage, alt: page.ogImageAlt || DEFAULT_OG_ALT[lang] }
+      ? { url: s.ogImage, alt: SITE_NAME }
       : {
           url: `/${lang}/opengraph-image`,
           ...OG_SIZE,
