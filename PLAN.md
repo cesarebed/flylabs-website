@@ -1,7 +1,7 @@
 # PLAN.md — Roadmap e task in corso
 
 Documento vivo per coordinare il lavoro tra **Cesare** e **Federico** (e i rispettivi agenti).
-Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-09-13 (Federico - PR #63 mergiata e LIVE).
+Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-09-23 (Federico - Fase 18 audit multi-lente in corso).
 
 ---
 
@@ -41,6 +41,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-09-13 (Federico - PR #
 | 15 | **Fix footer: email isolata a destra** (bug report Federico con screenshot, 2026-08-28): nav e social/email erano due contenitori flex separati da `justify-between`, e quando il nav andava a capo su due righe l'email restava ancorata in alto a destra, isolata. Unificati in un solo gruppo `flex-wrap`. Verificato anche il link mailto (già corretto in codice, `mailto:info@flylabs.ai`) | Federico (agente autonomo) | [PR #61](https://github.com/cesarebed/flylabs-website/pull/61) | ✅ mergiata e LIVE |
 | 16 | **Nuovo logo flylabs.ai** (richiesta Federico 2026-09-01): sostituito il mark flat "aeroplanino" (SVG `currentColor`) con il nuovo logo fornito da Federico, icona "F"/aeroplano di carta in gradiente blu/viola. `LogoMark` passa da SVG inline a `next/image` su asset PNG statico (`public/logo/flylabs-mark.png`); favicon/apple-icon/`favicon.ico` rigenerati dallo stesso crop. Testo "flylabs.ai" invariato (resta HTML live, non nell'immagine) | Federico (agente autonomo) | [PR #62](https://github.com/cesarebed/flylabs-website/pull/62) | ✅ mergiata e LIVE |
 | 17 | **Riposizionamento hero + riordino home + "Cosa costruiamo" con link a prodotti/casi** (richiesta Federico 2026-09-10, ispirata a martes-ai.com): (a) titolo hero "Mettiamo l'AI al lavoro nella tua azienda" → "Il partner per integrare l'AI nei tuoi processi"; (b) Offerta con frase-ombrello "Tre modi di lavorare insieme, una direzione sola" + intro riscritta sull'adozione ("retainer" → "contratti che ti legano"); (c) Metodo da 3 a 4 step (nuovo "Ti rendiamo autonomo" al 3, "Misuriamo" al 4), `method.tsx` reso N-agnostico per il connettore `.wire`; (d) "Perché flylabs" riscritta coerente (via retainer/prezzo); (e) **riordino sezioni home** (`app/[locale]/page.tsx`): Hero → Cosa costruiamo → Sotto il cofano → Come possiamo aiutarti → Il nostro processo → Clienti veri → Perché flylabs → FAQ → form; (f) **"Cosa costruiamo"**: nuovo campo `BuildCard.links` (prodotto con logo + caso reale), card "Chatbot e assistenti" → "Chatbot e Assistenti AI" con GPT Chatbot, +2 card ("Web app su misura" con WeGrocery, "Scraping e raccolta dati"), link ai `caseStudy` featured. Body hero invariato. Review completa it/en pre-merge (grammatica + grafica), fix minori inclusi nella PR | Federico | [PR #63](https://github.com/cesarebed/flylabs-website/pull/63) | ✅ mergiata e LIVE (2026-09-13, merge commit `1ab3c05`) |
+| 18 | **Audit end-to-end multi-lente + polish** (richiesta Federico 2026-09-23): panel di critici indipendenti (design, copy/i18n, UX/conversione, legal, SEO/performance, accessibilità, codice, posizionamento/benchmark) + fact-check avversariale + supervisor; implementazione dei fix autonomi, il resto elencato come decisioni/asset/Studio | Federico (agente autonomo) | `feat/site-audit-polish` | 🔨 |
 
 ## Decisioni prese
 
