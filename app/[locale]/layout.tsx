@@ -61,13 +61,15 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${fontVars} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <ConsentProvider locale={locale}>
+          {/* Prima del contenuto: è fixed in basso, ma nel DOM viene per primo
+              così è il primo tab stop (senza rubare il focus). */}
+          <CookieBanner lang={locale} />
           <JsonLd data={organizationLd(siteUrl, sameAs)} />
           {children}
           {/* Facade: parte solo al click, previo consenso alla categoria. */}
           <ChatbotWidget lang={locale} />
           {/* GA4 caricato solo dopo consenso "Statistiche" (blocco preventivo). */}
           <GoogleAnalytics />
-          <CookieBanner lang={locale} />
         </ConsentProvider>
         {/* Vercel Analytics/Speed Insights: cookieless, nessun consenso necessario. */}
         <Analytics />
