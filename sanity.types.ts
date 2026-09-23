@@ -438,6 +438,11 @@ export type CASE_STUDY_SITEMAP_QUERY_RESULT = Array<{
 }>;
 
 // Source: sanity/queries.ts
+// Variable: CONSENT_RATE_COUNT_QUERY
+// Query: count(*[_type == "consentEvent" && ipHash == $ipHash && at > $since])
+export type CONSENT_RATE_COUNT_QUERY_RESULT = number;
+
+// Source: sanity/queries.ts
 // Variable: CONTACT_RATE_COUNT_QUERY
 // Query: count(*[_type == "contactSubmission" && submittedAt > $since &&    (email == $email || (defined(ipHash) && ipHash == $ipHash))])
 export type CONTACT_RATE_COUNT_QUERY_RESULT = number;
@@ -452,6 +457,7 @@ declare module "@sanity/client" {
     '*[_type == "caseStudy" && slug.current == $slug][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    "diagrams": diagrams[]{\n      _key,\n      alt,\n      caption,\n      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },\n      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }\n    },\n    date,\n    "updatedAt": _updatedAt\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)].slug.current': CASE_STUDY_SLUGS_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)]{\n    "slug": slug.current,\n    "updatedAt": _updatedAt\n  }': CASE_STUDY_SITEMAP_QUERY_RESULT;
+    'count(*[_type == "consentEvent" && ipHash == $ipHash && at > $since])': CONSENT_RATE_COUNT_QUERY_RESULT;
     'count(*[_type == "contactSubmission" && submittedAt > $since &&\n    (email == $email || (defined(ipHash) && ipHash == $ipHash))])': CONTACT_RATE_COUNT_QUERY_RESULT;
   }
 }

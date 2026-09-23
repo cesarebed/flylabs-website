@@ -85,6 +85,11 @@ export const CASE_STUDY_SITEMAP_QUERY = defineQuery(
   }`
 );
 
+// Rate limit del registro consensi (/api/consent): eventi recenti dallo stesso IP.
+export const CONSENT_RATE_COUNT_QUERY = defineQuery(
+  `count(*[_type == "consentEvent" && ipHash == $ipHash && at > $since])`
+);
+
 // Rate limit del form contatti: richieste recenti con stessa email o stesso IP.
 export const CONTACT_RATE_COUNT_QUERY = defineQuery(
   `count(*[_type == "contactSubmission" && submittedAt > $since &&
