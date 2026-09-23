@@ -516,7 +516,7 @@ export const landing = {
             en: "You keep the prompts, the flows and a written guide for the team.",
           },
         ],
-        cta: { it: "Organizziamo la formazione →", en: "Let's plan the training →" },
+        cta: { it: "Organizziamo la formazione\u00a0→", en: "Let's plan the training\u00a0→" },
       },
       {
         kind: { it: "soluzione", en: "solution" },
@@ -564,7 +564,7 @@ export const landing = {
             en: "We train the team, hand over the documentation, and from then on you're self-sufficient.",
           },
         ],
-        cta: { it: "Raccontaci il processo →", en: "Tell us about your process →" },
+        cta: { it: "Raccontaci il processo\u00a0→", en: "Tell us about your process\u00a0→" },
       },
       {
         kind: { it: "consulenza", en: "consulting" },
@@ -603,11 +603,11 @@ export const landing = {
             en: "We rank the ideas by impact and difficulty, with you in the room.",
           },
           {
-            it: "Ti lasciamo il piano: se vuoi lo costruiamo insieme, altrimenti è tuo.",
-            en: "You leave with the plan: we can build it together if you want, otherwise it's yours.",
+            it: "Ti lasciamo il piano: se vuoi lo costruiamo insieme, altrimenti lo porti avanti tu.",
+            en: "You leave with the plan: we can build it together, or you can take it forward on your own.",
           },
         ],
-        cta: { it: "Chiedi una sessione →", en: "Ask for a session →" },
+        cta: { it: "Chiedi una sessione\u00a0→", en: "Ask for a session\u00a0→" },
       },
     ] satisfies OfferTrack[],
     deepLink: {

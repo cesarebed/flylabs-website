@@ -15,7 +15,7 @@ const MESSAGE_HINT_ID = "contact-message-hint";
 // famiglia del warm #ff7e4c, che come testo sta a 2,5:1) e bordo dei campi
 // #8a8780 (~3,6:1, il border-line #e7e5e0 sta a 1,3:1).
 const fieldClass =
-  "w-full rounded-lg border border-[#8a8780] bg-white px-4 py-3 text-[15px] text-ink transition-colors placeholder:text-muted/70 focus:border-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 aria-invalid:border-[#b8430f]";
+  "w-full rounded-lg border border-[#8a8780] bg-white px-4 py-3 text-[15px] text-ink transition-colors focus:border-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 aria-invalid:border-[#b8430f]";
 
 type Field = NonNullable<ContactState["field"]>;
 
