@@ -2,6 +2,9 @@
  * Mappa "nome tecnologia" (come scritto a mano nel campo `tech` dei
  * caseStudy su Sanity) → icona Iconify, stessi set usati da /stack e dalla
  * strip loghi (logos: colore, simple-icons: monocromatiche).
+ * Le icone citate qui finiscono offline in lib/icons.generated.json
+ * (scripts/build-icons.mjs): un prefisso nuovo richiede il suo pacchetto
+ * `@iconify-json/<prefisso>` in devDependencies.
  * Nomi non mappati: il badge esce senza logo, non è un errore.
  */
 const TECH_ICONS: Record<string, string> = {
@@ -50,9 +53,11 @@ const TECH_ICONS: Record<string, string> = {
 /**
  * Loghi che non esistono su Iconify e vivono come immagine in `public/logos/`
  * (es. prodotti nostri). Renderizzati con next/image dai badge.
+ * `alt` vuoto: il logo sta sempre accanto al nome scritto nel badge, un alt
+ * descrittivo farebbe leggere il nome due volte allo screen reader.
  */
 const TECH_IMAGE_LOGOS: Record<string, { src: string; alt: string }> = {
-  "gpt chatbot": { src: "/logos/gpt-chatbot.png", alt: "Logo GPT Chatbot" },
+  "gpt chatbot": { src: "/logos/gpt-chatbot.png", alt: "" },
 };
 
 export function techIcon(name: string): string | undefined {
