@@ -23,6 +23,7 @@ export async function Work({ lang }: { lang: Locale }) {
   const items: WorkItem[] = studies.map((study) => ({
     id: study._id,
     href: `/${lang}/lavori/${study.slug}`,
+    title: pickLocale(study.title, lang),
     sector: pickLocale(study.sector, lang),
     problem: pickLocale(study.problem, lang),
     solution: pickLocale(study.solution, lang),
