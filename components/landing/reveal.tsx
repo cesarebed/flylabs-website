@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import {
   Children,
   createContext,
@@ -18,7 +18,10 @@ import {
  * Ogni elemento ha il proprio trigger: una soglia sull'intero gruppo (alto
  * ~4000px su mobile) non veniva mai raggiunta e le card restavano a opacity 0.
  * Gli elementi portano `data-reveal`: senza JS li rende visibili il
- * <noscript> del layout ([locale]/layout.tsx).
+ * <noscript> del layout ([locale]/layout.tsx), con prefers-reduced-motion
+ * una regola in globals.css. Lo stato iniziale non dipende da
+ * useReducedMotion: lato server vale null, e un `initial` diverso fra SSR e
+ * client dà un hydration mismatch che lascia gli elementi a opacity 0.
  */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -41,12 +44,11 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
   return (
     <motion.div
       data-reveal=""
       className={className}
-      initial={reduce ? false : HIDDEN}
+      initial={HIDDEN}
       whileInView={SHOWN}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay, ease: EASE }}
@@ -90,7 +92,6 @@ export function RevealItem({
   children: ReactNode;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
   const stagger = useContext(StaggerContext);
   const delay = stagger
     ? Math.min(stagger.index, MAX_STAGGER_STEPS) * stagger.step
@@ -99,7 +100,7 @@ export function RevealItem({
     <motion.div
       data-reveal=""
       className={className}
-      initial={reduce ? false : HIDDEN}
+      initial={HIDDEN}
       whileInView={SHOWN}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.5, delay, ease: EASE }}
