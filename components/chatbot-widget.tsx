@@ -101,19 +101,14 @@ export function ChatbotWidget({ lang }: { lang: string }) {
       title={t.aria}
       aria-disabled={loading || undefined}
       aria-busy={loading || undefined}
-      className="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full bg-ink py-2.5 pl-3.5 pr-5 text-left text-white shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white aria-disabled:cursor-progress aria-disabled:hover:scale-100"
+      className="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full bg-ink py-2.5 pl-3.5 pr-5 text-left text-white shadow-lg transition-transform motion-safe:hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white aria-disabled:cursor-progress aria-disabled:hover:scale-100"
     >
       <span className="flex h-6 w-6 shrink-0 items-center justify-center">
         {loading ? (
-          <>
-            <span
-              aria-hidden="true"
-              className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white"
-            />
-            <span className="sr-only" role="status">
-              {t.loading}
-            </span>
-          </>
+          <span
+            aria-hidden="true"
+            className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white"
+          />
         ) : (
           <svg
             width="24"
@@ -133,6 +128,11 @@ export function ChatbotWidget({ lang }: { lang: string }) {
       <span className="flex flex-col leading-tight">
         <span className="text-sm font-semibold">{t.pill}</span>
         <span className="mt-0.5 text-[11px] text-white/75">{t.note}</span>
+      </span>
+      {/* Live region sempre montata: se nascesse insieme al testo molti screen
+          reader non annuncerebbero il caricamento. */}
+      <span className="sr-only" role="status">
+        {loading ? t.loading : ""}
       </span>
     </button>
   );

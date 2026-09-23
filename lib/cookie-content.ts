@@ -67,7 +67,7 @@ export const cookiePolicy = {
       ],
     },
     {
-      heading: { it: "Assistente (chatbot)", en: "Assistant (chatbot)" },
+      heading: { it: "Assistente AI (chatbot)", en: "AI assistant (chatbot)" },
       body: [
         {
           it: "L'assistente è fornito da gpt-trainer (tramite gptchatbot.it). Per impostazione predefinita non viene caricato: parte solo quando apri l'assistente dal suo pulsante, gesto che vale come consenso all'attivazione. Una volta attivo utilizza cookie e storage di terza parte e comunica con i server del fornitore. Non inserire nella chat dati particolari o riservati.",
@@ -76,7 +76,7 @@ export const cookiePolicy = {
       ],
     },
     {
-      heading: { it: "Strumenti e durata", en: "Tools and duration" },
+      heading: { it: "Cosa viene salvato e per quanto", en: "What is stored and for how long" },
       body: [
         {
           it: "flylabs-consent · localStorage, nostro · memorizza la tua scelta sui cookie · 6 mesi.",
