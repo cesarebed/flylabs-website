@@ -279,7 +279,9 @@ export default async function CaseStudyPage({
         secondary={
           nextStudy
             ? {
-                label: `${cases.closing.caseStudy.next[lang]}: ${pickLocale(nextStudy.title, lang)}`,
+                // "·" e non ":": diversi titoli contengono già i due punti
+                // ("Caso successivo: WeGrocery: la piattaforma...").
+                label: `${cases.closing.caseStudy.next[lang]} · ${pickLocale(nextStudy.title, lang)}`,
                 href: `/${lang}/lavori/${nextStudy.slug}`,
               }
             : undefined
