@@ -89,7 +89,7 @@ modo naturale (non letterale). Mappatura:
 
 Lo `slug` deriva dal **titolo anonimizzato** (kebab-case). ⚠️ Se `anonymize: true`, NON
 riusare lo slug della nota del brain: spesso contiene il nome del cliente (es.
-`isola-dei-gabbiani-...`) e finirebbe nell'URL pubblico — sarebbe una fuga. L'`_id` del
+`<nome-cliente>-...`) e finirebbe nell'URL pubblico — sarebbe una fuga. L'`_id` del
 documento è `caseStudy.<slug>`.
 
 ### 4. Regola della metrica — non inventare mai
