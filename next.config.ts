@@ -26,7 +26,8 @@ const studioCsp = "frame-ancestors 'self' https://*.sanity.io; base-uri 'self'; 
 
 // Allowlist delle risorse di terze parti che il sito carica: GA4 (dopo il
 // consenso), widget assistente (app.gptchatbot.it → gpt-trainer, con iframe
-// YouTube e Google Fonts), Vercel Analytics/Speed Insights, API di Iconify.
+// YouTube e Google Fonts), Vercel Analytics/Speed Insights. Nessun host Iconify:
+// le icone sono generate a build time (fix/icone-offline).
 // Le violazioni compaiono nella console del browser. In dev servono
 // anche eval e il websocket dell'HMR.
 const reportOnlyCsp = [
@@ -50,8 +51,6 @@ const reportOnlyCsp = [
     "https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
     "https://app.gptchatbot.it wss://app.gptchatbot.it https://*.gpt-trainer.com wss://*.gpt-trainer.com",
     "https://va.vercel-scripts.com",
-    // @iconify/react scarica le icone a runtime (host principale + fallback).
-    "https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com",
   ]
     .filter(Boolean)
     .join(" "),
