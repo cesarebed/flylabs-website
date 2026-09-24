@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   isLocale,
   defaultLocale,
@@ -14,9 +13,10 @@ import { JsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/fetch";
 import { CASE_STUDIES_QUERY } from "@/sanity/queries";
 import type { CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
+import { CaseCard } from "@/components/landing/case-card";
+import { ClosingCta } from "@/components/landing/closing-cta";
 import { Footer } from "@/components/landing/footer";
 import { Nav } from "@/components/landing/nav";
-import { TechBadges } from "@/components/landing/tech-badges";
 
 export const revalidate = 3600;
 
@@ -74,55 +74,35 @@ export default async function CasesPage({
         ) : (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {studies.map((study) => (
-              <Link
+              <CaseCard
                 key={study._id}
-                href={`/${lang}/lavori/${study.slug}`}
-                className="card-hover flex flex-col rounded-xl border border-line bg-paper p-7"
-              >
-                <span className="stamp mb-6 text-muted">
-                  {pickLocale(study.sector, lang)}
-                </span>
-                <p className="mb-1 font-semibold">
-                  {pickLocale(study.problem, lang)}
-                </p>
-                <p className="mb-4 text-sm text-muted">
-                  {pickLocale(study.solution, lang)}
-                </p>
-                <TechBadges tech={study.tech} className="mb-6" />
-                <div className="mt-auto border-t border-line pt-6">
-                  <div
-                    className={
-                      (study.metrics?.length ?? 0) > 1
-                        ? "grid grid-cols-2 gap-4"
-                        : ""
-                    }
-                  >
-                    {(study.metrics ?? []).map((metric) => (
-                      <div key={metric._key}>
-                        <div
-                          className={`whitespace-nowrap font-display font-semibold leading-none text-accent ${
-                            (study.metrics?.length ?? 1) > 1
-                              ? "text-4xl"
-                              : "text-5xl"
-                          }`}
-                        >
-                          {pickLocaleLoose(metric.value, lang)}
-                        </div>
-                        <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
-                          {pickLocale(metric.label, lang)}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 text-sm font-medium text-ink/70">
-                    {cases.cta[lang]}
-                  </div>
-                </div>
-              </Link>
+                headingLevel="h2"
+                item={{
+                  id: study._id,
+                  href: `/${lang}/lavori/${study.slug}`,
+                  title: pickLocale(study.title, lang),
+                  sector: pickLocale(study.sector, lang),
+                  problem: pickLocale(study.problem, lang),
+                  solution: pickLocale(study.solution, lang),
+                  tech: study.tech ?? [],
+                  metrics: (study.metrics ?? []).map((metric) => ({
+                    key: metric._key,
+                    value: pickLocaleLoose(metric.value, lang),
+                    label: pickLocale(metric.label, lang),
+                  })),
+                  cta: cases.cta[lang],
+                }}
+              />
             ))}
           </div>
         )}
       </div>
+
+      <ClosingCta
+        title={cases.closing.list.title[lang]}
+        body={cases.closing.list.body[lang]}
+        cta={{ label: cases.closing.list.cta[lang], href: `/${lang}#cta` }}
+      />
 
       <Footer lang={lang} />
     </main>

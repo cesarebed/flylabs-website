@@ -16,13 +16,16 @@ import { JsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/fetch";
 import { urlFor } from "@/sanity/image";
 import {
+  CASE_STUDIES_QUERY,
   CASE_STUDY_BY_SLUG_QUERY,
   CASE_STUDY_SLUGS_QUERY,
 } from "@/sanity/queries";
 import type {
+  CASE_STUDIES_QUERY_RESULT,
   CASE_STUDY_BY_SLUG_QUERY_RESULT,
   CASE_STUDY_SLUGS_QUERY_RESULT,
 } from "@/sanity.types";
+import { ClosingCta, WithArrow } from "@/components/landing/closing-cta";
 import { Footer } from "@/components/landing/footer";
 import { Nav } from "@/components/landing/nav";
 import { TechBadges } from "@/components/landing/tech-badges";
@@ -53,7 +56,14 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const study = await getStudy(slug);
-  if (!study) return buildMetadata(lang, cases.meta[lang]);
+  // Caso inesistente: niente canonical (prima puntava alla home, segnale in
+  // contraddizione con il noindex) e un titolo che dice cosa è successo. Il
+  // noindex lo inietta già Next per notFound(): ripeterlo qui duplicava il
+  // meta. Lo status resta 200 finché app/[locale]/loading.tsx apre lo
+  // streaming prima di notFound() (verificato con next build/start).
+  if (!study) {
+    return { title: { absolute: cases.notFound.metaTitle[lang] } };
+  }
   return buildMetadata(lang, {
     title: `${pickLocale(study.title, lang)} | flylabs.ai`,
     description: pickLocale(study.solution, lang),
@@ -72,6 +82,20 @@ export default async function CaseStudyPage({
   if (!study) notFound();
 
   const coverAlt = pickLocale(study.coverAlt, lang) || pickLocale(study.title, lang);
+
+  // "Caso successivo": il seguente nello stesso ordine di /lavori (dal più
+  // recente), ricominciando dal primo dopo l'ultimo. Stessa query della
+  // lista, quindi stessa cache e stesso tag di revalidation.
+  const allStudies = await sanityFetch<CASE_STUDIES_QUERY_RESULT>({
+    query: CASE_STUDIES_QUERY,
+    tags: ["caseStudy"],
+  });
+  const position = allStudies.findIndex((s) => s.slug === slug);
+  const nextStudy =
+    allStudies.length > 1 && position !== -1
+      ? allStudies[(position + 1) % allStudies.length]
+      : null;
+  const relatedProduct = cases.relatedProduct.bySlug[slug];
 
   const siteUrl = await getSiteUrl();
   const pageUrl = `${siteUrl}/${lang}/lavori/${slug}`;
@@ -172,28 +196,45 @@ export default async function CaseStudyPage({
             const image =
               lang === "en" && diagram.en?.asset ? diagram.en : diagram.it;
             if (!image?.asset) return null;
+            const caption = pickLocale(diagram.caption, lang);
+            // Da mobile il testo del diagramma è di pochi pixel: il link apre
+            // l'immagine a piena risoluzione, da ingrandire a piacere.
             return (
               <figure key={diagram._key}>
-                <Image
-                  src={urlFor(image).width(1600).url()}
-                  alt={
-                    pickLocale(diagram.alt, lang) ||
-                    pickLocale(study.title, lang)
-                  }
-                  width={image.dims?.width ?? 1600}
-                  height={image.dims?.height ?? 900}
-                  className="rounded-xl border border-line bg-white"
-                />
-                {pickLocale(diagram.caption, lang) && (
-                  <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-wider text-muted">
-                    {pickLocale(diagram.caption, lang)}
-                  </figcaption>
-                )}
+                <a
+                  href={urlFor(image).url()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
+                  <Image
+                    src={urlFor(image).width(1600).url()}
+                    alt={
+                      pickLocale(diagram.alt, lang) ||
+                      pickLocale(study.title, lang)
+                    }
+                    width={image.dims?.width ?? 1600}
+                    height={image.dims?.height ?? 900}
+                    // Colonna max-w-3xl (768px) × zoom 1.15 del sito.
+                    sizes="(min-width: 768px) 884px, 100vw"
+                    className="rounded-xl border border-line bg-white"
+                  />
+                  <span className="sr-only">{cases.diagram.newTab[lang]}</span>
+                </a>
+                <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-muted">
+                  {caption && <span>{caption}</span>}
+                  <span className="whitespace-nowrap normal-case tracking-normal text-[12px]">
+                    {cases.diagram.enlarge[lang]}
+                  </span>
+                </figcaption>
               </figure>
             );
           })}
           {pickLocale(study.body, lang) && (
-            <div className="flex flex-col gap-3">
+            <section className="flex flex-col gap-3">
+              <h2 className="font-display text-2xl font-semibold">
+                {cases.story[lang]}
+              </h2>
               {pickLocale(study.body, lang)
                 .split("\n\n")
                 .map((paragraph, i) => (
@@ -201,7 +242,7 @@ export default async function CaseStudyPage({
                     {paragraph}
                   </p>
                 ))}
-            </div>
+            </section>
           )}
           {pickLocale(study.testimonial?.quote, lang) && (
             <blockquote className="rounded-xl bg-ink p-8 text-white">
@@ -215,8 +256,37 @@ export default async function CaseStudyPage({
               )}
             </blockquote>
           )}
+          {relatedProduct && (
+            <p className="rounded-xl border border-line bg-paper px-6 py-5 text-[15px] leading-snug">
+              <span className="text-ink/70">
+                {cases.relatedProduct.label[lang]}
+              </span>{" "}
+              <Link
+                href={`/${lang}${relatedProduct.href}`}
+                className="font-semibold text-accent hover:underline"
+              >
+                <WithArrow>{relatedProduct.name}</WithArrow>
+              </Link>
+            </p>
+          )}
         </div>
       </article>
+
+      <ClosingCta
+        title={cases.closing.caseStudy.title[lang]}
+        body={cases.closing.caseStudy.body[lang]}
+        cta={{ label: cases.closing.caseStudy.cta[lang], href: `/${lang}#cta` }}
+        secondary={
+          nextStudy
+            ? {
+                // "·" e non ":": diversi titoli contengono già i due punti
+                // ("Caso successivo: WeGrocery: la piattaforma...").
+                label: `${cases.closing.caseStudy.next[lang]} · ${pickLocale(nextStudy.title, lang)}`,
+                href: `/${lang}/lavori/${nextStudy.slug}`,
+              }
+            : undefined
+        }
+      />
 
       <Footer lang={lang} />
     </main>
