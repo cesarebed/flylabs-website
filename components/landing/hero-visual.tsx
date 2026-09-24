@@ -53,13 +53,18 @@ export function HeroVisual({
       <motion.div
         style={{ rotateX, rotateY, y: liftY, transformStyle: "preserve-3d" }}
       >
-        <Image
-          src={src}
-          alt={alt}
-          preload
-          sizes={sizes}
-          className="h-auto w-full rounded-xl"
-        />
+        {/* Riquadro chiaro: il diagramma è su fondo bianco e dentro l'hero
+            scuro serve una cornice, con un'ombra tinta d'indaco che lo
+            stacca dal gradiente senza sembrare un foglio incollato. */}
+        <div className="rounded-xl border border-line bg-white p-4 shadow-[0_30px_80px_-30px_rgba(52,59,236,0.55)]">
+          <Image
+            src={src}
+            alt={alt}
+            preload
+            sizes={sizes}
+            className="h-auto w-full"
+          />
+        </div>
       </motion.div>
     </motion.div>
   );

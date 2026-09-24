@@ -24,14 +24,17 @@ type HeroContent = {
   ctaPrimary: Localized;
   ctaSecondary: Localized;
   note: Localized;
-  flow: {
-    label: Localized;
-    status: Localized;
-    trigger: { kind: Localized; title: Localized; sub: Localized };
-    brain: { kind: Localized; title: Localized; sub: Localized };
-    action1: { kind: Localized; title: Localized };
-    action2: { kind: Localized; title: Localized };
-    annotation: Localized;
+  // Diagramma reale di un caso accanto al copy (file in public/hero/,
+  // importati staticamente da hero.tsx). `caseHref` punta allo slug Sanity
+  // del caseStudy, hardcoded come i link di "Cosa costruiamo": se cambia
+  // nello Studio va aggiornato a mano. `sector` è il campo `sector` pubblico
+  // dello stesso caso.
+  visual: {
+    alt: Localized;
+    caseHref: string;
+    casePrefix: Localized;
+    sector: Localized;
+    caseCta: Localized;
   };
 };
 
@@ -122,14 +125,11 @@ export const landing = {
     titleMark: { it: "integrare l'AI", en: "building AI" },
     titleAfter: { it: "nei tuoi processi.", en: "into your processes." },
     body: {
-      it: "Colmiamo il divario tra le tecnologie AI più avanzate e le esigenze operative della tua azienda, con soluzioni AI su misura. Le integriamo nei tuoi flussi di lavoro e ti mettiamo in condizione di gestirle ",
-      en: "We bridge the gap between frontier AI technology and your specific operational requirements, with custom AI solutions. We integrate them into your workflows and empower you to run them ",
+      it: "Partiamo da un processo che oggi ti costa ore o clienti, costruiamo la soluzione AI che lo risolve e formiamo il tuo team a gestirla ",
+      en: "We start from a process that costs you hours or customers today, build the AI that fixes it and train your team to run it ",
     },
-    bodyMark: { it: "in autonomia", en: "independently" },
-    bodyAfter: {
-      it: ", mantenendo il pieno controllo.",
-      en: ", keeping you in complete control.",
-    },
+    bodyMark: { it: "in autonomia", en: "on their own" },
+    bodyAfter: { it: ".", en: "." },
     ctaPrimary: { it: "Parliamone →", en: "Let's talk →" },
     ctaSecondary: {
       it: "Guarda cosa abbiamo costruito",
@@ -139,31 +139,15 @@ export const landing = {
       it: "Prima call gratuita. Nessun impegno, nessun pitch.",
       en: "First call is free. No commitment, no pitch.",
     },
-    flow: {
-      label: { it: "flusso · prenotazioni", en: "flow · bookings" },
-      status: { it: "attivo", en: "live" },
-      trigger: {
-        kind: { it: "trigger", en: "trigger" },
-        title: { it: "Messaggio in arrivo", en: "Incoming message" },
-        sub: { it: "sito · WhatsApp · IG", en: "site · WhatsApp · IG" },
+    visual: {
+      alt: {
+        it: "Tre siti di un noleggio bici collegati a un unico assistente AI, che risponde sulla chat del sito, su Instagram, Facebook Messenger e WhatsApp Business: informazioni su mezzi, taglie, sedi e prezzi, appuntamenti e prenotazione online, e passaggio a un operatore per le richieste in giornata e i problemi durante il noleggio.",
+        en: "Three bike rental websites connected to a single AI assistant that replies on the website chat, Instagram, Facebook Messenger and WhatsApp Business: answers on bikes, sizes, locations and prices, appointments and online booking, and handover to a person for same-day requests and issues during the rental.",
       },
-      brain: {
-        kind: { it: "flylabs", en: "flylabs" },
-        title: { it: "Capisce la richiesta", en: "Understands the request" },
-        sub: { it: "qualifica e risponde", en: "qualifies and replies" },
-      },
-      action1: {
-        kind: { it: "azione", en: "action" },
-        title: { it: "Prenota lo slot", en: "Books the slot" },
-      },
-      action2: {
-        kind: { it: "azione", en: "action" },
-        title: { it: "Avvisa lo studio", en: "Notifies the team" },
-      },
-      annotation: {
-        it: "gira da sola. anche di notte.",
-        en: "runs on its own. even at night.",
-      },
+      caseHref: "/lavori/assistenti-noleggio-multisito",
+      casePrefix: { it: "Caso reale:", en: "Real case:" },
+      sector: { it: "Noleggio bici · Arizona (USA)", en: "Bike rental · Arizona (USA)" },
+      caseCta: { it: "Leggi il caso →", en: "Read the case →" },
     },
   } satisfies HeroContent,
 
