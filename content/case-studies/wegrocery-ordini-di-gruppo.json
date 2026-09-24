@@ -10,7 +10,7 @@
   "sector": {
     "_type": "localeString",
     "it": "No-profit · Gruppi d'acquisto solidale (GAS)",
-    "en": "Non-profit · Group buying clubs (GAS)"
+    "en": "Non-profit · Group buying clubs"
   },
   "problem": {
     "_type": "localeText",
@@ -26,11 +26,11 @@
     {
       "_type": "metric",
       "_key": "m1",
-      "value": { "_type": "localeString", "it": "0", "en": "0" },
+      "value": { "_type": "localeString", "it": "1", "en": "1" },
       "label": {
         "_type": "localeString",
-        "it": "fork per cliente: stessa codebase per tutti",
-        "en": "forks per client: the same codebase for everyone"
+        "it": "sola piattaforma per tutti i gruppi, aggiornata per tutti insieme",
+        "en": "platform for every group, updated for all at once"
       }
     },
     {

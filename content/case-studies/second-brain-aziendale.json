@@ -39,8 +39,8 @@
       "value": { "_type": "localeString", "it": "3", "en": "3" },
       "label": {
         "_type": "localeString",
-        "it": "coding agent supportati (Claude Code, Codex, Gemini)",
-        "en": "coding agents supported (Claude Code, Codex, Gemini)"
+        "it": "assistenti AI compatibili (Claude Code, Codex, Gemini)",
+        "en": "compatible AI assistants (Claude Code, Codex, Gemini)"
       }
     }
   ],
