@@ -14,11 +14,13 @@ export const metadata: Metadata = {
 // file bypassa il rendering standard e deve portarsi dietro tutto da solo:
 // <html>/<body>, font, CSS globale.
 //
-// Serve solo i path SENZA lingua (/xyz, primo segmento diverso da it/en):
-// quelli sotto /it o /en hanno la 404 localizzata di app/[locale]/not-found.tsx
-// (via app/[locale]/[...rest]). Qui la lingua non si conosce, quindi resta
-// bilingue: le righe inglesi in lang="en" (lo screen reader cambia voce) e
-// una home per lingua.
+// Pensato per i path SENZA lingua: quelli sotto /it o /en hanno la 404
+// localizzata di app/[locale]/not-found.tsx (via app/[locale]/[...rest]).
+// Qui la lingua non si conosce, quindi resta bilingue: le righe inglesi in
+// lang="en" (lo screen reader cambia voce) e una home per lingua.
+// Attenzione: oggi Next lo usa solo per gli URL che non corrispondono a
+// nessuna route, e con [locale] + [...rest] non ne restano; /xyz mostra la
+// 404 grezza di Next (vedi il limite noto in app/[locale]/[...rest]/page.tsx).
 export default function GlobalNotFound() {
   return (
     <html lang="it" className={`${fontVars} h-full antialiased`}>
