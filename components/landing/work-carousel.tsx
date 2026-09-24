@@ -16,7 +16,7 @@ const GAP_REM = 1.25; // gap-5
 // lg:w-[31.5%] più sotto): niente più misura via ResizeObserver /
 // getBoundingClientRect per calcolare il passo di scorrimento.
 //
-// Perché: il sito applica `zoom: 1.15` al wrapper della pagina (.site-zoom,
+// Perché: da desktop il sito applica `zoom: 1.15` al wrapper (.site-zoom,
 // vedi globals.css e PageShell). getBoundingClientRect() restituisce dimensioni GIÀ
 // zoomate; se quel numero in px viene rimesso dentro un
 // `transform: translateX(...px)` sullo stesso sottoalbero zoomato, il

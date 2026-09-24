@@ -27,8 +27,9 @@
    batte (es. `focus-visible:outline-hidden` sugli input del form). */
 @layer base {
   html {
-    /* L'header sticky (64px × zoom 1.15 ≈ 74px) non deve coprire l'elemento
-       che riceve il focus da tastiera né il titolo di un'ancora (#cta, ...). */
+    /* L'header sticky (64px, ≈74px con lo zoom 1.15 da desktop) non deve
+       coprire l'elemento che riceve il focus da tastiera né il titolo di
+       un'ancora (#cta, ...). */
     scroll-padding-top: 88px;
   }
 
@@ -61,9 +62,14 @@
   /* Ingrandimento globale del sito marketing: equivale a un browser zoom ~115%,
      scala px e rem in modo uniforme. Applicato solo alle pagine pubbliche (non
      allo Studio) tramite la classe sul wrapper di PageShell
-     (components/landing/page-shell.tsx), che contiene nav, main e footer. */
-  .site-zoom {
-    zoom: 1.15;
+     (components/landing/page-shell.tsx), che contiene nav, main e footer.
+     Solo da desktop (audit B48): sotto i 1024px allungava la pagina mobile di
+     ~2.000px e falsava i breakpoint, che scattavano a larghezze diverse da
+     quelle dichiarate. */
+  @media (min-width: 1024px) {
+    .site-zoom {
+      zoom: 1.15;
+    }
   }
 
   /* ------------------------------------------------------------------ *
