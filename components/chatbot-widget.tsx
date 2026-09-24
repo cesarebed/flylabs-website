@@ -18,7 +18,15 @@ const WIDGET_DOMAIN = "app.gptchatbot.it";
 
 declare global {
   interface Window {
-    GPTTConfig?: { uuid: string; domain: string; toggleWidget?: () => void };
+    GPTTConfig?: {
+      uuid: string;
+      domain: string;
+      // Il widget sostituisce {{{nome}}} nei messaggi iniziali con questi valori:
+      // in dashboard il messaggio di benvenuto è "{{{greeting}}}", così il
+      // saluto segue la lingua della pagina.
+      initial_messages_variables?: Record<string, string>;
+      toggleWidget?: () => void;
+    };
   }
 }
 
@@ -30,12 +38,16 @@ const labels = {
     note: "Chat con un'AI · attiva cookie di terze parti",
     aria: "Apri l'assistente AI (attiva i cookie del fornitore)",
     loading: "Caricamento dell'assistente",
+    greeting:
+      "Ciao! Sono l'assistente AI di flylabs: rispondo in automatico e posso sbagliare. Per parlare con una persona prenota una call di 15 minuti o scrivi a info@flylabs.ai. Non inserire dati sensibili.",
   },
   en: {
     pill: "AI assistant",
     note: "Chat with an AI · enables third-party cookies",
     aria: "Open the AI assistant (enables the provider's cookies)",
     loading: "Loading the assistant",
+    greeting:
+      "Hi! I'm flylabs' AI assistant: my answers are automated and may be wrong. To talk to a person, book a 15-minute call or email info@flylabs.ai. Please don't share sensitive data.",
   },
 };
 
@@ -53,7 +65,13 @@ export function ChatbotWidget({ lang }: { lang: string }) {
     }
     injectedRef.current = true;
     setLoading(true);
-    window.GPTTConfig = { uuid: CHATBOT_UUID, domain: WIDGET_DOMAIN };
+    window.GPTTConfig = {
+      uuid: CHATBOT_UUID,
+      domain: WIDGET_DOMAIN,
+      initial_messages_variables: {
+        greeting: labels[lang === "en" ? "en" : "it"].greeting,
+      },
+    };
     const script = document.createElement("script");
     script.src = `https://${WIDGET_DOMAIN}/widget-asset.min.js`;
     script.async = true;
@@ -76,7 +94,7 @@ export function ChatbotWidget({ lang }: { lang: string }) {
         setLoaded(true);
       }
     }, 120);
-  }, []);
+  }, [lang]);
 
   const onClick = useCallback(() => {
     // Durante il caricamento il bottone è aria-disabled (non disabled, che
