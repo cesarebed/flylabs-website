@@ -67,6 +67,11 @@ export async function generateMetadata({
     title: `${pickLocale(study.title, lang)} | flylabs.ai`,
     description: pickLocale(study.solution, lang),
     path: `/lavori/${slug}`,
+    // OG del caso (./opengraph-image.tsx), con alt che ne descrive il testo.
+    ogImage: `/${lang}/lavori/${slug}/opengraph-image`,
+    ogImageAlt: [pickLocale(study.sector, lang), pickLocale(study.problem, lang)]
+      .filter(Boolean)
+      .join(": "),
   });
 }
 

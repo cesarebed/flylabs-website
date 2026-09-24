@@ -1,29 +1,39 @@
 import { ImageResponse } from "next/og";
 import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
+import { DEFAULT_OG_ALT } from "@/lib/seo";
 
-export const alt = "flylabs.ai";
+// L'export statico non è localizzabile: l'alt per lingua lo emette
+// buildMetadata (lib/seo.ts), che dichiara sempre og:image esplicita.
+export const alt = DEFAULT_OG_ALT[defaultLocale];
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 // Copy minima, indipendente da lib/landing-content.ts: l'immagine OG è
 // generata a build time (route statica) e non deve dipendere da Sanity.
-const COPY: Record<Locale, { title: string; mark: string; tagline: string }> = {
+// Stessa frase (e stessa parola evidenziata) dell'H1 della home.
+const COPY: Record<
+  Locale,
+  { before: string; mark: string; after: string; tagline: string }
+> = {
   it: {
-    title: "Mettiamo l'AI",
-    mark: "al lavoro",
-    tagline: "Soluzioni concrete, prezzo fisso, niente lock-in.",
+    before: "Il partner per",
+    mark: "integrare l'AI",
+    after: "nei tuoi processi",
+    tagline: "Soluzioni su misura, prezzo fisso, team formato.",
   },
   en: {
-    title: "We put AI",
-    mark: "to work",
-    tagline: "Concrete solutions, fixed price, no lock-in.",
+    before: "Your partner for",
+    mark: "building AI",
+    after: "into your processes",
+    tagline: "Custom solutions, fixed price, a trained team.",
   },
 };
 
-// Immagine di anteprima social condivisa da tutte le pagine sotto [locale]
-// che non ne dichiarano una più specifica (vedi lavori/[slug] per il caso
-// studio). Stesso linguaggio visivo dell'hero (.dark-paper in globals.css):
-// sfondo scuro + alone indaco/arancio, wordmark ".ai" in accent, highlight
+// Immagine di anteprima social generica per lingua. La home la usa
+// direttamente; le altre pagine ci arrivano perché buildMetadata (lib/seo.ts)
+// punta sempre a /{lang}/opengraph-image come fallback, salvo le pagine con
+// un'immagine propria (lavori/[slug]). Stesso linguaggio visivo dell'hero
+// (.dark-paper in globals.css): sfondo scuro + alone indaco/arancio, wordmark ".ai" in accent, highlight
 // giallo dietro la parola chiave (stesso trucco di .mark in globals.css).
 export default async function Image({
   params,
@@ -76,7 +86,7 @@ export default async function Image({
               color: "#fff",
             }}
           >
-            <span style={{ marginRight: 20 }}>{c.title}</span>
+            <span style={{ marginRight: 20 }}>{c.before}</span>
             <span
               style={{
                 marginRight: 20,
@@ -87,6 +97,7 @@ export default async function Image({
             >
               {c.mark}
             </span>
+            <span>{c.after}</span>
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 32, color: "rgba(255,255,255,0.65)" }}>
             {c.tagline}

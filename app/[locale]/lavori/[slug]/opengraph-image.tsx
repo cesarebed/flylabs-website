@@ -4,6 +4,8 @@ import { sanityFetch } from "@/sanity/fetch";
 import { CASE_STUDY_BY_SLUG_QUERY } from "@/sanity/queries";
 import type { CASE_STUDY_BY_SLUG_QUERY_RESULT } from "@/sanity.types";
 
+// Alt statico di riserva: quello per lingua (settore + problema) lo emette la
+// pagina via buildMetadata, che punta a questa route come og:image.
 export const alt = "flylabs.ai";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -15,8 +17,8 @@ const FALLBACK: Record<Locale, string> = {
 
 // Anteprima social del singolo caso: settore + problema + la metrica più
 // grande, stesso trattamento visivo (numero enorme, colore accent) delle
-// card in home. Più specifica di app/[locale]/opengraph-image.tsx, che resta
-// il fallback per tutte le altre pagine sotto [locale].
+// card in home. Più specifica di app/[locale]/opengraph-image.tsx, che
+// buildMetadata usa come fallback per le pagine senza un'immagine propria.
 export default async function Image({
   params,
 }: {
