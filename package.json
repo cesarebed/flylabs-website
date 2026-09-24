@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "icons": "node scripts/build-icons.mjs",
+    "predev": "npm run icons",
     "dev": "next dev",
+    "prebuild": "npm run icons",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
-    "@iconify/react": "^6.0.2",
+    "@iconify/utils": "^3.1.7",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^6.0.0",
     "@vercel/analytics": "^2.0.1",
@@ -25,6 +28,11 @@
     "styled-components": "^6.4.2"
   },
   "devDependencies": {
+    "@iconify-json/devicon": "^1.2.67",
+    "@iconify-json/logos": "^1.2.14",
+    "@iconify-json/lucide": "^1.2.136",
+    "@iconify-json/simple-icons": "^1.2.97",
+    "@iconify-json/skill-icons": "^1.2.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
