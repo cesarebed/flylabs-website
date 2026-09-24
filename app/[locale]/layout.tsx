@@ -66,13 +66,15 @@ export default async function LocaleLayout({
           <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
         </noscript>
         <ConsentProvider locale={locale}>
+          {/* Prima del contenuto: è fixed in basso, ma nel DOM viene per primo
+              così è il primo tab stop (senza rubare il focus). */}
+          <CookieBanner lang={locale} />
           <JsonLd data={organizationLd(siteUrl, sameAs)} />
           {children}
           {/* Facade: parte solo al click, previo consenso alla categoria. */}
           <ChatbotWidget lang={locale} />
           {/* GA4 caricato solo dopo consenso "Statistiche" (blocco preventivo). */}
           <GoogleAnalytics />
-          <CookieBanner lang={locale} />
         </ConsentProvider>
         {/* Vercel Analytics/Speed Insights: cookieless, nessun consenso necessario. */}
         <Analytics />

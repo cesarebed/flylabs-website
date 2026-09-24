@@ -9,20 +9,20 @@ type Section = { heading: L; body: L[] };
 export const cookiePolicy = {
   meta: {
     it: {
-      title: "Cookie Policy — flylabs.ai",
+      title: "Cookie Policy | flylabs.ai",
       description:
         "Quali cookie e strumenti di tracciamento usa flylabs.ai e come gestire il consenso.",
     },
     en: {
-      title: "Cookie Policy — flylabs.ai",
+      title: "Cookie Policy | flylabs.ai",
       description:
         "Which cookies and tracking tools flylabs.ai uses, and how to manage your consent.",
     },
   },
   title: { it: "Cookie Policy", en: "Cookie Policy" },
   updated: {
-    it: "Ultimo aggiornamento: 28 agosto 2026",
-    en: "Last updated: 28 August 2026",
+    it: "Ultimo aggiornamento: 23 settembre 2026",
+    en: "Last updated: 23 September 2026",
   },
   intro: {
     it: "Questa pagina spiega quali cookie e strumenti di tracciamento utilizza questo sito e come puoi gestire le tue scelte, ai sensi dell'art. 122 del Codice Privacy e delle Linee guida del Garante del 10 giugno 2021.",
@@ -48,8 +48,8 @@ export const cookiePolicy = {
       heading: { it: "Cookie tecnici (sempre attivi)", en: "Technical cookies (always on)" },
       body: [
         {
-          it: "Sono indispensabili al funzionamento del sito e alla memorizzazione delle tue preferenze, inclusa la scelta espressa in questo banner. Non richiedono consenso e non possono essere disattivati.",
-          en: "These are essential for the site to work and to remember your preferences, including the choice you make in this banner. They require no consent and cannot be turned off.",
+          it: "Sono indispensabili al funzionamento del sito e alla memorizzazione delle tue preferenze, inclusa la scelta che fai nel banner dei cookie. Non richiedono consenso e non possono essere disattivati.",
+          en: "These are essential for the site to work and to remember your preferences, including the choice you make in the cookie banner. They require no consent and cannot be turned off.",
         },
       ],
     },
@@ -67,7 +67,7 @@ export const cookiePolicy = {
       ],
     },
     {
-      heading: { it: "Assistente (chatbot)", en: "Assistant (chatbot)" },
+      heading: { it: "Assistente AI (chatbot)", en: "AI assistant (chatbot)" },
       body: [
         {
           it: "L'assistente è fornito da gpt-trainer (tramite gptchatbot.it). Per impostazione predefinita non viene caricato: parte solo quando apri l'assistente dal suo pulsante, gesto che vale come consenso all'attivazione. Una volta attivo utilizza cookie e storage di terza parte e comunica con i server del fornitore. Non inserire nella chat dati particolari o riservati.",
@@ -76,11 +76,24 @@ export const cookiePolicy = {
       ],
     },
     {
+      heading: { it: "Cosa viene salvato e per quanto", en: "What is stored and for how long" },
+      body: [
+        {
+          it: "flylabs-consent · localStorage, nostro · memorizza la tua scelta sui cookie · 6 mesi.",
+          en: "flylabs-consent · localStorage, ours · stores your cookie choice · 6 months.",
+        },
+        {
+          it: "_ga e _ga_TC7Z5R5ZMR · cookie di Google, solo con il consenso alle Statistiche · statistiche aggregate · 2 anni. Se revochi il consenso li cancelliamo e la pagina si ricarica senza Google Analytics.",
+          en: "_ga and _ga_TC7Z5R5ZMR · Google cookies, only with consent to Analytics · aggregated statistics · 2 years. If you withdraw consent we delete them and the page reloads without Google Analytics.",
+        },
+      ],
+    },
+    {
       heading: { it: "Durata e revoca del consenso", en: "Duration and withdrawal of consent" },
       body: [
         {
-          it: "La tua scelta viene conservata fino a 6 mesi, dopodiché ti verrà richiesta di nuovo. Puoi modificarla o revocarla in ogni momento dal pulsante «Gestisci cookie» qui sotto o nel footer, oppure eliminando i cookie dalle impostazioni del browser.",
-          en: "Your choice is stored for up to 6 months, after which you will be asked again. You can change or withdraw it at any time via the “Manage cookies” button below or in the footer, or by deleting cookies from your browser settings.",
+          it: "Conserviamo la tua scelta per 6 mesi, poi te la chiediamo di nuovo. Puoi modificarla o revocarla in ogni momento dal pulsante «Gestisci cookie» qui sotto o nel footer, oppure eliminando i cookie dalle impostazioni del browser.",
+          en: "We keep your choice for 6 months, then ask you again. You can change or withdraw it at any time via the “Manage cookies” button below or in the footer, or by deleting cookies from your browser settings.",
         },
       ],
     },
