@@ -107,6 +107,10 @@ export const cookiePolicy = {
           it: "Conserviamo la tua scelta per 6 mesi, poi te la chiediamo di nuovo. Puoi modificarla o revocarla in ogni momento dal pulsante «Gestisci cookie» qui sotto o nel footer, oppure eliminando i cookie dalle impostazioni del browser. Se revochi le Statistiche o l'Assistente cancelliamo i cookie e lo storage della categoria e ricarichiamo la pagina senza quello strumento.",
           en: "We keep your choice for 6 months, then ask you again. You can change or withdraw it at any time via the “Manage cookies” button below or in the footer, or by deleting cookies from your browser settings. If you withdraw Analytics or the Assistant, we delete that category's cookies and storage and reload the page without that tool.",
         },
+        {
+          it: "Oltre alla scelta salvata nel tuo browser, registriamo sui nostri sistemi un record della scelta (categorie accettate o rifiutate, versione del banner, lingua, data e ora, famiglia di browser e sistema operativo, hash dell'indirizzo IP) per poter dimostrare il consenso. Lo conserviamo 24 mesi e poi lo cancelliamo; l'hash dell'IP lo togliamo già dopo 30 giorni.",
+          en: "Besides the choice saved in your browser, we store a record of it on our systems (categories accepted or refused, banner version, language, date and time, browser and operating system family, a hash of your IP address) so that we can demonstrate consent. We keep it for 24 months and then delete it; the IP hash is removed after 30 days.",
+        },
       ],
     },
   ] satisfies Section[],

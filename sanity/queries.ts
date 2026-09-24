@@ -90,6 +90,21 @@ export const CONSENT_RATE_COUNT_QUERY = defineQuery(
   `count(*[_type == "consentEvent" && ipHash == $ipHash && at > $since])`
 );
 
+// Conservazione dei dati (cron /api/cron/pulizia-dati, vedi privacy): record da
+// cancellare perché oltre il periodo dichiarato. A lotti, il cron recupera il
+// resto ai giri successivi.
+export const RETENTION_EXPIRED_QUERY = defineQuery(
+  `*[(_type == "consentEvent" && at < $consentCutoff) ||
+    (_type == "contactSubmission" && submittedAt < $contactCutoff)][0...200]._id`
+);
+
+// Record che hanno ancora l'hash dell'IP oltre i 30 giorni: serve solo al rate
+// limit (finestra di 10 minuti), poi va tolto (minimizzazione).
+export const IP_HASH_EXPIRED_QUERY = defineQuery(
+  `*[_type in ["consentEvent", "contactSubmission"] && defined(ipHash) &&
+    coalesce(at, submittedAt) < $ipCutoff][0...200]._id`
+);
+
 // Rate limit del form contatti: richieste recenti con stessa email o stesso IP.
 export const CONTACT_RATE_COUNT_QUERY = defineQuery(
   `count(*[_type == "contactSubmission" && submittedAt > $since &&
