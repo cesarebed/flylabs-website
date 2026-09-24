@@ -39,13 +39,13 @@
       "value": { "_type": "localeString", "it": "3", "en": "3" },
       "label": {
         "_type": "localeString",
-        "it": "coding agent supportati (Claude Code, Codex, Gemini)",
-        "en": "coding agents supported (Claude Code, Codex, Gemini)"
+        "it": "assistenti AI compatibili (Claude Code, Codex, Gemini)",
+        "en": "compatible AI assistants (Claude Code, Codex, Gemini)"
       }
     }
   ],
   "tech": ["Claude Code", "Codex", "Obsidian", "GitHub"],
-  "featured": true,
+  "featured": false,
   "body": {
     "_type": "localeText",
     "it": "Il problema non è mai stato \"quale AI usare\": è che ogni AI, ogni volta, ripartiva senza sapere niente di decisioni prese, clienti, progetti in corso. Contesto sparso tra note, chat e documenti, mai nello stesso posto due volte.\n\nAbbiamo costruito un second brain: una struttura di cartelle e note (metodo PARA: Progetti, Aree, Risorse, Archivio) con regole esplicite su cosa scrivere e dove, pensata fin dall'inizio per essere letta e aggiornata da un assistente AI, non solo da una persona. Un file di istruzioni guida qualsiasi agente (Claude Code, Codex, Gemini) su come muoversi nella struttura, e uno script di verifica controlla che un nuovo assistente, alla prima apertura, riesca davvero a orientarsi.\n\nLa stessa struttura funziona per una persona sola (il proprio second brain personale) o per un'intera azienda (un company-brain condiviso): la differenza è chi scrive e chi legge, non il metodo. La formazione è parte integrante del lavoro, non un extra: non basta consegnare la struttura, bisogna insegnare al team come tenerla viva, cosa va scritto quando si prende una decisione, come si aggiorna dopo ogni progetto.\n\nIl template di base è pubblico e open source, prova sul campo del metodo prima ancora di parlarne: la versione su misura per un team aggiunge i flussi, le automazioni e le integrazioni specifiche di chi lo usa ogni giorno.",

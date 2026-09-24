@@ -211,8 +211,8 @@ export default async function CaseStudyPage({
                     }
                     width={image.dims?.width ?? 1600}
                     height={image.dims?.height ?? 900}
-                    // Colonna max-w-3xl (768px) × zoom 1.15 del sito.
-                    sizes="(min-width: 768px) 884px, 100vw"
+                    // Colonna max-w-3xl (768px), × zoom 1.15 da desktop.
+                    sizes="(min-width: 1024px) 884px, (min-width: 768px) 768px, 100vw"
                     className="rounded-xl border border-line bg-white"
                   />
                   <span className="sr-only">{cases.diagram.newTab[lang]}</span>
