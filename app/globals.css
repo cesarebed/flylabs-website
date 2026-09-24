@@ -277,6 +277,31 @@
 }
 
 /* ------------------------------------------------------------------ *
+ * Pannello scenari dell'hero (components/landing/hero-scenarios.tsx)
+ * ------------------------------------------------------------------ */
+/* Fuori dai layer di proposito: deve battere le utility di opacità che il
+   componente mette nello stato finale. Finché il JS non ha preso il
+   controllo (data-intro pending/armed) il corpo del pannello resta nascosto,
+   così il testo dell'AI non compare e sparisce all'idratazione. Se il JS non
+   parte, dopo 3 s l'animazione di fallback lo mostra comunque; senza JS lo
+   mostra subito il <noscript> del componente; con reduced motion non viene
+   mai nascosto. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-scenarios[data-intro="pending"] [data-intro-hide] {
+    opacity: 0;
+    animation: hero-intro-fallback 0s linear 3s forwards;
+  }
+  .hero-scenarios[data-intro="armed"] [data-intro-hide] {
+    opacity: 0;
+  }
+}
+@keyframes hero-intro-fallback {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * Marquee (striscia loghi "I tool che usiamo")
  * ------------------------------------------------------------------ */
 @keyframes marquee {

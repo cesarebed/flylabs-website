@@ -24,18 +24,51 @@ type HeroContent = {
   ctaPrimary: Localized;
   ctaSecondary: Localized;
   note: Localized;
-  // Diagramma reale di un caso accanto al copy (file in public/hero/,
-  // importati staticamente da hero.tsx). `caseHref` punta allo slug Sanity
-  // del caseStudy, hardcoded come i link di "Cosa costruiamo": se cambia
-  // nello Studio va aggiornato a mano. `sector` è il campo `sector` pubblico
-  // dello stesso caso.
-  visual: {
-    alt: Localized;
-    caseHref: string;
-    casePrefix: Localized;
-    sector: Localized;
+  // Pannello "l'AI prepara, tu approvi" accanto al copy, con tre scenari
+  // selezionabili a tab (components/landing/hero-scenarios.tsx). Ogni
+  // scenario mette in scena un caso reale: testi illustrativi ma fedeli al
+  // caso, nessun numero che il caso non pubblichi già.
+  scenarios: {
+    label: Localized; // etichetta del tablist (visibile, micro-label mono)
+    casePrefix: Localized; // didascalia: "<prefisso> <settore>."
     caseCta: Localized;
+    starsSr: Localized; // "<n> stelle su 5" per gli screen reader
+    items: HeroScenario[];
   };
+};
+
+// Uno scenario del pannello hero. `caseHref` punta allo slug Sanity del
+// caseStudy, hardcoded come i link di "Cosa costruiamo": se cambia nello
+// Studio va aggiornato a mano. `sector` è il campo `sector` pubblico dello
+// stesso caso (content/case-studies/<file>.json).
+export type HeroScenario = {
+  id: string; // stabile, non tradotto: id di tab e tabpanel
+  tab: Localized;
+  caseHref: string;
+  sector: Localized;
+  flow: Localized; // titolo del flusso nell'intestazione del pannello
+  flowMeta: Localized;
+  langChip: Localized; // lingua (o lingue) in cui lavora l'AI nel caso
+  steps: [Localized, Localized, Localized];
+  input: {
+    source: string; // nome della piattaforma, non tradotto
+    icon: string; // icona Iconify monocromatica della piattaforma
+    stars?: number; // solo per le recensioni
+    meta: Localized;
+    text: Localized;
+    attachment?: Localized; // es. il link del referto, reso come chip
+  };
+  output: {
+    label: Localized;
+    // Testo che l'AI "scrive" oppure elenco di voci che compaiono in
+    // sequenza (le slide generate): uno dei due.
+    text?: Localized;
+    items?: Localized[];
+    working: Localized; // stato mentre l'AI lavora
+    done: Localized; // stato finale
+  };
+  actions: [Localized, Localized]; // [primaria, secondaria], finti bottoni
+  note: Localized; // nota breve sul controllo umano
 };
 
 type Section = { kicker: Localized; title: Localized };
@@ -142,15 +175,137 @@ export const landing = {
       it: "Prima call gratuita. Nessun impegno, nessun pitch.",
       en: "First call is free. No commitment, no pitch.",
     },
-    visual: {
-      alt: {
-        it: "Tre siti di un noleggio bici collegati a un unico assistente AI, che risponde sulla chat del sito, su Instagram, Facebook Messenger e WhatsApp Business: informazioni su mezzi, taglie, sedi e prezzi, appuntamenti e prenotazione online, e passaggio a un operatore per le richieste in giornata e i problemi durante il noleggio.",
-        en: "Three bike rental websites connected to a single AI assistant that replies on the website chat, Instagram, Facebook Messenger and WhatsApp Business: answers on bikes, sizes, locations and prices, appointments and online booking, and handover to a person for same-day requests and issues during the rental.",
-      },
-      caseHref: "/lavori/assistenti-noleggio-multisito",
-      casePrefix: { it: "Caso reale:", en: "Real case:" },
-      sector: { it: "Noleggio bici · Arizona (USA)", en: "Bike rental · Arizona (USA)" },
+    scenarios: {
+      label: { it: "Esempi da casi reali", en: "Examples from real cases" },
+      casePrefix: { it: "Esempio dal caso reale:", en: "Example from a real case:" },
       caseCta: { it: "Leggi il caso →", en: "Read the case →" },
+      starsSr: { it: "stelle su 5", en: "out of 5 stars" },
+      items: [
+        {
+          // risposte-recensioni-ai: la pipeline prepara la bozza nel tono
+          // della struttura, l'operatore la rivede e la pubblica.
+          id: "recensioni",
+          tab: { it: "Recensioni", en: "Reviews" },
+          caseHref: "/lavori/risposte-recensioni-ai",
+          sector: { it: "Struttura ricettiva · Sardegna", en: "Hospitality · Sardinia" },
+          flow: { it: "Risposte alle recensioni", en: "Review replies" },
+          flowMeta: { it: "bozze di oggi", en: "today's drafts" },
+          langChip: { it: "IT", en: "EN" },
+          steps: [
+            { it: "Arriva la recensione", en: "A review comes in" },
+            { it: "L'AI scrive la bozza", en: "AI drafts the reply" },
+            { it: "Tu approvi", en: "You approve" },
+          ],
+          input: {
+            source: "Google",
+            icon: "simple-icons:google",
+            stars: 4,
+            meta: { it: "Ospite, agosto", en: "Guest, August" },
+            text: {
+              it: "Camere pulite e staff gentilissimo. Unico neo: trovare parcheggio ad agosto è stata un'impresa.",
+              en: "Clean rooms and really friendly staff. Only catch: finding a parking spot in August was a struggle.",
+            },
+          },
+          output: {
+            label: { it: "Bozza dell'AI · nel vostro tono", en: "AI draft · in your tone" },
+            text: {
+              it: "Grazie per le belle parole sullo staff, le giriamo a tutto il team! Sul parcheggio ha ragione: la prossima volta ci scriva prima di arrivare e le indichiamo noi dove lasciare l'auto.",
+              en: "Thank you for the kind words about our staff, we'll pass them on to the whole team! You're right about parking: next time, drop us a line before you arrive and we'll tell you where to leave the car.",
+            },
+            working: { it: "Sta scrivendo", en: "Writing" },
+            done: { it: "Pronta", en: "Ready" },
+          },
+          actions: [
+            { it: "Approva", en: "Approve" },
+            { it: "Modifica", en: "Edit" },
+          ],
+          note: { it: "Niente esce senza di te", en: "Nothing goes out without you" },
+        },
+        {
+          // form-whatsapp-promo-conversione: dopo il form parte un WhatsApp
+          // con lo sconto, poi l'assistente AI continua la chat (EN/ES/DE),
+          // raccoglie i dettagli e tiene vivo il contatto finché non subentra
+          // lo studio. Qui il passo umano è "subentri", non "approvi".
+          id: "messaggi",
+          tab: { it: "Messaggi", en: "Messages" },
+          caseHref: "/lavori/form-whatsapp-promo-conversione",
+          sector: { it: "Studio di tatuaggi · Spagna", en: "Tattoo studio · Spain" },
+          flow: { it: "Richieste dal sito", en: "Website enquiries" },
+          flowMeta: { it: "su WhatsApp", en: "on WhatsApp" },
+          langChip: { it: "EN/ES/DE", en: "EN/ES/DE" },
+          steps: [
+            { it: "Arriva il messaggio", en: "A message comes in" },
+            { it: "L'AI risponde e raccoglie i dettagli", en: "AI replies and gathers the details" },
+            { it: "Subentri tu", en: "You take over" },
+          ],
+          input: {
+            source: "WhatsApp",
+            icon: "simple-icons:whatsapp",
+            meta: { it: "Dopo il form del sito", en: "After the website form" },
+            text: {
+              it: "Ciao! Ho appena compilato il form: vorrei una rondine piccola sul polso, stile fine line. Siete liberi a fine mese?",
+              en: "Hi! I just filled in the form: I'd love a small swallow on my wrist, fine line style. Any openings at the end of the month?",
+            },
+          },
+          output: {
+            label: { it: "Risposta dell'AI · in chat", en: "AI reply · in the chat" },
+            text: {
+              it: "Ciao! Richiesta arrivata, lo studio la sta già guardando. Per preparare tutto: più o meno quanto grande la vuoi, hai una foto di riferimento e quali giorni ti vanno meglio? Il tuo sconto è già attivo.",
+              en: "Hi! Got your request, the studio is already looking at it. To get things ready: roughly how big do you want it, do you have a reference photo, and which days suit you best? Your discount is already active.",
+            },
+            working: { it: "Sta scrivendo", en: "Typing" },
+            done: { it: "Inviata", en: "Sent" },
+          },
+          actions: [
+            { it: "Prendi la chat", en: "Take over the chat" },
+            { it: "Lascia all'AI", en: "Leave it to AI" },
+          ],
+          note: { it: "Subentri quando vuoi", en: "Step in whenever you like" },
+        },
+        {
+          // report-medico-automatico (file report-pelle-automatico.json): il
+          // link del referto arriva su Telegram, l'AI ne fa sintesi e piano
+          // di trattamento, il sistema genera le Google Slides in 1-3 minuti.
+          // Nessun dato sanitario, nessuna promessa clinica.
+          id: "documenti",
+          tab: { it: "Documenti", en: "Documents" },
+          caseHref: "/lavori/report-medico-automatico",
+          sector: { it: "Medicina estetica", en: "Aesthetic medicine" },
+          flow: { it: "Referti dei pazienti", en: "Patient reports" },
+          flowMeta: { it: "presentazioni", en: "decks" },
+          langChip: { it: "IT", en: "EN" },
+          steps: [
+            { it: "Arriva il referto", en: "The report comes in" },
+            { it: "L'AI prepara la presentazione", en: "AI builds the deck" },
+            { it: "Tu controlli e condividi", en: "You check and share" },
+          ],
+          input: {
+            source: "Telegram",
+            icon: "simple-icons:telegram",
+            meta: { it: "Dallo staff dello studio", en: "From the practice staff" },
+            text: {
+              it: "Ecco il referto dell'analisi della pelle di stamattina.",
+              en: "Here's the report from this morning's skin analysis.",
+            },
+            attachment: { it: "Link al referto", en: "Report link" },
+          },
+          output: {
+            label: { it: "Presentazione · Google Slides", en: "Patient deck · Google Slides" },
+            items: [
+              { it: "La tua pelle, spiegata in parole semplici", en: "Your skin, explained in plain words" },
+              { it: "Piano di trattamenti consigliati", en: "Recommended treatment plan" },
+              { it: "Routine skincare mattina e sera", en: "Morning and evening skincare routine" },
+            ],
+            working: { it: "In preparazione", en: "Building" },
+            done: { it: "Pronta in 2 min", en: "Ready in 2 min" },
+          },
+          actions: [
+            { it: "Condividi", en: "Share" },
+            { it: "Modifica", en: "Edit" },
+          ],
+          note: { it: "Il paziente la vede dopo di te", en: "The patient sees it after you do" },
+        },
+      ],
     },
   } satisfies HeroContent,
 
