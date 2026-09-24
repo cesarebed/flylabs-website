@@ -26,4 +26,4 @@ npm run dev
 
 Deploy: push su `main` produce il deploy in produzione su Vercel, ogni PR ha la sua preview.
 
-Convenzioni complete (branch, PR, regole di codice) in [CLAUDE.md](CLAUDE.md).
+Convenzioni complete (branch, PR, regole di codice) in [AGENTS.md](AGENTS.md).
