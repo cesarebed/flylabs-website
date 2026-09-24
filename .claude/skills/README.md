@@ -8,3 +8,4 @@ Claude Code le trova da solo (frontmatter `description` di ogni `SKILL.md`), que
 | [`use-case-publish`](use-case-publish/SKILL.md) | Trasformare un progetto/cliente di flylabs-brain in un caso di successo pubblicabile su `/lavori` |
 | [`excalidraw-diagram`](excalidraw-diagram/SKILL.md) | Disegnare o esportare (bilingue IT/EN) un diagramma di flusso per un use case — di solito prima di `use-case-publish` |
 | [`visual-check`](visual-check/SKILL.md) | Dopo ogni modifica UI, prima di dichiararla finita |
+| [`design-taste-frontend`](design-taste-frontend/SKILL.md) | Redesign o audit visivo della landing e delle pagine (anti-slop, audit prima di cambiare) |
