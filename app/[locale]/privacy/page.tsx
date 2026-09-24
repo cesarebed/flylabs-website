@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { privacy } from "@/lib/privacy-content";
 import { buildMetadata } from "@/lib/seo";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { PageShell } from "@/components/landing/page-shell";
 
 export const revalidate = 3600;
 
@@ -31,8 +30,7 @@ export default async function PrivacyPage({
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
 
   return (
-    <main className="site-zoom flex-1">
-      <Nav lang={lang} />
+    <PageShell lang={lang}>
 
       <article className="mx-auto max-w-3xl px-6 py-[80px]">
         <h1 className="font-display text-4xl font-semibold leading-tight md:text-5xl">
@@ -62,8 +60,6 @@ export default async function PrivacyPage({
           ))}
         </div>
       </article>
-
-      <Footer lang={lang} />
-    </main>
+    </PageShell>
   );
 }

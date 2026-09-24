@@ -27,6 +27,25 @@ export function breadcrumbLd(items: { name: string; url: string }[]) {
   };
 }
 
+/**
+ * Breadcrumb di una pagina del sito: la radice è sempre "Home" (prima era
+ * "Home" su lavori e "flylabs.ai" altrove) e i livelli usano nomi brevi, gli
+ * stessi della nav. `trail` sono i livelli dopo la home, con path senza lingua.
+ */
+export function siteBreadcrumbLd(
+  siteUrl: string,
+  lang: Locale,
+  trail: { name: string; path: string }[]
+) {
+  return breadcrumbLd([
+    { name: "Home", url: `${siteUrl}/${lang}` },
+    ...trail.map((item) => ({
+      name: item.name,
+      url: `${siteUrl}/${lang}${item.path}`,
+    })),
+  ]);
+}
+
 export function caseStudyArticleLd(args: {
   siteUrl: string;
   lang: Locale;

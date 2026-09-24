@@ -3,10 +3,12 @@ import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
-import { breadcrumbLd } from "@/lib/structured-data";
+import { cases } from "@/lib/cases-content";
+import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { ClosingCta, WithArrow } from "@/components/landing/closing-cta";
+import { PageHeader } from "@/components/landing/page-header";
+import { PageShell } from "@/components/landing/page-shell";
 
 export const revalidate = 3600;
 
@@ -37,35 +39,24 @@ export default async function ServicesPage({
   const siteUrl = await getSiteUrl();
 
   return (
-    <main className="site-zoom flex-1">
+    <PageShell lang={lang}>
       <JsonLd
-        data={breadcrumbLd([
-          { name: "flylabs.ai", url: `${siteUrl}/${lang}` },
-          { name: title[lang], url: `${siteUrl}/${lang}/servizi` },
+        data={siteBreadcrumbLd(siteUrl, lang, [
+          { name: kicker[lang], path: "/servizi" },
         ])}
       />
 
-      <Nav lang={lang} />
+      <PageHeader kicker={kicker[lang]} title={title[lang]} intro={intro[lang]} />
 
-      <section className="dot-paper border-b border-line py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <div className="kicker mb-4">{kicker[lang]}</div>
-          <h1 className="max-w-[18ch] font-display text-5xl font-semibold leading-[1.05]">
-            {title[lang]}
-          </h1>
-          <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">
-            {intro[lang]}
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-white py-[88px]">
+      <section className="bg-white py-16 md:py-[88px]">
         <div className="mx-auto flex max-w-[1120px] flex-col gap-6 px-6">
-          {tracks.map((track) => {
+          {tracks.map((track, trackIndex) => {
             const featured = track.featured ?? false;
+            const headingId = `binario-${track.anchor ?? trackIndex}`;
             return (
               <article
                 key={track.title[lang]}
+                id={track.anchor}
                 className={`relative rounded-xl p-8 md:p-10 ${
                   featured
                     ? "border-2 border-accent bg-accent/[0.04]"
@@ -81,7 +72,10 @@ export default async function ServicesPage({
                 <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
                   <div>
                     <span className="stamp text-muted">{track.kind[lang]}</span>
-                    <h2 className="mt-4 font-display text-3xl font-semibold leading-tight">
+                    <h2
+                      id={headingId}
+                      className="mt-4 font-display text-3xl font-semibold leading-tight"
+                    >
                       {track.title[lang]}
                     </h2>
                     <p className="mt-4 text-[15px] leading-relaxed text-muted">
@@ -110,6 +104,16 @@ export default async function ServicesPage({
                         </dd>
                       </div>
                     </dl>
+
+                    {track.example && (
+                      <Link
+                        href={`/${lang}${track.example}`}
+                        aria-describedby={headingId}
+                        className="mt-6 inline-block text-sm font-semibold text-accent hover:underline"
+                      >
+                        <WithArrow>{cases.closing.realExample[lang]}</WithArrow>
+                      </Link>
+                    )}
                   </div>
 
                   <div>
@@ -151,32 +155,12 @@ export default async function ServicesPage({
         </div>
       </section>
 
-      <section className="dark-section py-[88px] text-white">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <h2 className="max-w-[20ch] font-display text-4xl font-semibold leading-tight">
-            {closing.title[lang]}
-          </h2>
-          <p className="mt-5 max-w-[56ch] text-lg leading-relaxed text-white/70">
-            {closing.body[lang]}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-6">
-            <Link
-              href={`/${lang}#cta`}
-              className="btn-light rounded-lg px-6 py-3 text-sm font-semibold"
-            >
-              {closing.cta[lang]}
-            </Link>
-            <Link
-              href={`/${lang}`}
-              className="text-sm font-medium text-white/60 transition-colors hover:text-white"
-            >
-              {back[lang]}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <Footer lang={lang} />
-    </main>
+      <ClosingCta
+        title={closing.title[lang]}
+        body={closing.body[lang]}
+        cta={{ label: closing.cta[lang], href: `/${lang}#cta` }}
+        secondary={{ label: back[lang], href: `/${lang}`, arrow: false }}
+      />
+    </PageShell>
   );
 }

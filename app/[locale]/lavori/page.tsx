@@ -8,15 +8,15 @@ import {
 } from "@/lib/i18n";
 import { cases } from "@/lib/cases-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
-import { breadcrumbLd } from "@/lib/structured-data";
+import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/fetch";
 import { CASE_STUDIES_QUERY } from "@/sanity/queries";
 import type { CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
 import { CaseCard } from "@/components/landing/case-card";
 import { ClosingCta } from "@/components/landing/closing-cta";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { PageHeader } from "@/components/landing/page-header";
+import { PageShell } from "@/components/landing/page-shell";
 
 export const revalidate = 3600;
 
@@ -49,24 +49,18 @@ export default async function CasesPage({
   const siteUrl = await getSiteUrl();
 
   return (
-    <main className="site-zoom flex-1">
+    <PageShell lang={lang}>
       <JsonLd
-        data={breadcrumbLd([
-          { name: "Home", url: `${siteUrl}/${lang}` },
-          { name: cases.kicker[lang], url: `${siteUrl}/${lang}/lavori` },
+        data={siteBreadcrumbLd(siteUrl, lang, [
+          { name: cases.kicker[lang], path: "/lavori" },
         ])}
       />
-      <Nav lang={lang} />
 
-      <section className="dot-paper border-b border-line py-16">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <div className="kicker mb-5">{cases.kicker[lang]}</div>
-          <h1 className="mb-6 max-w-3xl font-display text-4xl font-semibold leading-tight md:text-5xl">
-            {cases.title[lang]}
-          </h1>
-          <p className="max-w-2xl text-lg text-muted">{cases.intro[lang]}</p>
-        </div>
-      </section>
+      <PageHeader
+        kicker={cases.kicker[lang]}
+        title={cases.title[lang]}
+        intro={cases.intro[lang]}
+      />
 
       <div className="mx-auto max-w-[1120px] px-6 py-16">
         {studies.length === 0 ? (
@@ -104,7 +98,6 @@ export default async function CasesPage({
         cta={{ label: cases.closing.list.cta[lang], href: `/${lang}#cta` }}
       />
 
-      <Footer lang={lang} />
-    </main>
+    </PageShell>
   );
 }

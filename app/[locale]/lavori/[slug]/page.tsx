@@ -11,7 +11,7 @@ import {
 } from "@/lib/i18n";
 import { cases } from "@/lib/cases-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
-import { breadcrumbLd, caseStudyArticleLd } from "@/lib/structured-data";
+import { caseStudyArticleLd, siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/fetch";
 import { urlFor } from "@/sanity/image";
@@ -26,8 +26,7 @@ import type {
   CASE_STUDY_SLUGS_QUERY_RESULT,
 } from "@/sanity.types";
 import { ClosingCta, WithArrow } from "@/components/landing/closing-cta";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { PageShell } from "@/components/landing/page-shell";
 import { TechBadges } from "@/components/landing/tech-badges";
 
 export const revalidate = 3600;
@@ -59,8 +58,8 @@ export async function generateMetadata({
   // Caso inesistente: niente canonical (prima puntava alla home, segnale in
   // contraddizione con il noindex) e un titolo che dice cosa è successo. Il
   // noindex lo inietta già Next per notFound(): ripeterlo qui duplicava il
-  // meta. Lo status resta 200 finché app/[locale]/loading.tsx apre lo
-  // streaming prima di notFound() (verificato con next build/start).
+  // meta. Lo status resta 200 finché lavori/[slug]/loading.tsx (e
+  // lavori/loading.tsx) aprono lo streaming prima di notFound().
   if (!study) {
     return { title: { absolute: cases.notFound.metaTitle[lang] } };
   }
@@ -113,12 +112,11 @@ export default async function CaseStudyPage({
   ];
 
   return (
-    <main className="site-zoom flex-1">
+    <PageShell lang={lang}>
       <JsonLd
-        data={breadcrumbLd([
-          { name: "Home", url: `${siteUrl}/${lang}` },
-          { name: cases.kicker[lang], url: `${siteUrl}/${lang}/lavori` },
-          { name: pickLocale(study.title, lang), url: pageUrl },
+        data={siteBreadcrumbLd(siteUrl, lang, [
+          { name: cases.kicker[lang], path: "/lavori" },
+          { name: pickLocale(study.title, lang), path: `/lavori/${slug}` },
         ])}
       />
       <JsonLd
@@ -133,8 +131,6 @@ export default async function CaseStudyPage({
           images: ldImages,
         })}
       />
-      <Nav lang={lang} />
-
       <article className="mx-auto max-w-3xl px-6 py-[80px]">
         <Link
           href={`/${lang}/lavori`}
@@ -288,7 +284,6 @@ export default async function CaseStudyPage({
         }
       />
 
-      <Footer lang={lang} />
-    </main>
+    </PageShell>
   );
 }
