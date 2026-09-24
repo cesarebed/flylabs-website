@@ -31,8 +31,10 @@ export function WhatWeBuild({ lang }: { lang: Locale }) {
           {cards.map((card, i) => (
             <details key={card.title[lang]} open={i === 0} className="group">
               {/* Figli diretti del summary in griglia: <summary> ammette un
-                  heading solo come figlio diretto, non dentro uno <span>. */}
-              <summary className="grid cursor-pointer list-none grid-cols-[auto_1fr_auto] items-start gap-x-4 px-5 py-4 [&::-webkit-details-marker]:hidden">
+                  heading solo come figlio diretto, non dentro uno <span>.
+                  Anello di focus interno: il contenitore ha overflow-hidden
+                  e un outline esterno a tutta larghezza restava tagliato ai lati. */}
+              <summary className="grid cursor-pointer list-none grid-cols-[auto_1fr_auto] items-start gap-x-4 px-5 py-4 focus-visible:-outline-offset-2 [&::-webkit-details-marker]:hidden">
                 <Icon icon={card.icon} className="row-span-2 mt-0.5 text-xl text-accent" aria-hidden />
                 <h3 className="min-w-0 text-base font-bold leading-snug">{card.title[lang]}</h3>
                 <span
