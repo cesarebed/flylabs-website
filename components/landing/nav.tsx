@@ -23,10 +23,6 @@ import { LogoMark } from "./logo-mark";
  * (vedi design-taste-frontend §5.D). Il menu mobile resta ferma sotto
  * `prefers-reduced-motion` (si apre/chiude senza animazione di altezza).
  *
- * Lo `style` dell'header è sempre lo stesso oggetto di motion value: con
- * reduced motion cambiano solo i range (piatti), non la forma dello style,
- * così l'HTML SSR (dove useReducedMotion vale null) combacia con l'hydration.
- *
  * Menu mobile come disclosure APG: aria-controls sul bottone, Esc lo chiude
  * e riporta il focus al bottone, si chiude anche al cambio di route. Le icone
  * menu/x sono SVG inline (path lucide): mai dipendere da una rete esterna
@@ -81,20 +77,16 @@ export function Nav({ lang }: { lang: Locale }) {
   }, [open]);
 
   const { scrollY } = useScroll();
-  const height = useTransform(scrollY, [0, 80], reduce ? [64, 64] : [64, 56]);
+  const height = useTransform(scrollY, [0, 80], [64, 56]);
   const shadow = useTransform(
     scrollY,
     [0, 80],
-    reduce
-      ? ["0 0 0 rgba(21,21,26,0)", "0 0 0 rgba(21,21,26,0)"]
-      : ["0 0 0 rgba(21,21,26,0)", "0 8px 24px -14px rgba(21,21,26,0.18)"]
+    ["0 0 0 rgba(21,21,26,0)", "0 8px 24px -14px rgba(21,21,26,0.18)"]
   );
   const background = useTransform(
     scrollY,
     [0, 80],
-    reduce
-      ? ["rgba(255,255,255,0.82)", "rgba(255,255,255,0.82)"]
-      : ["rgba(255,255,255,0.82)", "rgba(255,255,255,0.95)"]
+    ["rgba(255,255,255,0.82)", "rgba(255,255,255,0.95)"]
   );
 
   // path corrente senza il segmento di locale (es. "/it/lavori/x" → "/lavori/x"),
@@ -114,7 +106,9 @@ export function Nav({ lang }: { lang: Locale }) {
 
   return (
     <motion.header
-      style={{ height, boxShadow: shadow, backgroundColor: background }}
+      style={
+        reduce ? undefined : { height, boxShadow: shadow, backgroundColor: background }
+      }
       className="nav-light sticky top-0 z-50 border-b border-line text-ink backdrop-blur"
     >
       <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
