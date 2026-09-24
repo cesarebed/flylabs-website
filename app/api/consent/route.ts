@@ -1,10 +1,10 @@
-import { createHash } from "node:crypto";
 import { type NextRequest, NextResponse } from "next/server";
 import { createClient } from "next-sanity";
 import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { CONSENT_RATE_COUNT_QUERY } from "@/sanity/queries";
 import { CONSENT_VERSION } from "@/lib/consent";
 import { isLocale } from "@/lib/i18n";
+import { hashIp } from "@/lib/ip-hash";
 
 // Registro dei consensi (accountability, art. 7 GDPR): ogni scelta dell'utente
 // viene loggata come documento `consentEvent` su Sanity. Non blocca l'utente:
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
 
     // IP solo in forma di hash (mai in chiaro), coerente col form contatti.
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "";
-    const ipHash = ip ? createHash("sha256").update(ip).digest("hex") : undefined;
+    const ipHash = ip ? hashIp(ip) : undefined;
     const userAgent = userAgentFamily(req.headers.get("user-agent") ?? "");
     const locale =
       typeof body?.locale === "string" && isLocale(body.locale) ? body.locale : undefined;

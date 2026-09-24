@@ -15,7 +15,7 @@ import {
   readStoredConsent,
   writeStoredConsent,
 } from "@/lib/consent";
-import { revokeGoogleAnalytics } from "@/lib/google-analytics";
+import { revokeAssistantStorage, revokeGoogleAnalytics } from "@/lib/google-analytics";
 
 type ConsentContextValue = {
   // storage letto lato client: prima di questo non renderizziamo banner/GA per
@@ -101,6 +101,7 @@ export function ConsentProvider({
       // Revoca efficace subito (art. 7.3 GDPR): gtag già caricato va fermato
       // prima di qualsiasi altra navigazione client-side.
       if (revokedAnalytics) revokeGoogleAnalytics();
+      if (revokedAssistant) revokeAssistantStorage();
 
       writeStoredConsent(next);
       stateRef.current = next;

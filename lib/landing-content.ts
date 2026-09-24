@@ -110,6 +110,9 @@ export type Product = {
   href: string;
   external?: boolean;
   note?: Localized; // nota facoltativa mostrata sotto la card
+  // Anteprima 16:10 in cima alla card: screenshot reale del prodotto. Senza,
+  // la card mostra il logo in grande (stessa altezza, griglia allineata).
+  preview?: { src: Localized; alt: Localized };
 };
 
 export const landing = {
@@ -719,6 +722,16 @@ export const landing = {
       it: "Prenota una call gratuita →",
       en: "Book a free call →",
     },
+    // Sotto il bottone di prenotazione (TidyCal): cosa aspettarsi, in una riga.
+    bookNote: {
+      it: "15 minuti online, scegli tu l'orario. Il calendario si apre in una nuova scheda.",
+      en: "15 minutes online, at a time that suits you. The calendar opens in a new tab.",
+    },
+    orEmail: { it: "oppure scrivici a", en: "or email us at" },
+    formHeading: {
+      it: "Preferisci scrivere? Raccontaci il problema.",
+      en: "Rather write? Tell us the problem.",
+    },
   },
 
   // Form di contatto (nel blocco CTA finale). Le richieste finiscono su Sanity.
@@ -764,6 +777,11 @@ export const landing = {
         href: "/lavori",
       },
       after: { it: ".", en: "." },
+      // Mostrato solo se su Sanity c'è il link di prenotazione.
+      book: {
+        it: "Se preferisci, prenota subito 15 minuti →",
+        en: "If you prefer, book 15 minutes right away →",
+      },
     },
     // Precompilazioni del messaggio per le CTA con contesto (B55, WS-10).
     prefill: {
@@ -1350,6 +1368,13 @@ export const landing = {
           it: "È lo stesso chatbot che vedi in basso a destra su questo sito.",
           en: "It's the same chatbot you see in the bottom-right corner of this site.",
         },
+        preview: {
+          src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg" },
+          alt: {
+            it: "Conversazione reale con l'assistente di flylabs.ai: a una domanda sulle richieste WhatsApp serali risponde che si possono gestire H24 con un assistente AI.",
+            en: "Real conversation with the flylabs.ai assistant: asked about evening WhatsApp messages, it explains they can be handled 24/7 by an AI assistant.",
+          },
+        },
       },
       {
         slug: "stellar-reviews",
@@ -1374,6 +1399,13 @@ export const landing = {
         },
         sector: { it: "No-profit, gruppi d'acquisto", en: "Non-profit, buying clubs" },
         href: "/wegrocery",
+        preview: {
+          src: { it: "/products/wegrocery/launch-poster.jpg", en: "/products/wegrocery/launch-poster.jpg" },
+          alt: {
+            it: "Fotogramma del video di lancio di WeGrocery.",
+            en: "Frame from the WeGrocery launch video.",
+          },
+        },
       },
     ] satisfies Product[],
     cardCtaInternal: { it: "Scopri di più →", en: "Learn more →" },

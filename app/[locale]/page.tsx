@@ -52,6 +52,7 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
+  const settings = await getSiteSettings();
 
   return (
     <PageShell lang={lang}>
@@ -65,7 +66,11 @@ export default async function HomePage({
       <ToolsStrip lang={lang} />
       <Why lang={lang} />
       <Faq lang={lang} />
-      <FinalCta lang={lang} />
+      <FinalCta
+        lang={lang}
+        bookingUrl={settings?.bookingUrl}
+        contactEmail={settings?.contactEmail}
+      />
     </PageShell>
   );
 }

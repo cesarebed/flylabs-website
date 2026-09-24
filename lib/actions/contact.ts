@@ -1,12 +1,12 @@
 "use server";
 
-import { createHash } from "node:crypto";
 import { headers } from "next/headers";
 import { createClient } from "next-sanity";
 import { Resend } from "resend";
 import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { CONTACT_RATE_COUNT_QUERY } from "@/sanity/queries";
 import { isLocale } from "@/lib/i18n";
+import { hashIp } from "@/lib/ip-hash";
 
 // Client con token di scrittura — vive solo lato server (questo file è
 // "use server", il token non finisce mai nel bundle del browser).
@@ -58,12 +58,12 @@ function escapeHtml(value: string): string {
 }
 
 // IP del chiamante (primo hop di x-forwarded-for su Vercel), salvato solo
-// come hash SHA-256: basta per il rate limit, niente IP in chiaro nel CMS.
+// come hash (lib/ip-hash.ts): basta per il rate limit, niente IP in chiaro nel CMS.
 async function callerIpHash(): Promise<string | null> {
   const forwarded = (await headers()).get("x-forwarded-for");
   const ip = forwarded?.split(",")[0]?.trim();
   if (!ip) return null;
-  return createHash("sha256").update(ip).digest("hex");
+  return hashIp(ip);
 }
 
 type Lead = {

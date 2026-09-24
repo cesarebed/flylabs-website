@@ -17,8 +17,14 @@ export async function Footer({ lang }: { lang: Locale }) {
   // Titolari con dati completi: nome + P.IVA. Con due contitolari compaiono due
   // voci; se la lista è vuota, la riga legale sparisce.
   const legalEntities = (settings?.legalEntities ?? []).filter(
-    (entity): entity is { _key: string; name: string; vatNumber: string } =>
-      Boolean(entity.name && entity.vatNumber)
+    (
+      entity
+    ): entity is {
+      _key: string;
+      name: string;
+      vatNumber: string;
+      profileUrl: string | null;
+    } => Boolean(entity.name && entity.vatNumber)
   );
 
   return (
@@ -86,7 +92,22 @@ export async function Footer({ lang }: { lang: Locale }) {
             <div className="flex flex-col gap-x-4 gap-y-1 sm:flex-row sm:flex-wrap">
               {legalEntities.map((entity) => (
                 <span key={entity._key}>
-                  {entity.name} · {landing.footer.vatLabel[lang]} {entity.vatNumber}
+                  {/* Profilo LinkedIn dei founder: volutamente discreto, solo il
+                      nome in chiaro con la sottolineatura al passaggio. */}
+                  {entity.profileUrl ? (
+                    <a
+                      href={entity.profileUrl}
+                      target="_blank"
+                      rel="me noopener noreferrer"
+                      className="underline-offset-2 hover:text-white hover:underline"
+                    >
+                      {entity.name}
+                      <span className="sr-only"> (LinkedIn)</span>
+                    </a>
+                  ) : (
+                    entity.name
+                  )}{" "}
+                  · {landing.footer.vatLabel[lang]} {entity.vatNumber}
                 </span>
               ))}
             </div>

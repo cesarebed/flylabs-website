@@ -12,8 +12,17 @@ const orgId = (siteUrl: string) => `${siteUrl.replace(/\/+$/, "")}/#organization
  * l'entità dichiara alternateName, logo, founder ed email per disambiguare.
  * Gli altri payload (Article) puntano all'Organization via `@id`.
  */
-export function organizationLd(siteUrl: string, sameAs?: string[]) {
+const DEFAULT_FOUNDERS = [{ name: "Cesare Bedin" }, { name: "Federico De Cillia" }];
+
+export function organizationLd(
+  siteUrl: string,
+  sameAs?: string[],
+  // I titolari di siteSettings.legalEntities: il profilo (LinkedIn) diventa il
+  // sameAs del founder. Senza, restano i due nomi già pubblici in privacy.
+  founders?: { name: string; profileUrl?: string | null }[]
+) {
   const base = siteUrl.replace(/\/+$/, "");
+  const people = founders?.length ? founders : DEFAULT_FOUNDERS;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -25,10 +34,11 @@ export function organizationLd(siteUrl: string, sameAs?: string[]) {
         url: `${base}/`,
         logo: `${base}/icon.png`,
         email: "info@flylabs.ai",
-        founder: [
-          { "@type": "Person", name: "Cesare Bedin" },
-          { "@type": "Person", name: "Federico De Cillia" },
-        ],
+        founder: people.map((p) => ({
+          "@type": "Person",
+          name: p.name,
+          ...("profileUrl" in p && p.profileUrl ? { sameAs: [p.profileUrl] } : {}),
+        })),
         areaServed: "IT",
         knowsAbout: [
           "intelligenza artificiale",

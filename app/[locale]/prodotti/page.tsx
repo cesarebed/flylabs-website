@@ -72,6 +72,30 @@ export default async function ProductsPage({
                   rel={product.external ? "noopener noreferrer" : undefined}
                   className="card-hover flex h-full flex-col rounded-xl border border-line bg-paper p-8"
                 >
+                  {/* Anteprima reale del prodotto (audit B20); senza screenshot
+                      il logo in grande tiene la griglia allineata. */}
+                  <div className="-mx-2 -mt-2 mb-6 aspect-[16/10] overflow-hidden rounded-lg border border-line bg-white">
+                    {product.preview ? (
+                      <Image
+                        src={product.preview.src[lang]}
+                        alt={product.preview.alt[lang]}
+                        width={840}
+                        height={525}
+                        sizes="(min-width: 768px) 330px, 100vw"
+                        className="h-full w-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-paper">
+                        <Image
+                          src={product.logo}
+                          alt=""
+                          width={96}
+                          height={96}
+                          className="h-24 w-24 object-contain"
+                        />
+                      </div>
+                    )}
+                  </div>
                   <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-line bg-white p-2">
                     <Image
                       src={product.logo}

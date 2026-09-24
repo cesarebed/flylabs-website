@@ -19,7 +19,13 @@ const fieldClass =
 
 type Field = NonNullable<ContactState["field"]>;
 
-export function ContactForm({ lang }: { lang: Locale }) {
+export function ContactForm({
+  lang,
+  bookingUrl,
+}: {
+  lang: Locale;
+  bookingUrl?: string | null;
+}) {
   const c = landing.contact;
   const [state, action, pending] = useActionState(submitContact, initial);
 
@@ -62,6 +68,18 @@ export function ContactForm({ lang }: { lang: Locale }) {
           </Link>
           {c.success.after[lang]}
         </p>
+        {bookingUrl && (
+          <p className="mt-4">
+            <a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-accent underline underline-offset-2"
+            >
+              {c.success.book[lang]}
+            </a>
+          </p>
+        )}
       </div>
     );
   }

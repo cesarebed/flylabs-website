@@ -21,8 +21,8 @@ export const cookiePolicy = {
   },
   title: { it: "Cookie Policy", en: "Cookie Policy" },
   updated: {
-    it: "Ultimo aggiornamento: 23 settembre 2026",
-    en: "Last updated: 23 September 2026",
+    it: "Ultimo aggiornamento: 24 settembre 2026",
+    en: "Last updated: 24 September 2026",
   },
   intro: {
     it: "Questa pagina spiega quali cookie e strumenti di tracciamento utilizza questo sito e come puoi gestire le tue scelte, ai sensi dell'art. 122 del Codice Privacy e delle Linee guida del Garante del 10 giugno 2021.",
@@ -70,8 +70,8 @@ export const cookiePolicy = {
       heading: { it: "Assistente AI (chatbot)", en: "AI assistant (chatbot)" },
       body: [
         {
-          it: "L'assistente è fornito da gpt-trainer (tramite gptchatbot.it). Per impostazione predefinita non viene caricato: parte solo quando apri l'assistente dal suo pulsante, gesto che vale come consenso all'attivazione. Una volta attivo utilizza cookie e storage di terza parte e comunica con i server del fornitore. Non inserire nella chat dati particolari o riservati.",
-          en: "The assistant is provided by gpt-trainer (via gptchatbot.it). By default it is not loaded: it starts only when you open the assistant from its button, an action that counts as consent to activate it. Once active it uses third-party cookies and storage and communicates with the provider's servers. Please do not enter sensitive or confidential data in the chat.",
+          it: "L'assistente è fornito da gpt-trainer (tramite gptchatbot.it). Per impostazione predefinita non viene caricato: parte solo quando apri l'assistente dal suo pulsante, gesto che vale come consenso all'attivazione. Una volta attivo, il widget del fornitore salva i cookie e lo storage elencati sotto e comunica con i suoi server (app.gptchatbot.it e partners.gpt-trainer.com); carica anche i font da Google Fonts (fonts.googleapis.com), che riceve il tuo indirizzo IP. Non inserire nella chat dati particolari o riservati.",
+          en: "The assistant is provided by gpt-trainer (via gptchatbot.it). By default it is not loaded: it starts only when you open the assistant from its button, an action that counts as consent to activate it. Once active, the provider's widget stores the cookies and storage listed below and communicates with its servers (app.gptchatbot.it and partners.gpt-trainer.com); it also loads fonts from Google Fonts (fonts.googleapis.com), which receives your IP address. Please do not enter sensitive or confidential data in the chat.",
         },
       ],
     },
@@ -86,14 +86,26 @@ export const cookiePolicy = {
           it: "_ga e _ga_TC7Z5R5ZMR · cookie di Google, solo con il consenso alle Statistiche · statistiche aggregate · 2 anni. Se revochi il consenso li cancelliamo e la pagina si ricarica senza Google Analytics.",
           en: "_ga and _ga_TC7Z5R5ZMR · Google cookies, only with consent to Analytics · aggregated statistics · 2 years. If you withdraw consent we delete them and the page reloads without Google Analytics.",
         },
+        {
+          it: "www.flylabs.ai-chatbot-widget-initial-messages-shown-… · cookie scritto dal widget dell'assistente, solo dopo che lo apri · ricorda che il messaggio di benvenuto è già stato mostrato · 7 giorni.",
+          en: "www.flylabs.ai-chatbot-widget-initial-messages-shown-… · cookie written by the assistant widget, only after you open it · remembers that the welcome message was already shown · 7 days.",
+        },
+        {
+          it: "www.flylabs.ai-chatbot-…-session · cookie scritto dal widget dell'assistente, dopo il primo messaggio · mantiene la conversazione in corso · circa 8 settimane.",
+          en: "www.flylabs.ai-chatbot-…-session · cookie written by the assistant widget, after your first message · keeps the ongoing conversation · about 8 weeks.",
+        },
+        {
+          it: "i18nextLng · localStorage del widget dell'assistente, solo dopo che lo apri · ricorda la lingua dell'interfaccia della chat · finché non lo cancelli dal browser.",
+          en: "i18nextLng · assistant widget localStorage, only after you open it · remembers the chat interface language · until you clear it from your browser.",
+        },
       ],
     },
     {
       heading: { it: "Durata e revoca del consenso", en: "Duration and withdrawal of consent" },
       body: [
         {
-          it: "Conserviamo la tua scelta per 6 mesi, poi te la chiediamo di nuovo. Puoi modificarla o revocarla in ogni momento dal pulsante «Gestisci cookie» qui sotto o nel footer, oppure eliminando i cookie dalle impostazioni del browser.",
-          en: "We keep your choice for 6 months, then ask you again. You can change or withdraw it at any time via the “Manage cookies” button below or in the footer, or by deleting cookies from your browser settings.",
+          it: "Conserviamo la tua scelta per 6 mesi, poi te la chiediamo di nuovo. Puoi modificarla o revocarla in ogni momento dal pulsante «Gestisci cookie» qui sotto o nel footer, oppure eliminando i cookie dalle impostazioni del browser. Se revochi le Statistiche o l'Assistente cancelliamo i cookie e lo storage della categoria e ricarichiamo la pagina senza quello strumento.",
+          en: "We keep your choice for 6 months, then ask you again. You can change or withdraw it at any time via the “Manage cookies” button below or in the footer, or by deleting cookies from your browser settings. If you withdraw Analytics or the Assistant, we delete that category's cookies and storage and reload the page without that tool.",
         },
       ],
     },
