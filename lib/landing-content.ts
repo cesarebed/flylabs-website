@@ -1582,8 +1582,8 @@ export const landing = {
 
   footer: {
     tagline: {
-      it: "AI all'avanguardia. Costruita sulle tue esigenze.",
-      en: "Cutting-edge AI. Built around your needs.",
+      it: "AI concreta, costruita sul tuo lavoro. Poi la gestisci tu.",
+      en: "Practical AI, built around your work. Then you run it.",
     },
     vatLabel: { it: "P.IVA", en: "VAT no." },
     navLabel: { it: "Link del sito", en: "Site links" },
