@@ -979,6 +979,13 @@
         },
         "optional": true
       },
+      "bookingUrl": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "legalEntities": {
         "type": "objectAttribute",
         "value": {
@@ -994,6 +1001,13 @@
                 "optional": true
               },
               "vatNumber": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "profileUrl": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "string"

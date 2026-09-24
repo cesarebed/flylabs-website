@@ -92,6 +92,14 @@ export const siteSettings = defineType({
       validation: (rule) => rule.email(),
     }),
     defineField({
+      name: "bookingUrl",
+      title: "Link di prenotazione call",
+      description:
+        "Pagina pubblica per prenotare la prima call gratuita (es. TidyCal). Alimenta il bottone \"Prenota una call\" nella sezione contatti e nella conferma del form. Se vuoto, il bottone non compare e resta solo il form.",
+      type: "url",
+      validation: (rule) => rule.uri({ scheme: ["https"] }),
+    }),
+    defineField({
       name: "legalEntities",
       title: "Titolari e P.IVA",
       description:
@@ -118,6 +126,14 @@ export const siteSettings = defineType({
                 "Le 11 cifre della P.IVA, con o senza prefisso \"IT\" (es. 05755090288). Mostrata nel footer come \"P.IVA …\".",
               type: "string",
               validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "profileUrl",
+              title: "Profilo LinkedIn",
+              description:
+                "Facoltativo. Se presente, il nome nel footer diventa un link discreto al profilo (e finisce nel JSON-LD come profilo del founder).",
+              type: "url",
+              validation: (rule) => rule.uri({ scheme: ["https"] }),
             }),
           ],
           preview: {
