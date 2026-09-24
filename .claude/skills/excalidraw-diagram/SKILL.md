@@ -44,7 +44,7 @@ spesso. Il modulo di stile condiviso è in
 `flylabs-brain/03_Resources/materials/brand/diagrams/flylabs_excalidraw.py` (palette, primitive
 `rect`/`arrow`/`title`/`vchain`, `write_diagram`, `translate_scene`). Crea uno script di progetto in
 `01_Projects/<slug>/diagrams/build/gen_diagrams.py` che lo importa — esempio completo e funzionante:
-`01_Projects/isola-dei-gabbiani-recensioni/diagrams/build/gen_diagrams.py` (definisce i nodi IT +
+`01_Projects/<progetto del caso recensioni>/diagrams/build/gen_diagrams.py` (cerca `*-recensioni` in `01_Projects/`) (definisce i nodi IT +
 un dizionario `TRANSLATIONS` EN, chiama `translate_scene` per generare la versione inglese, e
 `write_diagram` per entrambe). Copialo come punto di partenza per un nuovo caso.
 
