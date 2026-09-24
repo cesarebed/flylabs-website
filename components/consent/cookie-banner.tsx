@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { type ConsentState } from "@/lib/consent";
 import { useConsent } from "./consent-provider";
@@ -8,7 +8,7 @@ import { useConsent } from "./consent-provider";
 const copy = {
   it: {
     title: "Cookie e privacy",
-    body: "Usiamo cookie tecnici, sempre attivi. Solo con il tuo consenso attiviamo le statistiche e l'assistente. Puoi cambiare idea in ogni momento.",
+    body: "Usiamo solo strumenti tecnici, sempre attivi. Con il tuo consenso attiviamo le statistiche (Google Analytics) e l'assistente AI (gpt-trainer). Puoi cambiare idea in ogni momento da «Gestisci cookie».",
     acceptAll: "Accetta tutti",
     rejectAll: "Rifiuta tutti",
     customize: "Personalizza",
@@ -20,17 +20,17 @@ const copy = {
     analytics: "Statistiche",
     analyticsDesc:
       "Google Analytics: capiamo in forma aggregata come viene usato il sito. Cookie di terze parti (Google).",
-    assistant: "Assistente",
+    assistant: "Assistente AI",
     assistantDesc:
       "Il chatbot di supporto (fornitore gpt-trainer). Cookie di terze parti. Si attiva anche aprendo l'assistente dal suo pulsante.",
     always: "Sempre attivi",
   },
   en: {
     title: "Cookies & privacy",
-    body: "We use technical cookies, always on. Analytics and the assistant run only with your consent. You can change your mind anytime.",
+    body: "We only use strictly necessary tools, always on. With your consent we turn on analytics (Google Analytics) and the AI assistant (gpt-trainer). You can change your mind anytime via “Manage cookies”.",
     acceptAll: "Accept all",
     rejectAll: "Reject all",
-    customize: "Customize",
+    customize: "Customise",
     save: "Save preferences",
     policy: "Cookie Policy",
     privacy: "Privacy",
@@ -39,17 +39,31 @@ const copy = {
     analytics: "Analytics",
     analyticsDesc:
       "Google Analytics: aggregated insight into how the site is used. Third-party cookies (Google).",
-    assistant: "Assistant",
+    assistant: "AI assistant",
     assistantDesc:
-      "The support chatbot (gpt-trainer provider). Third-party cookies. Also activated by opening the assistant from its button.",
+      "The support chatbot, provided by gpt-trainer. Third-party cookies. Also turned on by opening the assistant from its button.",
     always: "Always on",
   },
 };
 
 export function CookieBanner({ lang }: { lang: string }) {
-  const { ready, bannerOpen, state, acceptAll, rejectAll, save } = useConsent();
+  const {
+    ready,
+    decided,
+    bannerOpen,
+    state,
+    acceptAll,
+    rejectAll,
+    save,
+    closePreferences,
+  } = useConsent();
   const [showPrefs, setShowPrefs] = useState(false);
   const [draft, setDraft] = useState<ConsentState>(state);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const visible = ready && bannerOpen;
+  // Riaperto da "Gestisci cookie" (c'è già una scelta salvata), non prima visita.
+  const reopened = visible && decided;
 
   // Riallinea i toggle allo stato salvato quando il pannello viene (ri)aperto,
   // es. da "Gestisci cookie". Reset durante il render (pattern consigliato da
@@ -60,20 +74,65 @@ export function CookieBanner({ lang }: { lang: string }) {
     if (bannerOpen) setDraft(state);
   }
 
-  if (!ready || !bannerOpen) return null;
+  // Riaperto dall'utente: il focus va sul titolo del pannello (il ritorno al
+  // trigger alla chiusura lo gestisce il provider) ed Escape chiude senza
+  // salvare. Alla prima visita invece il focus resta dov'è: il banner è il
+  // primo elemento del DOM, quindi è comunque il primo tab stop.
+  useEffect(() => {
+    if (!reopened) return;
+    headingRef.current?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closePreferences();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [reopened, closePreferences]);
+
+  // Finché il banner è aperto copre il fondo della pagina: scroll-padding fa sì
+  // che l'elemento a fuoco venga portato sopra il banner (WCAG 2.4.11). Il
+  // padding sul body dà lo spazio per scrollare anche il footer sopra il banner,
+  // altrimenti gli ultimi link resterebbero coperti a fine pagina.
+  useEffect(() => {
+    const el = dialogRef.current;
+    if (!visible || !el) return;
+    const root = document.documentElement;
+    const apply = () => {
+      root.style.scrollPaddingBottom = `${el.offsetHeight + 16}px`;
+      document.body.style.paddingBottom = `${el.offsetHeight}px`;
+    };
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.scrollPaddingBottom = "";
+      document.body.style.paddingBottom = "";
+    };
+  }, [visible]);
+
+  if (!visible) return null;
 
   const t = copy[lang === "en" ? "en" : "it"];
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="false"
-      aria-label={t.title}
+      aria-labelledby="cookie-banner-title"
+      aria-describedby="cookie-banner-body"
       className="fixed inset-x-0 bottom-0 z-[2147483000] flex justify-center px-4 pb-4"
     >
       <div className="w-full max-w-2xl rounded-2xl border border-line bg-white p-5 text-ink shadow-2xl sm:p-6">
         <div className="flex items-start justify-between gap-4">
-          <h2 className="font-display text-lg font-semibold">{t.title}</h2>
+          <h2
+            ref={headingRef}
+            id="cookie-banner-title"
+            tabIndex={-1}
+            className="font-display text-lg font-semibold focus:outline-none"
+          >
+            {t.title}
+          </h2>
           <div className="flex gap-3 pt-1 text-xs text-muted">
             <Link href={`/${lang}/cookie-policy`} className="underline hover:text-ink">
               {t.policy}
@@ -84,32 +143,36 @@ export function CookieBanner({ lang }: { lang: string }) {
           </div>
         </div>
 
-        <p className="mt-2 text-sm leading-relaxed text-muted">{t.body}</p>
+        <p id="cookie-banner-body" className="mt-2 text-sm leading-relaxed text-muted">
+          {t.body}
+        </p>
 
-        {showPrefs && (
-          <div className="mt-4 flex flex-col gap-3 border-t border-line pt-4">
-            <PrefRow
-              title={t.necessary}
-              desc={t.necessaryDesc}
-              checked
-              disabled
-              badge={t.always}
-              onChange={() => {}}
-            />
-            <PrefRow
-              title={t.analytics}
-              desc={t.analyticsDesc}
-              checked={draft.analytics}
-              onChange={(v) => setDraft((d) => ({ ...d, analytics: v }))}
-            />
-            <PrefRow
-              title={t.assistant}
-              desc={t.assistantDesc}
-              checked={draft.assistant}
-              onChange={(v) => setDraft((d) => ({ ...d, assistant: v }))}
-            />
-          </div>
-        )}
+        <div
+          id="cookie-prefs"
+          hidden={!showPrefs}
+          className="mt-4 flex flex-col gap-3 border-t border-line pt-4"
+        >
+          <PrefRow
+            title={t.necessary}
+            desc={t.necessaryDesc}
+            checked
+            disabled
+            badge={t.always}
+            onChange={() => {}}
+          />
+          <PrefRow
+            title={t.analytics}
+            desc={t.analyticsDesc}
+            checked={draft.analytics}
+            onChange={(v) => setDraft((d) => ({ ...d, analytics: v }))}
+          />
+          <PrefRow
+            title={t.assistant}
+            desc={t.assistantDesc}
+            checked={draft.assistant}
+            onChange={(v) => setDraft((d) => ({ ...d, assistant: v }))}
+          />
+        </div>
 
         <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           {showPrefs ? (
@@ -143,6 +206,8 @@ export function CookieBanner({ lang }: { lang: string }) {
           <button
             type="button"
             onClick={() => setShowPrefs((v) => !v)}
+            aria-expanded={showPrefs}
+            aria-controls="cookie-prefs"
             className="text-sm font-medium text-muted underline underline-offset-2 hover:text-ink sm:ml-auto"
           >
             {t.customize}

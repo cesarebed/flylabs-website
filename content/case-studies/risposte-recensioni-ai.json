@@ -3,14 +3,14 @@
   "_type": "caseStudy",
   "title": {
     "_type": "localeString",
-    "it": "Recensioni gestite dall'AI, nel tono della struttura",
+    "it": "Risposte alle recensioni preparate dall'AI, nel tono della struttura",
     "en": "AI-drafted review replies, in the house tone"
   },
   "slug": { "_type": "slug", "current": "risposte-recensioni-ai" },
   "sector": {
     "_type": "localeString",
     "it": "Struttura ricettiva · Sardegna",
-    "en": "Hospitality resort · Sardinia"
+    "en": "Hospitality · Sardinia"
   },
   "problem": {
     "_type": "localeText",
@@ -95,15 +95,15 @@
       },
       "caption": {
         "_type": "localeString",
-        "it": "Il loop settimanale di auto-miglioramento, con l'umano nel ciclo",
-        "en": "The weekly self-improvement loop, human in the loop"
+        "it": "Il miglioramento settimanale, guidato dal feedback dell'operatore",
+        "en": "The weekly improvement loop, driven by the operator's feedback"
       }
     }
   ],
   "body": {
     "_type": "localeText",
-    "it": "Il cliente arrivava da un tentativo fai-da-te con un agente autonomo, senza controllo su costi e permessi: serviva un approccio governato. Prima di automatizzare abbiamo analizzato l'intero storico delle recensioni con le risposte del titolare: da lì Claude ha estratto una guida di tono e stile (registro, formule di apertura e chiusura, gestione dei reclami), validata dal cliente su bozze di esempio prima di accendere la pipeline.\n\nOgni mattina la pipeline controlla le nuove recensioni su tutte e tre le piattaforme dove la struttura è recensita, Booking, Google e Tripadvisor, scarta quelle già viste e per ognuna genera una bozza nella lingua della recensione, con la traduzione italiana a fianco. I casi delicati, come valutazioni molto basse o reclami concreti, vengono evidenziati e non si pubblicano mai alla cieca.\n\nL'operatore trova tutto in un foglio di lavoro condiviso: rivede la bozza, la pubblica con un copia-incolla dal gestionale di ogni piattaforma e può lasciare un feedback su ogni risposta.\n\nUna volta a settimana un secondo processo rilegge i feedback dell'operatore e il prompt in uso: se serve, lo riscrive in una versione consolidata, archivia la precedente e notifica le differenze. Il sistema migliora da solo, con l'umano sempre nel ciclo.",
-    "en": "The client came from a DIY attempt with an unconstrained autonomous agent, with no control over costs or permissions: a governed approach was needed. Before automating anything we analysed the full historical record of reviews and the owner's replies: from those, Claude distilled a tone and style guide (register, opening and closing formulas, complaint handling), validated by the client on sample drafts before the pipeline went live.\n\nEvery morning the pipeline checks for new reviews across all three platforms where the property is reviewed, Booking, Google and Tripadvisor, discards the ones already seen and drafts a reply for each in the review's own language, with an Italian translation alongside. Sensitive cases, such as very low ratings or concrete complaints, are highlighted and never published blindly.\n\nThe operator finds everything in a shared worksheet: they review the draft, publish it via each platform's own management console and can leave feedback on every reply.\n\nOnce a week a second process re-reads the operator's feedback and the prompt in use: when needed, it rewrites a consolidated version, archives the previous one and reports the differences. The system improves itself, with a human in the loop at all times."
+    "it": "Il cliente arrivava da un tentativo fai-da-te con un agente autonomo, senza controllo su costi e permessi: serviva un sistema sotto controllo. Prima di automatizzare abbiamo analizzato l'intero storico delle recensioni con le risposte del titolare: da lì Claude ha estratto una guida di tono e stile (registro, formule di apertura e chiusura, gestione dei reclami), validata dal cliente su bozze di esempio prima di accendere la pipeline.\n\nOgni mattina la pipeline controlla le nuove recensioni su tutte e tre le piattaforme dove la struttura è recensita, Booking, Google e Tripadvisor, scarta quelle già viste e per ognuna genera una bozza nella lingua della recensione, con la traduzione italiana a fianco. I casi delicati, come valutazioni molto basse o reclami concreti, vengono evidenziati e non si pubblicano mai alla cieca.\n\nL'operatore trova tutto in un foglio di lavoro condiviso: rivede la bozza, la pubblica con un copia-incolla dal gestionale di ogni piattaforma e può lasciare un feedback su ogni risposta.\n\nUna volta a settimana un secondo processo rilegge i feedback dell'operatore e il prompt in uso: se serve, lo riscrive in una versione consolidata, archivia la precedente e notifica le differenze. Il sistema migliora ogni settimana, e ogni risposta passa da una persona prima di uscire.",
+    "en": "The client came from a DIY attempt with an unconstrained autonomous agent, with no control over costs or permissions: a controlled approach was needed. Before automating anything we analysed the full historical record of reviews and the owner's replies: from those, Claude distilled a tone and style guide (register, opening and closing formulas, complaint handling), validated by the client on sample drafts before the pipeline went live.\n\nEvery morning the pipeline checks for new reviews across all three platforms where the property is reviewed, Booking, Google and Tripadvisor, discards the ones already seen and drafts a reply for each in the review's own language, with an Italian translation alongside. Sensitive cases, such as very low ratings or concrete complaints, are highlighted and never published blindly.\n\nThe operator finds everything in a shared worksheet: they review the draft, publish it via each platform's own management console and can leave feedback on every reply.\n\nOnce a week a second process re-reads the operator's feedback and the prompt in use: when needed, it rewrites a consolidated version, archives the previous one and reports the differences. The system gets better every week, and every reply goes through a person before it's published."
   },
   "date": "2026-06-29"
 }

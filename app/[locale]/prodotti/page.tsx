@@ -4,10 +4,12 @@ import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
-import { breadcrumbLd } from "@/lib/structured-data";
+import { cases } from "@/lib/cases-content";
+import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { ClosingCta } from "@/components/landing/closing-cta";
+import { PageHeader } from "@/components/landing/page-header";
+import { PageShell } from "@/components/landing/page-shell";
 import { Reveal, RevealGroup, RevealItem } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
@@ -48,42 +50,90 @@ export default async function ProductsPage({
   const siteUrl = await getSiteUrl();
 
   return (
-    <main className="site-zoom flex-1">
+    <PageShell lang={lang}>
       <JsonLd
-        data={breadcrumbLd([
-          { name: "flylabs.ai", url: `${siteUrl}/${lang}` },
-          { name: title[lang], url: `${siteUrl}/${lang}/prodotti` },
+        data={siteBreadcrumbLd(siteUrl, lang, [
+          { name: kicker[lang], path: "/prodotti" },
         ])}
       />
 
-      <Nav lang={lang} />
+      <PageHeader kicker={kicker[lang]} title={title[lang]} intro={intro[lang]} />
 
-      <section className="dot-paper border-b border-line py-[88px]">
+      {/* Prima i prodotti, poi le spiegazioni: chi clicca "Prodotti" vuole
+          vedere i prodotti (prima la griglia arrivava al 67% della pagina). */}
+      <section className="bg-white py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
-          <div className="kicker mb-4">{kicker[lang]}</div>
-          <h1 className="max-w-[34ch] font-display text-5xl font-semibold leading-[1.05]">
-            {title[lang]}
-          </h1>
-          <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">
-            {intro[lang]}
-          </p>
+          <RevealGroup className="grid gap-6 md:grid-cols-3">
+            {items.map((product) => (
+              <RevealItem key={product.slug} className="flex flex-col">
+                <Link
+                  href={product.external ? product.href : `/${lang}${product.href}`}
+                  target={product.external ? "_blank" : undefined}
+                  rel={product.external ? "noopener noreferrer" : undefined}
+                  className="card-hover flex h-full flex-col rounded-xl border border-line bg-paper p-8"
+                >
+                  {/* Anteprima reale del prodotto (audit B20); senza screenshot
+                      il logo in grande tiene la griglia allineata. */}
+                  <div className="-mx-2 -mt-2 mb-6 aspect-[16/10] overflow-hidden rounded-lg border border-line bg-white">
+                    {product.preview ? (
+                      <Image
+                        src={product.preview.src[lang]}
+                        alt={product.preview.alt[lang]}
+                        width={840}
+                        height={525}
+                        sizes="(min-width: 768px) 330px, 100vw"
+                        className="h-full w-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-paper">
+                        <Image
+                          src={product.logo}
+                          alt=""
+                          width={96}
+                          height={96}
+                          className="h-24 w-24 object-contain"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-line bg-white p-2">
+                    <Image
+                      src={product.logo}
+                      alt=""
+                      width={40}
+                      height={40}
+                      className="h-auto max-h-10 w-auto max-w-10 object-contain"
+                    />
+                  </div>
+                  <span className="stamp mt-6 text-muted">
+                    {product.sector[lang]}
+                  </span>
+                  {/* h2: la griglia viene subito dopo l'H1, senza un titolo di
+                      sezione in mezzo (niente salto h1 → h3). */}
+                  <h2 className="mt-2 font-display text-2xl font-semibold">
+                    {product.name}
+                  </h2>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted">
+                    {product.tagline[lang]}
+                  </p>
+                  {/* La nota sta dentro la card, prima della CTA: fuori la
+                      rendeva più corta delle altre. */}
+                  {product.note && (
+                    <p className="mt-3 text-[13px] leading-snug text-muted">
+                      {product.note[lang]}
+                    </p>
+                  )}
+                  <div className="mt-auto pt-8 text-sm font-medium text-ink/70">
+                    {product.external ? cardCtaExternal[lang] : cardCtaInternal[lang]}
+                  </div>
+                </Link>
+              </RevealItem>
+            ))}
+          </RevealGroup>
         </div>
       </section>
 
-      <section className="bg-white py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <Reveal>
-            <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-tight">
-              {philosophyTitle[lang]}
-            </h2>
-            <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-muted">
-              {philosophyBody[lang]}
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="dark-section py-[88px] text-white">
+      <section className="dark-section py-16 text-white md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <div className="kicker mb-4 text-white/60">{modes.kicker[lang]}</div>
           <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-tight">
@@ -110,51 +160,24 @@ export default async function ProductsPage({
         </div>
       </section>
 
-      <section className="bg-white py-[88px]">
+      <section className="bg-white py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
-          <RevealGroup className="grid gap-6 md:grid-cols-3">
-            {items.map((product) => (
-              <RevealItem key={product.slug} className="flex flex-col">
-                <Link
-                  href={product.external ? product.href : `/${lang}${product.href}`}
-                  target={product.external ? "_blank" : undefined}
-                  rel={product.external ? "noopener noreferrer" : undefined}
-                  className="card-hover flex h-full flex-col rounded-xl border border-line bg-paper p-8"
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-line bg-white p-2">
-                    <Image
-                      src={product.logo}
-                      alt=""
-                      width={40}
-                      height={40}
-                      className="h-auto max-h-10 w-auto max-w-10 object-contain"
-                    />
-                  </div>
-                  <span className="stamp mt-6 text-muted">
-                    {product.sector[lang]}
-                  </span>
-                  <h3 className="mt-2 font-display text-2xl font-semibold">
-                    {product.name}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                    {product.tagline[lang]}
-                  </p>
-                  <div className="mt-auto pt-8 text-sm font-medium text-ink/70">
-                    {product.external ? cardCtaExternal[lang] : cardCtaInternal[lang]}
-                  </div>
-                </Link>
-                {product.note && (
-                  <p className="mt-3 text-[13px] leading-snug text-muted">
-                    {product.note[lang]}
-                  </p>
-                )}
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <Reveal>
+            <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-tight">
+              {philosophyTitle[lang]}
+            </h2>
+            <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-muted">
+              {philosophyBody[lang]}
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      <Footer lang={lang} />
-    </main>
+      <ClosingCta
+        title={cases.closing.start.title[lang]}
+        body={cases.closing.start.body[lang]}
+        cta={{ label: landing.nav.cta[lang], href: `/${lang}#cta` }}
+      />
+    </PageShell>
   );
 }

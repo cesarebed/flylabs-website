@@ -19,8 +19,8 @@
   },
   "solution": {
     "_type": "localeText",
-    "it": "Al form parte un WhatsApp automatico con un importo promo estratto a caso; poi un assistente AI continua la conversazione in 3 lingue, raccoglie i dettagli e tiene caldo il contatto fino allo studio.",
-    "en": "On form submit an automated WhatsApp goes out with a randomly drawn discount; then an AI assistant continues the chat in 3 languages, collects the details and keeps the lead warm until the studio takes over."
+    "it": "Appena arriva il form, parte un WhatsApp automatico con uno sconto estratto a caso; poi un assistente AI continua la conversazione in 3 lingue, raccoglie i dettagli e tiene vivo il contatto finché non subentra lo studio.",
+    "en": "As soon as the form comes in, an automatic WhatsApp goes out with a randomly drawn discount; then an AI assistant carries on the chat in 3 languages, collects the details and keeps the lead warm until the studio takes over."
   },
   "metrics": [
     {
@@ -29,8 +29,8 @@
       "value": { "_type": "localeString", "it": "2x", "en": "2x" },
       "label": {
         "_type": "localeString",
-        "it": "riscatto delle promo",
-        "en": "offer redemption"
+        "it": "promo utilizzate",
+        "en": "offers redeemed"
       }
     },
     {
@@ -85,7 +85,7 @@
   ],
   "body": {
     "_type": "localeText",
-    "it": "Lo studio riceve richieste dal sito: chi è interessato compila un form con la propria idea di tatuaggio e qualche immagine di riferimento. Il problema era il vuoto che si crea dopo: lo studio non può rispondere a tutti subito, e nell'attesa il contatto si raffredda o la promo che gli è stata proposta finisce dimenticata.\n\nAbbiamo chiuso quel vuoto. Appena arriva il form parte in automatico un messaggio WhatsApp che assegna alla persona un importo promozionale estratto a caso: lo sconto diventa una piccola sorpresa personale, non un banner uguale per tutti. Da lì in poi risponde un assistente AI direttamente su WhatsApp, nella lingua dell'utente (gestisce inglese, spagnolo e tedesco): conferma che la richiesta è arrivata e che lo studio la sta guardando, risponde alle domande su stili, cura e come funziona il processo, e raccoglie i dettagli utili (stile, dimensione, posizione).\n\nL'assistente non fa preventivi, perché il prezzo lo definisce lo studio in base al progetto: il suo lavoro è tenere viva la conversazione, far sentire la persona seguita e spingerla con garbo a usare la promo, fino a quando lo studio prende in mano il contatto.\n\nRisultato: gli sconti che prima restavano lettera morta vengono riscattati circa il doppio delle volte, perché qualcuno (l'AI) accompagna davvero la persona dal form alla decisione.",
+    "it": "Lo studio riceve richieste dal sito: chi è interessato compila un form con la propria idea di tatuaggio e qualche immagine di riferimento. Il problema era il vuoto che si crea dopo: lo studio non può rispondere a tutti subito, e nell'attesa il contatto si raffredda o la promo che gli è stata proposta finisce dimenticata.\n\nAbbiamo chiuso quel vuoto. Appena arriva il form parte in automatico un messaggio WhatsApp che assegna alla persona un importo promozionale estratto a caso: lo sconto diventa una piccola sorpresa personale, non un banner uguale per tutti. Da lì in poi risponde un assistente AI direttamente su WhatsApp, nella lingua dell'utente (gestisce inglese, spagnolo e tedesco): conferma che la richiesta è arrivata e che lo studio la sta guardando, risponde alle domande su stili, cura e come funziona il processo, e raccoglie i dettagli utili (stile, dimensione, posizione).\n\nL'assistente non fa preventivi, perché il prezzo lo definisce lo studio in base al progetto: il suo lavoro è tenere viva la conversazione, far sentire la persona seguita e spingerla con garbo a usare la promo, fino a quando lo studio prende in mano il contatto.\n\nRisultato: gli sconti che prima restavano lettera morta vengono utilizzati circa il doppio delle volte, perché qualcuno (l'AI) accompagna davvero la persona dal form alla decisione.",
     "en": "The studio gets requests from its website: interested people fill in a form with their tattoo idea and a few reference images. The problem was the gap that opens up next: the studio can't reply to everyone right away, and while they wait the lead goes cold or the discount they were offered is forgotten.\n\nWe closed that gap. As soon as the form comes in, an automated WhatsApp message goes out assigning the person a randomly drawn promotional amount: the discount becomes a small personal surprise, not a one-size-fits-all banner. From there an AI assistant replies right on WhatsApp, in the user's language (it handles English, Spanish and German): it confirms the request has arrived and that the studio is reviewing it, answers questions about styles, aftercare and how the process works, and collects the useful details (style, size, placement).\n\nThe assistant doesn't quote prices, because the studio sets those based on the project: its job is to keep the conversation alive, make the person feel looked after and gently nudge them to use the offer, until the studio takes over the lead.\n\nThe result: discounts that used to go unused are redeemed about twice as often, because someone (the AI) actually walks the person from the form to the decision."
   },
   "date": "2026-05-15"

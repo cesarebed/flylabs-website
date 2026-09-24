@@ -8,10 +8,10 @@ export const SITE_SETTINGS_QUERY = defineQuery(
     description,
     siteUrl,
     "ogImage": ogImage.asset->url,
-    keywords,
     socialLinks[]{ _key, label, url },
     contactEmail,
-    legalEntities[]{ _key, name, vatNumber }
+    bookingUrl,
+    legalEntities[]{ _key, name, vatNumber, profileUrl }
   }`
 );
 
@@ -83,6 +83,11 @@ export const CASE_STUDY_SITEMAP_QUERY = defineQuery(
     "slug": slug.current,
     "updatedAt": _updatedAt
   }`
+);
+
+// Rate limit del registro consensi (/api/consent): eventi recenti dallo stesso IP.
+export const CONSENT_RATE_COUNT_QUERY = defineQuery(
+  `count(*[_type == "consentEvent" && ipHash == $ipHash && at > $since])`
 );
 
 // Rate limit del form contatti: richieste recenti con stessa email o stesso IP.

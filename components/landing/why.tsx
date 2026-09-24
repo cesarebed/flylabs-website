@@ -5,14 +5,16 @@ import { Spotlight } from "./spotlight";
 
 export function Why({ lang }: { lang: Locale }) {
   const { kicker, statementBefore, statementMark, chips } = landing.why;
+  // Padding anche sopra: la sezione precedente (Lavori) chiude con una
+  // hairline, e senza stacco il bordo della card ci finiva attaccato.
   return (
-    <section className="pb-[120px]">
+    <section className="bg-paper py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <Reveal>
-          <Spotlight className="overflow-hidden rounded-2xl border border-line dot-paper p-10 md:p-16">
+          <Spotlight className="overflow-hidden rounded-2xl border border-line dot-paper p-6 md:p-16">
             <div className="max-w-3xl">
               <div className="kicker mb-5">{kicker[lang]}</div>
-              <p className="mb-10 font-display text-3xl font-medium leading-[1.18] md:text-[2.5rem]">
+              <p className="mb-8 font-display text-2xl font-medium leading-[1.18] md:text-[2.5rem]">
                 {statementBefore[lang]}
                 <span className="mark">{statementMark[lang]}</span>
               </p>

@@ -56,18 +56,28 @@ export default async function LocaleLayout({
   const sameAs = (settings?.socialLinks ?? [])
     .map((link) => link.url)
     .filter((url): url is string => Boolean(url));
+  const founders = (settings?.legalEntities ?? [])
+    .filter((e): e is typeof e & { name: string } => Boolean(e.name))
+    .map((e) => ({ name: e.name, profileUrl: e.profileUrl }));
 
   return (
     <html lang={locale} className={`${fontVars} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        {/* Senza JS lo scroll-reveal (components/landing/reveal.tsx) non parte:
+            gli elementi [data-reveal] resterebbero a opacity 0 dall'SSR. */}
+        <noscript>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         <ConsentProvider locale={locale}>
-          <JsonLd data={organizationLd(siteUrl, sameAs)} />
+          {/* Prima del contenuto: è fixed in basso, ma nel DOM viene per primo
+              così è il primo tab stop (senza rubare il focus). */}
+          <CookieBanner lang={locale} />
+          <JsonLd data={organizationLd(siteUrl, sameAs, founders)} />
           {children}
           {/* Facade: parte solo al click, previo consenso alla categoria. */}
           <ChatbotWidget lang={locale} />
           {/* GA4 caricato solo dopo consenso "Statistiche" (blocco preventivo). */}
           <GoogleAnalytics />
-          <CookieBanner lang={locale} />
         </ConsentProvider>
         {/* Vercel Analytics/Speed Insights: cookieless, nessun consenso necessario. */}
         <Analytics />

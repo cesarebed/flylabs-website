@@ -8,6 +8,8 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/reac
  * design-taste-frontend §10). Escursione piccola e volutamente contenuta
  * (max ~8px) — è la CTA primaria dell'hero, un solo momento magnetico in
  * pagina, non un tic ripetuto ovunque. Motion values, niente useState.
+ * Lo `style` non dipende da useReducedMotion (null in SSR, quindi mismatch
+ * di hydration): con reduced motion i valori restano a 0.
  */
 export function MagneticCta({
   href,
@@ -40,7 +42,7 @@ export function MagneticCta({
       href={href}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
-      style={reduce ? undefined : { x: springX, y: springY }}
+      style={{ x: springX, y: springY }}
       className={className}
     >
       {children}

@@ -4,9 +4,9 @@ import { landing } from "@/lib/landing-content";
 import { RevealGroup, RevealItem } from "./reveal";
 
 export function Offer({ lang }: { lang: Locale }) {
-  const { section, tracks, cta, badgeFeatured, deepLink } = landing.offer;
+  const { section, tracks, badgeFeatured, deepLink } = landing.offer;
   return (
-    <section id="offerta" className="border-y border-line bg-white py-[120px]">
+    <section id="offerta" className="border-y border-line bg-white py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <div className="mb-14 max-w-2xl">
           <div className="kicker mb-4">{section.kicker[lang]}</div>
@@ -68,7 +68,7 @@ export function Offer({ lang }: { lang: Locale }) {
                         : "block rounded-lg border border-line px-5 py-2.5 text-center text-sm font-semibold text-accent transition-colors hover:border-accent"
                     }
                   >
-                    {cta[lang]}
+                    {track.cta[lang]}
                   </a>
                 </div>
               </RevealItem>

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { cookiePolicy } from "@/lib/cookie-content";
 import { buildMetadata } from "@/lib/seo";
-import { Footer } from "@/components/landing/footer";
-import { LangToggle } from "@/components/landing/lang-toggle";
+import { PageShell } from "@/components/landing/page-shell";
 import { ManageCookiesLink } from "@/components/consent/manage-cookies-link";
 
 export const revalidate = 3600;
@@ -31,30 +29,11 @@ export default async function CookiePolicyPage({
 }) {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
-  const back = { it: "← Torna alla home", en: "← Back home" };
 
+  // Nav del sito come nelle altre pagine: prima qui c'era un header rifatto a
+  // mano (logo, lingua, "Torna alla home"), senza le voci di navigazione.
   return (
-    <main className="site-zoom flex-1">
-      <header className="nav-light sticky top-0 z-50 border-b border-line backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
-          <Link
-            href={`/${lang}`}
-            className="font-display text-2xl font-bold tracking-tight"
-          >
-            flylabs<span className="logo-ai">.ai</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <LangToggle lang={lang} />
-            <Link
-              href={`/${lang}`}
-              className="text-sm font-medium text-ink/70 hover:text-ink"
-            >
-              {back[lang]}
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <PageShell lang={lang}>
       <article className="mx-auto max-w-3xl px-6 py-[80px]">
         <h1 className="font-display text-4xl font-semibold leading-tight md:text-5xl">
           {cookiePolicy.title[lang]}
@@ -96,8 +75,6 @@ export default async function CookiePolicyPage({
           </section>
         </div>
       </article>
-
-      <Footer lang={lang} />
-    </main>
+    </PageShell>
   );
 }

@@ -9,13 +9,16 @@ import { landing } from "@/lib/landing-content";
  * (`divide-y`) sono un data-dump, non un layout (design-taste-frontend §4.9).
  * Una voce aperta alla volta, altezza animata via CSS grid-rows (nessuna
  * misura JS, rispetta prefers-reduced-motion tramite motion-safe:).
+ * Pattern accordion APG: domanda in un <h3> che contiene il bottone, pannello
+ * chiuso `inert` (con la sola altezza 0 lo screen reader leggeva comunque
+ * tutte le risposte, e i link dentro restavano raggiungibili col Tab).
  */
 export function Faq({ lang }: { lang: Locale }) {
   const { section, items } = landing.faq;
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="border-y border-line bg-white py-[120px]">
+    <section id="faq" className="border-y border-line bg-white py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-3xl px-6">
         <h2 className="mb-12 text-center font-display text-4xl font-semibold">
           {section.title[lang]}
@@ -25,25 +28,28 @@ export function Faq({ lang }: { lang: Locale }) {
             const isOpen = open === i;
             return (
               <div key={item.q[lang]} className="border-b border-line">
-                <button
-                  type="button"
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-a-${i}`}
-                  className="flex w-full items-center justify-between gap-4 py-6 text-left"
-                >
-                  <span className="text-lg font-bold">{item.q[lang]}</span>
-                  <span
-                    aria-hidden
-                    className={`motion-safe:transition-transform motion-safe:duration-300 shrink-0 text-xl text-accent ${
-                      isOpen ? "rotate-45" : ""
-                    }`}
+                <h3>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-a-${i}`}
+                    className="flex w-full items-center justify-between gap-4 py-6 text-left"
                   >
-                    +
-                  </span>
-                </button>
+                    <span className="text-lg font-bold">{item.q[lang]}</span>
+                    <span
+                      aria-hidden
+                      className={`motion-safe:transition-transform motion-safe:duration-300 shrink-0 text-xl text-accent ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                    >
+                      +
+                    </span>
+                  </button>
+                </h3>
                 <div
                   id={`faq-a-${i}`}
+                  inert={!isOpen}
                   className={`grid motion-safe:transition-[grid-template-rows] motion-safe:duration-300 motion-safe:ease-out ${
                     isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   }`}

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { WithArrow } from "@/components/landing/closing-cta";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
-import { breadcrumbLd } from "@/lib/structured-data";
+import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { PageHeader } from "@/components/landing/page-header";
+import { AutoplayVideo } from "@/components/landing/autoplay-video";
+import { PageShell } from "@/components/landing/page-shell";
 import { Reveal } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
@@ -35,7 +37,6 @@ export default async function WeGroceryProductPage({
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const {
-    kicker,
     title,
     tagline,
     problem,
@@ -54,62 +55,64 @@ export default async function WeGroceryProductPage({
   const siteUrl = await getSiteUrl();
 
   return (
-    <main className="site-zoom flex-1">
+    <PageShell lang={lang}>
       <JsonLd
-        data={breadcrumbLd([
-          { name: "flylabs.ai", url: `${siteUrl}/${lang}` },
-          {
-            name: landing.products.kicker[lang],
-            url: `${siteUrl}/${lang}/prodotti`,
-          },
-          { name: title[lang], url: `${siteUrl}/${lang}/wegrocery` },
+        data={siteBreadcrumbLd(siteUrl, lang, [
+          { name: landing.products.kicker[lang], path: "/prodotti" },
+          { name: title[lang], path: "/wegrocery" },
         ])}
       />
 
-      <Nav lang={lang} />
-
-      <section className="dot-paper border-b border-line py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <div className="mb-6 flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-white">
+      <PageHeader
+        back={{ href: `/${lang}/prodotti`, label: landing.products.kicker[lang] }}
+        logo={
+          <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-white">
             <Image src={logo} alt="" width={56} height={56} className="object-contain" />
           </div>
-          <div className="kicker mb-4">{kicker[lang]}</div>
-          <h1 className="max-w-[20ch] font-display text-5xl font-semibold leading-[1.05]">
-            {title[lang]}
-          </h1>
-          <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">
-            {tagline[lang]}
-          </p>
-        </div>
-      </section>
+        }
+        title={title[lang]}
+        intro={tagline[lang]}
+      />
 
-      <section className="bg-paper py-[88px]">
+      <section className="bg-paper py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <Reveal>
             <h2 className="font-display text-2xl font-semibold">{mediaTitle[lang]}</h2>
             <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
-              <div className="overflow-hidden rounded-xl border border-line bg-ink">
-                <video
-                  src={media.launchVideo.src}
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="aspect-square w-full"
+              <div>
+                <div className="overflow-hidden rounded-xl border border-line bg-ink">
+                  {/* Il video non ha audio: niente <track> (vuoto annunciava
+                      sottotitoli inesistenti). L'alternativa testuale è la
+                      trascrizione qui sotto (WCAG 1.2.1). */}
+                  <video
+                    src={media.launchVideo.src}
+                    poster={media.launchVideo.poster}
+                    controls
+                    muted
+                    playsInline
+                    preload="metadata"
+                    aria-describedby="wegrocery-video-trascrizione"
+                    className="aspect-square w-full"
+                  />
+                  <p className="stamp px-4 py-3 text-white/60">
+                    {media.launchVideo.caption[lang]}
+                  </p>
+                </div>
+                <p
+                  id="wegrocery-video-trascrizione"
+                  className="mt-4 text-[14px] leading-relaxed text-muted"
                 >
-                  <track kind="captions" />
-                </video>
-                <p className="stamp px-4 py-3 text-muted">
-                  {media.launchVideo.caption[lang]}
+                  {media.launchVideo.transcript[lang]}
                 </p>
               </div>
               <div className="overflow-hidden rounded-xl border border-line bg-white">
-                <Image
-                  src={media.demoGif.src}
-                  alt={media.demoGif.alt[lang]}
-                  width={media.demoGif.width}
-                  height={media.demoGif.height}
-                  unoptimized
-                  className="w-full"
+                <AutoplayVideo
+                  src={media.demoVideo.src}
+                  poster={media.demoVideo.poster}
+                  width={media.demoVideo.width}
+                  height={media.demoVideo.height}
+                  label={media.demoVideo.label[lang]}
+                  className="h-auto w-full"
                 />
               </div>
             </div>
@@ -117,7 +120,7 @@ export default async function WeGroceryProductPage({
         </div>
       </section>
 
-      <section className="bg-white py-[88px]">
+      <section className="bg-white py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <Reveal>
             <div className="grid gap-10 md:grid-cols-2">
@@ -169,7 +172,7 @@ export default async function WeGroceryProductPage({
         </div>
       </section>
 
-      <section className="dark-section py-[88px] text-white">
+      <section className="dark-section py-16 md:py-[88px] text-white">
         <div className="mx-auto max-w-[1120px] px-6">
           <h2 className="font-display text-3xl font-semibold leading-tight">
             {modesTitle[lang]}
@@ -198,16 +201,29 @@ export default async function WeGroceryProductPage({
               <p className="mt-3 text-[15px] leading-relaxed text-white/70">
                 {modeSaas.body[lang]}
               </p>
-              {modeSaas.cta && modeSaas.href && (
-                <Link
-                  href={modeSaas.href}
-                  target={modeSaas.external ? "_blank" : undefined}
-                  rel={modeSaas.external ? "noopener noreferrer" : undefined}
-                  className="btn-accent mt-6 inline-block rounded-lg px-5 py-2.5 text-sm font-semibold"
-                >
-                  {modeSaas.cta[lang]}
-                </Link>
-              )}
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+                {modeSaas.cta && modeSaas.href && (
+                  <Link
+                    href={modeSaas.href}
+                    target={modeSaas.external ? "_blank" : undefined}
+                    rel={modeSaas.external ? "noopener noreferrer" : undefined}
+                    className="btn-accent inline-block rounded-lg px-5 py-2.5 text-sm font-semibold"
+                  >
+                    {modeSaas.cta[lang]}
+                  </Link>
+                )}
+                {/* "Open source" promesso tre volte: qui il link al codice. */}
+                {modeSaas.cta2 && modeSaas.href2 && (
+                  <Link
+                    href={modeSaas.href2}
+                    target={modeSaas.external2 ? "_blank" : undefined}
+                    rel={modeSaas.external2 ? "noopener noreferrer" : undefined}
+                    className="text-sm font-medium text-white/70 transition-colors hover:text-white"
+                  >
+                    <WithArrow>{modeSaas.cta2[lang]}</WithArrow>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
 
@@ -221,8 +237,6 @@ export default async function WeGroceryProductPage({
           </div>
         </div>
       </section>
-
-      <Footer lang={lang} />
-    </main>
+    </PageShell>
   );
 }

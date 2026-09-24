@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
-import { buildMetadata } from "@/lib/seo";
+import { cases } from "@/lib/cases-content";
+import { buildMetadata, getSiteUrl } from "@/lib/seo";
+import { siteBreadcrumbLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/json-ld";
+import { ClosingCta } from "@/components/landing/closing-cta";
 import { Icon } from "@/components/landing/icon";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { PageHeader } from "@/components/landing/page-header";
+import { PageShell } from "@/components/landing/page-shell";
 import { Reveal } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
@@ -31,21 +35,16 @@ export default async function StackPage({
 }) {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
-  const { kicker, title, intro, groups } = landing.stack;
+  const { kicker, title, intro, groups, disclaimer } = landing.stack;
+  const siteUrl = await getSiteUrl();
 
   return (
-    <main className="site-zoom flex-1">
-      <Nav lang={lang} />
+    <PageShell lang={lang}>
+      <JsonLd
+        data={siteBreadcrumbLd(siteUrl, lang, [{ name: "Stack", path: "/stack" }])}
+      />
 
-      <section className="dot-paper border-b border-line py-16">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <div className="kicker mb-5">{kicker[lang]}</div>
-          <h1 className="mb-6 max-w-3xl font-display text-4xl font-semibold leading-tight md:text-5xl">
-            {title[lang]}
-          </h1>
-          <p className="max-w-2xl text-lg text-muted">{intro[lang]}</p>
-        </div>
-      </section>
+      <PageHeader kicker={kicker[lang]} title={title[lang]} intro={intro[lang]} />
 
       <div className="mx-auto max-w-[1120px] px-6 py-16">
         <div className="flex flex-col gap-10">
@@ -56,15 +55,28 @@ export default async function StackPage({
               </h2>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {group.tools.map((tool) => (
+                  // Niente card-hover: le card non sono link, il sollevamento
+                  // prometteva un clic che non porta da nessuna parte.
                   <div
                     key={tool.name}
-                    className="card-hover flex items-start gap-3 rounded-lg border border-line bg-white p-4"
+                    className="flex items-start gap-3 rounded-lg border border-line bg-white p-4"
                   >
-                    <Icon
-                      icon={tool.icon}
-                      className="mt-0.5 shrink-0 text-[24px]"
-                      aria-hidden
-                    />
+                    {tool.icon ? (
+                      <Icon
+                        icon={tool.icon}
+                        className="mt-0.5 shrink-0 text-[24px]"
+                        aria-hidden
+                      />
+                    ) : (
+                      // Tool senza logo su Iconify: stesso monogramma neutro
+                      // per tutti, invece di icone semantiche prese a caso.
+                      <span
+                        aria-hidden
+                        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-line bg-paper font-mono text-[12px] font-semibold text-muted"
+                      >
+                        {tool.name.charAt(0)}
+                      </span>
+                    )}
                     <div>
                       <h3 className="text-[15px] font-bold">{tool.name}</h3>
                       <p className="mt-0.5 text-[13px] leading-snug text-muted">
@@ -77,9 +89,17 @@ export default async function StackPage({
             </Reveal>
           ))}
         </div>
+
+        <p className="mt-12 max-w-[70ch] border-t border-line pt-6 text-[13px] leading-relaxed text-muted">
+          {disclaimer[lang]}
+        </p>
       </div>
 
-      <Footer lang={lang} />
-    </main>
+      <ClosingCta
+        title={cases.closing.start.title[lang]}
+        body={cases.closing.start.body[lang]}
+        cta={{ label: landing.nav.cta[lang], href: `/${lang}#cta` }}
+      />
+    </PageShell>
   );
 }

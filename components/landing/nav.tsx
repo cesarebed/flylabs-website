@@ -3,10 +3,9 @@
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
-import { Icon } from "./icon";
 import { LangToggle } from "./lang-toggle";
 import { LogoMark } from "./logo-mark";
 
@@ -23,16 +22,66 @@ import { LogoMark } from "./logo-mark";
  * sfondo), legata a `useScroll` — mai `window.addEventListener('scroll')`
  * (vedi design-taste-frontend §5.D). Il menu mobile resta ferma sotto
  * `prefers-reduced-motion` (si apre/chiude senza animazione di altezza).
+ *
+ * Menu mobile come disclosure APG: aria-controls sul bottone, Esc lo chiude
+ * e riporta il focus al bottone, si chiude anche al cambio di route. Le icone
+ * menu/x sono SVG inline (path lucide): mai dipendere da una rete esterna
+ * per l'unico accesso alla navigazione su mobile.
  */
+const MENU_ID = "menu-mobile";
+
+function MenuGlyph({ open }: { open: boolean }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* lucide:x / lucide:menu */}
+      <path d={open ? "M18 6L6 18M6 6l12 12" : "M4 5h16M4 12h16M4 19h16"} />
+    </svg>
+  );
+}
+
 export function Nav({ lang }: { lang: Locale }) {
   const { cta } = landing.nav;
   const pages = landing.footer.nav;
   const reduce = useReducedMotion();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
 
+  // chiusura al cambio di route, durante il render (niente setState in effect)
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
+    setOpen(false);
+  }
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      menuButton.current?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  // Lo `style` riceve sempre i motion value: useReducedMotion vale null in
+  // SSR, e uno style che ne dipendeva cambiava fra server e client (hydration
+  // mismatch). Con reduced motion l'altezza resta fissa; ombra e sfondo non
+  // sono movimento e seguono lo scroll per tutti.
   const { scrollY } = useScroll();
-  const height = useTransform(scrollY, [0, 80], [64, 56]);
+  const height = useTransform(scrollY, [0, 80], [64, reduce ? 64 : 56]);
   const shadow = useTransform(
     scrollY,
     [0, 80],
@@ -61,17 +110,15 @@ export function Nav({ lang }: { lang: Locale }) {
 
   return (
     <motion.header
-      style={
-        reduce ? undefined : { height, boxShadow: shadow, backgroundColor: background }
-      }
+      style={{ height, boxShadow: shadow, backgroundColor: background }}
       className="nav-light sticky top-0 z-50 border-b border-line text-ink backdrop-blur"
     >
       <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
         <Link
           href={`/${lang}`}
-          className="flex items-center gap-2 font-display text-2xl font-bold tracking-tight"
+          className="flex shrink-0 items-center gap-2 font-display text-2xl font-bold tracking-tight max-[379px]:text-xl"
         >
-          <LogoMark className="h-6 w-6" />
+          <LogoMark className="h-6 w-6 max-[379px]:h-5 max-[379px]:w-5" />
           <span>
             flylabs<span className="logo-ai">.ai</span>
           </span>
@@ -93,24 +140,27 @@ export function Nav({ lang }: { lang: Locale }) {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5 md:gap-4">
           <div className="hidden md:block">
             <LangToggle lang={lang} />
           </div>
           <Link
             href={`/${lang}#cta`}
-            className="btn-ink hidden rounded-lg px-5 py-2.5 text-sm font-semibold md:inline-block"
+            onClick={() => setOpen(false)}
+            className="btn-ink inline-block whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-semibold max-[349px]:hidden md:px-5 md:py-2.5"
           >
             {cta[lang]}
           </Link>
           <button
+            ref={menuButton}
             type="button"
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
+            aria-controls={MENU_ID}
             aria-label={menuLabel}
             className="-mr-2 flex h-10 w-10 items-center justify-center text-ink md:hidden"
           >
-            <Icon icon={open ? "lucide:x" : "lucide:menu"} width={24} height={24} aria-hidden />
+            <MenuGlyph open={open} />
           </button>
         </div>
       </div>
@@ -118,6 +168,7 @@ export function Nav({ lang }: { lang: Locale }) {
       <AnimatePresence>
         {open && (
           <motion.div
+            id={MENU_ID}
             initial={reduce ? undefined : { height: 0, opacity: 0 }}
             animate={reduce ? undefined : { height: "auto", opacity: 1 }}
             exit={reduce ? undefined : { height: 0, opacity: 0 }}
@@ -145,10 +196,11 @@ export function Nav({ lang }: { lang: Locale }) {
             </nav>
             <div className="flex items-center justify-between border-t border-line px-6 py-5">
               <LangToggle lang={lang} />
+              {/* doppione della CTA dell'header: serve solo dove quella è nascosta */}
               <Link
                 href={`/${lang}#cta`}
                 onClick={() => setOpen(false)}
-                className="btn-ink rounded-lg px-5 py-2.5 text-sm font-semibold"
+                className="btn-ink rounded-lg px-5 py-2.5 text-sm font-semibold min-[350px]:hidden"
               >
                 {cta[lang]}
               </Link>
