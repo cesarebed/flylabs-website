@@ -60,7 +60,8 @@
 @layer components {
   /* Ingrandimento globale del sito marketing: equivale a un browser zoom ~115%,
      scala px e rem in modo uniforme. Applicato solo alle pagine pubbliche (non
-     allo Studio) tramite la classe sui rispettivi <main>. */
+     allo Studio) tramite la classe sul wrapper di PageShell
+     (components/landing/page-shell.tsx), che contiene nav, main e footer. */
   .site-zoom {
     zoom: 1.15;
   }

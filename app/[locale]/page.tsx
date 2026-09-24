@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { getSiteSettings } from "@/sanity/site-settings";
 import { buildMetadata } from "@/lib/seo";
-import { Nav } from "@/components/landing/nav";
+import { PageShell } from "@/components/landing/page-shell";
 import { Hero } from "@/components/landing/hero";
 import { WhatWeBuild } from "@/components/landing/what-we-build";
 import { Work } from "@/components/landing/work";
@@ -12,22 +12,23 @@ import { Why } from "@/components/landing/why";
 import { Faq } from "@/components/landing/faq";
 import { ToolsStrip } from "@/components/landing/tools-strip";
 import { FinalCta } from "@/components/landing/final-cta";
-import { Footer } from "@/components/landing/footer";
 
 export const revalidate = 3600;
 
 // Titolo e descrizione della home arrivano da Sanity (siteSettings); questi
-// restano come fallback se il CMS è vuoto o irraggiungibile.
+// restano come fallback se il CMS è vuoto o irraggiungibile. Allineati al
+// posizionamento del 2026-09-10 (partner AI, formazione): gli stessi testi
+// vanno messi anche in Studio.
 const META: Record<Locale, { title: string; description: string }> = {
   it: {
-    title: "flylabs.ai | AI concreta per la tua azienda",
+    title: "Partner AI per PMI: soluzioni su misura e formazione | flylabs.ai",
     description:
-      "Costruiamo soluzioni AI concrete: chatbot, automazioni, risposta lead. Prezzo fisso, niente lock-in. Parli con chi costruisce.",
+      "Integriamo l'AI nei processi della tua PMI: chatbot, automazioni, documenti e formazione del team. Prezzo fisso deciso prima, parli con chi costruisce.",
   },
   en: {
-    title: "flylabs.ai | Concrete AI for your business",
+    title: "AI partner for SMEs: custom solutions and training | flylabs.ai",
     description:
-      "We build concrete AI solutions: chatbots, automations, lead response. Fixed price, no lock-in. You talk to the people who build.",
+      "We build AI into your business processes: chatbots, automations, documents and team training. Fixed price agreed upfront, and you talk to the people who build it.",
   },
 };
 
@@ -53,8 +54,7 @@ export default async function HomePage({
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
 
   return (
-    <main className="site-zoom flex-1">
-      <Nav lang={lang} />
+    <PageShell lang={lang}>
       <Hero lang={lang} />
       <WhatWeBuild lang={lang} />
       <ToolsStrip lang={lang} />
@@ -64,7 +64,6 @@ export default async function HomePage({
       <Why lang={lang} />
       <Faq lang={lang} />
       <FinalCta lang={lang} />
-      <Footer lang={lang} />
-    </main>
+    </PageShell>
   );
 }

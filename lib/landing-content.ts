@@ -71,6 +71,10 @@ export type OfferTrack = {
   // Approfondimento usato solo dalla pagina /servizi: per chi è e come va.
   who: Localized;
   steps: Localized[];
+  // id dell'<article> su /servizi (deep link: /servizi#formazione).
+  anchor?: string;
+  // "Vedi un esempio reale" su /servizi: path interno di un caso (o della lista).
+  example?: string;
 };
 
 // `icon` assente = il tool non ha un logo su Iconify: la pagina mostra un
@@ -517,6 +521,8 @@ export const landing = {
           },
         ],
         cta: { it: "Organizziamo la formazione\u00a0→", en: "Let's plan the training\u00a0→" },
+        anchor: "formazione",
+        example: "/lavori/formazione-ai-in-aula",
       },
       {
         kind: { it: "soluzione", en: "solution" },
@@ -565,6 +571,8 @@ export const landing = {
           },
         ],
         cta: { it: "Raccontaci il processo\u00a0→", en: "Tell us about your process\u00a0→" },
+        anchor: "chiavi-in-mano",
+        example: "/lavori/pratiche-connessione-automatiche",
       },
       {
         kind: { it: "consulenza", en: "consulting" },
@@ -608,6 +616,8 @@ export const landing = {
           },
         ],
         cta: { it: "Chiedi una sessione\u00a0→", en: "Ask for a session\u00a0→" },
+        anchor: "consulenza",
+        example: "/lavori",
       },
     ] satisfies OfferTrack[],
     deepLink: {
@@ -1400,7 +1410,6 @@ export const landing = {
           "Reads and drafts replies to your business reviews from Google, Tripadvisor and Booking. Free audit, then a daily engine that drafts replies for you.",
       },
     },
-    kicker: { it: "Prodotti", en: "Products" },
     title: { it: "Stellar Reviews", en: "Stellar Reviews" },
     logo: "/products/stellar-reviews/logo.svg",
     tagline: {
@@ -1470,21 +1479,26 @@ export const landing = {
           "WeGrocery: the open-source, white-label platform for buying clubs' group orders. Try the demo or activate your own deployment.",
       },
     },
-    kicker: { it: "Prodotti", en: "Products" },
     title: { it: "WeGrocery", en: "WeGrocery" },
     logo: "/products/wegrocery/logo.png",
     media: {
-      demoGif: {
-        src: "/products/wegrocery/demo.gif",
+      // Tour della demo pubblica: era una GIF da 248 KB in loop infinito,
+      // anche con reduced-motion. Ora è un MP4 muto con comandi, in autoplay
+      // solo se l'utente non chiede meno movimento (components/landing/
+      // autoplay-video.tsx). Il poster è il primo fotogramma.
+      demoVideo: {
+        src: "/products/wegrocery/demo.mp4",
+        poster: "/products/wegrocery/demo-poster.jpg",
         width: 340,
-        height: 711,
-        alt: {
-          it: "Schermata della demo pubblica di WeGrocery: accesso come socio o come admin",
-          en: "Screenshot of the WeGrocery public demo: member or admin access",
+        height: 712,
+        label: {
+          it: "Demo pubblica di WeGrocery, senza audio: le schermate del socio (saldo, ordine, storico, notifiche, guida) e dell'admin (ciclo, prodotti, ordini, cassa, soci, fornitori, statistiche)",
+          en: "WeGrocery public demo, no audio: the member screens (balance, order, history, notifications, guide) and the admin screens (cycle, products, orders, treasury, members, suppliers, stats)",
         },
       },
       launchVideo: {
         src: "/products/wegrocery/launch.mp4",
+        poster: "/products/wegrocery/launch-poster.jpg",
         caption: {
           it: "Video di lancio di WeGrocery",
           en: "WeGrocery launch video",
@@ -1555,6 +1569,31 @@ export const landing = {
       href: "/lavori/wegrocery-ordini-di-gruppo",
     },
     back: { it: "← Tutti i prodotti", en: "← All products" },
+  },
+
+  // Cornice comune delle pagine (components/landing/page-shell.tsx).
+  shell: {
+    skip: { it: "Salta al contenuto", en: "Skip to content" },
+  },
+
+  // 404 localizzata per i path con prefisso /it o /en (app/[locale]/not-found.tsx).
+  // I path senza lingua restano su app/global-not-found.tsx, bilingue.
+  notFound: {
+    metaTitle: {
+      it: "Pagina non trovata | flylabs.ai",
+      en: "Page not found | flylabs.ai",
+    },
+    metaDescription: { it: "Pagina non trovata.", en: "Page not found." },
+    title: {
+      it: "Questa pagina non esiste (più).",
+      en: "This page doesn't exist (anymore).",
+    },
+    body: {
+      it: "Forse il link è vecchio o c'è un errore di battitura. Intanto puoi guardare cosa abbiamo costruito o scriverci.",
+      en: "The link may be old or mistyped. Meanwhile, have a look at what we've built or drop us a line.",
+    },
+    home: { it: "Torna alla home", en: "Back to home" },
+    work: { it: "Vedi i lavori", en: "See our work" },
   },
 
   footer: {

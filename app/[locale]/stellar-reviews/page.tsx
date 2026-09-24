@@ -4,10 +4,10 @@ import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
-import { breadcrumbLd } from "@/lib/structured-data";
+import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
-import { Footer } from "@/components/landing/footer";
-import { Nav } from "@/components/landing/nav";
+import { PageHeader } from "@/components/landing/page-header";
+import { PageShell } from "@/components/landing/page-shell";
 import { Reveal } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
@@ -35,7 +35,6 @@ export default async function StellarReviewsPage({
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const {
-    kicker,
     title,
     tagline,
     problem,
@@ -52,36 +51,26 @@ export default async function StellarReviewsPage({
   const siteUrl = await getSiteUrl();
 
   return (
-    <main className="site-zoom flex-1">
+    <PageShell lang={lang}>
       <JsonLd
-        data={breadcrumbLd([
-          { name: "flylabs.ai", url: `${siteUrl}/${lang}` },
-          {
-            name: landing.products.kicker[lang],
-            url: `${siteUrl}/${lang}/prodotti`,
-          },
-          { name: title[lang], url: `${siteUrl}/${lang}/stellar-reviews` },
+        data={siteBreadcrumbLd(siteUrl, lang, [
+          { name: landing.products.kicker[lang], path: "/prodotti" },
+          { name: title[lang], path: "/stellar-reviews" },
         ])}
       />
 
-      <Nav lang={lang} />
-
-      <section className="dot-paper border-b border-line py-[88px]">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <div className="mb-6 flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl">
+      <PageHeader
+        back={{ href: `/${lang}/prodotti`, label: landing.products.kicker[lang] }}
+        logo={
+          <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl">
             <Image src={logo} alt="" width={64} height={64} />
           </div>
-          <div className="kicker mb-4">{kicker[lang]}</div>
-          <h1 className="max-w-[20ch] font-display text-5xl font-semibold leading-[1.05]">
-            {title[lang]}
-          </h1>
-          <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">
-            {tagline[lang]}
-          </p>
-        </div>
-      </section>
+        }
+        title={title[lang]}
+        intro={tagline[lang]}
+      />
 
-      <section className="bg-white py-[88px]">
+      <section className="bg-white py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <Reveal>
             <div className="grid gap-10 md:grid-cols-2">
@@ -133,7 +122,7 @@ export default async function StellarReviewsPage({
         </div>
       </section>
 
-      <section className="dark-section py-[88px] text-white">
+      <section className="dark-section py-16 md:py-[88px] text-white">
         <div className="mx-auto max-w-[1120px] px-6">
           <h2 className="font-display text-3xl font-semibold leading-tight">
             {modesTitle[lang]}
@@ -182,8 +171,6 @@ export default async function StellarReviewsPage({
           </div>
         </div>
       </section>
-
-      <Footer lang={lang} />
-    </main>
+    </PageShell>
   );
 }
