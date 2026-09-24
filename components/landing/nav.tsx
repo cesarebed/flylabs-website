@@ -31,8 +31,12 @@ export function Nav({ lang }: { lang: Locale }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  // Lo `style` riceve sempre i motion value: useReducedMotion vale null in
+  // SSR, e uno style che ne dipendeva cambiava fra server e client (hydration
+  // mismatch). Con reduced motion l'altezza resta fissa; ombra e sfondo non
+  // sono movimento e seguono lo scroll per tutti.
   const { scrollY } = useScroll();
-  const height = useTransform(scrollY, [0, 80], [64, 56]);
+  const height = useTransform(scrollY, [0, 80], [64, reduce ? 64 : 56]);
   const shadow = useTransform(
     scrollY,
     [0, 80],
@@ -61,9 +65,7 @@ export function Nav({ lang }: { lang: Locale }) {
 
   return (
     <motion.header
-      style={
-        reduce ? undefined : { height, boxShadow: shadow, backgroundColor: background }
-      }
+      style={{ height, boxShadow: shadow, backgroundColor: background }}
       className="nav-light sticky top-0 z-50 border-b border-line text-ink backdrop-blur"
     >
       <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
