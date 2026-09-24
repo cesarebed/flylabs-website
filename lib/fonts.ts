@@ -21,11 +21,14 @@ export const inter = Inter({
   display: "swap",
 });
 
-// Micro-label / annotazioni da quaderno tecnico.
+// Micro-label / annotazioni da quaderno tecnico. Non precaricato: serve solo
+// a testi piccoli e secondari, e il preload (~40 KB) competeva con i font del
+// testo e con l'hero sul percorso critico mobile.
 export const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 // Le tre variabili font da applicare al className di <html>.

@@ -9,6 +9,11 @@ import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } fro
  * Card, design-taste-frontend §10). Motion values, non useState: niente
  * re-render a ogni movimento del mouse (vedi §3.B). Ferma sotto
  * prefers-reduced-motion e su touch (nessun pointermove continuo).
+ *
+ * I motion value sono sempre passati allo `style`, anche con reduced motion:
+ * useReducedMotion vale null in SSR, e uno `style` che ne dipende cambiava
+ * fra server e client (hydration mismatch). Con reduced motion i valori
+ * restano semplicemente a 0, perché onPointerMove esce subito.
  */
 export function HeroVisual({
   src,
@@ -46,12 +51,12 @@ export function HeroVisual({
       className="relative"
     >
       <motion.div
-        style={reduce ? undefined : { rotateX, rotateY, y: liftY, transformStyle: "preserve-3d" }}
+        style={{ rotateX, rotateY, y: liftY, transformStyle: "preserve-3d" }}
       >
         <Image
           src={src}
           alt={alt}
-          priority
+          preload
           sizes={sizes}
           className="h-auto w-full rounded-xl"
         />

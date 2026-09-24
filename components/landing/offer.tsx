@@ -6,7 +6,7 @@ import { RevealGroup, RevealItem } from "./reveal";
 export function Offer({ lang }: { lang: Locale }) {
   const { section, tracks, badgeFeatured, deepLink } = landing.offer;
   return (
-    <section id="offerta" className="border-y border-line bg-white py-[120px]">
+    <section id="offerta" className="border-y border-line bg-white py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <div className="mb-14 max-w-2xl">
           <div className="kicker mb-4">{section.kicker[lang]}</div>

@@ -37,7 +37,7 @@ export async function Work({ lang }: { lang: Locale }) {
   }));
 
   return (
-    <section id="lavori" className="border-y border-line bg-white py-[120px]">
+    <section id="lavori" className="border-y border-line bg-white py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <Reveal>
           <h2 className="font-display text-4xl font-semibold leading-tight">
