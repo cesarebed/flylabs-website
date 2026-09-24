@@ -60,6 +60,11 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${fontVars} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        {/* Senza JS lo scroll-reveal (components/landing/reveal.tsx) non parte:
+            gli elementi [data-reveal] resterebbero a opacity 0 dall'SSR. */}
+        <noscript>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         <ConsentProvider locale={locale}>
           <JsonLd data={organizationLd(siteUrl, sameAs)} />
           {children}

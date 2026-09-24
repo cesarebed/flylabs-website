@@ -18,9 +18,21 @@ const writeClient = createClient({
   token: process.env.SANITY_API_WRITE_TOKEN,
 });
 
+export type ContactValues = {
+  name: string;
+  company: string;
+  email: string;
+  message: string;
+};
+
 export type ContactState = {
   ok: boolean;
   error?: "missing" | "email" | "server" | "rate";
+  // Campo da correggere (per aria-invalid e focus), se l'errore ne ha uno.
+  field?: "name" | "email" | "message";
+  // Valori inviati, rimandati a ogni errore: React 19 resetta il form dopo
+  // ogni action e il form li usa come defaultValue, così il testo resta.
+  values?: ContactValues;
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -66,7 +78,12 @@ type Lead = {
 // o l'invio fallisce, la richiesta resta comunque salvata su Sanity.
 async function notifyByEmail(lead: Lead): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return;
+  if (!apiKey) {
+    if (process.env.NODE_ENV === "production") {
+      console.error("RESEND_API_KEY mancante: lead salvato ma non notificato");
+    }
+    return;
+  }
 
   const from = process.env.RESEND_FROM || "flylabs <onboarding@resend.dev>";
   const to = process.env.RESEND_TO || "info@flylabs.ai";
@@ -124,8 +141,23 @@ export async function submitContact(
   const rawLocale = String(formData.get("locale") ?? "it").trim();
   const locale = isLocale(rawLocale) ? rawLocale : "it";
 
-  if (!name || !email || !message) return { ok: false, error: "missing" };
-  if (!EMAIL_RE.test(email)) return { ok: false, error: "email" };
+  // Quello che l'utente ha scritto, così com'è: torna indietro in ogni ramo
+  // di errore perché il form non si svuoti.
+  const values: ContactValues = {
+    name: String(formData.get("name") ?? ""),
+    company: String(formData.get("company") ?? ""),
+    email: String(formData.get("email") ?? ""),
+    message: String(formData.get("message") ?? ""),
+  };
+  const fail = (
+    error: NonNullable<ContactState["error"]>,
+    field?: ContactState["field"]
+  ): ContactState => ({ ok: false, error, field, values });
+
+  if (!name) return fail("missing", "name");
+  if (!email) return fail("missing", "email");
+  if (!message) return fail("missing", "message");
+  if (!EMAIL_RE.test(email)) return fail("email", "email");
 
   const ipHash = await callerIpHash();
 
@@ -138,7 +170,7 @@ export async function submitContact(
       CONTACT_RATE_COUNT_QUERY,
       { since, email, ipHash: ipHash ?? "" }
     );
-    if (recent >= RATE_LIMIT_MAX) return { ok: false, error: "rate" };
+    if (recent >= RATE_LIMIT_MAX) return fail("rate");
   } catch (err) {
     console.error("Rate limit check failed (letting request through):", err);
   }
@@ -158,7 +190,7 @@ export async function submitContact(
       handled: false,
     });
   } catch {
-    return { ok: false, error: "server" };
+    return fail("server");
   }
 
   // La mail parte dopo il salvataggio: se fallisce, la richiesta è già al sicuro.

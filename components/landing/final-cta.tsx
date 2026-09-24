@@ -14,8 +14,10 @@ export function FinalCta({ lang }: { lang: Locale }) {
             {title[lang]}
           </h2>
           <p className="mx-auto mb-10 max-w-xl text-xl text-muted">{body[lang]}</p>
-          <ContactForm lang={lang} />
         </Reveal>
+        {/* Il form resta fuori dal reveal: l'unico punto di conversione non
+            deve dipendere da un'animazione (né dal JS per essere visibile). */}
+        <ContactForm lang={lang} />
       </Spotlight>
     </section>
   );

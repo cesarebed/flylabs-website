@@ -236,6 +236,12 @@ body {
   .wire {
     animation: none;
   }
+  /* Scroll-reveal (components/landing/reveal.tsx): niente fade/salita,
+     contenuto subito visibile. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ------------------------------------------------------------------ *
