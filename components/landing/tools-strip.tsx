@@ -6,7 +6,7 @@ import { Reveal } from "./reveal";
 export function ToolsStrip({ lang }: { lang: Locale }) {
   const { kicker, title, body, cta, href, logos } = landing.toolsStrip;
   return (
-    <section className="overflow-hidden border-t border-line bg-white py-14 md:py-[100px]">
+    <section className="overflow-hidden border-y border-line bg-white py-14 md:py-[100px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <Reveal className="max-w-md">
           <div className="kicker mb-4">{kicker[lang]}</div>

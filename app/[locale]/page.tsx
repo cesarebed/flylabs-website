@@ -56,11 +56,13 @@ export default async function HomePage({
   return (
     <PageShell lang={lang}>
       <Hero lang={lang} />
+      {/* Le prove prima di tutto (audit B13): i casi subito sotto l'hero,
+          poi cosa costruiamo, come si lavora e con quali strumenti. */}
+      <Work lang={lang} />
       <WhatWeBuild lang={lang} />
-      <ToolsStrip lang={lang} />
       <Offer lang={lang} />
       <Method lang={lang} />
-      <Work lang={lang} />
+      <ToolsStrip lang={lang} />
       <Why lang={lang} />
       <Faq lang={lang} />
       <FinalCta lang={lang} />
