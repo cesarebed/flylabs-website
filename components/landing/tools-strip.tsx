@@ -6,7 +6,7 @@ import { Reveal } from "./reveal";
 export function ToolsStrip({ lang }: { lang: Locale }) {
   const { kicker, title, body, cta, href, logos } = landing.toolsStrip;
   return (
-    <section className="overflow-hidden border-t border-line bg-white py-[100px]">
+    <section className="overflow-hidden border-t border-line bg-white py-14 md:py-[100px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <Reveal className="max-w-md">
           <div className="kicker mb-4">{kicker[lang]}</div>
@@ -25,8 +25,8 @@ export function ToolsStrip({ lang }: { lang: Locale }) {
 
       {/* Full-bleed: unica sezione della pagina che rompe il max-w-[1120px],
           coerente con l'idea di un flusso continuo di strumenti. */}
-      <div className="mt-14">
-        <LogoMarquee logos={logos} />
+      <div className="mt-10 md:mt-14">
+        <LogoMarquee logos={logos} lang={lang} />
       </div>
     </section>
   );
