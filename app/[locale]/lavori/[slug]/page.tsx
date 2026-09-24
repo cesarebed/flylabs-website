@@ -283,7 +283,6 @@ export default async function CaseStudyPage({
             : undefined
         }
       />
-
     </PageShell>
   );
 }

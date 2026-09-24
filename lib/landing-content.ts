@@ -1410,7 +1410,6 @@ export const landing = {
           "Reads and drafts replies to your business reviews from Google, Tripadvisor and Booking. Free audit, then a daily engine that drafts replies for you.",
       },
     },
-    kicker: { it: "Prodotti", en: "Products" },
     title: { it: "Stellar Reviews", en: "Stellar Reviews" },
     logo: "/products/stellar-reviews/logo.svg",
     tagline: {
@@ -1480,7 +1479,6 @@ export const landing = {
           "WeGrocery: the open-source, white-label platform for buying clubs' group orders. Try the demo or activate your own deployment.",
       },
     },
-    kicker: { it: "Prodotti", en: "Products" },
     title: { it: "WeGrocery", en: "WeGrocery" },
     logo: "/products/wegrocery/logo.png",
     media: {

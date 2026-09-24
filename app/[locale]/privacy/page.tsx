@@ -31,7 +31,6 @@ export default async function PrivacyPage({
 
   return (
     <PageShell lang={lang}>
-
       <article className="mx-auto max-w-3xl px-6 py-[80px]">
         <h1 className="font-display text-4xl font-semibold leading-tight md:text-5xl">
           {privacy.title[lang]}

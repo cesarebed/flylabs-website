@@ -97,7 +97,6 @@ export default async function CasesPage({
         body={cases.closing.list.body[lang]}
         cta={{ label: cases.closing.list.cta[lang], href: `/${lang}#cta` }}
       />
-
     </PageShell>
   );
 }
