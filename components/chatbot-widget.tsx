@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useMotionValueEvent, useScroll } from "motion/react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useConsent } from "./consent/consent-provider";
 
 // Assistente flylabs.ai, ospitato sulla piattaforma gpt-trainer (via
@@ -26,6 +27,13 @@ declare global {
 
 // Pill con testo visibile: dichiara che è un'AI e che il click attiva cookie di
 // terze parti (il title non compare sui dispositivi touch, la microriga sì).
+// Sui telefoni e sugli schermi bassi (variante `pill-deferred` in
+// globals.css) la pill coprirebbe il fondo del primo viewport (la CTA e il
+// pannello dell'hero): lì compare solo dopo questo scroll. Resta la pill
+// intera, non la sola icona: la microriga sui cookie è una scelta legale
+// (vedi sopra).
+const REVEAL_Y = 160;
+
 const labels = {
   it: {
     pill: "Assistente AI",
@@ -46,6 +54,23 @@ export function ChatbotWidget({ lang }: { lang: string }) {
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const injectedRef = useRef(false);
+  // Scroll letto con useScroll di motion (regola del repo: mai
+  // window.addEventListener('scroll')); lo stato cambia solo quando si
+  // attraversa la soglia, non a ogni frame.
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const past = y > REVEAL_Y;
+    if (past !== scrolled) setScrolled(past);
+  });
+  // Pagina aperta già scrollata (ritorno indietro, ancora): allinea lo stato
+  // al primo frame, senza setState sincrono nell'effect.
+  useEffect(() => {
+    const raf = window.requestAnimationFrame(() =>
+      setScrolled(scrollY.get() > REVEAL_Y)
+    );
+    return () => window.cancelAnimationFrame(raf);
+  }, [scrollY]);
 
   const load = useCallback(() => {
     // Già caricato: basta ri-aprire il pannello.
@@ -116,7 +141,15 @@ export function ChatbotWidget({ lang }: { lang: string }) {
         title={t.aria}
         aria-disabled={loading || undefined}
         aria-busy={loading || undefined}
-        className="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full bg-ink py-2.5 pl-3.5 pr-5 text-left text-white shadow-lg transition-transform motion-safe:hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white aria-disabled:cursor-progress aria-disabled:hover:scale-100"
+        // Da nascosta (solo nei viewport `pill-deferred`) è `invisible`: fuori
+        // dal tab order e dall'albero accessibile. Altrove sempre visibile,
+        // come prima. Se ha il focus resta visibile anche tornando in cima,
+        // altrimenti il focus cadrebbe sul body.
+        className={`fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full bg-ink py-2.5 pl-3.5 pr-5 text-left text-white shadow-lg transition-[transform,opacity,visibility] duration-300 motion-safe:hover:scale-105 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white aria-disabled:cursor-progress aria-disabled:hover:scale-100 ${
+          scrolled
+            ? ""
+            : "pill-deferred:invisible pill-deferred:translate-y-4 pill-deferred:opacity-0 pill-deferred:focus:visible pill-deferred:focus:translate-y-0 pill-deferred:focus:opacity-100"
+        }`}
       >
         <span className="flex h-6 w-6 shrink-0 items-center justify-center">
           {loading ? (

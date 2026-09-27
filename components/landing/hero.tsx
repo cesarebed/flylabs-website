@@ -1,24 +1,51 @@
-import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
-import diagramIt from "@/public/hero/noleggio-bici-assistente-multisito-it.png";
-import diagramEn from "@/public/hero/noleggio-bici-assistente-multisito-en.png";
-import { HeroVisual } from "./hero-visual";
+import { HeroScenarios, type ScenarioView } from "./hero-scenarios";
 import { MagneticCta } from "./magnetic-cta";
-
-// Diagramma Excalidraw reale del caso del noleggio bici, nella lingua della
-// pagina: export di content/case-studies/assets/ ritagliati del titolo (il
-// contesto lo dà la didascalia) e ridotti a PNG a palette (~50 KB).
-const DIAGRAM = { it: diagramIt, en: diagramEn } as const;
 
 export function Hero({ lang }: { lang: Locale }) {
   const h = landing.hero;
-  const v = h.visual;
+  const sc = h.scenarios;
+  // Stringhe risolte qui, lato server: al client component arriva solo la
+  // lingua della pagina, non tutto landing-content.
+  const scenarios: ScenarioView[] = sc.items.map((s) => ({
+    id: s.id,
+    tab: s.tab[lang],
+    caseHref: `/${lang}${s.caseHref}`,
+    sector: s.sector[lang],
+    flow: s.flow[lang],
+    flowMeta: s.flowMeta[lang],
+    langChip: s.langChip[lang],
+    langChipSr: s.langChipSr[lang],
+    steps: [s.steps[0][lang], s.steps[1][lang], s.steps[2][lang]],
+    input: {
+      source: s.input.source,
+      icon: s.input.icon,
+      stars: s.input.stars,
+      starsSr: s.input.stars ? sc.starsSr[lang] : undefined,
+      meta: s.input.meta[lang],
+      text: s.input.text[lang],
+      attachment: s.input.attachment?.[lang],
+    },
+    output: {
+      label: s.output.label[lang],
+      text: s.output.text?.[lang],
+      items: s.output.items?.map((item) => item[lang]),
+      working: s.output.working[lang],
+      done: s.output.done[lang],
+    },
+    actions: [s.actions[0][lang], s.actions[1][lang]],
+    note: s.note[lang],
+  }));
+
   return (
     // <section> e non <header>: l'header della pagina (landmark banner) è la
     // Nav; l'hero è la prima sezione del contenuto, etichettata dal suo h1.
     <section id="top" aria-labelledby="hero-title" className="dark-paper text-white">
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-6 pb-14 pt-10 md:gap-16 md:py-24 lg:grid-cols-[1.15fr_.85fr]">
+      {/* lg:pt-16: da desktop il pannello (tab + card + didascalia) deve
+          chiudersi sopra la pillola "Assistente AI" anche su schermi da
+          800px di altezza, e la didascalia col link al caso restare visibile. */}
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-6 pb-14 pt-10 md:gap-14 md:py-24 lg:grid-cols-[1.05fr_.95fr] lg:pt-16">
         {/* copy: niente .fade qui, il paragrafo è l'elemento LCP su mobile e
             un'entrata da opacity 0 ne ritardava il rendering (~570 ms). */}
         <div>
@@ -48,26 +75,20 @@ export function Hero({ lang }: { lang: Locale }) {
           <p className="text-sm text-white/60">{h.note[lang]}</p>
         </div>
 
-        {/* visual: il flusso reale di un caso in un riquadro chiaro, con tilt
-            al passaggio del mouse; sotto, fuori dal riquadro, il link al caso. */}
-        <figure className="fade mx-auto w-full max-w-[460px] lg:max-w-none" style={{ animationDelay: "0.1s" }}>
-          <HeroVisual
-            src={DIAGRAM[lang]}
-            alt={v.alt[lang]}
-            // Da lg: colonna .85fr della griglia da 1120px (≈430px) × zoom
-            // 1.15. Sotto: riquadro largo al massimo 460px, senza zoom.
-            sizes="(min-width: 1024px) 500px, (min-width: 508px) 460px, calc(100vw - 48px)"
+        {/* visual: pannello "l'AI prepara, tu approvi" su tre casi reali; la
+            didascalia col link al caso sta dentro ogni tabpanel. min-w-0: la
+            larghezza delle colonne non dipende dal contenuto del pannello
+            (col font di fallback la riga dei tab allargava la colonna). */}
+        <div className="fade mx-auto w-full min-w-0 max-w-[520px] lg:max-w-none" style={{ animationDelay: "0.1s" }}>
+          <HeroScenarios
+            scenarios={scenarios}
+            labels={{
+              tablist: sc.label[lang],
+              casePrefix: sc.casePrefix[lang],
+              caseCta: sc.caseCta[lang],
+            }}
           />
-          <figcaption className="mt-4 text-sm leading-relaxed text-white/60">
-            {v.casePrefix[lang]} {v.sector[lang]}.{" "}
-            <Link
-              href={`/${lang}${v.caseHref}`}
-              className="whitespace-nowrap font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:text-mark hover:decoration-mark"
-            >
-              {v.caseCta[lang]}
-            </Link>
-          </figcaption>
-        </figure>
+        </div>
       </div>
     </section>
   );
