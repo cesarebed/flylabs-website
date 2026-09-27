@@ -16,6 +16,7 @@ export function Hero({ lang }: { lang: Locale }) {
     flow: s.flow[lang],
     flowMeta: s.flowMeta[lang],
     langChip: s.langChip[lang],
+    langChipSr: s.langChipSr[lang],
     steps: [s.steps[0][lang], s.steps[1][lang], s.steps[2][lang]],
     input: {
       source: s.input.source,
@@ -41,7 +42,10 @@ export function Hero({ lang }: { lang: Locale }) {
     // <section> e non <header>: l'header della pagina (landmark banner) è la
     // Nav; l'hero è la prima sezione del contenuto, etichettata dal suo h1.
     <section id="top" aria-labelledby="hero-title" className="dark-paper text-white">
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-6 pb-14 pt-10 md:gap-14 md:py-24 lg:grid-cols-[1.05fr_.95fr]">
+      {/* lg:pt-16: da desktop il pannello (tab + card + didascalia) deve
+          chiudersi sopra la pillola "Assistente AI" anche su schermi da
+          800px di altezza, e la didascalia col link al caso restare visibile. */}
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 items-center gap-12 px-6 pb-14 pt-10 md:gap-14 md:py-24 lg:grid-cols-[1.05fr_.95fr] lg:pt-16">
         {/* copy: niente .fade qui, il paragrafo è l'elemento LCP su mobile e
             un'entrata da opacity 0 ne ritardava il rendering (~570 ms). */}
         <div>
@@ -72,8 +76,10 @@ export function Hero({ lang }: { lang: Locale }) {
         </div>
 
         {/* visual: pannello "l'AI prepara, tu approvi" su tre casi reali; la
-            didascalia col link al caso sta dentro ogni tabpanel. */}
-        <div className="fade mx-auto w-full max-w-[520px] lg:max-w-none" style={{ animationDelay: "0.1s" }}>
+            didascalia col link al caso sta dentro ogni tabpanel. min-w-0: la
+            larghezza delle colonne non dipende dal contenuto del pannello
+            (col font di fallback la riga dei tab allargava la colonna). */}
+        <div className="fade mx-auto w-full min-w-0 max-w-[520px] lg:max-w-none" style={{ animationDelay: "0.1s" }}>
           <HeroScenarios
             scenarios={scenarios}
             labels={{

@@ -48,7 +48,12 @@ export type HeroScenario = {
   sector: Localized;
   flow: Localized; // titolo del flusso nell'intestazione del pannello
   flowMeta: Localized;
-  langChip: Localized; // lingua (o lingue) in cui lavora l'AI nel caso
+  // Lingua dell'esempio mostrato, uguale su tutti i tab: quella della pagina
+  // (IT/EN), oppure la lingua originale + "tradotto" quando l'esempio è una
+  // traduzione (il caso WhatsApp non lavora in italiano). `langChipSr` è la
+  // versione per esteso letta dagli screen reader al posto della sigla.
+  langChip: Localized;
+  langChipSr: Localized;
   steps: [Localized, Localized, Localized];
   input: {
     source: string; // nome della piattaforma, non tradotto
@@ -191,6 +196,10 @@ export const landing = {
           flow: { it: "Risposte alle recensioni", en: "Review replies" },
           flowMeta: { it: "bozze di oggi", en: "today's drafts" },
           langChip: { it: "IT", en: "EN" },
+          langChipSr: {
+            it: "Lingua dell'esempio: italiano",
+            en: "Example language: English",
+          },
           steps: [
             { it: "Arriva la recensione", en: "A review comes in" },
             { it: "L'AI scrive la bozza", en: "AI drafts the reply" },
@@ -207,12 +216,12 @@ export const landing = {
             },
           },
           output: {
-            label: { it: "Bozza dell'AI · nel vostro tono", en: "AI draft · in your tone" },
+            label: { it: "Bozza dell'AI · nel tuo tono", en: "AI draft · in your tone" },
             text: {
               it: "Grazie per le belle parole sullo staff, le giriamo a tutto il team! Sul parcheggio ha ragione: la prossima volta ci scriva prima di arrivare e le indichiamo noi dove lasciare l'auto.",
-              en: "Thank you for the kind words about our staff, we'll pass them on to the whole team! You're right about parking: next time, drop us a line before you arrive and we'll tell you where to leave the car.",
+              en: "Thanks for the kind words about our staff, we'll pass them on to the team! You're right about parking: next time, message us before you arrive and we'll tell you where to leave the car.",
             },
-            working: { it: "Sta scrivendo", en: "Writing" },
+            working: { it: "Sta scrivendo", en: "Drafting" },
             done: { it: "Pronta", en: "Ready" },
           },
           actions: [
@@ -232,10 +241,16 @@ export const landing = {
           sector: { it: "Studio di tatuaggi · Spagna", en: "Tattoo studio · Spain" },
           flow: { it: "Richieste dal sito", en: "Website enquiries" },
           flowMeta: { it: "su WhatsApp", en: "on WhatsApp" },
-          langChip: { it: "EN/ES/DE", en: "EN/ES/DE" },
+          // Il caso lavora in inglese, spagnolo e tedesco: su /it la chat è
+          // un esempio tradotto dallo spagnolo, su /en è già in una delle tre.
+          langChip: { it: "ES · tradotto", en: "EN" },
+          langChipSr: {
+            it: "Esempio tradotto dallo spagnolo",
+            en: "Example language: English",
+          },
           steps: [
             { it: "Arriva il messaggio", en: "A message comes in" },
-            { it: "L'AI risponde e raccoglie i dettagli", en: "AI replies and gathers the details" },
+            { it: "L'AI risponde", en: "AI replies" },
             { it: "Subentri tu", en: "You take over" },
           ],
           input: {
@@ -250,17 +265,17 @@ export const landing = {
           output: {
             label: { it: "Risposta dell'AI · in chat", en: "AI reply · in the chat" },
             text: {
-              it: "Ciao! Richiesta arrivata, lo studio la sta già guardando. Per preparare tutto: più o meno quanto grande la vuoi, hai una foto di riferimento e quali giorni ti vanno meglio? Il tuo sconto è già attivo.",
-              en: "Hi! Got your request, the studio is already looking at it. To get things ready: roughly how big do you want it, do you have a reference photo, and which days suit you best? Your discount is already active.",
+              it: "Ciao! Richiesta ricevuta. Per prepararla: più o meno quanto grande la vuoi, hai una foto di riferimento e che giorni ti vanno meglio? Il tuo sconto è già attivo.",
+              en: "Hi! Got your request. To get it ready: how big do you want it, do you have a reference photo, and which days work best? Your discount is already active.",
             },
             working: { it: "Sta scrivendo", en: "Typing" },
             done: { it: "Inviata", en: "Sent" },
           },
           actions: [
-            { it: "Prendi la chat", en: "Take over the chat" },
-            { it: "Lascia all'AI", en: "Leave it to AI" },
+            { it: "Prendi la chat", en: "Take over" },
+            { it: "Lascia all'AI", en: "Leave it to the AI" },
           ],
-          note: { it: "Subentri quando vuoi", en: "Step in whenever you like" },
+          note: { it: "Subentri quando vuoi", en: "Step in anytime" },
         },
         {
           // report-medico-automatico (file report-pelle-automatico.json): il
@@ -274,25 +289,29 @@ export const landing = {
           flow: { it: "Referti dei pazienti", en: "Patient reports" },
           flowMeta: { it: "presentazioni", en: "decks" },
           langChip: { it: "IT", en: "EN" },
+          langChipSr: {
+            it: "Lingua dell'esempio: italiano",
+            en: "Example language: English",
+          },
           steps: [
-            { it: "Arriva il referto", en: "The report comes in" },
-            { it: "L'AI prepara la presentazione", en: "AI builds the deck" },
-            { it: "Tu controlli e condividi", en: "You check and share" },
+            { it: "Arriva il referto", en: "A report comes in" },
+            { it: "L'AI crea le slide", en: "AI builds the deck" },
+            { it: "Controlli e condividi", en: "Check and share" },
           ],
           input: {
             source: "Telegram",
             icon: "simple-icons:telegram",
             meta: { it: "Dallo staff dello studio", en: "From the practice staff" },
             text: {
-              it: "Ecco il referto dell'analisi della pelle di stamattina.",
-              en: "Here's the report from this morning's skin analysis.",
+              it: "Ecco il referto di stamattina:",
+              en: "Here's this morning's report:",
             },
             attachment: { it: "Link al referto", en: "Report link" },
           },
           output: {
             label: { it: "Presentazione · Google Slides", en: "Patient deck · Google Slides" },
             items: [
-              { it: "La tua pelle, spiegata in parole semplici", en: "Your skin, explained in plain words" },
+              { it: "La tua pelle, spiegata in parole semplici", en: "Your skin, explained in plain language" },
               { it: "Piano di trattamenti consigliati", en: "Recommended treatment plan" },
               { it: "Routine skincare mattina e sera", en: "Morning and evening skincare routine" },
             ],

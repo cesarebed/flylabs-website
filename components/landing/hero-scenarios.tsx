@@ -35,7 +35,9 @@ import { Icon } from "./icon";
  *
  * Animazione (una volta, quando il pannello entra in viewport): passo 1
  * spuntato → card di input → passo 2 attivo e l'AI "scrive" → passo 3 in
- * giallo + azioni. Al cambio tab la stessa sequenza, abbreviata (~1 s).
+ * giallo + azioni. La scrittura aspetta che anche la card di output sia in
+ * vista (su mobile è sotto la piega). Al cambio tab la stessa sequenza,
+ * abbreviata (~1,2 s), che riparte da zero senza dissolvenze all'indietro.
  * Niente rotazione automatica fra scenari (WCAG 2.2.2).
  *
  * Niente flash all'idratazione: il corpo del pannello ([data-intro-hide]) è
@@ -55,6 +57,7 @@ export type ScenarioView = {
   flow: string;
   flowMeta: string;
   langChip: string;
+  langChipSr: string;
   steps: [string, string, string];
   input: {
     source: string;
@@ -88,7 +91,7 @@ const EASE = "ease-[cubic-bezier(0.16,1,0.3,1)]";
 
 // Durata della "scrittura": proporzionale al testo, fra 1,5 e 2,4 s.
 function typingSeconds(s: ScenarioView, fast: boolean) {
-  if (fast) return 0.6;
+  if (fast) return 0.5;
   const chars = s.output.text?.length ?? 0;
   return s.output.items ? 1.5 : Math.min(2.4, Math.max(1.5, chars * 0.011));
 }
@@ -113,6 +116,7 @@ export function HeroScenarios({
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const timers = useRef<number[]>([]);
   const typing = useRef<AnimationPlaybackControls | null>(null);
+  const waitOutput = useRef<(() => void) | null>(null);
   const played = useRef(false);
 
   const stop = useCallback(() => {
@@ -120,6 +124,8 @@ export function HeroScenarios({
     timers.current = [];
     typing.current?.stop();
     typing.current = null;
+    waitOutput.current?.();
+    waitOutput.current = null;
   }, []);
 
   // Sequenza dello scenario `index`. Chiamata solo da callback (viewport,
@@ -137,15 +143,43 @@ export function HeroScenarios({
       const at = (ms: number, fn: () => void) => {
         timers.current.push(window.setTimeout(fn, ms));
       };
-      at(isFast ? 60 : 350, () => setPhase(1));
-      at(isFast ? 300 : 1050, () => {
+      const type = () => {
         setPhase(2);
         typing.current = animate(progress, 1, {
           duration: typingSeconds(scenarios[index], isFast),
           ease: "linear",
           onComplete: () => at(isFast ? 60 : 180, () => setPhase(3)),
         });
+      };
+      at(isFast ? 60 : 350, () => setPhase(1));
+      if (isFast) {
+        at(300, type);
+        return;
+      }
+      // Prima volta: la scrittura parte solo quando anche la card di output è
+      // in vista (fuori dal 20% basso della viewport). Su mobile sta sotto la
+      // piega: senza questa attesa finirebbe prima che l'utente scrolli.
+      const card = rootRef.current?.querySelector<HTMLElement>(
+        `#hero-panel-${scenarios[index].id} [data-output]`
+      );
+      let ready = false;
+      let seen = !card;
+      at(1050, () => {
+        ready = true;
+        if (seen) type();
       });
+      if (card) {
+        waitOutput.current = inView(
+          card,
+          () => {
+            seen = true;
+            if (ready) type();
+            waitOutput.current?.();
+            waitOutput.current = null;
+          },
+          { margin: "0px 0px -20% 0px" }
+        );
+      }
     },
     [progress, scenarios, stop]
   );
@@ -166,13 +200,17 @@ export function HeroScenarios({
         return;
       }
       setIntro("armed");
+      // Parte appena una parte qualsiasi del primo pannello è in viewport:
+      // una soglia in percentuale del blocco non scatterebbe mai con viewport
+      // basse (zoom al 400%), e il corpo resterebbe nascosto.
+      const first = root.querySelector<HTMLElement>('[role="tabpanel"]') ?? root;
       stopInView = inView(
-        root,
+        first,
         () => {
           if (!played.current) play(0, false);
           stopInView?.();
         },
-        { amount: 0.35 }
+        { amount: "some" }
       );
     });
     return () => {
@@ -223,13 +261,24 @@ export function HeroScenarios({
       style={{ "--hs-dur": fast ? "300ms" : "560ms" } as CSSProperties}
     >
       <noscript>
-        <style>{"[data-intro-hide]{opacity:1!important;animation:none!important}"}</style>
+        {/* Senza JS: corpo subito visibile e niente tab che non fanno nulla
+            (resta il primo scenario, con la micro-label sopra). */}
+        <style>
+          {"[data-intro-hide]{opacity:1!important;animation:none!important}.hero-scenarios [role=tablist]{display:none}"}
+        </style>
       </noscript>
 
-      <div className="mb-3.5 flex flex-wrap items-center gap-x-3 gap-y-2.5">
+      {/* Da 1280px label e tab stanno su una riga che non va mai a capo: la
+          label (JetBrains Mono, non precaricato) col font di fallback è più
+          larga e prima mandava la riga su due righe, poi tornava su una allo
+          swap (layout shift sopra la piega). Ora al massimo si tronca per un
+          attimo, e i tab stanno a destra, così non si spostano quando la
+          label cambia larghezza. Sotto i 1280px la riga è comunque su due
+          righe o ha margine. */}
+      <div className="mb-3.5 flex flex-wrap items-center gap-x-3 gap-y-2.5 xl:flex-nowrap xl:justify-between">
         <p
           id="hero-scenarios-label"
-          className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/50"
+          className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/50 xl:min-w-0 xl:truncate"
         >
           {labels.tablist}
         </p>
@@ -237,7 +286,7 @@ export function HeroScenarios({
           role="tablist"
           aria-labelledby="hero-scenarios-label"
           onKeyDown={onKeyDown}
-          className="flex gap-1.5"
+          className="flex shrink-0 gap-1.5"
         >
           {scenarios.map((s, i) => {
             const selected = i === active;
@@ -254,7 +303,7 @@ export function HeroScenarios({
                 aria-controls={`hero-panel-${s.id}`}
                 tabIndex={selected ? 0 : -1}
                 onClick={() => select(i, false)}
-                className={`rounded-full border px-3 py-1.5 text-[13px] font-medium transition-colors ${
+                className={`rounded-full border px-2.5 py-1.5 text-[13px] font-medium transition-colors ${
                   selected
                     ? "border-white/55 bg-white/[0.12] text-white"
                     : "border-white/15 text-white/65 hover:border-white/35 hover:text-white"
@@ -267,7 +316,10 @@ export function HeroScenarios({
         </div>
       </div>
 
-      <div className="grid">
+      {/* grid-cols-1 (minmax(0,1fr)) e non `grid` e basta: con una traccia
+          auto il testo troncato dell'intestazione allargava il pannello oltre
+          la colonna a 360px. */}
+      <div className="grid grid-cols-1">
         {scenarios.map((s, i) => {
           const isActive = i === active;
           return (
@@ -307,13 +359,21 @@ function ScenarioPanel({
   };
   const shown = (from: Phase) =>
     phase >= from ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2";
-  const anim = `transition-[opacity,transform] duration-[var(--hs-dur)] ${EASE} motion-reduce:transition-none`;
+  // Solo in avanti: il ritorno a fase 0 (cambio tab, il pannello era nello
+  // stato finale) è istantaneo, niente dissolvenza all'indietro.
+  const anim =
+    phase === 0
+      ? "transition-none"
+      : `transition-[opacity,transform] duration-[var(--hs-dur)] ${EASE} motion-reduce:transition-none`;
 
   return (
     <div
       role="tabpanel"
       id={`hero-panel-${s.id}`}
       aria-labelledby={`hero-tab-${s.id}`}
+      // APG Tabs: il primo contenuto del pannello non è focusabile, quindi
+      // il pannello stesso entra nel tab order (gli inattivi sono inert).
+      tabIndex={0}
       inert={!active}
       className={`col-start-1 row-start-1 self-start ${active ? "" : "invisible"}`}
     >
@@ -323,13 +383,14 @@ function ScenarioPanel({
             {s.flow} <span className="font-medium text-white/50">· {s.flowMeta}</span>
           </p>
           <span className="shrink-0 rounded-md border border-white/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white/55">
-            {s.langChip}
+            <span aria-hidden="true">{s.langChip}</span>
+            <span className="sr-only">{s.langChipSr}</span>
           </span>
         </div>
 
         <ol
           data-intro-hide=""
-          className={`flex flex-wrap gap-1.5 px-4 pt-3 max-md:px-3.5 ${anim}`}
+          className={`flex flex-wrap gap-1 px-4 pt-3 max-md:px-3.5 ${anim}`}
         >
           {s.steps.map((label, i) => (
             <Step key={label} label={label} state={stepState(i as 0 | 1 | 2)} />
@@ -360,32 +421,47 @@ function ScenarioPanel({
               ) : null}
               <span>{s.input.meta}</span>
             </p>
-            <p className="text-sm leading-normal text-white/85 max-md:line-clamp-2 max-md:text-[13.5px]">
-              {s.input.text}
-            </p>
-            {s.input.attachment ? (
-              <span className="mt-2 inline-flex items-center gap-1.5 rounded-md border border-white/15 px-2 py-1 font-mono text-[11px] text-white/70">
-                <Icon icon="lucide:link" width={12} height={12} aria-hidden="true" />
-                {s.input.attachment}
-              </span>
-            ) : null}
+            {/* Testo e allegato sulla stessa riga quando ci stanno (il chip
+                va a capo da solo se non c'è spazio). */}
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
+              <p className="text-sm leading-normal text-white/85 max-md:line-clamp-2 max-md:text-[13.5px]">
+                {s.input.text}
+              </p>
+              {s.input.attachment ? (
+                <span className="inline-flex items-center gap-1.5 rounded-md border border-white/15 px-2 py-0.5 font-mono text-[11px] text-white/70">
+                  <Icon icon="lucide:link" width={12} height={12} aria-hidden="true" />
+                  {s.input.attachment}
+                </span>
+              ) : null}
+            </div>
           </div>
 
           {/* Output dell'AI: card chiara, l'unico punto "caldo" del pannello. */}
           <div
             data-intro-hide=""
+            data-output=""
             className={`rounded-lg bg-[#ecebe6] px-3.5 pb-3.5 pt-3 text-ink shadow-[inset_3px_0_0_var(--color-accent)] ${anim} ${shown(2)}`}
           >
+            {/* Testi piccoli su #ecebe6: ink/70 e verde scuro, non `muted`
+                (#6b6b72 qui fa 4,4:1, sotto AA). */}
             <div className="mb-1.5 flex items-center justify-between gap-2">
-              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted max-md:tracking-[0.06em]">
+              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink/70 max-md:tracking-[0.06em]">
                 {s.output.label}
               </span>
-              <span
-                className={`shrink-0 text-[11.5px] font-semibold ${
-                  phase === 3 ? "text-[#1f7a4d]" : "text-accent"
-                }`}
-              >
-                {phase === 3 ? s.output.done : s.output.working}
+              {/* I due stati nella stessa cella: la larghezza è sempre quella
+                  del più lungo, così la label non cambia righe a fine
+                  scrittura e il pannello non salta. */}
+              <span className="grid shrink-0 text-right text-[11.5px] font-semibold">
+                <span
+                  className={`col-start-1 row-start-1 text-accent ${phase === 3 ? "invisible" : ""}`}
+                >
+                  {s.output.working}
+                </span>
+                <span
+                  className={`col-start-1 row-start-1 text-[#1a6b44] ${phase === 3 ? "" : "invisible"}`}
+                >
+                  {s.output.done}
+                </span>
               </span>
             </div>
 
@@ -393,7 +469,7 @@ function ScenarioPanel({
               <TypedText text={s.output.text} progress={progress} typing={phase === 2} />
             ) : null}
             {s.output.items ? (
-              <ol className="grid gap-1.5 text-sm leading-snug max-md:text-[13.5px]">
+              <ol className="grid gap-1 text-sm leading-snug max-md:text-[13.5px]">
                 {s.output.items.map((item, i, all) => (
                   <SlideItem
                     key={item}
@@ -413,7 +489,7 @@ function ScenarioPanel({
                   accessibile e mai focusabili. */}
               <span
                 aria-hidden="true"
-                className="rounded-lg bg-accent px-3.5 py-2 text-[13px] font-semibold text-white shadow-[0_0_0_3px_rgba(52,59,236,0.22)]"
+                className="rounded-lg bg-accent px-3.5 py-2 text-[13px] font-semibold text-white"
               >
                 {s.actions[0]}
               </span>
@@ -423,7 +499,7 @@ function ScenarioPanel({
               >
                 {s.actions[1]}
               </span>
-              <span className="ml-auto text-[11.5px] text-muted">{s.note}</span>
+              <span className="ml-auto text-[11.5px] text-ink/70">{s.note}</span>
             </div>
           </div>
         </div>
@@ -454,7 +530,11 @@ function Step({ label, state }: { label: string; state: StepState }) {
   return (
     <li
       aria-current={state === "now" ? "step" : undefined}
-      className={`flex items-center gap-1.5 rounded-full border py-1 pl-1.5 pr-2.5 text-[12.5px] font-medium transition-colors duration-300 max-md:text-[11.5px] ${pill}`}
+      // Transizione solo in avanti: tornando a "todo" (reset al cambio tab)
+      // il giallo del passo 3 sparisce subito, senza dissolvenza.
+      className={`flex items-center gap-1.5 rounded-full border py-1 pl-1 pr-2 text-[12.5px] font-medium max-md:text-[11.5px] ${
+        state === "todo" ? "" : "transition-colors duration-300"
+      } ${pill}`}
     >
       <span
         aria-hidden="true"
@@ -527,7 +607,7 @@ function SlideItem({
     <motion.li style={{ opacity, x }} className="flex items-center gap-2.5">
       <span
         aria-hidden="true"
-        className="grid h-6 w-8 shrink-0 place-items-center rounded-[4px] border border-[#d3d1ca] bg-white font-mono text-[10px] text-muted"
+        className="grid h-5 w-7 shrink-0 place-items-center rounded-[4px] border border-[#d3d1ca] bg-white font-mono text-[10px] text-ink/70"
       >
         {index + 1}
       </span>

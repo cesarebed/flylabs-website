@@ -141,8 +141,12 @@ export function ChatbotWidget({ lang }: { lang: string }) {
         aria-busy={loading || undefined}
         // Da nascosta (solo sotto md) è `invisible`: fuori dal tab order e
         // dall'albero accessibile. Da md in su sempre visibile, come prima.
+        // Se ha il focus resta visibile anche tornando in cima, altrimenti il
+        // focus cadrebbe sul body.
         className={`fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full bg-ink py-2.5 pl-3.5 pr-5 text-left text-white shadow-lg transition-[transform,opacity,visibility] duration-300 motion-safe:hover:scale-105 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white aria-disabled:cursor-progress aria-disabled:hover:scale-100 ${
-          scrolled ? "" : "max-md:invisible max-md:translate-y-4 max-md:opacity-0"
+          scrolled
+            ? ""
+            : "max-md:invisible max-md:translate-y-4 max-md:opacity-0 max-md:focus:visible max-md:focus:translate-y-0 max-md:focus:opacity-100"
         }`}
       >
         <span className="flex h-6 w-6 shrink-0 items-center justify-center">
