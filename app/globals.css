@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Viewport in cui la pill "Assistente AI" coprirebbe il fondo del primo
+   viewport (CTA e pannello dell'hero): telefoni sotto md e schermi bassi
+   (laptop da 768px, tablet in orizzontale). Lì compare solo dopo il primo
+   scroll, vedi components/chatbot-widget.tsx. */
+@custom-variant pill-deferred {
+  @media (max-width: 767.98px), (max-height: 819.98px) {
+    @slot;
+  }
+}
+
 /* ------------------------------------------------------------------ *
  * Design tokens — "Concrete & clean" con tonalità Glean.
  * Esposti a Tailwind v4 via @theme: bg-paper, text-ink, border-line,
