@@ -37,6 +37,16 @@ const TECH_ICONS: Record<string, string> = {
   playwright: "logos:playwright",
   mcp: "simple-icons:modelcontextprotocol",
   wordpress: "logos:wordpress-icon",
+  // Stack delle web app (es. WeGrocery).
+  react: "logos:react",
+  typescript: "logos:typescript-icon",
+  postgres: "logos:postgresql",
+  postgresql: "logos:postgresql",
+  neon: "logos:neon-icon",
+  drizzle: "logos:drizzle-icon",
+  "better auth": "simple-icons:betterauth",
+  stripe: "simple-icons:stripe",
+  resend: "simple-icons:resend",
   // Modelli: mostrarli affiancati racconta la flessibilità di scelta.
   gpt: "logos:openai-icon",
   gemini: "logos:google-gemini",
