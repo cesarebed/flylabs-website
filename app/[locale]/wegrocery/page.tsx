@@ -8,7 +8,6 @@ import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { PageHeader } from "@/components/landing/page-header";
-import { AutoplayVideo } from "@/components/landing/autoplay-video";
 import { PageShell } from "@/components/landing/page-shell";
 import { Reveal } from "@/components/landing/reveal";
 import { Icon } from "@/components/landing/icon";
@@ -87,9 +86,9 @@ export default async function WeGroceryProductPage({
       <section className="bg-paper py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <Reveal>
-            <h2 className="font-display text-2xl font-semibold">{mediaTitle[lang]}</h2>
-            <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
-              <div>
+            <div className="mx-auto w-full max-w-[720px]">
+              <h2 className="font-display text-2xl font-semibold">{mediaTitle[lang]}</h2>
+              <div className="mt-8">
                 <div className="overflow-hidden rounded-xl border border-line bg-ink">
                   {/* Il video non ha audio: niente <track> (vuoto annunciava
                       sottotitoli inesistenti). L'alternativa testuale è la
@@ -115,17 +114,6 @@ export default async function WeGroceryProductPage({
                 >
                   {media.launchVideo.transcript[lang]}
                 </p>
-              </div>
-              <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-[32px] border-[6px] border-ink bg-white shadow-xl">
-                <AutoplayVideo
-                  key={lang}
-                  src={media.demoVideo.src[lang]}
-                  poster={media.demoVideo.poster[lang]}
-                  width={media.demoVideo.width}
-                  height={media.demoVideo.height}
-                  label={media.demoVideo.label[lang]}
-                  className="h-auto w-full"
-                />
               </div>
             </div>
           </Reveal>

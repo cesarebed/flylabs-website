@@ -1674,21 +1674,6 @@ export const landing = {
     // Video e schermate vengono dalla demo dell'app (dati finti) girata in
     // locale, una versione per lingua: l'interfaccia è nei pixel.
     media: {
-      // Tour della demo, MP4 muto con comandi, in autoplay solo se l'utente
-      // non chiede meno movimento (components/landing/autoplay-video.tsx).
-      demoVideo: {
-        src: { it: "/products/wegrocery/demo-it.mp4", en: "/products/wegrocery/demo-en.mp4" },
-        poster: {
-          it: "/products/wegrocery/demo-it-poster.jpg",
-          en: "/products/wegrocery/demo-en-poster.jpg",
-        },
-        width: 600,
-        height: 1298,
-        label: {
-          it: "Demo di WeGrocery con dati finti, senza audio: le schermate del socio (benvenuto, saldo, modifica dell'ordine, ricarica con carta, storico, guida, profilo) e dell'admin (ciclo, ordini, cassa, statistiche, impostazioni dei pagamenti)",
-          en: "WeGrocery demo with fake data, no audio: the member screens (welcome, balance, editing the order, card top-up, history, guide, profile) and the admin screens (cycle, orders, treasury, stats, payment settings)",
-        },
-      },
       // Video di lancio fatto con HyperFrames (HTML + GSAP renderizzato in MP4).
       launchVideo: {
         src: { it: "/products/wegrocery/launch-it.mp4", en: "/products/wegrocery/launch-en.mp4" },
