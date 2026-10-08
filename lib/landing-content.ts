@@ -1568,16 +1568,16 @@ export const landing = {
         logo: "/products/wegrocery/logo.png",
         name: "WeGrocery",
         tagline: {
-          it: "Piattaforma open source per gli ordini di gruppo dei GAS.",
-          en: "Open-source platform for buying clubs' group orders.",
+          it: "Ordini di gruppo, pagamenti con Stripe e conti dei GAS in un'unica app open source.",
+          en: "Group orders, Stripe payments and buying-club accounts in one open-source app.",
         },
         sector: { it: "No-profit, gruppi d'acquisto", en: "Non-profit, buying clubs" },
         href: "/wegrocery",
         preview: {
-          src: { it: "/products/wegrocery/launch-poster.jpg", en: "/products/wegrocery/launch-poster.jpg" },
+          src: { it: "/products/wegrocery/preview-it.webp", en: "/products/wegrocery/preview-en.webp" },
           alt: {
-            it: "Fotogramma del video di lancio di WeGrocery.",
-            en: "Frame from the WeGrocery launch video.",
+            it: "Tre schermate di WeGrocery da telefono: il saldo del socio, l'ordine del ciclo aperto e la ricarica online con carta.",
+            en: "Three WeGrocery phone screens: the member's balance, the order for the open cycle and the online card top-up.",
           },
         },
       },
@@ -1659,76 +1659,214 @@ export const landing = {
   wegroceryProduct: {
     meta: {
       it: {
-        title: "WeGrocery: ordini di gruppo per GAS, open source | flylabs.ai",
+        title: "WeGrocery: ordini di gruppo e pagamenti per GAS, open source | flylabs.ai",
         description:
-          "WeGrocery: la piattaforma open source white-label per gestire gli ordini di gruppo dei GAS. Provala in demo o attiva il tuo deploy.",
+          "WeGrocery: la piattaforma open source white-label per i GAS. Ordini di gruppo, saldo prepagato, pagamenti con carta via Stripe e cassa in un'unica app. Provala in demo o attiva il tuo deploy.",
       },
       en: {
-        title: "WeGrocery: open-source group ordering for buying clubs | flylabs.ai",
+        title: "WeGrocery: open-source group orders and payments for buying clubs | flylabs.ai",
         description:
-          "WeGrocery: the open-source, white-label platform for buying clubs' group orders. Try the demo or activate your own deployment.",
+          "WeGrocery: the open-source, white-label platform for buying clubs. Group orders, a prepaid balance, card payments through Stripe and a treasury in one app. Try the demo or activate your own deployment.",
       },
     },
     title: { it: "WeGrocery", en: "WeGrocery" },
     logo: "/products/wegrocery/logo.png",
+    // Video e schermate vengono dalla demo dell'app (dati finti) girata in
+    // locale, una versione per lingua: l'interfaccia è nei pixel.
     media: {
-      // Tour della demo pubblica: era una GIF da 248 KB in loop infinito,
-      // anche con reduced-motion. Ora è un MP4 muto con comandi, in autoplay
-      // solo se l'utente non chiede meno movimento (components/landing/
-      // autoplay-video.tsx). Il poster è il primo fotogramma.
-      demoVideo: {
-        src: "/products/wegrocery/demo.mp4",
-        poster: "/products/wegrocery/demo-poster.jpg",
-        width: 340,
-        height: 712,
-        label: {
-          it: "Demo pubblica di WeGrocery, senza audio: le schermate del socio (saldo, ordine, storico, notifiche, guida) e dell'admin (ciclo, prodotti, ordini, cassa, soci, fornitori, statistiche)",
-          en: "WeGrocery public demo, no audio: the member screens (balance, order, history, notifications, guide) and the admin screens (cycle, products, orders, treasury, members, suppliers, stats)",
-        },
-      },
+      // Video di lancio fatto con HyperFrames (HTML + GSAP renderizzato in MP4).
       launchVideo: {
-        src: "/products/wegrocery/launch.mp4",
-        poster: "/products/wegrocery/launch-poster.jpg",
+        src: { it: "/products/wegrocery/launch-it.mp4", en: "/products/wegrocery/launch-en.mp4" },
+        poster: {
+          it: "/products/wegrocery/launch-it-poster.jpg",
+          en: "/products/wegrocery/launch-en-poster.jpg",
+        },
         caption: {
           it: "Video di lancio di WeGrocery",
           en: "WeGrocery launch video",
         },
         // Alternativa testuale del video (senza audio, testi in sovraimpressione):
-        // resa sotto il player da WS-5 (B32, A11Y-09).
+        // resa sotto il player (B32, A11Y-09).
         transcript: {
-          it: "Cosa mostra il video: ogni settimana lo stesso foglio di calcolo, con errori nelle formule. WeGrocery raccoglie gli ordini di tutto il gruppo in un'unica pagina, con un ciclo settimanale. Costo di esercizio: 0 € al mese per hosting, database, job pianificati ed email, tutto su piani gratuiti (Next.js su Vercel, Neon Postgres, GitHub Actions, Resend). È open source con licenza MIT: puoi installarlo per il tuo gruppo.",
-          en: "What the video shows: every week, the same spreadsheet with broken formulas. WeGrocery collects the whole group's orders on one page, in a weekly cycle. Running cost: €0 per month for hosting, database, scheduled jobs and email, all on free tiers (Next.js on Vercel, Neon Postgres, GitHub Actions, Resend). It's open source under the MIT licence: you can run it for your group.",
+          it: "Cosa mostra il video: ogni settimana lo stesso foglio di calcolo, con errori nelle formule. WeGrocery, rifatta da capo, mette ordini di gruppo, pagamenti e conti in un'unica app. Per i soci: il saldo sempre in vista e l'ordine in pochi tocchi. Pagamenti online con carta via Stripe: ricarica del saldo, pagamento per ordine, conguaglio e rimborsi sulla carta. Per gli admin: cicli, cassa e statistiche in un unico pannello. Conti che tornano: le correzioni non riscrivono la storia dei movimenti, pagamenti, rimborsi e addebiti sono verificati ogni notte e la chiusura del ciclo è tutto o niente. E poi ordini in famiglia, app sul telefono, guida con ricerca, italiano e inglese. Open source con licenza MIT: il tuo gruppo, il tuo marchio.",
+          en: "What the video shows: every week, the same spreadsheet with broken formulas. WeGrocery, rebuilt from scratch, puts group orders, payments and accounts in one app. For members: the balance always in view and orders in a few taps. Online card payments through Stripe: balance top-ups, pay per order, settling up with refunds to the card. For admins: cycles, treasury and stats in one panel. Accounts that add up: corrections never rewrite the ledger's history, payments, refunds and charges are verified every night, and closing a cycle is all or nothing. Plus family orders, a phone app, a searchable guide, Italian and English. Open source under the MIT licence: your group, your brand.",
         },
       },
     },
     tagline: {
-      it: "Ordini di gruppo e saldo prepagato, senza fogli di calcolo.",
-      en: "Group orders and a prepaid balance, no spreadsheets.",
+      it: "Ordini di gruppo, pagamenti con carta e conti che tornano, senza fogli di calcolo.",
+      en: "Group orders, card payments and accounts that add up, no spreadsheets.",
     },
     problem: {
-      it: "I gruppi d'acquisto solidale coordinano gli ordini condivisi a mano, tra fogli di calcolo e messaggi WhatsApp, con errori e tempo perso a ogni ciclo.",
-      en: "Group buying clubs coordinate shared orders by hand, between spreadsheets and WhatsApp threads, with mistakes and wasted time on every cycle.",
+      it: "I gruppi d'acquisto solidale coordinano gli ordini condivisi a mano, tra fogli di calcolo, messaggi WhatsApp e bonifici da riconciliare, con errori e tempo perso a ogni ciclo.",
+      en: "Group buying clubs coordinate shared orders by hand, between spreadsheets, WhatsApp threads and bank transfers to reconcile, with mistakes and wasted time on every cycle.",
     },
     solution: {
-      it: "Un'unica piattaforma open source (licenza MIT) che ogni gruppo attiva con il proprio nome, la propria lingua e i propri colori, senza sviluppi dedicati: quando miglioriamo la piattaforma, l'aggiornamento arriva a tutti i gruppi insieme.",
-      en: "A single open-source platform (MIT licence) that any group can launch under its own name, language and colours, with no custom development: when we improve the platform, every group gets the update at once.",
+      it: "Un'unica piattaforma open source (licenza MIT), rifatta da capo: ordini, saldo prepagato, pagamenti con carta via Stripe e cassa nella stessa app, con un nuovo design pensato per il telefono. Ogni gruppo la attiva con il proprio nome, logo, lingua e colori, senza sviluppi dedicati: quando miglioriamo la piattaforma, l'aggiornamento arriva a tutti i gruppi insieme.",
+      en: "A single open-source platform (MIT licence), rebuilt from scratch: orders, a prepaid balance, card payments through Stripe and a treasury in the same app, with a new phone-first design. Any group launches it under its own name, logo, language and colours, with no custom development: when we improve the platform, every group gets the update at once.",
     },
     mediaTitle: { it: "WeGrocery in azione", en: "WeGrocery in action" },
+    screensTitle: { it: "Le schermate", en: "The screens" },
+    screensIntro: {
+      it: "Dalla demo pubblica, con dati finti. Il socio usa l'app dal telefono, l'admin anche dal computer.",
+      en: "From the public demo, with fake data. Members use the app on their phone, admins on a computer too.",
+    },
+    phoneScreens: [
+      {
+        src: { it: "/products/wegrocery/screens/home-it.webp", en: "/products/wegrocery/screens/home-en.webp" },
+        caption: { it: "Saldo e prossimo ritiro", en: "Balance and next pickup" },
+        alt: {
+          it: "Home del socio: saldo di 90 euro, costo dell'ordine in corso e saldo dopo l'ordine, prossimo ritiro tra 7 giorni.",
+          en: "Member home: a 90 euro balance, the cost of the current order and the balance after it, next pickup in 7 days.",
+        },
+      },
+      {
+        src: { it: "/products/wegrocery/screens/order-edit-it.webp", en: "/products/wegrocery/screens/order-edit-en.webp" },
+        caption: { it: "L'ordine del ciclo aperto", en: "The open cycle's order" },
+        alt: {
+          it: "Modulo d'ordine: prodotti per categoria con i pulsanti più e meno, totale dell'ordine e saldo dopo l'ordine.",
+          en: "Order form: products by category with plus and minus buttons, order total and balance after the order.",
+        },
+      },
+      {
+        src: { it: "/products/wegrocery/screens/topup-it.webp", en: "/products/wegrocery/screens/topup-en.webp" },
+        caption: { it: "Ricarica con carta, via Stripe", en: "Card top-up, through Stripe" },
+        alt: {
+          it: "Pagina Ricarica il saldo: importi rapidi da 25, 50 e 100 euro e il pulsante Paga che apre il pagamento Stripe.",
+          en: "Top up your balance page: quick amounts of 25, 50 and 100 euros and the Pay button that opens Stripe checkout.",
+        },
+      },
+      {
+        src: { it: "/products/wegrocery/screens/guide-it.webp", en: "/products/wegrocery/screens/guide-en.webp" },
+        caption: { it: "Guida con ricerca", en: "Searchable guide" },
+        alt: {
+          it: "Guida dell'app: casella di ricerca e argomenti come Primi passi, Ordinare, Saldo e pagamenti, Notifiche.",
+          en: "In-app guide: a search box and topics such as Getting started, Ordering, Balance and payments, Notifications.",
+        },
+      },
+    ],
+    desktopScreens: [
+      {
+        src: { it: "/products/wegrocery/screens/admin-cash-it.webp", en: "/products/wegrocery/screens/admin-cash-en.webp" },
+        caption: { it: "Admin: la cassa", en: "Admin: the treasury" },
+        alt: {
+          it: "Pannello admin, scheda Cassa: saldo totale e medio dei soci, nuova ricarica, movimento in uscita e saldi dei soci per ruolo.",
+          en: "Admin panel, Treasury tab: total and average member balance, new top-up, outgoing payment and member balances by role.",
+        },
+      },
+      {
+        src: { it: "/products/wegrocery/screens/admin-stats-it.webp", en: "/products/wegrocery/screens/admin-stats-en.webp" },
+        caption: { it: "Admin: le statistiche", en: "Admin: the stats" },
+        alt: {
+          it: "Pannello admin, scheda Statistiche: cicli chiusi, soci attivi, spesa totale, prodotto più ordinato e classifica dei 10 prodotti più ordinati.",
+          en: "Admin panel, Stats tab: closed cycles, active members, total spend, top product and a ranking of the 10 most ordered products.",
+        },
+      },
+    ],
     featuresTitle: { it: "Cosa fa", en: "What it does" },
-    features: [
+    featuresIntro: {
+      it: "Nuovo design, pagamenti con Stripe e molte funzioni in più rispetto alla prima versione.",
+      en: "A new design, Stripe payments and many more features than the first version.",
+    },
+    changelog: {
+      label: { it: "Tutte le novità nel changelog →", en: "Every change in the changelog →" },
+      href: {
+        it: "https://github.com/federicodecillia/wegrocery/blob/main/CHANGELOG.it.md",
+        en: "https://github.com/federicodecillia/wegrocery/blob/main/CHANGELOG.md",
+      },
+    },
+    featureGroups: [
       {
-        it: "Cicli d'ordine con finestra di apertura e chiusura, catalogo condiviso e notifiche automatiche",
-        en: "Order cycles with an opening and closing window, a shared catalogue and automatic notifications",
+        icon: "lucide:users",
+        title: { it: "Per i soci", en: "For members" },
+        items: [
+          {
+            it: "Saldo prepagato sempre in vista, con il saldo dopo l'ordine calcolato mentre ordini",
+            en: "A prepaid balance always in view, with the balance after the order computed as you go",
+          },
+          {
+            it: "L'ordine si salva mentre lo fai, anche cambiando dispositivo, e si ripropone l'ultimo con un tocco",
+            en: "The order saves as you go, even across devices, and the last one comes back in one tap",
+          },
+          {
+            it: "Ordini in famiglia: carrello, saldo e storico condivisi, ognuno con la propria email",
+            en: "Family orders: shared cart, balance and history, each person with their own email",
+          },
+          {
+            it: "Accesso con un link o un codice via email, app da installare sul telefono, guida con ricerca",
+            en: "Sign-in with an email link or code, an app to install on the phone, a searchable guide",
+          },
+        ] satisfies Localized[],
       },
       {
-        it: "Saldo prepagato per ogni socio, aggiornato in tempo reale mentre ordina",
-        en: "A prepaid balance for every member, updated in real time as they order",
+        icon: "lucide:credit-card",
+        title: { it: "Pagamenti con Stripe", en: "Payments with Stripe" },
+        items: [
+          {
+            it: "Ricarica del saldo con carta: il saldo si aggiorna da solo appena il pagamento è confermato",
+            en: "Card top-ups: the balance updates on its own as soon as the payment is confirmed",
+          },
+          {
+            it: "In alternativa, ogni ordine si paga con la carta e a fine ciclo \"Chiudi i conti\" rimborsa sulla carta quanto pagato in più",
+            en: "Or every order is paid by card, and at the end of the cycle \"Settle up\" refunds any overpayment to the card",
+          },
+          {
+            it: "Rimborsi registrati uno per uno, con avviso a socio e admin se uno non va a buon fine",
+            en: "Refunds recorded one by one, with an alert to the member and the admins if one fails",
+          },
+          {
+            it: "Bonifico con IBAN da copiare e pagamenti in contanti segnati dall'admin",
+            en: "Bank transfer with a copyable IBAN, and cash payments recorded by the admin",
+          },
+        ] satisfies Localized[],
       },
       {
-        it: "Nome, lingua (italiano o inglese) e colori del tuo gruppo, senza toccare il codice",
-        en: "Your group's name, language (Italian or English) and colours, with no code changes",
+        icon: "lucide:layout-dashboard",
+        title: { it: "Per gli admin", en: "For admins" },
+        items: [
+          {
+            it: "Cicli d'ordine con apertura, chiusura e ritiro, spedizione ripartita fissa o in proporzione",
+            en: "Order cycles with opening, closing and pickup, shipping split flat or proportionally",
+          },
+          {
+            it: "Listino del fornitore importato da Excel o CSV, distinta inviata al fornitore e riletta al ritorno",
+            en: "Supplier price lists imported from Excel or CSV, an order sheet sent to the supplier and read back on return",
+          },
+          {
+            it: "Cassa con ricariche, uscite e saldi dei soci, statistiche su prodotti, fornitori e partecipazione",
+            en: "A treasury with top-ups, outgoing payments and member balances, stats on products, suppliers and participation",
+          },
+          {
+            it: "Soci e ruoli, con gli account doppi da unire con un tocco",
+            en: "Members and roles, with duplicate accounts merged in one tap",
+          },
+        ] satisfies Localized[],
       },
-    ] satisfies Localized[],
+      {
+        icon: "lucide:shield-check",
+        title: { it: "Conti che tornano", en: "Accounts that add up" },
+        items: [
+          {
+            it: "Le correzioni non riscrivono la storia: ogni modifica a un movimento è uno storno tracciato",
+            en: "Corrections never rewrite history: every change to an entry is a traceable reversal",
+          },
+          {
+            it: "Chiusura del ciclo tutto o niente: il database rifiuta un secondo addebito per lo stesso ciclo",
+            en: "All-or-nothing cycle close: the database rejects a second charge for the same cycle",
+          },
+          {
+            it: "Controllo notturno di pagamenti, rimborsi e addebiti, e backup automatici del database",
+            en: "A nightly check of payments, refunds and charges, plus automatic database backups",
+          },
+          {
+            it: "Nome, logo, colori e lingua (italiano o inglese) del tuo gruppo da una sola configurazione, senza toccare il codice",
+            en: "Your group's name, logo, colours and language (Italian or English) from one setting, with no code changes",
+          },
+        ] satisfies Localized[],
+      },
+    ],
+    techTitle: { it: "Sotto il cofano", en: "Under the hood" },
+    tech: ["Next.js", "React", "TypeScript", "Postgres", "Neon", "Drizzle", "Better Auth", "Stripe", "Resend", "Vercel", "Claude Code"],
     modesTitle: { it: "Come lo attivi", en: "How to get it" },
     modeCustom: {
       title: { it: "Implementazione su misura", en: "Custom implementation" },

@@ -8,9 +8,10 @@ import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { PageHeader } from "@/components/landing/page-header";
-import { AutoplayVideo } from "@/components/landing/autoplay-video";
 import { PageShell } from "@/components/landing/page-shell";
 import { Reveal } from "@/components/landing/reveal";
+import { Icon } from "@/components/landing/icon";
+import { TechBadges } from "@/components/landing/tech-badges";
 
 export const revalidate = 3600;
 
@@ -42,7 +43,15 @@ export default async function WeGroceryProductPage({
     problem,
     solution,
     featuresTitle,
-    features,
+    featuresIntro,
+    featureGroups,
+    changelog,
+    techTitle,
+    tech,
+    screensTitle,
+    screensIntro,
+    phoneScreens,
+    desktopScreens,
     modesTitle,
     modeCustom,
     modeSaas,
@@ -77,16 +86,17 @@ export default async function WeGroceryProductPage({
       <section className="bg-paper py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <Reveal>
-            <h2 className="font-display text-2xl font-semibold">{mediaTitle[lang]}</h2>
-            <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
-              <div>
+            <div className="mx-auto w-full max-w-[720px]">
+              <h2 className="font-display text-2xl font-semibold">{mediaTitle[lang]}</h2>
+              <div className="mt-8">
                 <div className="overflow-hidden rounded-xl border border-line bg-ink">
                   {/* Il video non ha audio: niente <track> (vuoto annunciava
                       sottotitoli inesistenti). L'alternativa testuale è la
                       trascrizione qui sotto (WCAG 1.2.1). */}
                   <video
-                    src={media.launchVideo.src}
-                    poster={media.launchVideo.poster}
+                    key={lang}
+                    src={media.launchVideo.src[lang]}
+                    poster={media.launchVideo.poster[lang]}
                     controls
                     muted
                     playsInline
@@ -105,22 +115,70 @@ export default async function WeGroceryProductPage({
                   {media.launchVideo.transcript[lang]}
                 </p>
               </div>
-              <div className="overflow-hidden rounded-xl border border-line bg-white">
-                <AutoplayVideo
-                  src={media.demoVideo.src}
-                  poster={media.demoVideo.poster}
-                  width={media.demoVideo.width}
-                  height={media.demoVideo.height}
-                  label={media.demoVideo.label[lang]}
-                  className="h-auto w-full"
-                />
-              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
       <section className="bg-white py-16 md:py-[88px]">
+        <div className="mx-auto max-w-[1120px] px-6">
+          <Reveal>
+            <h2 className="font-display text-2xl font-semibold">{screensTitle[lang]}</h2>
+            <p className="mt-3 max-w-[60ch] text-[15px] leading-relaxed text-muted">
+              {screensIntro[lang]}
+            </p>
+            <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 md:grid-cols-4">
+              {phoneScreens.map((screen) => (
+                <li key={screen.src[lang]}>
+                  <figure>
+                    <div className="overflow-hidden rounded-[26px] border-[5px] border-ink bg-white shadow-lg">
+                      <Image
+                        src={screen.src[lang]}
+                        alt={screen.alt[lang]}
+                        width={600}
+                        height={1298}
+                        sizes="(min-width: 768px) 250px, 45vw"
+                        className="h-auto w-full"
+                      />
+                    </div>
+                    <figcaption className="mt-3 text-center text-[13px] font-medium text-ink/80">
+                      {screen.caption[lang]}
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-12 grid gap-6 md:grid-cols-2">
+              {desktopScreens.map((screen) => (
+                <li key={screen.src[lang]}>
+                  <figure>
+                    <div className="overflow-hidden rounded-xl border border-line bg-paper shadow-lg">
+                      <div aria-hidden className="flex h-7 items-center gap-1.5 border-b border-line bg-paper px-3">
+                        <span className="h-2 w-2 rounded-full bg-ink/15" />
+                        <span className="h-2 w-2 rounded-full bg-ink/15" />
+                        <span className="h-2 w-2 rounded-full bg-ink/15" />
+                      </div>
+                      <Image
+                        src={screen.src[lang]}
+                        alt={screen.alt[lang]}
+                        width={1200}
+                        height={942}
+                        sizes="(min-width: 768px) 540px, 100vw"
+                        className="h-auto w-full"
+                      />
+                    </div>
+                    <figcaption className="mt-3 text-[13px] font-medium text-ink/80">
+                      {screen.caption[lang]}
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-paper py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
           <Reveal>
             <div className="grid gap-10 md:grid-cols-2">
@@ -147,18 +205,49 @@ export default async function WeGroceryProductPage({
             <h2 className="font-display text-2xl font-semibold">
               {featuresTitle[lang]}
             </h2>
-            <ul className="mt-6 space-y-4">
-              {features.map((line) => (
-                <li key={line[lang]} className="flex gap-3">
-                  <span aria-hidden className="mt-1 shrink-0 text-accent">
-                    ✓
-                  </span>
-                  <span className="text-[15px] leading-relaxed text-ink/80">
-                    {line[lang]}
-                  </span>
-                </li>
+            <p className="mt-3 max-w-[60ch] text-[15px] leading-relaxed text-muted">
+              {featuresIntro[lang]}{" "}
+              <a
+                href={changelog.href[lang]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-accent hover:underline"
+              >
+                {changelog.label[lang]}
+              </a>
+            </p>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              {featureGroups.map((group) => (
+                <div
+                  key={group.title[lang]}
+                  className="rounded-xl border border-line bg-white p-7"
+                >
+                  <h3 className="flex items-center gap-3 font-display text-lg font-semibold">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                      <Icon icon={group.icon} className="text-[18px]" aria-hidden />
+                    </span>
+                    {group.title[lang]}
+                  </h3>
+                  <ul className="mt-5 space-y-3">
+                    {group.items.map((line) => (
+                      <li key={line[lang]} className="flex gap-3">
+                        <span aria-hidden className="mt-0.5 shrink-0 text-accent">
+                          ✓
+                        </span>
+                        <span className="text-[15px] leading-relaxed text-ink/80">
+                          {line[lang]}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
+          </Reveal>
+
+          <Reveal className="mt-12">
+            <h2 className="stamp text-muted">{techTitle[lang]}</h2>
+            <TechBadges tech={[...tech]} className="mt-4" />
           </Reveal>
 
           <div className="mt-10">
