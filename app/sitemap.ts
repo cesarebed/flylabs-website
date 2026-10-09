@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/stack" },
     { path: "/privacy" },
     { path: "/cookie-policy" },
+    { path: "/termini" },
     ...studies
       .filter((s) => s.slug)
       .map((s) => ({
