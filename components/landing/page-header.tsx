@@ -17,12 +17,15 @@ export function PageHeader({
   logo,
   title,
   intro,
+  children,
 }: {
   kicker?: string;
   back?: { href: string; label: string };
   logo?: ReactNode;
   title: string;
-  intro?: string;
+  intro?: ReactNode;
+  // Azioni facoltative sotto l'intro (es. i bottoni di una pagina prodotto).
+  children?: ReactNode;
 }) {
   return (
     <section className="dot-paper border-b border-line py-14 md:py-[88px]">
@@ -46,6 +49,7 @@ export function PageHeader({
             {intro}
           </p>
         )}
+        {children}
       </div>
     </section>
   );

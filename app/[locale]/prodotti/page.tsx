@@ -86,20 +86,32 @@ export default async function ProductsPage({
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center bg-paper">
-                        <Image
-                          src={product.logo}
-                          alt=""
-                          width={96}
-                          height={96}
-                          className="h-24 w-24 object-contain"
-                        />
+                        {product.lockup ? (
+                          // Logo con nome già in tracciati (kit del marchio):
+                          // niente scritta riscritta in HTML accanto all'icona.
+                          <Image
+                            src={product.lockup}
+                            alt={product.name}
+                            width={350}
+                            height={64}
+                            className="h-12 w-auto max-w-[80%] object-contain"
+                          />
+                        ) : (
+                          <Image
+                            src={product.logo}
+                            alt=""
+                            width={96}
+                            height={96}
+                            className="h-24 w-24 object-contain"
+                          />
+                        )}
                       </div>
                     )}
                   </div>
                   <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-line bg-white p-2">
                     <Image
                       src={product.logo}
-                      alt=""
+                      alt={product.name}
                       width={40}
                       height={40}
                       className="h-auto max-h-10 w-auto max-w-10 object-contain"
