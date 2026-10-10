@@ -1594,14 +1594,14 @@ export const landing = {
   stellarReviews: {
     meta: {
       it: {
-        title: "Stellar Reviews: risposte alle recensioni pronte ogni mattina | flylabs.ai",
+        title: "Stellar Reviews: gestione delle recensioni con l'AI | flylabs.ai",
         description:
-          "Ogni mattina legge le recensioni nuove da Google, Tripadvisor e Booking e prepara la bozza di risposta nel tono della tua struttura. Tu la rivedi e la pubblichi. Da 24 € al mese, con piano gratuito.",
+          "Non perdere più nessuna recensione: Stellar Reviews raccoglie le recensioni di Google, Tripadvisor e Booking e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
       },
       en: {
-        title: "Stellar Reviews: review replies ready every morning | flylabs.ai",
+        title: "Stellar Reviews: AI-powered review management | flylabs.ai",
         description:
-          "Every morning it reads new reviews from Google, Tripadvisor and Booking and drafts a reply in your property's voice. You review it and publish it. From €24 a month, with a free plan.",
+          "Never miss a review again: Stellar Reviews gathers your Google, Tripadvisor and Booking reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
       },
     },
     // Anteprima link del kit del marchio (05-social), solo in italiano: la
@@ -1621,12 +1621,12 @@ export const landing = {
     // Il giallo Stella fa da evidenziatore su una sola parte del tagline
     // (testo inchiostro, come da manuale): `highlight` deve comparire nel testo.
     tagline: {
-      it: "Le risposte alle recensioni, pronte ogni mattina.",
-      en: "Review replies, ready every morning.",
+      it: "Non perdere più nessuna recensione: Stellar Reviews automatizza la gestione delle recensioni e, con l'aiuto dell'AI, ti fa rispondere a tutte.",
+      en: "Never miss a review again: Stellar Reviews automates review management and, with the help of AI, lets you answer every single one.",
     },
     taglineHighlight: {
-      it: "pronte ogni mattina",
-      en: "ready every morning",
+      it: "rispondere a tutte",
+      en: "answer every single one",
     },
     // Una sola fonte per i prezzi: qui solo il "da", il resto sulla pagina
     // prezzi dell'app (verificata il 2026-10-10).
@@ -1659,8 +1659,8 @@ export const landing = {
       en: "People running a hospitality business answer reviews by hand: they read them on three different platforms and write each reply one by one, often in another language. And the unanswered ones sit there for months.",
     },
     solution: {
-      it: "Stellar Reviews è una web app: ogni mattina legge le recensioni nuove da Google, Tripadvisor e Booking e prepara una bozza di risposta con l'AI (Claude), nella lingua di chi ha scritto e con la voce della tua struttura. Tu la rileggi, la incolli sulla piattaforma e segni «Ho pubblicato». La pubblicazione resta sempre umana.",
-      en: "Stellar Reviews is a web app: every morning it reads new reviews from Google, Tripadvisor and Booking and drafts a reply with AI (Claude), in the reviewer's language and in your property's voice. You read it, paste it on the platform and mark it “Published”. Publishing always stays human.",
+      it: "Stellar Reviews è un sistema completo di gestione delle recensioni su più piattaforme (Google, Tripadvisor e Booking), integrato con i modelli di AI più avanzati. Raccoglie ogni giorno le recensioni nuove e prepara per te bozze di risposta personalizzate nel tuo stile, che migliora nel tempo grazie ai tuoi feedback. Tu le rileggi e le pubblichi: l'ultima parola resta sempre tua.",
+      en: "Stellar Reviews is a complete review management system across platforms (Google, Tripadvisor and Booking), built on the most advanced AI models. Every day it gathers new reviews and prepares personalised reply drafts in your style, getting better over time from your feedback. You read them and publish them: the final word is always yours.",
     },
     featuresTitle: { it: "Cosa fa", en: "What it does" },
     features: [
@@ -1729,16 +1729,16 @@ export const landing = {
         link: "verify",
       },
       {
-        title: { it: "Italiano e inglese, dati in Europa", en: "Italian and English, data in Europe" },
+        title: { it: "Multilingua, dati al sicuro", en: "Multilingual, data kept safe" },
         body: {
-          it: "L'app è in italiano e in inglese, i dati restano in Europa (Francoforte), pagine legali e DPA sono pronti.",
-          en: "The app is in Italian and English, data stays in Europe (Frankfurt), and the legal pages and DPA are ready.",
+          it: "Risponde nella lingua di chi ha scritto. I dati restano in Europa (Francoforte), con DPA pronto per il GDPR, e le bozze rispettano gli obblighi di trasparenza dell'AI Act.",
+          en: "It replies in the reviewer's language. Data stays in Europe (Frankfurt) with a GDPR-ready DPA, and drafts meet the AI Act's transparency rules.",
         },
       },
     ] satisfies { title: Localized; body: Localized; link?: "verify" }[],
     modesTitle: { it: "Come lo attivi", en: "How to get it" },
     // Il self-service ora esiste: viene prima ed è la via evidenziata. Il su
-    // misura resta per gruppi e catene, con l'audit gratuito.
+    // misura è l'offerta business, con l'audit gratuito.
     modeSaas: {
       title: { it: "Self-service, la web app", en: "Self-service, the web app" },
       body: {
@@ -1747,10 +1747,10 @@ export const landing = {
       },
     } satisfies ProductMode,
     modeCustom: {
-      title: { it: "Su misura, per gruppi e catene", en: "Custom, for groups and chains" },
+      title: { it: "Implementazione business su misura", en: "Custom business implementation" },
       body: {
-        it: "Per gruppi e catene lo configuriamo noi, sulle tue strutture e con le tue credenziali. Si parte da un audit gratuito: quante recensioni hai, quante senza risposta, come ti posizioni rispetto ai concorrenti della zona.",
-        en: "For groups and chains we set it up for you, on your properties and with your own credentials. It starts with a free audit: how many reviews you have, how many are unanswered, and how you compare to nearby competitors.",
+        it: "Per le aziende che vogliono un servizio dedicato lo implementiamo noi, sulle tue strutture e con le tue credenziali. Si parte da un audit gratuito delle recensioni (quante sono, quante senza risposta, come ti posizioni rispetto ai concorrenti), poi definiamo il tono di voce sul tuo storico di risposte e colleghiamo il flusso agli strumenti che usi già.",
+        en: "For businesses that want a dedicated service, we implement it for you, on your properties and with your own credentials. It starts with a free review audit (how many there are, how many are unanswered, how you compare to competitors), then we define the tone of voice from your past replies and connect the workflow to the tools you already use.",
       },
       cta: { it: "Richiedi l'audit gratuito", en: "Request the free audit" },
     } satisfies ProductMode,
