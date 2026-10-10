@@ -3,6 +3,7 @@
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useConsent } from "./consent/consent-provider";
+import { trackEvent } from "@/lib/google-analytics";
 
 // Assistente flylabs.ai, ospitato sulla piattaforma gpt-trainer (via
 // gptchatbot.it). L'UUID identifica il chatbot pubblico (non è un segreto).
@@ -111,8 +112,9 @@ export function ChatbotWidget({ lang }: { lang: string }) {
     if (loading) return;
     // Il click vale come consenso allo strumento di terza parte "assistant".
     if (!state.assistant) grantAssistant();
+    trackEvent("chatbot_open", { lang });
     load();
-  }, [loading, state.assistant, grantAssistant, load]);
+  }, [loading, state.assistant, grantAssistant, load, lang]);
 
   // Spazio in fondo alla pagina, dello stesso colore del footer (il widget è
   // montato subito dopo il contenuto, quindi dopo il footer): a fine scroll la
