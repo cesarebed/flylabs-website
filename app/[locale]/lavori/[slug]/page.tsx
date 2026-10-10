@@ -14,6 +14,8 @@ import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { caseStudyArticleLd, siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/fetch";
+import { getSiteSettings } from "@/sanity/site-settings";
+import { landing } from "@/lib/landing-content";
 import { urlFor } from "@/sanity/image";
 import {
   CASE_STUDIES_QUERY,
@@ -102,6 +104,7 @@ export default async function CaseStudyPage({
   const relatedProduct = cases.relatedProduct.bySlug[slug];
 
   const siteUrl = await getSiteUrl();
+  const bookingUrl = (await getSiteSettings())?.bookingUrl;
   const pageUrl = `${siteUrl}/${lang}/lavori/${slug}`;
   // Le stesse immagini mostrate in pagina (cover + diagrammi nella lingua
   // giusta), riusate nel JSON-LD dell'articolo.
@@ -276,7 +279,15 @@ export default async function CaseStudyPage({
       <ClosingCta
         title={cases.closing.caseStudy.title[lang]}
         body={cases.closing.caseStudy.body[lang]}
-        cta={{ label: cases.closing.caseStudy.cta[lang], href: `/${lang}#cta` }}
+        cta={
+          bookingUrl
+            ? {
+                label: cases.closing.caseStudy.ctaBook[lang],
+                href: bookingUrl,
+                external: { newTabLabel: landing.shell.newTab[lang] },
+              }
+            : { label: cases.closing.caseStudy.cta[lang], href: `/${lang}#cta` }
+        }
         secondary={
           nextStudy
             ? {

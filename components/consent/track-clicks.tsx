@@ -7,14 +7,14 @@ import { trackEvent } from "@/lib/google-analytics";
 // restano nei Server Component e non serve un handler su ognuno:
 // - prenotazione: ogni link verso TidyCal (bookingUrl di siteSettings);
 // - caso studio: ogni link interno verso /<lang>/lavori/<slug>.
-// `placement` dice da dove è partito il click: la sezione con id più vicina
+// `placement` dice da dove è partito il click: la <section> con id più vicina
 // (hero, cta, lavori...) oppure header/footer.
 const CASE_PATH = /^\/(?:it|en)\/lavori\/([^/?#]+)/;
 
 function placementOf(el: Element) {
   const landmark = el.closest("header, footer");
   if (landmark) return landmark.tagName.toLowerCase();
-  return el.closest("[id]")?.id || "page";
+  return el.closest("section[id]")?.id || "page";
 }
 
 export function TrackClicks() {

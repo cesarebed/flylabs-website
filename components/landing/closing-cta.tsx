@@ -5,6 +5,8 @@ type ClosingLink = {
   href: string;
   /** Freccia finale (aria-hidden). Default true; false per link tipo "← Indietro". */
   arrow?: boolean;
+  /** Link esterno (es. il calendario): nuova scheda + avviso per lo screen reader. */
+  external?: { newTabLabel: string };
 };
 
 // Toglie una freccia finale già scritta nel copy (es. "Parliamone →" in
@@ -56,9 +58,11 @@ export function ClosingCta({
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
           <Link
             href={cta.href}
+            {...(cta.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="btn-light rounded-lg px-6 py-3 text-sm font-semibold"
           >
             {cta.arrow === false ? cta.label : <WithArrow>{cta.label}</WithArrow>}
+            {cta.external && <span className="sr-only"> {cta.external.newTabLabel}</span>}
           </Link>
           {secondary && (
             <Link
