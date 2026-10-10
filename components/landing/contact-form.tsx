@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState, useEffect, useRef } from "react";
 import { submitContact, type ContactState } from "@/lib/actions/contact";
+import { trackEvent } from "@/lib/google-analytics";
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 
@@ -39,11 +40,12 @@ export function ContactForm({
   useEffect(() => {
     if (state.ok) {
       successRef.current?.focus();
+      trackEvent("generate_lead", { form: "contatti", lang });
       return;
     }
     const refs = { name: nameRef, email: emailRef, message: messageRef };
     if (state.field) refs[state.field].current?.focus();
-  }, [state]);
+  }, [state, lang]);
 
   if (state.ok) {
     return (

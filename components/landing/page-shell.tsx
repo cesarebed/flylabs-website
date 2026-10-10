@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
+import { getSiteSettings } from "@/sanity/site-settings";
 import { Footer } from "./footer";
 import { Nav } from "./nav";
 
@@ -11,13 +12,16 @@ import { Nav } from "./nav";
  * la navigazione. Lo zoom del sito resta sul wrapper, così nav e footer
  * escono da <main> senza cambiare scala.
  */
-export function PageShell({
+export async function PageShell({
   lang,
   children,
 }: {
   lang: Locale;
   children: ReactNode;
 }) {
+  // Link di prenotazione per la CTA della nav (stessa fetch delle pagine, deduplicata).
+  const settings = await getSiteSettings();
+
   return (
     <div className="site-zoom flex flex-1 flex-col">
       <a
@@ -26,7 +30,7 @@ export function PageShell({
       >
         {landing.shell.skip[lang]}
       </a>
-      <Nav lang={lang} />
+      <Nav lang={lang} bookingUrl={settings?.bookingUrl} />
       {/* tabIndex -1: lo skip link sposta davvero il focus su main (Safari
           altrimenti sposta solo lo scroll); nessun anello su un contenitore. */}
       <main id="contenuto" tabIndex={-1} className="flex-1 focus:outline-none">

@@ -74,10 +74,12 @@ export const cases = {
     caseStudy: {
       title: { it: "Hai un processo simile?", en: "Got a similar process?" } satisfies Localized,
       body: {
-        it: "Raccontacelo in due righe: nella prima call, gratuita, ti diciamo se e come si può fare. Se non si può, te lo diciamo.",
-        en: "Tell us about it in a couple of lines: in the first call, which is free, we'll tell you whether and how it can be done. If it can't, we'll say so.",
+        it: "Nella prima call, gratuita, ti diciamo se e come si può fare. Se non si può, te lo diciamo.",
+        en: "In the first call, which is free, we'll tell you whether and how it can be done. If it can't, we'll say so.",
       } satisfies Localized,
       cta: { it: "Parliamone", en: "Let's talk" } satisfies Localized,
+      // Con il link di prenotazione: 15 minuti sul calendario, senza passare dal form.
+      ctaBook: { it: "Prenota 15 minuti", en: "Book 15 minutes" } satisfies Localized,
       next: { it: "Caso successivo", en: "Next case" } satisfies Localized,
     },
     // Lista /lavori.

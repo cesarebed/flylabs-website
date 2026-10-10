@@ -56,7 +56,7 @@ export default async function HomePage({
 
   return (
     <PageShell lang={lang}>
-      <Hero lang={lang} />
+      <Hero lang={lang} bookingUrl={settings?.bookingUrl} />
       {/* Le prove prima di tutto (audit B13): i casi subito sotto l'hero,
           poi cosa costruiamo, come si lavora e con quali strumenti. */}
       <Work lang={lang} />

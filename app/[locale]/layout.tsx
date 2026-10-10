@@ -12,6 +12,7 @@ import { ChatbotWidget } from "@/components/chatbot-widget";
 import { ConsentProvider } from "@/components/consent/consent-provider";
 import { CookieBanner } from "@/components/consent/cookie-banner";
 import { GoogleAnalytics } from "@/components/consent/google-analytics";
+import { TrackClicks } from "@/components/consent/track-clicks";
 import "../globals.css";
 
 // metadataBase di sicurezza (le pagine lo sovrascrivono con il siteUrl da
@@ -78,6 +79,8 @@ export default async function LocaleLayout({
           <ChatbotWidget lang={locale} />
           {/* GA4 caricato solo dopo consenso "Statistiche" (blocco preventivo). */}
           <GoogleAnalytics />
+          {/* Eventi di conversione (prenotazioni, casi): inviati solo se GA è attivo. */}
+          <TrackClicks />
         </ConsentProvider>
         {/* Vercel Analytics/Speed Insights: cookieless, nessun consenso necessario. */}
         <Analytics />
