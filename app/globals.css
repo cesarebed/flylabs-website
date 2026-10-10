@@ -206,6 +206,11 @@
     transform: translateY(-1px);
     box-shadow: 0 14px 34px -12px rgba(52, 59, 237, 0.8);
   }
+  /* Sullo scuro il bottone principale di Stellar Reviews usa il "blu acceso"
+     del suo manuale del marchio. */
+  .btn-accent-dark {
+    background: #4f56f5;
+  }
   .btn-light {
     background: #fff;
     color: var(--color-ink);

@@ -100,16 +100,18 @@ function CardLinks({
       {card.links.map((link: BuildCardLink) => {
         const inner = (
           <>
+            {/* Il nome del prodotto sta nell'alt del logo (il link resta
+                "Stellar Reviews", non "Stellar Reviews Stellar Reviews"). */}
             {link.logo && (
               <Image
                 src={link.logo}
-                alt=""
+                alt={link.label[lang]}
                 width={16}
                 height={16}
                 className="h-4 w-4 shrink-0 object-contain"
               />
             )}
-            <span>{link.label[lang]}</span>
+            <span aria-hidden={link.logo ? true : undefined}>{link.label[lang]}</span>
             <span aria-hidden>→</span>
           </>
         );

@@ -151,6 +151,8 @@ export type Product = {
   // Anteprima 16:10 in cima alla card: screenshot reale del prodotto. Senza,
   // la card mostra il logo in grande (stessa altezza, griglia allineata).
   preview?: { src: Localized; alt: Localized };
+  // Logo con nome (in tracciati) per l'anteprima quando manca lo screenshot.
+  lockup?: string;
 };
 
 export const landing = {
@@ -1554,10 +1556,12 @@ export const landing = {
         slug: "stellar-reviews",
         icon: "lucide:star",
         logo: "/products/stellar-reviews/logo.svg",
+        // Senza screenshot l'anteprima mostra il logo orizzontale del kit.
+        lockup: "/products/stellar-reviews/logo-orizzontale.svg",
         name: "Stellar Reviews",
         tagline: {
-          it: "Audit e risposte alle recensioni, da Google, Tripadvisor e Booking.",
-          en: "Review audits and replies, from Google, Tripadvisor and Booking.",
+          it: "Bozze di risposta alle recensioni di Google, Tripadvisor e Booking, pronte ogni mattina.",
+          en: "Reply drafts for your Google, Tripadvisor and Booking reviews, ready every morning.",
         },
         sector: { it: "Ricettivo e retail", en: "Hospitality and retail" },
         href: "/stellar-reviews",
@@ -1590,66 +1594,170 @@ export const landing = {
   stellarReviews: {
     meta: {
       it: {
-        title: "Stellar Reviews: risposte AI alle recensioni | flylabs.ai",
+        title: "Stellar Reviews: gestione delle recensioni con l'AI | flylabs.ai",
         description:
-          "Legge e risponde alle recensioni della tua struttura da Google, Tripadvisor e Booking. Audit gratuito, poi il motore che prepara le bozze ogni giorno.",
+          "Non perdere più nessuna recensione: Stellar Reviews raccoglie le recensioni di Google, Tripadvisor e Booking e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
       },
       en: {
-        title: "Stellar Reviews: AI replies to your reviews | flylabs.ai",
+        title: "Stellar Reviews: AI-powered review management | flylabs.ai",
         description:
-          "Reads and drafts replies to your business reviews from Google, Tripadvisor and Booking. Free audit, then a daily engine that drafts replies for you.",
+          "Never miss a review again: Stellar Reviews gathers your Google, Tripadvisor and Booking reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
       },
     },
+    // Anteprima link del kit del marchio (05-social), solo in italiano: la
+    // pagina inglese resta sulla OG generica di flylabs.ai.
+    og: {
+      it: {
+        src: "/products/stellar-reviews/og-it.png",
+        alt: "Stellar Reviews: le risposte alle recensioni, pronte ogni mattina",
+      },
+    } as Partial<Record<Locale, { src: string; alt: string }>>,
     title: { it: "Stellar Reviews", en: "Stellar Reviews" },
+    // Icona del kit (01-logo/icona/stellar-icona.svg) e logo orizzontale su
+    // chiaro (01-logo/orizzontale): la scritta è già in tracciati, non va
+    // riscritta in HTML accanto all'icona.
     logo: "/products/stellar-reviews/logo.svg",
+    logoAlt: "Stellar Reviews",
+    // Il giallo Stella fa da evidenziatore su una sola parte del tagline
+    // (testo inchiostro, come da manuale): `highlight` deve comparire nel testo.
     tagline: {
-      it: "Le recensioni della tua struttura, lette ogni giorno, con la bozza di risposta già pronta.",
-      en: "Your reviews, read every day, with a reply draft ready to go.",
+      it: "Non perdere più nessuna recensione: Stellar Reviews automatizza la gestione delle recensioni e, con l'aiuto dell'AI, ti fa rispondere a tutte.",
+      en: "Never miss a review again: Stellar Reviews automates review management and, with the help of AI, lets you answer every single one.",
+    },
+    taglineHighlight: {
+      it: "rispondere a tutte",
+      en: "answer every single one",
+    },
+    // Una sola fonte per i prezzi: qui solo il "da", il resto sulla pagina
+    // prezzi dell'app (verificata il 2026-10-10).
+    priceNote: {
+      it: "Web app online su stellar.flylabs.ai. Da 24 € al mese (IVA esclusa), con piano gratuito.",
+      en: "Web app live at stellar.flylabs.ai. From €24 a month (excl. VAT), with a free plan.",
+    },
+    // Link all'app. L'iscrizione oggi è su invito: niente "iscriviti ora"
+    // finché l'iscrizione libera non è attiva.
+    app: {
+      demo: {
+        label: { it: "Prova la demo", en: "Try the demo" },
+        href: "https://stellar.flylabs.ai/demo",
+      },
+      pricing: {
+        label: { it: "Vedi i prezzi", en: "See pricing" },
+        href: "https://stellar.flylabs.ai/prezzi",
+      },
+      access: {
+        label: { it: "Richiedi l'accesso", en: "Request access" },
+        href: "https://stellar.flylabs.ai/richiedi-accesso",
+      },
+      verify: {
+        label: { it: "stellar.flylabs.ai/verifica", en: "stellar.flylabs.ai/verifica" },
+        href: "https://stellar.flylabs.ai/verifica",
+      },
     },
     problem: {
-      it: "I gruppi ricettivi gestiscono le recensioni a mano: si perde tempo a leggerle su tre piattaforme diverse, e chi non ha ancora risposto rischia di restarci per mesi.",
-      en: "Hospitality businesses manage reviews by hand: time is lost reading them across three different platforms, and unanswered ones can sit there for months.",
+      it: "Chi gestisce una struttura ricettiva risponde alle recensioni a mano: le legge su tre piattaforme diverse, le scrive una a una, spesso in un'altra lingua. E quelle senza risposta restano lì per mesi.",
+      en: "People running a hospitality business answer reviews by hand: they read them on three different platforms and write each reply one by one, often in another language. And the unanswered ones sit there for months.",
     },
     solution: {
-      it: "Stellar Reviews scarica le recensioni da Google, Tripadvisor e Booking ogni giorno, e prepara le bozze di risposta con Claude, nella lingua di chi ha scritto e nel tono del titolare. La pubblicazione resta sempre una scelta umana.",
-      en: "Stellar Reviews pulls in reviews from Google, Tripadvisor and Booking every day, and drafts replies with Claude, in the reviewer's language and the owner's tone. Publishing stays a human choice, always.",
+      it: "Stellar Reviews è un sistema completo di gestione delle recensioni su più piattaforme (Google, Tripadvisor e Booking), integrato con i modelli di AI più avanzati. Raccoglie ogni giorno le recensioni nuove e prepara per te bozze di risposta personalizzate nel tuo stile, che migliora nel tempo grazie ai tuoi feedback. Tu le rileggi e le pubblichi: l'ultima parola resta sempre tua.",
+      en: "Stellar Reviews is a complete review management system across platforms (Google, Tripadvisor and Booking), built on the most advanced AI models. Every day it gathers new reviews and prepares personalised reply drafts in your style, getting better over time from your feedback. You read them and publish them: the final word is always yours.",
     },
     featuresTitle: { it: "Cosa fa", en: "What it does" },
     features: [
       {
-        it: "Audit gratuito: quante recensioni hai, quante senza risposta, come ti posizioni rispetto ai concorrenti della zona",
-        en: "Free audit: how many reviews you have, how many are unanswered, and how you compare to nearby competitors",
+        title: { it: "Ogni mattina", en: "Every morning" },
+        body: {
+          it: "Legge le recensioni nuove da Google, Tripadvisor e Booking e prepara una bozza di risposta, nella lingua di chi ha scritto.",
+          en: "It reads new reviews from Google, Tripadvisor and Booking and drafts a reply in the reviewer's own language.",
+        },
       },
       {
-        it: "Controllo giornaliero: scarica le nuove recensioni e prepara le bozze di risposta, pronte da rivedere",
-        en: "Daily check: pulls in new reviews and drafts replies, ready for you to review",
+        title: { it: "La voce della tua struttura", en: "Your property's voice" },
+        body: {
+          it: "Le bozze seguono il tuo tono: scegli uno stile pronto (cordiale, caloroso, formale) e rendi il profilo più preciso con indicazioni sul tuo modo di scrivere.",
+          en: "Drafts follow your tone: pick a ready-made style (friendly, warm, formal) and sharpen the profile with notes on how you write.",
+        },
       },
       {
-        it: "Tre fonti in un colpo solo: Google, Tripadvisor e Booking, senza passare da una piattaforma all'altra",
-        en: "Three sources at once: Google, Tripadvisor and Booking, no need to hop between platforms",
+        title: { it: "Riscrivi con un clic", en: "Rewrite in one click" },
+        body: {
+          it: "Da ogni bozza chiedi una versione più breve, più formale o più calorosa, oppure dai un'indicazione libera.",
+          en: "From any draft, ask for a shorter, more formal or warmer version, or give your own instruction.",
+        },
       },
-    ] satisfies Localized[],
+      {
+        title: { it: "La pubblicazione resta tua", en: "You do the publishing" },
+        body: {
+          it: "Copi la bozza, la incolli sulla piattaforma e segni «Ho pubblicato». Stellar Reviews non pubblica niente da solo.",
+          en: "You copy the draft, paste it on the platform and mark it “Published”. Stellar Reviews never publishes anything on its own.",
+        },
+      },
+      {
+        title: { it: "Prima le recensioni delicate", en: "Sensitive reviews first" },
+        body: {
+          it: "Voti bassi e reclami sono messi in evidenza. Puoi filtrare per piattaforma, stelle e periodo.",
+          en: "Low ratings and complaints are highlighted. You can filter by platform, stars and date range.",
+        },
+      },
+      {
+        title: { it: "Più strutture, un solo team", en: "Several properties, one team" },
+        body: {
+          it: "Passi da una struttura all'altra e inviti collaboratori con ruoli diversi: titolare, operatore, sola lettura.",
+          en: "Switch between properties and invite teammates with different roles: owner, operator, read-only.",
+        },
+      },
+      {
+        title: { it: "Riepilogo via email", en: "Email digest" },
+        body: {
+          it: "Le bozze pronte ti arrivano per email ogni giorno, ogni settimana o ogni mese, come preferisci, con le notifiche nell'app.",
+          en: "Ready drafts reach you by email every day, week or month, as you prefer, with notifications in the app.",
+        },
+      },
+      {
+        title: { it: "Anche dal telefono", en: "On your phone too" },
+        body: {
+          it: "Funziona su telefono, tablet e computer, e si installa come app sulla schermata home.",
+          en: "It works on phone, tablet and computer, and installs as an app on your home screen.",
+        },
+      },
+      {
+        title: { it: "Trasparenza sull'AI", en: "Transparent about AI" },
+        body: {
+          it: "Le bozze sono marcate come generate dall'AI (AI Act, art. 50). Chiunque può controllare un testo su",
+          en: "Drafts are marked as AI-generated (AI Act, art. 50). Anyone can check a text at",
+        },
+        link: "verify",
+      },
+      {
+        title: { it: "Multilingua, dati al sicuro", en: "Multilingual, data kept safe" },
+        body: {
+          it: "Risponde nella lingua di chi ha scritto. I dati restano in Europa (Francoforte), con DPA pronto per il GDPR, e le bozze rispettano gli obblighi di trasparenza dell'AI Act.",
+          en: "It replies in the reviewer's language. Data stays in Europe (Frankfurt) with a GDPR-ready DPA, and drafts meet the AI Act's transparency rules.",
+        },
+      },
+    ] satisfies { title: Localized; body: Localized; link?: "verify" }[],
     modesTitle: { it: "Come lo attivi", en: "How to get it" },
-    modeCustom: {
-      title: { it: "Implementazione su misura", en: "Custom implementation" },
+    // Il self-service ora esiste: viene prima ed è la via evidenziata. Il su
+    // misura è l'offerta business, con l'audit gratuito.
+    modeSaas: {
+      title: { it: "Self-service, la web app", en: "Self-service, the web app" },
       body: {
-        it: "Attiviamo l'audit e il controllo giornaliero per la tua struttura, con le tue credenziali. Si parte da un audit gratuito.",
-        en: "We set up the audit and the daily check for your business, with your own credentials. It starts with a free audit.",
+        it: "Stellar Reviews è online su stellar.flylabs.ai. Da 24 € al mese (IVA esclusa), con piano gratuito e 14 giorni di prova delle funzioni Premium. Per ora l'accesso è su invito.",
+        en: "Stellar Reviews is live at stellar.flylabs.ai. From €24 a month (excl. VAT), with a free plan and a 14-day trial of the Premium features. For now, access is by invitation.",
+      },
+    } satisfies ProductMode,
+    modeCustom: {
+      title: { it: "Implementazione business su misura", en: "Custom business implementation" },
+      body: {
+        it: "Per le aziende che vogliono un servizio dedicato lo implementiamo noi, sulle tue strutture e con le tue credenziali. Si parte da un audit gratuito delle recensioni (quante sono, quante senza risposta, come ti posizioni rispetto ai concorrenti), poi definiamo il tono di voce sul tuo storico di risposte e colleghiamo il flusso agli strumenti che usi già.",
+        en: "For businesses that want a dedicated service, we implement it for you, on your properties and with your own credentials. It starts with a free review audit (how many there are, how many are unanswered, how you compare to competitors), then we define the tone of voice from your past replies and connect the workflow to the tools you already use.",
       },
       cta: { it: "Richiedi l'audit gratuito", en: "Request the free audit" },
     } satisfies ProductMode,
-    modeSaas: {
-      title: { it: "Self-service SaaS", en: "Self-service SaaS" },
-      body: {
-        it: "Una dashboard a cui abbonarsi in autonomia è il passo successivo: oggi Stellar Reviews si attiva come implementazione su misura.",
-        en: "A dashboard you can subscribe to on your own is the next step: today Stellar Reviews is only available as a custom implementation.",
-      },
-      note: { it: "In arrivo", en: "Coming soon" },
-    } satisfies ProductMode,
     caseLink: {
       label: {
-        it: "Caso reale: come lo usa una struttura ricettiva →",
-        en: "Real case: how a hospitality business uses it →",
+        it: "Caso reale: come lo usa una struttura ricettiva in Sardegna →",
+        en: "Real case: how a hospitality business in Sardinia uses it →",
       },
       href: "/lavori/risposte-recensioni-ai",
     },
