@@ -3,7 +3,15 @@ import { landing } from "@/lib/landing-content";
 import { HeroScenarios, type ScenarioView } from "./hero-scenarios";
 import { MagneticCta } from "./magnetic-cta";
 
-export function Hero({ lang }: { lang: Locale }) {
+export function Hero({
+  lang,
+  bookingUrl,
+}: {
+  lang: Locale;
+  // Con il link di prenotazione la CTA primaria apre il calendario; senza,
+  // scende al form in fondo alla pagina.
+  bookingUrl?: string | null;
+}) {
   const h = landing.hero;
   const sc = h.scenarios;
   // Stringhe risolte qui, lato server: al client component arriva solo la
@@ -60,10 +68,14 @@ export function Hero({ lang }: { lang: Locale }) {
           </p>
           <div className="mb-6 flex flex-wrap items-center gap-4">
             <MagneticCta
-              href="#cta"
+              href={bookingUrl || "#cta"}
+              external={Boolean(bookingUrl)}
               className="btn-accent inline-block rounded-lg px-7 py-4 text-base font-bold"
             >
-              {h.ctaPrimary[lang]}
+              {bookingUrl ? h.ctaBook[lang] : h.ctaPrimary[lang]}
+              {bookingUrl && (
+                <span className="sr-only"> {landing.shell.newTab[lang]}</span>
+              )}
             </MagneticCta>
             <a
               href="#lavori"

@@ -50,8 +50,26 @@ function MenuGlyph({ open }: { open: boolean }) {
   );
 }
 
-export function Nav({ lang }: { lang: Locale }) {
-  const { cta } = landing.nav;
+export function Nav({
+  lang,
+  bookingUrl,
+}: {
+  lang: Locale;
+  // Da siteSettings: se c'è, la CTA apre il calendario (nuova scheda) invece
+  // di scendere al form in fondo alla home.
+  bookingUrl?: string | null;
+}) {
+  const { cta, book } = landing.nav;
+  const ctaLink = bookingUrl
+    ? {
+        href: bookingUrl,
+        label: book[lang],
+        external: { target: "_blank", rel: "noopener noreferrer" },
+      }
+    : { href: `/${lang}#cta`, label: cta[lang], external: {} };
+  const newTab = bookingUrl ? (
+    <span className="sr-only"> {landing.shell.newTab[lang]}</span>
+  ) : null;
   const pages = landing.footer.nav;
   const reduce = useReducedMotion();
   const pathname = usePathname();
@@ -145,11 +163,13 @@ export function Nav({ lang }: { lang: Locale }) {
             <LangToggle lang={lang} />
           </div>
           <Link
-            href={`/${lang}#cta`}
+            href={ctaLink.href}
+            {...ctaLink.external}
             onClick={() => setOpen(false)}
             className="btn-ink inline-block whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-semibold max-[349px]:hidden md:px-5 md:py-2.5"
           >
-            {cta[lang]}
+            {ctaLink.label}
+            {newTab}
           </Link>
           <button
             ref={menuButton}
@@ -198,11 +218,13 @@ export function Nav({ lang }: { lang: Locale }) {
               <LangToggle lang={lang} />
               {/* doppione della CTA dell'header: serve solo dove quella è nascosta */}
               <Link
-                href={`/${lang}#cta`}
+                href={ctaLink.href}
+                {...ctaLink.external}
                 onClick={() => setOpen(false)}
                 className="btn-ink rounded-lg px-5 py-2.5 text-sm font-semibold min-[350px]:hidden"
               >
-                {cta[lang]}
+                {ctaLink.label}
+                {newTab}
               </Link>
             </div>
           </motion.div>

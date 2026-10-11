@@ -15,10 +15,13 @@ export function MagneticCta({
   href,
   children,
   className,
+  external,
 }: {
   href: string;
   children: ReactNode;
   className?: string;
+  // Link esterno (es. il calendario): si apre in una nuova scheda.
+  external?: boolean;
 }) {
   const reduce = useReducedMotion();
   const x = useMotionValue(0);
@@ -40,6 +43,7 @@ export function MagneticCta({
   return (
     <motion.a
       href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
       style={{ x: springX, y: springY }}

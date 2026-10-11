@@ -62,3 +62,21 @@ export function revokeAssistantStorage() {
     // storage non disponibile: niente da cancellare
   }
 }
+
+// Eventi di conversione verso GA4. Partono solo se gtag esiste, cioè solo
+// dopo il consenso alle Statistiche: senza consenso la chiamata non fa nulla.
+// Nomi: `generate_lead` è l'evento consigliato da GA4 per i lead (da segnare
+// come evento chiave in GA); gli altri sono nostri e descrivono il funnel.
+export type ConversionEvent =
+  | "generate_lead" // form contatti inviato con successo
+  | "book_call_click" // click su un link di prenotazione (TidyCal)
+  | "chatbot_open" // apertura dell'assistente AI
+  | "case_open"; // click verso la pagina di un caso studio
+
+export function trackEvent(
+  name: ConversionEvent,
+  params: Record<string, string | number | undefined> = {}
+) {
+  if (typeof window === "undefined") return;
+  window.gtag?.("event", name, params);
+}

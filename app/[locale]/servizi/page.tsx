@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/json-ld";
 import { ClosingCta, WithArrow } from "@/components/landing/closing-cta";
 import { PageHeader } from "@/components/landing/page-header";
 import { PageShell } from "@/components/landing/page-shell";
+import { getSiteSettings } from "@/sanity/site-settings";
 
 export const revalidate = 3600;
 
@@ -34,6 +35,7 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
+  const bookingUrl = (await getSiteSettings())?.bookingUrl;
   const { kicker, title, intro, back, labels, closing } = landing.services;
   const { tracks, badgeFeatured } = landing.offer;
   const siteUrl = await getSiteUrl();
@@ -158,7 +160,15 @@ export default async function ServicesPage({
       <ClosingCta
         title={closing.title[lang]}
         body={closing.body[lang]}
-        cta={{ label: closing.cta[lang], href: `/${lang}#cta` }}
+        cta={
+          bookingUrl
+            ? {
+                label: closing.ctaBook[lang],
+                href: bookingUrl,
+                external: { newTabLabel: landing.shell.newTab[lang] },
+              }
+            : { label: closing.cta[lang], href: `/${lang}#cta` }
+        }
         secondary={{ label: back[lang], href: `/${lang}`, arrow: false }}
       />
     </PageShell>

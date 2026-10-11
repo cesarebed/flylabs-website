@@ -12,6 +12,9 @@ export type Localized = Record<Locale, string>;
 
 type NavContent = {
   cta: Localized;
+  // CTA quando c'è il link di prenotazione (siteSettings.bookingUrl): porta
+  // dritta al calendario invece che al form in fondo alla home.
+  book: Localized;
 };
 
 type HeroContent = {
@@ -22,6 +25,7 @@ type HeroContent = {
   bodyMark: Localized; // parola sottolineata dentro il body
   bodyAfter: Localized;
   ctaPrimary: Localized;
+  ctaBook: Localized; // CTA primaria quando c'è il link di prenotazione
   ctaSecondary: Localized;
   note: Localized;
   // Pannello "l'AI prepara, tu approvi" accanto al copy, con tre scenari
@@ -161,6 +165,7 @@ export const landing = {
   // sincronizzate senza doverle duplicare.
   nav: {
     cta: { it: "Parliamone", en: "Let's talk" },
+    book: { it: "Prenota una call", en: "Book a call" },
   } satisfies NavContent,
 
   hero: {
@@ -174,6 +179,7 @@ export const landing = {
     bodyMark: { it: "in autonomia", en: "on their own" },
     bodyAfter: { it: ".", en: "." },
     ctaPrimary: { it: "Parliamone →", en: "Let's talk →" },
+    ctaBook: { it: "Prenota 15 minuti →", en: "Book 15 minutes →" },
     ctaSecondary: {
       it: "Guarda cosa abbiamo costruito",
       en: "See what we've built",
@@ -1070,6 +1076,7 @@ export const landing = {
         en: "Neither do we, until you tell us the problem. The first call is there to figure it out together, and it's free.",
       },
       cta: { it: "Parliamone →", en: "Let's talk →" },
+      ctaBook: { it: "Prenota 15 minuti →", en: "Book 15 minutes →" },
     },
   },
 
@@ -2010,6 +2017,8 @@ export const landing = {
   // Cornice comune delle pagine (components/landing/page-shell.tsx).
   shell: {
     skip: { it: "Salta al contenuto", en: "Skip to content" },
+    // Per i link che aprono il calendario in una nuova scheda (solo screen reader).
+    newTab: { it: "(si apre in una nuova scheda)", en: "(opens in a new tab)" },
   },
 
   // 404 localizzata per i path con prefisso /it o /en (app/[locale]/not-found.tsx).
