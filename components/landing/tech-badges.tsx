@@ -26,7 +26,7 @@ export function TechBadges({
         return (
           <span
             key={name}
-            className="inline-flex items-center gap-1.5 rounded-md border border-line bg-white px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-muted"
+            className="inline-flex items-center gap-1.5 rounded-md border border-line bg-white px-2 py-1 font-mono text-[12px] uppercase tracking-wider text-muted"
           >
             {logo ? (
               <Image
@@ -44,7 +44,7 @@ export function TechBadges({
         );
       })}
       {hidden > 0 && (
-        <span className="inline-flex items-center rounded-md border border-line bg-white px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-muted">
+        <span className="inline-flex items-center rounded-md border border-line bg-white px-2 py-1 font-mono text-[12px] uppercase tracking-wider text-muted">
           +{hidden}
         </span>
       )}

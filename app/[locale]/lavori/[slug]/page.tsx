@@ -161,7 +161,7 @@ export default async function CaseStudyPage({
               <div className="font-display text-6xl font-semibold leading-none text-accent">
                 {pickLocaleLoose(metric.value, lang)}
               </div>
-              <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
+              <div className="mt-2 font-mono text-[12px] uppercase tracking-wider text-muted">
                 {pickLocale(metric.label, lang)}
               </div>
             </div>
@@ -225,7 +225,7 @@ export default async function CaseStudyPage({
                   />
                   <span className="sr-only">{cases.diagram.newTab[lang]}</span>
                 </a>
-                <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-muted">
+                <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 font-mono text-[12px] uppercase tracking-wider text-muted">
                   {caption && <span>{caption}</span>}
                   <span className="whitespace-nowrap normal-case tracking-normal text-[12px]">
                     {cases.diagram.enlarge[lang]}

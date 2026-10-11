@@ -177,7 +177,7 @@ export function ChatbotWidget({ lang }: { lang: string }) {
         </span>
         <span className="flex flex-col leading-tight">
           <span className="text-sm font-semibold">{t.pill}</span>
-          <span className="mt-0.5 text-[11px] text-white/75">{t.note}</span>
+          <span className="mt-0.5 text-[12px] text-white/75">{t.note}</span>
         </span>
         {/* Live region sempre montata: se nascesse insieme al testo molti screen
             reader non annuncerebbero il caricamento. */}
