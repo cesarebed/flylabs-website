@@ -189,7 +189,7 @@ export function WorkCarousel({
             l'hydration. Meglio tenerlo invisibile (spazio riservato, niente
             salti) che mostrare per un istante un intervallo sbagliato. */}
         <span
-          className={`font-mono text-[11px] tracking-[0.14em] text-muted tabular-nums ${
+          className={`font-mono text-[12px] tracking-[0.14em] text-muted tabular-nums ${
             ready ? "" : "invisible"
           }`}
         >

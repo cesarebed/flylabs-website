@@ -246,7 +246,7 @@ function PrefRow({
         <span className="flex items-center gap-2 text-sm font-medium text-ink">
           {title}
           {badge && (
-            <span className="rounded-full bg-ink/5 px-2 py-0.5 text-[10px] font-normal uppercase tracking-wide text-muted">
+            <span className="rounded-full bg-ink/5 px-2 py-0.5 text-[12px] font-normal uppercase tracking-wide text-muted">
               {badge}
             </span>
           )}

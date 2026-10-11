@@ -4,7 +4,7 @@ import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { cases } from "@/lib/cases-content";
-import { siteBreadcrumbLd } from "@/lib/structured-data";
+import { servicesLd, siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
 import { ClosingCta, WithArrow } from "@/components/landing/closing-cta";
 import { PageHeader } from "@/components/landing/page-header";
@@ -46,6 +46,17 @@ export default async function ServicesPage({
         data={siteBreadcrumbLd(siteUrl, lang, [
           { name: kicker[lang], path: "/servizi" },
         ])}
+      />
+      <JsonLd
+        data={servicesLd({
+          siteUrl,
+          lang,
+          services: tracks.map((t) => ({
+            name: t.title[lang],
+            description: t.body[lang],
+            anchor: t.anchor,
+          })),
+        })}
       />
 
       <PageHeader kicker={kicker[lang]} title={title[lang]} intro={intro[lang]} />

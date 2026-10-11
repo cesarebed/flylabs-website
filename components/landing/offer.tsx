@@ -35,7 +35,7 @@ export function Offer({ lang }: { lang: Locale }) {
                 )}
                 <div className="mb-6 flex items-center justify-between gap-3">
                   <span className="stamp text-muted">{track.kind[lang]}</span>
-                  <span className="font-mono text-[11px] tracking-wider text-muted">
+                  <span className="font-mono text-[12px] tracking-wider text-muted">
                     {track.timeline[lang]}
                   </span>
                 </div>
