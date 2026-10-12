@@ -1661,6 +1661,47 @@ export const landing = {
         href: "https://stellar.flylabs.ai/verifica",
       },
     },
+    // Piattaforme (decisione di Federico 2026-10-12). Oggi: le tre lette
+    // davvero. In arrivo: mai mostrate come disponibili (Codice del Consumo,
+    // artt. 21-22), sempre dietro "In arrivo", senza date. Loghi Simple Icons
+    // (CC0) nel colore ufficiale, solo accanto al nome: indicano con cosa
+    // lavora Stellar, non una partnership. Vrbo non ha logo, solo nel testo.
+    platforms: {
+      today: [
+        { name: "Google", icon: "simple-icons:google", color: "#4285F4" },
+        { name: "Booking.com", icon: "simple-icons:bookingdotcom", color: "#003A9A" },
+        { name: "Tripadvisor", icon: "simple-icons:tripadvisor", color: "#34E0A1" },
+      ],
+      coming: [
+        { name: "Expedia", icon: "simple-icons:expedia", color: "#191E3B" },
+        { name: "Hotels.com", icon: "simple-icons:hotelsdotcom", color: "#EF3346" },
+        { name: "Airbnb", icon: "simple-icons:airbnb", color: "#FF5A5F" },
+      ],
+      todayLabel: { it: "Oggi", en: "Today" },
+      comingLabel: { it: "In arrivo", en: "Coming soon:" },
+      and: { it: "e", en: "and" },
+      faq: {
+        q: {
+          it: "Funziona con Booking e Tripadvisor?",
+          en: "Does it work with Booking and Tripadvisor?",
+        },
+        a: {
+          it: "Sì, insieme a Google. Stiamo aggiungendo Expedia (con Vrbo), Hotels.com e Airbnb. Usi un'altra piattaforma?",
+          en: "Yes, together with Google. We are adding Expedia (with Vrbo), Hotels.com and Airbnb. Do you use another platform?",
+        },
+        contact: {
+          label: { it: "Scrivici a stellar@flylabs.ai", en: "Write to stellar@flylabs.ai" },
+          href: {
+            it: "mailto:stellar@flylabs.ai?subject=Stellar%20Reviews%3A%20piattaforma%20da%20aggiungere",
+            en: "mailto:stellar@flylabs.ai?subject=Stellar%20Reviews%3A%20platform%20request",
+          },
+        },
+      },
+      pricingNote: {
+        it: "Le piattaforme in arrivo non sono comprese nei piani finché non sono disponibili.",
+        en: "Coming platforms are not included in the plans until they are available.",
+      },
+    },
     problem: {
       it: "Chi gestisce una struttura ricettiva risponde alle recensioni a mano: le legge su tre piattaforme diverse, le scrive una a una, spesso in un'altra lingua. E quelle senza risposta restano lì per mesi.",
       en: "People running a hospitality business answer reviews by hand: they read them on three different platforms and write each reply one by one, often in another language. And the unanswered ones sit there for months.",
