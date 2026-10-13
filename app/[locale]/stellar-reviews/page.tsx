@@ -86,6 +86,7 @@ export default async function StellarReviewsPage({
     logo,
     logoAlt,
     platforms,
+    screens,
   } = landing.stellarReviews;
   // Evidenziatore giallo su una parte del tagline (testo inchiostro: il giallo
   // non va mai come colore del testo, 1,4:1 sul bianco).
@@ -156,6 +157,47 @@ export default async function StellarReviewsPage({
         </div>
         <p className="mt-4 text-sm text-muted">{priceNote[lang]}</p>
       </PageHeader>
+
+      {/* Schermate reali della demo: dal computer in cornice browser, il
+          telefono sovrapposto in basso a destra; sotto md solo il telefono. */}
+      <section className="bg-white pt-16 md:pt-[88px]">
+        <div className="mx-auto max-w-[1120px] px-6">
+          <Reveal>
+            <figure>
+              <div className="relative md:pb-12">
+                <div className="hidden overflow-hidden rounded-xl border border-line bg-paper shadow-lg md:mr-32 md:block">
+                  <div aria-hidden className="flex h-7 items-center gap-1.5 border-b border-line bg-paper px-3">
+                    <span className="h-2 w-2 rounded-full bg-ink/15" />
+                    <span className="h-2 w-2 rounded-full bg-ink/15" />
+                    <span className="h-2 w-2 rounded-full bg-ink/15" />
+                  </div>
+                  <Image
+                    src={screens.desktop.src[lang]}
+                    alt={screens.desktop.alt[lang]}
+                    width={2880}
+                    height={1480}
+                    sizes="(min-width: 1120px) 976px, 88vw"
+                    className="h-auto w-full"
+                  />
+                </div>
+                <div className="mx-auto w-[260px] overflow-hidden rounded-[26px] border-[5px] border-ink bg-white shadow-lg md:absolute md:bottom-0 md:right-0 md:w-[210px]">
+                  <Image
+                    src={screens.mobile.src[lang]}
+                    alt={screens.mobile.alt[lang]}
+                    width={780}
+                    height={1688}
+                    sizes="260px"
+                    className="h-auto w-full"
+                  />
+                </div>
+              </div>
+              <figcaption className="mt-5 max-w-[62ch] text-[13px] leading-relaxed text-ink/70 md:mt-3">
+                {screens.caption[lang]}
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="bg-white py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">

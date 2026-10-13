@@ -1704,6 +1704,36 @@ export const landing = {
         en: "Coming platforms are not included in the plans until they are available.",
       },
     },
+    // Schermate reali della demo pubblica (dati di esempio), una per lingua:
+    // l'interfaccia è nei pixel. Il filtro "Expedia" della demo è nascosto
+    // nello scatto: sul sito una piattaforma in arrivo non deve mai sembrare
+    // già disponibile (vedi platforms qui sopra).
+    screens: {
+      desktop: {
+        src: {
+          it: "/products/stellar-reviews/demo-desktop-it.webp",
+          en: "/products/stellar-reviews/demo-desktop-en.webp",
+        },
+        alt: {
+          it: "Stellar Reviews dal computer: a sinistra la coda delle recensioni a cui rispondere, a destra una recensione da una stella su TripAdvisor con la risposta proposta dall'AI e i pulsanti Copia risposta e Ho pubblicato.",
+          en: "Stellar Reviews on a computer: on the left the queue of reviews to answer, on the right a one-star TripAdvisor review with the AI-suggested reply and the Copy reply and I've posted it buttons.",
+        },
+      },
+      mobile: {
+        src: {
+          it: "/products/stellar-reviews/demo-mobile-it.webp",
+          en: "/products/stellar-reviews/demo-mobile-en.webp",
+        },
+        alt: {
+          it: "Stellar Reviews dal telefono: la recensione da rivedere con cura e la risposta proposta dall'AI, da rileggere prima di pubblicarla.",
+          en: "Stellar Reviews on a phone: a review to handle with care and the AI-suggested reply, to read through before publishing.",
+        },
+      },
+      caption: {
+        it: "Dalla demo pubblica, con dati di esempio. Stellar propone la risposta, tu la rileggi, la copi e la pubblichi sulla piattaforma.",
+        en: "From the public demo, with sample data. Stellar suggests the reply, you read it through, copy it and post it on the platform.",
+      },
+    },
     problem: {
       it: "Chi gestisce una struttura ricettiva risponde alle recensioni a mano: le legge su tre piattaforme diverse, le scrive una a una, spesso in un'altra lingua. E quelle senza risposta restano lì per mesi.",
       en: "People running a hospitality business answer reviews by hand: they read them on three different platforms and write each reply one by one, often in another language. And the unanswered ones sit there for months.",
