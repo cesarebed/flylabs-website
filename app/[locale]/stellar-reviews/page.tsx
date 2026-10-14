@@ -7,11 +7,41 @@ import { landing } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
+import { Icon } from "@/components/landing/icon";
 import { PageHeader } from "@/components/landing/page-header";
 import { PageShell } from "@/components/landing/page-shell";
 import { Reveal } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
+
+type Platform = { name: string; icon: string; color: string };
+
+/** "A, B e C" con logo accanto a ogni nome (il nome è scritto, logo aria-hidden). */
+function PlatformList({
+  items,
+  and,
+  logoClassName = "",
+}: {
+  items: readonly Platform[];
+  and: string;
+  logoClassName?: string;
+}) {
+  return items.map((p, i) => (
+    <span key={p.name}>
+      {i > 0 && (i === items.length - 1 ? ` ${and} ` : ", ")}
+      <span className="inline-flex items-baseline gap-1.5 whitespace-nowrap">
+        <Icon
+          icon={p.icon}
+          width={20}
+          height={20}
+          className={`shrink-0 self-center ${logoClassName}`}
+          style={{ color: p.color }}
+        />
+        {p.name}
+      </span>
+    </span>
+  ));
+}
 
 export async function generateMetadata({
   params,
@@ -55,6 +85,8 @@ export default async function StellarReviewsPage({
     back,
     logo,
     logoAlt,
+    platforms,
+    screens,
   } = landing.stellarReviews;
   // Evidenziatore giallo su una parte del tagline (testo inchiostro: il giallo
   // non va mai come colore del testo, 1,4:1 sul bianco).
@@ -93,6 +125,20 @@ export default async function StellarReviewsPage({
         title={title[lang]}
         intro={intro}
       >
+        <p className="mt-4 max-w-[62ch] text-[15px] leading-loose text-muted">
+          {platforms.todayLabel[lang]}{" "}
+          <PlatformList items={platforms.today} and={platforms.and[lang]} />.
+          {/* Riga a sé: il gruppo "In arrivo" non si mescola mai a quelle di oggi. */}
+          <span className="block">
+            {platforms.comingLabel[lang]}{" "}
+            <PlatformList
+              items={platforms.coming}
+              and={platforms.and[lang]}
+              logoClassName="opacity-60"
+            />
+            .
+          </span>
+        </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
             href={app.demo.href}
@@ -111,6 +157,47 @@ export default async function StellarReviewsPage({
         </div>
         <p className="mt-4 text-sm text-muted">{priceNote[lang]}</p>
       </PageHeader>
+
+      {/* Schermate reali della demo: dal computer in cornice browser, il
+          telefono sovrapposto in basso a destra; sotto md solo il telefono. */}
+      <section className="bg-white pt-16 md:pt-[88px]">
+        <div className="mx-auto max-w-[1120px] px-6">
+          <Reveal>
+            <figure>
+              <div className="relative md:pb-12">
+                <div className="hidden overflow-hidden rounded-xl border border-line bg-paper shadow-lg md:mr-32 md:block">
+                  <div aria-hidden className="flex h-7 items-center gap-1.5 border-b border-line bg-paper px-3">
+                    <span className="h-2 w-2 rounded-full bg-ink/15" />
+                    <span className="h-2 w-2 rounded-full bg-ink/15" />
+                    <span className="h-2 w-2 rounded-full bg-ink/15" />
+                  </div>
+                  <Image
+                    src={screens.desktop.src[lang]}
+                    alt={screens.desktop.alt[lang]}
+                    width={2880}
+                    height={1480}
+                    sizes="(min-width: 1120px) 976px, 88vw"
+                    className="h-auto w-full"
+                  />
+                </div>
+                <div className="mx-auto w-[260px] overflow-hidden rounded-[26px] border-[5px] border-ink bg-white shadow-lg md:absolute md:bottom-0 md:right-0 md:w-[210px]">
+                  <Image
+                    src={screens.mobile.src[lang]}
+                    alt={screens.mobile.alt[lang]}
+                    width={780}
+                    height={1688}
+                    sizes="260px"
+                    className="h-auto w-full"
+                  />
+                </div>
+              </div>
+              <figcaption className="mt-5 max-w-[62ch] text-[13px] leading-relaxed text-ink/70 md:mt-3">
+                {screens.caption[lang]}
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="bg-white py-16 md:py-[88px]">
         <div className="mx-auto max-w-[1120px] px-6">
@@ -171,6 +258,22 @@ export default async function StellarReviewsPage({
             </ul>
           </Reveal>
 
+          <div id="piattaforme" className="mt-14 max-w-[62ch] border-t border-line pt-10">
+            <h2 className="font-display text-xl font-semibold">
+              {platforms.faq.q[lang]}
+            </h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-ink/80">
+              {platforms.faq.a[lang]}{" "}
+              <a
+                href={platforms.faq.contact.href[lang]}
+                className="font-medium text-accent underline-offset-2 hover:underline"
+              >
+                {platforms.faq.contact.label[lang]}
+              </a>
+              .
+            </p>
+          </div>
+
           <div className="mt-10">
             <Link
               href={`/${lang}${caseLink.href}`}
@@ -218,6 +321,9 @@ export default async function StellarReviewsPage({
                   <WithArrow>{app.access.label[lang]}</WithArrow>
                 </a>
               </div>
+              <p className="mt-5 text-sm text-white/60">
+                {platforms.pricingNote[lang]}
+              </p>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/[0.04] p-8">
               <h3 className="font-display text-xl font-semibold">
