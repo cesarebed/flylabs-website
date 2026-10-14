@@ -125,20 +125,24 @@ export default async function StellarReviewsPage({
         title={title[lang]}
         intro={intro}
       >
-        <p className="mt-4 max-w-[62ch] text-[15px] leading-loose text-muted">
-          {platforms.todayLabel[lang]}{" "}
-          <PlatformList items={platforms.today} and={platforms.and[lang]} />.
-          {/* Riga a sé: il gruppo "In arrivo" non si mescola mai a quelle di oggi. */}
-          <span className="block">
-            {platforms.comingLabel[lang]}{" "}
+        {/* Due righe con le etichette in colonna, così le liste partono allineate
+            anche quando vanno a capo. "In arrivo" ha sempre la sua riga: non si
+            mescola mai alle piattaforme di oggi. */}
+        <dl className="mt-4 grid max-w-[62ch] grid-cols-[auto_1fr] gap-x-2 text-[15px] leading-loose text-muted">
+          <dt>{platforms.todayLabel[lang]}</dt>
+          <dd>
+            <PlatformList items={platforms.today} and={platforms.and[lang]} />.
+          </dd>
+          <dt>{platforms.comingLabel[lang]}</dt>
+          <dd>
             <PlatformList
               items={platforms.coming}
               and={platforms.and[lang]}
               logoClassName="opacity-60"
             />
             .
-          </span>
-        </p>
+          </dd>
+        </dl>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
             href={app.demo.href}
