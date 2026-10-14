@@ -1679,8 +1679,8 @@ export const landing = {
         { name: "Hotels.com", icon: "simple-icons:hotelsdotcom", color: "#EF3346" },
         { name: "Airbnb", icon: "simple-icons:airbnb", color: "#FF5A5F" },
       ],
-      todayLabel: { it: "Oggi", en: "Today" },
-      comingLabel: { it: "In arrivo", en: "Coming soon:" },
+      todayLabel: { it: "Oggi:", en: "Today:" },
+      comingLabel: { it: "In arrivo:", en: "Coming soon:" },
       and: { it: "e", en: "and" },
       faq: {
         q: {
@@ -1716,7 +1716,7 @@ export const landing = {
         },
         alt: {
           it: "Stellar Reviews dal computer: a sinistra la coda delle recensioni a cui rispondere, a destra una recensione da una stella su TripAdvisor con la risposta proposta dall'AI e i pulsanti Copia risposta e Ho pubblicato.",
-          en: "Stellar Reviews on a computer: on the left the queue of reviews to answer, on the right a one-star TripAdvisor review with the AI-suggested reply and the Copy reply and I've posted it buttons.",
+          en: "Stellar Reviews on a computer: on the left the queue of reviews to answer, on the right a Booking.com review rated 4 out of 10, about a long check-in wait, with the AI-suggested reply and the Copy reply and I've posted it buttons.",
         },
       },
       mobile: {
@@ -1726,7 +1726,7 @@ export const landing = {
         },
         alt: {
           it: "Stellar Reviews dal telefono: la recensione da rivedere con cura e la risposta proposta dall'AI, da rileggere prima di pubblicarla.",
-          en: "Stellar Reviews on a phone: a review to handle with care and the AI-suggested reply, to read through before publishing.",
+          en: "Stellar Reviews on a phone: a Booking.com review about a long check-in wait and the AI-suggested reply, to read through before publishing.",
         },
       },
       caption: {
