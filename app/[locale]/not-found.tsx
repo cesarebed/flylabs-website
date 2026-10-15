@@ -25,7 +25,7 @@ function NotFoundView({ lang }: { lang: Locale }) {
               {home[lang]}
             </Link>
             <Link
-              href={`/${lang}/lavori`}
+              href={`/${lang}/work`}
               className="rounded-lg border border-line bg-white px-6 py-3 text-sm font-semibold text-accent transition-colors hover:border-accent"
             >
               {work[lang]}
@@ -41,7 +41,7 @@ function NotFoundView({ lang }: { lang: Locale }) {
 // app/[locale]/[...rest]/page.tsx, che porta anche title e description).
 // not-found.tsx non riceve params: le due versioni sono renderizzate sul
 // server e LocaleSwitch mostra quella della lingua nell'URL, come in
-// lavori/not-found.tsx.
+// work/not-found.tsx.
 export default function NotFound() {
   return <LocaleSwitch it={<NotFoundView lang="it" />} en={<NotFoundView lang="en" />} />;
 }

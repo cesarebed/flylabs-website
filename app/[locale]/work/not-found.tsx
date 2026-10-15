@@ -14,7 +14,7 @@ function NotFoundView({ lang }: { lang: Locale }) {
         </h1>
         <p className="mt-4 text-lg text-muted">{cases.notFound.body[lang]}</p>
         <Link
-          href={`/${lang}/lavori`}
+          href={`/${lang}/work`}
           className="mt-8 inline-block rounded-lg bg-ink px-6 py-3 text-sm font-semibold text-white"
         >
           <WithArrow>{cases.notFound.cta[lang]}</WithArrow>

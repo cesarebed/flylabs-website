@@ -6,10 +6,10 @@ import { trackEvent } from "@/lib/google-analytics";
 // Un solo listener delegato per i click che contano nel funnel, così i link
 // restano nei Server Component e non serve un handler su ognuno:
 // - prenotazione: ogni link verso TidyCal (bookingUrl di siteSettings);
-// - caso studio: ogni link interno verso /<lang>/lavori/<slug>.
+// - caso studio: ogni link interno verso /<lang>/work/<slug>.
 // `placement` dice da dove è partito il click: la <section> con id più vicina
 // (hero, cta, lavori...) oppure header/footer.
-const CASE_PATH = /^\/(?:it|en)\/lavori\/([^/?#]+)/;
+const CASE_PATH = /^\/(?:it|en)\/work\/([^/?#]+)/;
 
 function placementOf(el: Element) {
   const landmark = el.closest("header, footer");

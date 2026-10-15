@@ -17,7 +17,7 @@ export async function generateMetadata({
   return buildMetadata(lang, {
     title: m.title,
     description: m.description,
-    path: "/termini",
+    path: "/terms",
   });
 }
 
@@ -66,7 +66,7 @@ export default async function TermsPage({
 
           {/* Modulo tipo dell'Allegato I parte B del Codice del Consumo,
               richiamato dalla sezione 6 (recesso dei consumatori). */}
-          <section id="modulo-recesso" className="rounded-lg border border-ink/10 p-6">
+          <section id="withdrawal-form" className="rounded-lg border border-ink/10 p-6">
             <h2 className="mb-3 font-display text-2xl font-semibold">{form.title[lang]}</h2>
             <p className="mb-4 text-sm italic text-muted">{form.note[lang]}</p>
             <div className="flex flex-col gap-2">

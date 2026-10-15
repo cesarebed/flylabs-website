@@ -18,7 +18,7 @@ const SPANS = ["md:col-span-2", "", "", ""];
 export function WhatWeBuild({ lang }: { lang: Locale }) {
   const { section, cards } = landing.build;
   return (
-    <section id="cosa" className="py-16 md:py-24 lg:py-[120px]">
+    <section id="what" className="py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <div className="mb-10 md:mb-14">
           <h2 className="font-display text-4xl font-semibold leading-tight">

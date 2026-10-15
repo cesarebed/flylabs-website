@@ -6,7 +6,7 @@
     "it": "Il tuo second brain: struttura e metodo per non ripartire mai da zero",
     "en": "Your second brain: structure and method so you never start from zero"
   },
-  "slug": { "_type": "slug", "current": "second-brain-aziendale" },
+  "slug": { "_type": "slug", "current": "company-second-brain" },
   "sector": {
     "_type": "localeString",
     "it": "Consulenza e formazione AI",

@@ -1,9 +1,9 @@
 "use client";
 
 // Error boundary di fallback per l'intero sito sotto [locale] (home,
-// servizi, stack, privacy): prima d'ora solo lavori/ ne aveva uno, le altre
+// servizi, stack, privacy): prima d'ora solo work/ ne aveva uno, le altre
 // pagine mostravano la schermata di errore grezza di Next. Bilingue per lo
-// stesso motivo di lavori/error.tsx: un errore può arrivare prima che sia
+// stesso motivo di work/error.tsx: un errore può arrivare prima che sia
 // chiaro in che lingua stava navigando l'utente.
 export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (

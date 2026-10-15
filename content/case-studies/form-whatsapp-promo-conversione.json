@@ -6,7 +6,7 @@
     "it": "Dal form del sito alla chat WhatsApp, con una promo che converte",
     "en": "From website form to WhatsApp chat, with an offer that converts"
   },
-  "slug": { "_type": "slug", "current": "form-whatsapp-promo-conversione" },
+  "slug": { "_type": "slug", "current": "website-form-to-whatsapp-promo" },
   "sector": {
     "_type": "localeString",
     "it": "Studio di tatuaggi · Spagna",

@@ -6,7 +6,7 @@
     "it": "Un assistente che prenota, su ogni sito del gruppo",
     "en": "A booking assistant on every site of the group"
   },
-  "slug": { "_type": "slug", "current": "assistenti-noleggio-multisito" },
+  "slug": { "_type": "slug", "current": "multi-site-rental-assistant" },
   "sector": {
     "_type": "localeString",
     "it": "Noleggio bici · Arizona (USA)",

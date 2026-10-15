@@ -11,7 +11,7 @@ import { LogoMark } from "./logo-mark";
 
 /**
  * Nav sitewide: prima viveva solo nella homepage e linkava le sezioni della
- * pagina (#cosa, #metodo, ...); ogni altra pagina si ricostruiva un header
+ * pagina (#what, #method, ...); ogni altra pagina si ricostruiva un header
  * minimale a mano (solo logo + lang toggle), senza modo di navigare altrove
  * — su mobile addirittura senza alcun link. Ora è un unico componente,
  * montato in ogni pagina, che porta alle pagine reali del sito (le stesse
@@ -111,7 +111,7 @@ export function Nav({
     ["rgba(255,255,255,0.82)", "rgba(255,255,255,0.95)"]
   );
 
-  // path corrente senza il segmento di locale (es. "/it/lavori/x" → "/lavori/x"),
+  // path corrente senza il segmento di locale (es. "/it/work/x" → "/work/x"),
   // per evidenziare la voce di nav attiva
   const rest = pathname.replace(/^\/(?:it|en)(?=\/|$)/, "");
   const isActive = (href: string) =>

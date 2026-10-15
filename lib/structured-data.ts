@@ -134,7 +134,7 @@ export function caseStudyArticleLd(args: {
 }
 
 /**
- * I servizi di /servizi come entità `Service`, collegate all'Organization del
+ * I servizi di /services come entità `Service`, collegate all'Organization del
  * layout via `provider`. Niente `ProfessionalService`: è un sottotipo di
  * LocalBusiness e Google lo vuole con un indirizzo fisico, che non c'è.
  * Niente `offers`/prezzo finché la fascia di prezzo non è decisa.
@@ -145,7 +145,7 @@ export function servicesLd(args: {
   services: { name: string; description: string; anchor?: string }[];
 }) {
   const base = args.siteUrl.replace(/\/+$/, "");
-  const pageUrl = `${base}/${args.lang}/servizi`;
+  const pageUrl = `${base}/${args.lang}/services`;
   return {
     "@context": "https://schema.org",
     "@graph": args.services.map((s) => ({

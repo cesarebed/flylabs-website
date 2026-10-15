@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n";
 type Localized = Record<Locale, string>;
 
 /**
- * Micro-copy delle pagine /lavori (etichette UI, non contenuti).
+ * Micro-copy delle pagine /work (etichette UI, non contenuti).
  * I contenuti veri (i casi) vivono su Sanity come documenti `caseStudy`.
  *
  * Le etichette dei link qui sotto sono SENZA freccia: la aggiunge il
@@ -40,7 +40,7 @@ export const cases = {
   solution: { it: "La soluzione", en: "The solution" } satisfies Localized,
   // Titolo del racconto esteso (campo `body`), dopo i diagrammi.
   story: { it: "Com'è andata", en: "How it went" } satisfies Localized,
-  // Link della card (carosello in home e /lavori). Senza freccia: vedi sopra.
+  // Link della card (carosello in home e /work). Senza freccia: vedi sopra.
   cta: { it: "Leggi il caso", en: "Read the case" } satisfies Localized,
 
   diagram: {
@@ -60,10 +60,10 @@ export const cases = {
       en: "The product behind this case:",
     } satisfies Localized,
     bySlug: {
-      "risposte-recensioni-ai": { name: "Stellar Reviews", href: "/stellar-reviews" },
-      "wegrocery-ordini-di-gruppo": { name: "WeGrocery", href: "/wegrocery" },
-      "assistenti-noleggio-multisito": { name: "GPT Chatbot", href: "/gpt-chatbot" },
-      "form-whatsapp-promo-conversione": { name: "GPT Chatbot", href: "/gpt-chatbot" },
+      "ai-review-replies": { name: "Stellar Reviews", href: "/stellar-reviews" },
+      "wegrocery-group-orders": { name: "WeGrocery", href: "/wegrocery" },
+      "multi-site-rental-assistant": { name: "GPT Chatbot", href: "/gpt-chatbot" },
+      "website-form-to-whatsapp-promo": { name: "GPT Chatbot", href: "/gpt-chatbot" },
     } as Partial<Record<string, { name: string; href: string }>>,
   },
 
@@ -81,7 +81,7 @@ export const cases = {
       ctaBook: { it: "Prenota 15 minuti", en: "Book 15 minutes" } satisfies Localized,
       next: { it: "Caso successivo", en: "Next case" } satisfies Localized,
     },
-    // Lista /lavori.
+    // Lista /work.
     list: {
       title: { it: "Non trovi il tuo caso?", en: "Don't see your case?" } satisfies Localized,
       body: {
@@ -90,7 +90,7 @@ export const cases = {
       } satisfies Localized,
       cta: { it: "Raccontaci il tuo", en: "Tell us about yours" } satisfies Localized,
     },
-    // Per /prodotti, /stack e /servizi (le monta un altro step dell'audit).
+    // Per /products, /stack e /services (le monta un altro step dell'audit).
     start: {
       title: { it: "Non sai da dove partire?", en: "Not sure where to start?" } satisfies Localized,
       body: {
@@ -108,7 +108,7 @@ export const cases = {
     resume: { it: "Riprendi lo scorrimento", en: "Resume autoplay" } satisfies Localized,
   },
 
-  // Caso inesistente (lavori/not-found.tsx e generateMetadata del dettaglio).
+  // Caso inesistente (work/not-found.tsx e generateMetadata del dettaglio).
   notFound: {
     metaTitle: {
       it: "Caso non trovato | flylabs.ai",

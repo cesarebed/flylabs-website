@@ -32,7 +32,7 @@ export function WithArrow({ children }: { children: string }) {
 /**
  * Blocco scuro di chiusura prima del footer: titolo, testo, bottone verso il
  * form di contatto e un link secondario facoltativo. Stesso pattern della
- * chiusura di /servizi, riusabile da ogni pagina che altrimenti finirebbe
+ * chiusura di /services, riusabile da ogni pagina che altrimenti finirebbe
  * direttamente nel footer.
  */
 export function ClosingCta({

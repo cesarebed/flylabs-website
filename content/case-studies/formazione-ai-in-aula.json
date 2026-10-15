@@ -6,7 +6,7 @@
     "it": "Formazione AI in aula, su misura per ogni ruolo",
     "en": "In-person AI training, tailored to every role"
   },
-  "slug": { "_type": "slug", "current": "formazione-ai-in-aula" },
+  "slug": { "_type": "slug", "current": "in-person-ai-training" },
   "sector": {
     "_type": "localeString",
     "it": "Cooperativa sociale · formazione aziendale",

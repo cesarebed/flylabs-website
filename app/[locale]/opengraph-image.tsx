@@ -32,7 +32,7 @@ const COPY: Record<
 // Immagine di anteprima social generica per lingua. La home la usa
 // direttamente; le altre pagine ci arrivano perché buildMetadata (lib/seo.ts)
 // punta sempre a /{lang}/opengraph-image come fallback, salvo le pagine con
-// un'immagine propria (lavori/[slug]). Stesso linguaggio visivo dell'hero
+// un'immagine propria (work/[slug]). Stesso linguaggio visivo dell'hero
 // (.dark-paper in globals.css): sfondo scuro + alone indaco/arancio, wordmark ".ai" in accent, highlight
 // giallo dietro la parola chiave (stesso trucco di .mark in globals.css).
 export default async function Image({

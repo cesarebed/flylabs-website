@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { LEGACY_CASE_SLUGS } from "./lib/case-slugs";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -75,6 +76,33 @@ const nextConfig: NextConfig = {
   },
   // La root "/" non ha una pagina: il redirect alla lingua del browser
   // (Accept-Language) vive in proxy.ts.
+  //
+  // URL in inglese in entrambe le lingue (2026-10-15): i vecchi slug italiani
+  // rispondono 301 verso quelli nuovi, per sempre (link esterni, SEO, URL dei
+  // termini registrato su Stripe). Prima i casi studio con slug storico, poi
+  // le pagine: vince la prima regola che corrisponde.
+  async redirects() {
+    const locale = ":locale(it|en)";
+    const caseRedirects = Object.entries(LEGACY_CASE_SLUGS).flatMap(
+      ([oldSlug, newSlug]) =>
+        ["lavori", "work"].map((section) => ({
+          source: `/${locale}/${section}/${oldSlug}/:rest*`,
+          destination: `/:locale/work/${newSlug}/:rest*`,
+          statusCode: 301 as const,
+        }))
+    );
+    const pageRedirects = Object.entries({
+      lavori: "work",
+      servizi: "services",
+      prodotti: "products",
+      termini: "terms",
+    }).map(([oldPath, newPath]) => ({
+      source: `/${locale}/${oldPath}/:rest*`,
+      destination: `/:locale/${newPath}/:rest*`,
+      statusCode: 301 as const,
+    }));
+    return [...caseRedirects, ...pageRedirects];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: baseHeaders },

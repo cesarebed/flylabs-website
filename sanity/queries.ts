@@ -48,7 +48,7 @@ export const FEATURED_CASE_STUDIES_QUERY = defineQuery(
 );
 
 export const CASE_STUDY_BY_SLUG_QUERY = defineQuery(
-  `*[_type == "caseStudy" && slug.current == $slug][0]{
+  `*[_type == "caseStudy" && slug.current in $slugs][0]{
     _id,
     title,
     "slug": slug.current,
