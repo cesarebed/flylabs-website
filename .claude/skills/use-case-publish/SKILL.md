@@ -7,7 +7,7 @@ description: >-
   `caseStudy` in flylabs-website (content/case-studies/), pronto da caricare su
   Sanity. Usa questa skill ogni volta che si parla di preparare/pubblicare un
   "caso di successo", uno "use case", un "case study", un caso cliente sul sito,
-  o di trasformare una nota progetto del brain in contenuto per /lavori — anche
+  o di trasformare una nota progetto del brain in contenuto per /work — anche
   se non viene detto esplicitamente "skill". Non inventare mai le metriche.
 ---
 
@@ -20,7 +20,7 @@ cliente né dati commerciali interni:
 1. **Nel brain** — aggiorni la nota del progetto (sezione *Pubblicabilità*, campi
    `anonymize`/`public_name`/`public_status`), così il brain resta la fonte di verità.
 2. **Nel sito** (`flylabs-website`) — generi `content/case-studies/<slug>.json`, un
-   documento `caseStudy` pronto per Sanity (la route `/[locale]/lavori` pesca da lì).
+   documento `caseStudy` pronto per Sanity (la route `/[locale]/work` pesca da lì).
 
 Il brain è la fonte; il file del sito è il **sottoinsieme pubblico**. Le sezioni
 interne (soprattutto *Commerciale*) non escono mai.
@@ -87,7 +87,7 @@ modo naturale (non letterale). Mappatura:
 | — | `cover` | opzionale; caricata in Studio, NON qui |
 | data del progetto | `date` | per l'ordinamento |
 
-Lo `slug` deriva dal **titolo anonimizzato** (kebab-case). ⚠️ Se `anonymize: true`, NON
+Lo `slug` deriva dal **titolo anonimizzato inglese** (kebab-case, es. `ai-review-replies`): gli URL del sito sono in inglese in entrambe le lingue. ⚠️ Se `anonymize: true`, NON
 riusare lo slug della nota del brain: spesso contiene il nome del cliente (es.
 `<nome-cliente>-...`) e finirebbe nell'URL pubblico — sarebbe una fuga. L'`_id` del
 documento è `caseStudy.<slug>`.
@@ -139,7 +139,7 @@ node .claude/skills/use-case-publish/scripts/import-case-studies.mjs
 ```
 Legge tutti i `content/case-studies/*.json`, li fa `createOrReplace` su Sanity usando
 `SANITY_API_WRITE_TOKEN` da `.env.local`, e **preserva la cover** eventualmente
-caricata in Studio. Poi verifica che il caso compaia su `/lavori` (skill `visual-check`).
+caricata in Studio. Poi verifica che il caso compaia su `/work` (skill `visual-check`).
 
 ## Ciclo di vita dei file in `content/case-studies/` (issue #8)
 I JSON generati (e i PNG/SVG dei diagrammi in `assets/`) **si committano**: sono
@@ -151,9 +151,9 @@ nel brain e il JSON non si genera. Per **togliere** un caso dal sito: cancella i
 documento su Sanity E il JSON dal repo nella stessa occasione, altrimenti il
 prossimo import lo ripubblica.
 
-## Dopo: /lavori è raggiungibile dalla home
+## Dopo: /work è raggiungibile dalla home
 Dal 2026-07-16 (issue #13) in fondo alla sezione lavori della home c'è
-"Tutti i lavori →" verso `/[locale]/lavori`, visibile quando le card vengono dai
+"Tutti i lavori →" verso `/[locale]/work`, visibile quando le card vengono dai
 casi reali su Sanity: per i nuovi casi non c'è nulla da collegare a mano.
 
 ## Nota sul coordinamento

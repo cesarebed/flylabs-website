@@ -7,12 +7,13 @@ import { FEATURED_CASE_STUDIES_QUERY } from "@/sanity/queries";
 import type { FEATURED_CASE_STUDIES_QUERY_RESULT } from "@/sanity.types";
 import { WorkCarousel, type WorkItem } from "./work-carousel";
 import { Reveal } from "./reveal";
+import { caseSlug } from "@/lib/case-slugs";
 
 export async function Work({ lang }: { lang: Locale }) {
   const { section, allLink, deck, nav } = landing.work;
   // Casi marcati "in evidenza" su Sanity. Se non ce n'è nessuno (o la
   // lettura torna vuota) si mostra solo il messaggio di lista vuota e il
-  // link a /lavori: mai card o metriche inventate.
+  // link a /work: mai card o metriche inventate.
   const studies = await sanityFetch<FEATURED_CASE_STUDIES_QUERY_RESULT>({
     query: FEATURED_CASE_STUDIES_QUERY,
     tags: ["caseStudy"],
@@ -22,7 +23,7 @@ export async function Work({ lang }: { lang: Locale }) {
   // serializzabili, non gli oggetti localeString di Sanity.
   const items: WorkItem[] = studies.map((study) => ({
     id: study._id,
-    href: `/${lang}/lavori/${study.slug}`,
+    href: `/${lang}/work/${caseSlug(study.slug)}`,
     title: pickLocale(study.title, lang),
     sector: pickLocale(study.sector, lang),
     problem: pickLocale(study.problem, lang),
@@ -37,7 +38,7 @@ export async function Work({ lang }: { lang: Locale }) {
   }));
 
   return (
-    <section id="lavori" className="border-y border-line bg-white py-16 md:py-24 lg:py-[120px]">
+    <section id="work" className="border-y border-line bg-white py-16 md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <Reveal>
           <h2 className="font-display text-4xl font-semibold leading-tight">

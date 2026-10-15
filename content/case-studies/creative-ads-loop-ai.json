@@ -6,7 +6,7 @@
     "it": "Creative pubblicitarie sempre fresche, senza autopilota",
     "en": "Always-fresh ad creatives, without autopilot"
   },
-  "slug": { "_type": "slug", "current": "creative-ads-loop-ai" },
+  "slug": { "_type": "slug", "current": "ai-ad-creative-loop" },
   "sector": {
     "_type": "localeString",
     "it": "Retail",

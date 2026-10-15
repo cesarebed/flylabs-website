@@ -78,7 +78,7 @@ export function Hero({
               )}
             </MagneticCta>
             <a
-              href="#lavori"
+              href="#work"
               className="border-b-2 border-white/70 pb-0.5 text-base font-semibold transition-colors hover:border-mark hover:text-mark"
             >
               {h.ctaSecondary[lang]}

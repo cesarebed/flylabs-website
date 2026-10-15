@@ -25,7 +25,7 @@ export async function PageShell({
   return (
     <div className="site-zoom flex flex-1 flex-col">
       <a
-        href="#contenuto"
+        href="#content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-3 focus:z-[60] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
       >
         {landing.shell.skip[lang]}
@@ -33,7 +33,7 @@ export async function PageShell({
       <Nav lang={lang} bookingUrl={settings?.bookingUrl} />
       {/* tabIndex -1: lo skip link sposta davvero il focus su main (Safari
           altrimenti sposta solo lo scroll); nessun anello su un contenitore. */}
-      <main id="contenuto" tabIndex={-1} className="flex-1 focus:outline-none">
+      <main id="content" tabIndex={-1} className="flex-1 focus:outline-none">
         {children}
       </main>
       <Footer lang={lang} />

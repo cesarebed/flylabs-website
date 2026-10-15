@@ -6,7 +6,7 @@
     "it": "Pratiche di connessione che si compilano da sole",
     "en": "Grid-connection paperwork that fills itself in"
   },
-  "slug": { "_type": "slug", "current": "pratiche-connessione-automatiche" },
+  "slug": { "_type": "slug", "current": "automated-grid-connection-paperwork" },
   "sector": {
     "_type": "localeString",
     "it": "Installatore fotovoltaico",

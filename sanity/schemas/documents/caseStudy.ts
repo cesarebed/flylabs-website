@@ -19,7 +19,7 @@ export const caseStudy = defineType({
     defineField({
       name: "slug",
       title: "Indirizzo della pagina (slug)",
-      description: "Ultima parte dell'URL, es. /lavori/studio-dentistico.",
+      description: "Ultima parte dell'URL, es. /work/studio-dentistico.",
       type: "slug",
       options: { source: (doc) => (doc.title as { it?: string })?.it ?? "" },
       validation: (rule) => rule.required(),

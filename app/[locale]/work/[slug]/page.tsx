@@ -13,6 +13,7 @@ import { cases } from "@/lib/cases-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { caseStudyArticleLd, siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
+import { caseSlug, caseSlugCandidates } from "@/lib/case-slugs";
 import { sanityFetch } from "@/sanity/fetch";
 import { getSiteSettings } from "@/sanity/site-settings";
 import { landing } from "@/lib/landing-content";
@@ -38,13 +39,15 @@ export async function generateStaticParams() {
     query: CASE_STUDY_SLUGS_QUERY,
     tags: ["caseStudy"],
   });
-  return slugs.filter(Boolean).map((slug) => ({ slug }));
+  return slugs
+    .filter((slug): slug is string => Boolean(slug))
+    .map((slug) => ({ slug: caseSlug(slug) }));
 }
 
 async function getStudy(slug: string) {
   return sanityFetch<CASE_STUDY_BY_SLUG_QUERY_RESULT>({
     query: CASE_STUDY_BY_SLUG_QUERY,
-    params: { slug },
+    params: { slugs: caseSlugCandidates(slug) },
     tags: ["caseStudy"],
   });
 }
@@ -60,17 +63,17 @@ export async function generateMetadata({
   // Caso inesistente: niente canonical (prima puntava alla home, segnale in
   // contraddizione con il noindex) e un titolo che dice cosa è successo. Il
   // noindex lo inietta già Next per notFound(): ripeterlo qui duplicava il
-  // meta. Lo status resta 200 finché lavori/[slug]/loading.tsx (e
-  // lavori/loading.tsx) aprono lo streaming prima di notFound().
+  // meta. Lo status resta 200 finché work/[slug]/loading.tsx (e
+  // work/loading.tsx) aprono lo streaming prima di notFound().
   if (!study) {
     return { title: { absolute: cases.notFound.metaTitle[lang] } };
   }
   return buildMetadata(lang, {
     title: `${pickLocale(study.title, lang)} | flylabs.ai`,
     description: pickLocale(study.solution, lang),
-    path: `/lavori/${slug}`,
+    path: `/work/${slug}`,
     // OG del caso (./opengraph-image.tsx), con alt che ne descrive il testo.
-    ogImage: `/${lang}/lavori/${slug}/opengraph-image`,
+    ogImage: `/${lang}/work/${slug}/opengraph-image`,
     ogImageAlt: [pickLocale(study.sector, lang), pickLocale(study.problem, lang)]
       .filter(Boolean)
       .join(": "),
@@ -89,14 +92,14 @@ export default async function CaseStudyPage({
 
   const coverAlt = pickLocale(study.coverAlt, lang) || pickLocale(study.title, lang);
 
-  // "Caso successivo": il seguente nello stesso ordine di /lavori (dal più
+  // "Caso successivo": il seguente nello stesso ordine di /work (dal più
   // recente), ricominciando dal primo dopo l'ultimo. Stessa query della
   // lista, quindi stessa cache e stesso tag di revalidation.
   const allStudies = await sanityFetch<CASE_STUDIES_QUERY_RESULT>({
     query: CASE_STUDIES_QUERY,
     tags: ["caseStudy"],
   });
-  const position = allStudies.findIndex((s) => s.slug === slug);
+  const position = allStudies.findIndex((s) => s.slug && caseSlug(s.slug) === slug);
   const nextStudy =
     allStudies.length > 1 && position !== -1
       ? allStudies[(position + 1) % allStudies.length]
@@ -105,7 +108,7 @@ export default async function CaseStudyPage({
 
   const siteUrl = await getSiteUrl();
   const bookingUrl = (await getSiteSettings())?.bookingUrl;
-  const pageUrl = `${siteUrl}/${lang}/lavori/${slug}`;
+  const pageUrl = `${siteUrl}/${lang}/work/${slug}`;
   // Le stesse immagini mostrate in pagina (cover + diagrammi nella lingua
   // giusta), riusate nel JSON-LD dell'articolo.
   const ldImages = [
@@ -123,8 +126,8 @@ export default async function CaseStudyPage({
     <PageShell lang={lang}>
       <JsonLd
         data={siteBreadcrumbLd(siteUrl, lang, [
-          { name: cases.kicker[lang], path: "/lavori" },
-          { name: pickLocale(study.title, lang), path: `/lavori/${slug}` },
+          { name: cases.kicker[lang], path: "/work" },
+          { name: pickLocale(study.title, lang), path: `/work/${slug}` },
         ])}
       />
       <JsonLd
@@ -141,7 +144,7 @@ export default async function CaseStudyPage({
       />
       <article className="mx-auto max-w-3xl px-6 py-[80px]">
         <Link
-          href={`/${lang}/lavori`}
+          href={`/${lang}/work`}
           className="mb-5 inline-flex items-center gap-1.5 text-sm font-medium text-ink/60 hover:text-ink"
         >
           {cases.backToList[lang]}
@@ -294,7 +297,7 @@ export default async function CaseStudyPage({
                 // "·" e non ":": diversi titoli contengono già i due punti
                 // ("Caso successivo: WeGrocery: la piattaforma...").
                 label: `${cases.closing.caseStudy.next[lang]} · ${pickLocale(nextStudy.title, lang)}`,
-                href: `/${lang}/lavori/${nextStudy.slug}`,
+                href: `/${lang}/work/${caseSlug(nextStudy.slug)}`,
               }
             : undefined
         }

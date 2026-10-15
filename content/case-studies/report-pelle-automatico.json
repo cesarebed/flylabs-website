@@ -6,7 +6,7 @@
     "it": "Il referto diventa una presentazione pronta in pochi minuti",
     "en": "The skin report turns into a ready deck in minutes"
   },
-  "slug": { "_type": "slug", "current": "report-medico-automatico" },
+  "slug": { "_type": "slug", "current": "automated-medical-report" },
   "sector": {
     "_type": "localeString",
     "it": "Medicina estetica",

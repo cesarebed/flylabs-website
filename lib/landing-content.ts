@@ -84,11 +84,11 @@ type Section = { kicker: Localized; title: Localized };
 
 // Link "visto in produzione" dentro una card di "Cosa costruiamo": un
 // prodotto flylabs (con logo) o un caso reale. I casi puntano allo slug
-// Sanity del `caseStudy` (`/lavori/<slug>`), hardcoded qui: se lo slug
+// Sanity del `caseStudy` (`/work/<slug>`), hardcoded qui: se lo slug
 // cambia nello Studio va aggiornato a mano.
 export type BuildCardLink = {
   label: Localized;
-  href: string; // path interno ("/lavori/...", "/wegrocery") o URL esterno
+  href: string; // path interno ("/work/...", "/wegrocery") o URL esterno
   logo?: string; // path in /public — presente solo per i prodotti flylabs
   external?: boolean;
 };
@@ -113,12 +113,12 @@ export type OfferTrack = {
   includes: Localized[]; // cosa c'è dentro davvero (3 voci)
   featured?: boolean; // evidenzia il binario di punta
   cta: Localized; // CTA del binario: una per scelta, non tre "Parliamone" uguali
-  // Approfondimento usato solo dalla pagina /servizi: per chi è e come va.
+  // Approfondimento usato solo dalla pagina /services: per chi è e come va.
   who: Localized;
   steps: Localized[];
-  // id dell'<article> su /servizi (deep link: /servizi#formazione).
+  // id dell'<article> su /services (deep link: /services#training).
   anchor?: string;
-  // "Vedi un esempio reale" su /servizi: path interno di un caso (o della lista).
+  // "Vedi un esempio reale" su /services: path interno di un caso (o della lista).
   example?: string;
 };
 
@@ -199,7 +199,7 @@ export const landing = {
           // della struttura, l'operatore la rivede e la pubblica.
           id: "recensioni",
           tab: { it: "Recensioni", en: "Reviews" },
-          caseHref: "/lavori/risposte-recensioni-ai",
+          caseHref: "/work/ai-review-replies",
           sector: { it: "Struttura ricettiva · Sardegna", en: "Hospitality · Sardinia" },
           flow: { it: "Risposte alle recensioni", en: "Review replies" },
           flowMeta: { it: "bozze di oggi", en: "today's drafts" },
@@ -245,7 +245,7 @@ export const landing = {
           // lo studio. Qui il passo umano è "subentri", non "approvi".
           id: "messaggi",
           tab: { it: "Messaggi", en: "Messages" },
-          caseHref: "/lavori/form-whatsapp-promo-conversione",
+          caseHref: "/work/website-form-to-whatsapp-promo",
           sector: { it: "Studio di tatuaggi · Spagna", en: "Tattoo studio · Spain" },
           flow: { it: "Richieste dal sito", en: "Website enquiries" },
           flowMeta: { it: "su WhatsApp", en: "on WhatsApp" },
@@ -292,7 +292,7 @@ export const landing = {
           // Nessun dato sanitario, nessuna promessa clinica.
           id: "documenti",
           tab: { it: "Documenti", en: "Documents" },
-          caseHref: "/lavori/report-medico-automatico",
+          caseHref: "/work/automated-medical-report",
           sector: { it: "Medicina estetica", en: "Aesthetic medicine" },
           flow: { it: "Referti dei pazienti", en: "Patient reports" },
           flowMeta: { it: "presentazioni", en: "decks" },
@@ -367,7 +367,7 @@ export const landing = {
               it: "Caso: noleggio bici, USA",
               en: "Case: bike rental, USA",
             },
-            href: "/lavori/assistenti-noleggio-multisito",
+            href: "/work/multi-site-rental-assistant",
           },
         ],
       },
@@ -391,7 +391,7 @@ export const landing = {
               it: "Caso: studio tatuaggi, Spagna",
               en: "Case: tattoo studio, Spain",
             },
-            href: "/lavori/form-whatsapp-promo-conversione",
+            href: "/work/website-form-to-whatsapp-promo",
           },
         ],
       },
@@ -415,7 +415,7 @@ export const landing = {
               it: "Caso: medicina estetica",
               en: "Case: aesthetic medicine",
             },
-            href: "/lavori/report-medico-automatico",
+            href: "/work/automated-medical-report",
           },
         ],
       },
@@ -436,7 +436,7 @@ export const landing = {
               it: "Caso: installatore fotovoltaico",
               en: "Case: solar installer",
             },
-            href: "/lavori/pratiche-connessione-automatiche",
+            href: "/work/automated-grid-connection-paperwork",
           },
         ],
       },
@@ -476,7 +476,7 @@ export const landing = {
               it: "Esempio open source: second brain aziendale",
               en: "Open-source example: company second brain",
             },
-            href: "/lavori/second-brain-aziendale",
+            href: "/work/company-second-brain",
           },
         ],
       },
@@ -529,7 +529,7 @@ export const landing = {
               it: "Caso: struttura ricettiva, Sardegna",
               en: "Case: hospitality, Sardinia",
             },
-            href: "/lavori/risposte-recensioni-ai",
+            href: "/work/ai-review-replies",
           },
         ],
       },
@@ -550,7 +550,7 @@ export const landing = {
               it: "Caso: formazione AI in aula",
               en: "Case: AI training in the classroom",
             },
-            href: "/lavori/formazione-ai-in-aula",
+            href: "/work/in-person-ai-training",
           },
         ],
       },
@@ -584,11 +584,11 @@ export const landing = {
       next: { it: "Caso successivo", en: "Next case" },
       region: { it: "Casi di successo", en: "Case studies" },
     },
-    // Link alla pagina archivio /lavori, sotto il carosello dei casi Sanity
+    // Link alla pagina archivio /work, sotto il carosello dei casi Sanity
     // (issue #13) e anche quando non ce n'è nessuno in evidenza.
     allLink: {
       label: { it: "Tutti i lavori →", en: "All work →" },
-      href: "/lavori",
+      href: "/work",
     },
   },
 
@@ -689,8 +689,8 @@ export const landing = {
           },
         ],
         cta: { it: "Organizziamo la formazione\u00a0→", en: "Let's plan the training\u00a0→" },
-        anchor: "formazione",
-        example: "/lavori/formazione-ai-in-aula",
+        anchor: "training",
+        example: "/work/in-person-ai-training",
       },
       {
         kind: { it: "soluzione", en: "solution" },
@@ -739,8 +739,8 @@ export const landing = {
           },
         ],
         cta: { it: "Raccontaci il processo\u00a0→", en: "Tell us about your process\u00a0→" },
-        anchor: "chiavi-in-mano",
-        example: "/lavori/pratiche-connessione-automatiche",
+        anchor: "turnkey",
+        example: "/work/automated-grid-connection-paperwork",
       },
       {
         kind: { it: "consulenza", en: "consulting" },
@@ -784,13 +784,13 @@ export const landing = {
           },
         ],
         cta: { it: "Chiedi una sessione\u00a0→", en: "Ask for a session\u00a0→" },
-        anchor: "consulenza",
-        example: "/lavori",
+        anchor: "consulting",
+        example: "/work",
       },
     ] satisfies OfferTrack[],
     deepLink: {
       label: { it: "Vedi i servizi nel dettaglio →", en: "See our services in detail →" },
-      href: "/servizi",
+      href: "/services",
     },
   },
 
@@ -955,7 +955,7 @@ export const landing = {
       },
       link: {
         label: { it: "guarda i nostri lavori", en: "browse our work" },
-        href: "/lavori",
+        href: "/work",
       },
       after: { it: ".", en: "." },
       // Mostrato solo se su Sanity c'è il link di prenotazione.
@@ -1035,7 +1035,7 @@ export const landing = {
     ],
   },
 
-  // Pagina /servizi: approfondimento dei tre modi di lavorare insieme.
+  // Pagina /services: approfondimento dei tre modi di lavorare insieme.
   // I contenuti dei binari vivono in `offer.tracks` (who/steps/includes):
   // qui stanno solo le etichette e la cornice della pagina.
   services: {
@@ -1837,7 +1837,7 @@ export const landing = {
         it: "Caso reale: come lo usa una struttura ricettiva in Sardegna →",
         en: "Real case: how a hospitality business in Sardinia uses it →",
       },
-      href: "/lavori/risposte-recensioni-ai",
+      href: "/work/ai-review-replies",
     },
     back: { it: "← Tutti i prodotti", en: "← All products" },
   },
@@ -2080,13 +2080,13 @@ export const landing = {
         it: "Caso reale: un gruppo d'acquisto a Milano →",
         en: "Real case: a buying club in Milan →",
       },
-      href: "/lavori/wegrocery-ordini-di-gruppo",
+      href: "/work/wegrocery-group-orders",
     },
     back: { it: "← Tutti i prodotti", en: "← All products" },
   },
 
   // Pagina prodotto di GPT Chatbot (richiesta Federico 2026-10-15). Prima la
-  // card di /prodotti portava dritta a gptchatbot.it: ora c'è una pagina come
+  // card di /products portava dritta a gptchatbot.it: ora c'è una pagina come
   // per gli altri prodotti, con i link veri a gptchatbot.it per iscriversi.
   // Testi solo da quello che gptchatbot.it dichiara (home e funzionalità,
   // verificate il 2026-10-15): niente numeri d'uso, niente casi di altri.
@@ -2335,11 +2335,11 @@ export const landing = {
     caseLinks: [
       {
         label: { it: "Caso reale: noleggio bici, USA →", en: "Real case: bike rental, USA →" },
-        href: "/lavori/assistenti-noleggio-multisito",
+        href: "/work/multi-site-rental-assistant",
       },
       {
         label: { it: "Caso reale: studio tatuaggi, Spagna →", en: "Real case: tattoo studio, Spain →" },
-        href: "/lavori/form-whatsapp-promo-conversione",
+        href: "/work/website-form-to-whatsapp-promo",
       },
     ],
     back: { it: "← Tutti i prodotti", en: "← All products" },
@@ -2381,9 +2381,9 @@ export const landing = {
     navLabel: { it: "Link del sito", en: "Site links" },
     nav: [
       { href: "", label: { it: "Home", en: "Home" } },
-      { href: "/lavori", label: { it: "Lavori", en: "Work" } },
-      { href: "/servizi", label: { it: "Servizi", en: "Services" } },
-      { href: "/prodotti", label: { it: "Prodotti", en: "Products" } },
+      { href: "/work", label: { it: "Lavori", en: "Work" } },
+      { href: "/services", label: { it: "Servizi", en: "Services" } },
+      { href: "/products", label: { it: "Prodotti", en: "Products" } },
       { href: "/stack", label: { it: "Stack", en: "Stack" } },
     ],
   },

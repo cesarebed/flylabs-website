@@ -17,6 +17,7 @@ import { CaseCard } from "@/components/landing/case-card";
 import { ClosingCta } from "@/components/landing/closing-cta";
 import { PageHeader } from "@/components/landing/page-header";
 import { PageShell } from "@/components/landing/page-shell";
+import { caseSlug } from "@/lib/case-slugs";
 
 export const revalidate = 3600;
 
@@ -31,7 +32,7 @@ export async function generateMetadata({
   return buildMetadata(lang, {
     title: m.title,
     description: m.description,
-    path: "/lavori",
+    path: "/work",
   });
 }
 
@@ -52,7 +53,7 @@ export default async function CasesPage({
     <PageShell lang={lang}>
       <JsonLd
         data={siteBreadcrumbLd(siteUrl, lang, [
-          { name: cases.kicker[lang], path: "/lavori" },
+          { name: cases.kicker[lang], path: "/work" },
         ])}
       />
 
@@ -73,7 +74,7 @@ export default async function CasesPage({
                 headingLevel="h2"
                 item={{
                   id: study._id,
-                  href: `/${lang}/lavori/${study.slug}`,
+                  href: `/${lang}/work/${caseSlug(study.slug)}`,
                   title: pickLocale(study.title, lang),
                   sector: pickLocale(study.sector, lang),
                   problem: pickLocale(study.problem, lang),

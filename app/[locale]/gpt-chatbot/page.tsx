@@ -68,13 +68,13 @@ export default async function GptChatbotProductPage({
     <PageShell lang={lang}>
       <JsonLd
         data={siteBreadcrumbLd(siteUrl, lang, [
-          { name: landing.products.kicker[lang], path: "/prodotti" },
+          { name: landing.products.kicker[lang], path: "/products" },
           { name: title[lang], path: "/gpt-chatbot" },
         ])}
       />
 
       <PageHeader
-        back={{ href: `/${lang}/prodotti`, label: landing.products.kicker[lang] }}
+        back={{ href: `/${lang}/products`, label: landing.products.kicker[lang] }}
         logo={
           <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-white">
             <Image src={logo} alt="" width={56} height={56} className="object-contain" />
@@ -353,7 +353,7 @@ export default async function GptChatbotProductPage({
 
           <div className="mt-10">
             <Link
-              href={`/${lang}/prodotti`}
+              href={`/${lang}/products`}
               className="text-sm font-medium text-white/60 transition-colors hover:text-white"
             >
               {back[lang]}

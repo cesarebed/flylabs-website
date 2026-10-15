@@ -61,7 +61,7 @@ export async function Footer({ lang }: { lang: Locale }) {
             <Link href={`/${lang}/cookie-policy`} className="hover:text-mark">
               Cookie policy
             </Link>
-            <Link href={`/${lang}/termini`} className="hover:text-mark">
+            <Link href={`/${lang}/terms`} className="hover:text-mark">
               {lang === "en" ? "Terms" : "Termini"}
             </Link>
             <ManageCookiesLink

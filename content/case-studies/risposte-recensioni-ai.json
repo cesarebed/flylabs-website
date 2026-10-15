@@ -6,7 +6,7 @@
     "it": "Risposte alle recensioni preparate dall'AI, nel tono della struttura",
     "en": "AI-drafted review replies, in the house tone"
   },
-  "slug": { "_type": "slug", "current": "risposte-recensioni-ai" },
+  "slug": { "_type": "slug", "current": "ai-review-replies" },
   "sector": {
     "_type": "localeString",
     "it": "Struttura ricettiva · Sardegna",

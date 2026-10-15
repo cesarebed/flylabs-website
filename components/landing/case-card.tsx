@@ -16,7 +16,7 @@ export type CaseCardData = {
 
 /**
  * Card di un caso di successo, condivisa fra il carosello in home (h3) e la
- * lista /lavori (h2). Nessun hook: gira sia lato server sia dentro il
+ * lista /work (h2). Nessun hook: gira sia lato server sia dentro il
  * carosello client.
  *
  * Il link vero è solo "Leggi il caso", allargato a tutta la card con un

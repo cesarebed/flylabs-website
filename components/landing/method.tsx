@@ -4,7 +4,7 @@ import { landing } from "@/lib/landing-content";
 export function Method({ lang }: { lang: Locale }) {
   const { section, steps } = landing.method;
   return (
-    <section id="metodo" className="dark-section py-16 text-white md:py-24 lg:py-[120px]">
+    <section id="method" className="dark-section py-16 text-white md:py-24 lg:py-[120px]">
       <div className="mx-auto max-w-[1120px] px-6">
         <h2 className="mb-10 font-display text-4xl font-semibold leading-tight md:mb-14">
           {section.title[lang]}

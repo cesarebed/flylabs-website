@@ -24,7 +24,7 @@ export async function generateMetadata({
   return buildMetadata(lang, {
     title: m.title,
     description: m.description,
-    path: "/servizi",
+    path: "/services",
   });
 }
 
@@ -44,7 +44,7 @@ export default async function ServicesPage({
     <PageShell lang={lang}>
       <JsonLd
         data={siteBreadcrumbLd(siteUrl, lang, [
-          { name: kicker[lang], path: "/servizi" },
+          { name: kicker[lang], path: "/services" },
         ])}
       />
       <JsonLd

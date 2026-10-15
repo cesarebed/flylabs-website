@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { defaultLocale, isLocale, pickLocale, pickLocaleLoose, type Locale } from "@/lib/i18n";
+import { caseSlugCandidates } from "@/lib/case-slugs";
 import { sanityFetch } from "@/sanity/fetch";
 import { CASE_STUDY_BY_SLUG_QUERY } from "@/sanity/queries";
 import type { CASE_STUDY_BY_SLUG_QUERY_RESULT } from "@/sanity.types";
@@ -28,7 +29,7 @@ export default async function Image({
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const study = await sanityFetch<CASE_STUDY_BY_SLUG_QUERY_RESULT>({
     query: CASE_STUDY_BY_SLUG_QUERY,
-    params: { slug },
+    params: { slugs: caseSlugCandidates(slug) },
     tags: ["caseStudy"],
   });
 

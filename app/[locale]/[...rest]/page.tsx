@@ -13,7 +13,7 @@ import { landing } from "@/lib/landing-content";
 // 404 grezza di Next, non su global-not-found (che risponde solo agli URL che
 // non corrispondono a nessuna route, e con questo catch-all non ne restano).
 // Era già così per /xyz prima di questo file. dynamicParams = false sul
-// layout lo risolverebbe, ma viene ereditato da lavori/[slug] e farebbe 404
+// layout lo risolverebbe, ma viene ereditato da work/[slug] e farebbe 404
 // ai casi pubblicati dopo la build (provato): serve un proxy che riscriva i
 // path senza lingua.
 //
