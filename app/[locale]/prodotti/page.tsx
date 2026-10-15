@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { isLocale, defaultLocale, type Locale } from "@/lib/i18n";
-import { landing } from "@/lib/landing-content";
+import { landing, type Product } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { cases } from "@/lib/cases-content";
 import { siteBreadcrumbLd } from "@/lib/structured-data";
@@ -43,10 +43,11 @@ export default async function ProductsPage({
     philosophyTitle,
     philosophyBody,
     modes,
-    items,
     cardCtaInternal,
     cardCtaExternal,
   } = landing.products;
+  // Tipo esplicito: oggi nessun prodotto è esterno, ma la card lo supporta.
+  const items: Product[] = landing.products.items;
   const siteUrl = await getSiteUrl();
 
   return (

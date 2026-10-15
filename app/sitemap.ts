@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/lavori" },
     { path: "/servizi" },
     { path: "/prodotti" },
+    { path: "/gpt-chatbot" },
     { path: "/stellar-reviews" },
     { path: "/wegrocery" },
     { path: "/stack" },

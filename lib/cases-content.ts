@@ -62,9 +62,8 @@ export const cases = {
     bySlug: {
       "risposte-recensioni-ai": { name: "Stellar Reviews", href: "/stellar-reviews" },
       "wegrocery-ordini-di-gruppo": { name: "WeGrocery", href: "/wegrocery" },
-      // GPT Chatbot non ha una pagina flylabs: la sua card sta su /prodotti.
-      "assistenti-noleggio-multisito": { name: "GPT Chatbot", href: "/prodotti" },
-      "form-whatsapp-promo-conversione": { name: "GPT Chatbot", href: "/prodotti" },
+      "assistenti-noleggio-multisito": { name: "GPT Chatbot", href: "/gpt-chatbot" },
+      "form-whatsapp-promo-conversione": { name: "GPT Chatbot", href: "/gpt-chatbot" },
     } as Partial<Record<string, { name: string; href: string }>>,
   },
 

@@ -359,9 +359,8 @@ export const landing = {
         links: [
           {
             label: { it: "GPT Chatbot", en: "GPT Chatbot" },
-            href: "https://gptchatbot.it/",
+            href: "/gpt-chatbot",
             logo: "/logos/gpt-chatbot.png",
-            external: true,
           },
           {
             label: {
@@ -1545,8 +1544,7 @@ export const landing = {
           en: "AI chatbot trained on your content, live on your site in minutes.",
         },
         sector: { it: "Assistenza e vendita online", en: "Support and online sales" },
-        href: "https://gptchatbot.it/",
-        external: true,
+        href: "/gpt-chatbot",
         note: {
           it: "È lo stesso chatbot che vedi in basso a destra su questo sito.",
           en: "It's the same chatbot you see in the bottom-right corner of this site.",
@@ -2084,6 +2082,266 @@ export const landing = {
       },
       href: "/lavori/wegrocery-ordini-di-gruppo",
     },
+    back: { it: "← Tutti i prodotti", en: "← All products" },
+  },
+
+  // Pagina prodotto di GPT Chatbot (richiesta Federico 2026-10-15). Prima la
+  // card di /prodotti portava dritta a gptchatbot.it: ora c'è una pagina come
+  // per gli altri prodotti, con i link veri a gptchatbot.it per iscriversi.
+  // Testi solo da quello che gptchatbot.it dichiara (home e funzionalità,
+  // verificate il 2026-10-15): niente numeri d'uso, niente casi di altri.
+  gptChatbotProduct: {
+    meta: {
+      it: {
+        title: "GPT Chatbot: chatbot e agenti AI addestrati sui tuoi dati | flylabs.ai",
+        description:
+          "GPT Chatbot è il nostro chatbot AI per sito, WhatsApp, Instagram e Messenger: addestrato sui tuoi contenuti, risponde ai clienti, prenota e passa la conversazione a una persona quando serve. Provalo gratis con 100 crediti, senza carta.",
+      },
+      en: {
+        title: "GPT Chatbot: AI chatbots and agents trained on your data | flylabs.ai",
+        description:
+          "GPT Chatbot is our AI chatbot for your website, WhatsApp, Instagram and Messenger: trained on your content, it answers customers, books appointments and hands the chat to a person when needed. Try it free with 100 credits, no card required.",
+      },
+    },
+    title: { it: "GPT Chatbot", en: "GPT Chatbot" },
+    logo: "/logos/gpt-chatbot.png",
+    tagline: {
+      it: "Il chatbot AI addestrato sui tuoi contenuti, che risponde ai tuoi clienti sul sito, su WhatsApp e su Instagram. Anche di notte.",
+      en: "The AI chatbot trained on your content that answers your customers on your website, WhatsApp and Instagram. Even at night.",
+    },
+    // Fatti dichiarati su gptchatbot.it (hero e chiusura della home).
+    facts: [
+      { it: "100 crediti gratis", en: "100 free credits" },
+      { it: "Senza carta", en: "No card required" },
+      { it: "Attivo in 10 minuti", en: "Live in 10 minutes" },
+    ] satisfies Localized[],
+    // Link veri al sito del prodotto, per lingua, senza UTM.
+    app: {
+      start: {
+        label: { it: "Provalo gratis su gptchatbot.it", en: "Try it free on gptchatbot.it" },
+        href: { it: "https://gptchatbot.it/it", en: "https://gptchatbot.it" },
+      },
+      pricing: {
+        label: { it: "Vedi i prezzi", en: "See pricing" },
+        href: { it: "https://gptchatbot.it/it/prezzi", en: "https://gptchatbot.it/pricing" },
+      },
+    },
+    mediaTitle: { it: "GPT Chatbot in azione", en: "GPT Chatbot in action" },
+    media: {
+      // Registrato dalla demo animata della home di gptchatbot.it (sito girato
+      // in locale), una versione per lingua: le conversazioni sono di esempio.
+      demoVideo: {
+        src: { it: "/products/gpt-chatbot/demo-it.mp4", en: "/products/gpt-chatbot/demo-en.mp4" },
+        poster: {
+          it: "/products/gpt-chatbot/demo-it-poster.jpg",
+          en: "/products/gpt-chatbot/demo-en-poster.jpg",
+        },
+        caption: {
+          it: "Tre conversazioni di esempio, dalla demo di gptchatbot.it",
+          en: "Three sample conversations, from the gptchatbot.it demo",
+        },
+        transcript: {
+          it: "Cosa mostra il video: tre conversazioni di esempio con tre attività diverse. In una boutique il cliente chiede se un vestito è disponibile nella sua taglia: il chatbot controlla il magazzino, cita le fonti, lo tiene da parte e manda il link per il pagamento. In uno studio dentistico risponde sul costo di un trattamento leggendo il listino, propone due appuntamenti e lo aggiunge al calendario. In un noleggio bici verifica la disponibilità per il giorno dopo, propone caschi e assicurazione e conferma la prenotazione con il totale.",
+          en: "What the video shows: three sample conversations with three different businesses. In a boutique the customer asks whether a dress is available in their size: the chatbot checks the stock, cites its sources, holds the item and sends the checkout link. In a dental clinic it answers about the cost of a treatment from the price list, offers two appointment slots and adds the booking to the calendar. In a bike rental it checks availability for the next day, offers helmets and insurance and confirms the booking with the total.",
+        },
+      },
+      realChat: {
+        src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg" },
+        caption: {
+          it: "Una conversazione vera con l'assistente di questo sito",
+          en: "A real conversation with this site's assistant",
+        },
+        alt: {
+          it: "Conversazione reale con l'assistente di flylabs.ai: a una domanda sulle richieste WhatsApp serali risponde che si possono gestire H24 con un assistente AI.",
+          en: "Real conversation with the flylabs.ai assistant: asked about evening WhatsApp messages, it explains they can be handled 24/7 by an AI assistant.",
+        },
+      },
+    },
+    note: {
+      it: "È lo stesso chatbot che vedi in basso a destra: aprilo e fagli una domanda.",
+      en: "It's the same chatbot you see in the bottom-right corner: open it and ask a question.",
+    },
+    stepsTitle: { it: "Come funziona", en: "How it works" },
+    steps: [
+      {
+        title: { it: "Carica i tuoi contenuti", en: "Add your content" },
+        body: {
+          it: "Pagine del sito, PDF, Word, Excel, video YouTube e Google Drive. Quando i contenuti cambiano, il chatbot si aggiorna da solo.",
+          en: "Website pages, PDF, Word, Excel, YouTube videos and Google Drive. When your content changes, the chatbot updates itself.",
+        },
+      },
+      {
+        title: { it: "Configura gli agenti", en: "Set up the agents" },
+        body: {
+          it: "Scegli agenti, strumenti e regole. Un supervisore AI passa ogni domanda all'agente giusto (vendite, supporto, prenotazioni) e capisce quando serve una persona.",
+          en: "Choose agents, tools and rules. An AI supervisor routes each question to the right agent (sales, support, bookings) and knows when a person is needed.",
+        },
+      },
+      {
+        title: { it: "Pubblicalo sui tuoi canali", en: "Publish it on your channels" },
+        body: {
+          it: "Sito web, WhatsApp, Instagram e Messenger, con un solo sistema e lo stesso contesto su ogni canale.",
+          en: "Website, WhatsApp, Instagram and Messenger, from one system with the same context on every channel.",
+        },
+      },
+    ],
+    screensTitle: { it: "Le schermate", en: "The screens" },
+    screensIntro: {
+      it: "Dal sito di GPT Chatbot: come gli agenti si dividono il lavoro e dove puoi collegarli.",
+      en: "From the GPT Chatbot website: how the agents split the work and where you can connect them.",
+    },
+    screens: [
+      {
+        src: { it: "/products/gpt-chatbot/screens/orchestration-it.webp", en: "/products/gpt-chatbot/screens/orchestration-en.webp" },
+        width: 1800,
+        height: 1030,
+        caption: { it: "Un supervisore AI e gli agenti specializzati", en: "An AI supervisor and specialised agents" },
+        alt: {
+          it: "Schema dell'orchestrazione degli agenti: un supervisore AI monitora la conversazione e la passa all'agente vendite, supporto o prenotazioni.",
+          en: "Agent orchestration diagram: an AI supervisor monitors the conversation and routes it to the sales, support or booking agent.",
+        },
+      },
+      {
+        src: { it: "/products/gpt-chatbot/screens/integrations-it.webp", en: "/products/gpt-chatbot/screens/integrations-en.webp" },
+        width: 1940,
+        height: 1210,
+        caption: { it: "I canali e le integrazioni", en: "Channels and integrations" },
+        alt: {
+          it: "Elenco delle integrazioni: sito, WhatsApp Business, Instagram, Facebook Messenger, Slack, Discord, Zapier, Make, n8n, HubSpot, Salesforce, Shopify, Stripe, Notion, calendari e strumenti Google e Microsoft.",
+          en: "List of integrations: website, WhatsApp Business, Instagram, Facebook Messenger, Slack, Discord, Zapier, Make, n8n, HubSpot, Salesforce, Shopify, Stripe, Notion, calendars and Google and Microsoft tools.",
+        },
+      },
+    ],
+    problem: {
+      it: "I clienti scrivono a ogni ora e su canali diversi, spesso con le stesse domande. Rispondere a mano toglie tempo al lavoro vero, e chi non riceve una risposta subito va altrove.",
+      en: "Customers write at all hours and on different channels, often with the same questions. Answering by hand takes time away from real work, and anyone who doesn't get a quick answer goes elsewhere.",
+    },
+    solution: {
+      it: "Un chatbot che conosce la tua attività perché è addestrato sui tuoi contenuti: risponde subito, cita le fonti, fa azioni come prenotare o mandare un'email e passa la conversazione a una persona quando serve.",
+      en: "A chatbot that knows your business because it's trained on your content: it answers right away, cites its sources, takes actions like booking or sending an email, and hands the chat to a person when needed.",
+    },
+    featuresTitle: { it: "Cosa fa", en: "What it does" },
+    featureGroups: [
+      {
+        icon: "lucide:database",
+        title: { it: "Addestrato sui tuoi dati", en: "Trained on your data" },
+        items: [
+          {
+            it: "Documenti PDF, Word, Excel, CSV e testo, pagine web, video YouTube, immagini e Google Drive",
+            en: "PDF, Word, Excel, CSV and text documents, web pages, YouTube videos, images and Google Drive",
+          },
+          {
+            it: "Si riaddestra da solo quando i tuoi contenuti cambiano",
+            en: "Retrains on its own when your content changes",
+          },
+          {
+            it: "Risposte con la citazione della fonte, per sapere da dove viene ogni informazione",
+            en: "Answers that cite their source, so you know where each piece of information comes from",
+          },
+          {
+            it: "Strumenti per rivedere e ripulire i contenuti e trovare le lacune",
+            en: "Tools to review and clean up the content and spot knowledge gaps",
+          },
+        ] satisfies Localized[],
+      },
+      {
+        icon: "lucide:workflow",
+        title: { it: "Agenti che fanno, non solo rispondono", en: "Agents that act, not just answer" },
+        items: [
+          {
+            it: "Un supervisore AI smista ogni domanda all'agente specializzato più adatto",
+            en: "An AI supervisor routes each question to the best-suited specialised agent",
+          },
+          {
+            it: "Chiama i tuoi strumenti e le tue API: prenota appuntamenti, gestisce resi, manda email",
+            en: "Calls your tools and APIs: books appointments, processes returns, sends emails",
+          },
+          {
+            it: "Webhook per collegarlo a qualsiasi sistema e automatizzare i flussi",
+            en: "Webhooks to connect it to any system and automate workflows",
+          },
+          {
+            it: "Modelli GPT, Claude, Gemini e DeepSeek, scelti agente per agente",
+            en: "GPT, Claude, Gemini and DeepSeek models, chosen agent by agent",
+          },
+        ] satisfies Localized[],
+      },
+      {
+        icon: "lucide:messages-square",
+        title: { it: "Dove sono i tuoi clienti", en: "Where your customers are" },
+        items: [
+          {
+            it: "Sito web, WhatsApp Business, Instagram, Facebook Messenger, Slack e Discord",
+            en: "Website, WhatsApp Business, Instagram, Facebook Messenger, Slack and Discord",
+          },
+          {
+            it: "Integrazioni con Zapier, Make, n8n, HubSpot, Salesforce, Shopify, Stripe e Notion",
+            en: "Integrations with Zapier, Make, n8n, HubSpot, Salesforce, Shopify, Stripe and Notion",
+          },
+          {
+            it: "Calendari Calendly, TidyCal, Google Calendar e Outlook per le prenotazioni",
+            en: "Calendly, TidyCal, Google Calendar and Outlook calendars for bookings",
+          },
+          {
+            it: "Il tuo marchio: immagine, colori, stile dei messaggi e benvenuto, in white label",
+            en: "Your brand: avatar, colours, bubble style and welcome message, fully white-label",
+          },
+        ] satisfies Localized[],
+      },
+      {
+        icon: "lucide:shield-check",
+        title: { it: "Sotto il tuo controllo", en: "Under your control" },
+        items: [
+          {
+            it: "Passaggio a un operatore con tutta la conversazione, quando la domanda lo richiede",
+            en: "Handover to a live agent with the full conversation, when the question calls for it",
+          },
+          {
+            it: "Analisi delle conversazioni, segnali di frustrazione e tasso di risoluzione",
+            en: "Conversation analytics, frustration signals and resolution rates",
+          },
+          {
+            it: "Verifica dell'identità del cliente e protezione dei dati sensibili",
+            en: "Customer identity verification and protection of sensitive data",
+          },
+          {
+            it: "Validazione umana delle risposte, per contenuti affidabili",
+            en: "Human-in-the-loop validation of answers, for reliable content",
+          },
+        ] satisfies Localized[],
+      },
+    ],
+    allFeatures: {
+      label: { it: "Tutte le funzionalità su gptchatbot.it →", en: "Every feature on gptchatbot.it →" },
+      href: { it: "https://gptchatbot.it/it/funzionalita", en: "https://gptchatbot.it/features" },
+    },
+    modesTitle: { it: "Come lo attivi", en: "How to get it" },
+    modeSaas: {
+      title: { it: "Self-service", en: "Self-service" },
+      body: {
+        it: "Ti iscrivi su gptchatbot.it e crei il tuo chatbot da solo, in pochi minuti. Parti gratis con 100 crediti, senza carta, e disdici quando vuoi.",
+        en: "Sign up on gptchatbot.it and build your chatbot yourself, in a few minutes. Start free with 100 credits, no card, and cancel anytime.",
+      },
+    },
+    modeCustom: {
+      title: { it: "Implementazione su misura", en: "Custom implementation" },
+      body: {
+        it: "Lo configuriamo noi sulla tua attività: contenuti, agenti, integrazioni con i tuoi strumenti e canali come WhatsApp. Poi lo seguiamo e lo miglioriamo con te.",
+        en: "We set it up around your business: content, agents, integrations with your tools and channels like WhatsApp. Then we look after it and improve it with you.",
+      },
+      cta: { it: "Parliamo del tuo progetto", en: "Let's talk about your project" },
+    },
+    // Casi pubblicati costruiti con GPT Chatbot (stesse etichette di "Cosa costruiamo").
+    caseLinks: [
+      {
+        label: { it: "Caso reale: noleggio bici, USA →", en: "Real case: bike rental, USA →" },
+        href: "/lavori/assistenti-noleggio-multisito",
+      },
+      {
+        label: { it: "Caso reale: studio tatuaggi, Spagna →", en: "Real case: tattoo studio, Spain →" },
+        href: "/lavori/form-whatsapp-promo-conversione",
+      },
+    ],
     back: { it: "← Tutti i prodotti", en: "← All products" },
   },
 
