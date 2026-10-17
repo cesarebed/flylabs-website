@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { getSiteSettings } from "@/sanity/site-settings";
 import { ManageCookiesLink } from "@/components/consent/manage-cookies-link";
-import { LogoMark } from "./logo-mark";
+import { Logo } from "./logo";
 
 export async function Footer({ lang }: { lang: Locale }) {
   const settings = await getSiteSettings();
@@ -32,12 +32,7 @@ export async function Footer({ lang }: { lang: Locale }) {
       <div className="mx-auto max-w-[1120px] px-6 py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
-            <div className="mb-3 flex items-center gap-2 font-display text-2xl font-bold">
-              <LogoMark className="h-6 w-6" />
-              <span>
-                flylabs<span className="logo-ai">.ai</span>
-              </span>
-            </div>
+            <Logo variant="dark" className="mb-4 h-9 w-auto" />
             <p className="max-w-xs text-sm text-white/50">{landing.footer.tagline[lang]}</p>
           </div>
 

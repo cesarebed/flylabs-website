@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Logo } from "@/components/landing/logo";
 import { fontVars } from "@/lib/fonts";
 import "./globals.css";
 
@@ -27,9 +28,7 @@ export default function GlobalNotFound() {
       <body className="min-h-full flex flex-col">
         <main className="dark-paper flex flex-1 items-center justify-center px-6 py-24 text-white">
           <div className="max-w-lg text-center">
-            <div className="mb-8 font-display text-2xl font-bold">
-              flylabs<span className="logo-ai">.ai</span>
-            </div>
+            <Logo variant="dark" className="mx-auto mb-8 h-9 w-auto" />
             <div className="kicker mb-4 text-white/60">404</div>
             <h1 className="mb-5 font-display text-4xl font-semibold leading-tight">
               Pagina non trovata.

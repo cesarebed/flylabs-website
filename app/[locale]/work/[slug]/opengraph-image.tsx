@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { OG_LOGO_RATIO, ogLogoDark } from "@/lib/og-logo";
 import { defaultLocale, isLocale, pickLocale, pickLocaleLoose, type Locale } from "@/lib/i18n";
 import { caseSlugCandidates } from "@/lib/case-slugs";
 import { sanityFetch } from "@/sanity/fetch";
@@ -57,6 +58,7 @@ export default async function Image({
   }
 
   const metric = study.metrics?.[0];
+  const logo = await ogLogoDark();
 
   return new ImageResponse(
     (
@@ -74,9 +76,7 @@ export default async function Image({
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "baseline", fontSize: 30, fontWeight: 700, color: "#fff" }}>
-          flylabs<span style={{ color: "#a5a8f7" }}>.ai</span>
-        </div>
+        <img src={logo} alt="flylabs.ai" height={44} width={Math.round(44 * OG_LOGO_RATIO)} />
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div

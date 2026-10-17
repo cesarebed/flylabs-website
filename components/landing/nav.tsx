@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { landing } from "@/lib/landing-content";
 import { LangToggle } from "./lang-toggle";
-import { LogoMark } from "./logo-mark";
+import { Logo } from "./logo";
 
 /**
  * Nav sitewide: prima viveva solo nella homepage e linkava le sezioni della
@@ -134,12 +134,9 @@ export function Nav({
       <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-6">
         <Link
           href={`/${lang}`}
-          className="flex shrink-0 items-center gap-2 font-display text-2xl font-bold tracking-tight max-[379px]:text-xl"
+          className="flex shrink-0 items-center"
         >
-          <LogoMark className="h-6 w-6 max-[379px]:h-5 max-[379px]:w-5" />
-          <span>
-            flylabs<span className="logo-ai">.ai</span>
-          </span>
+          <Logo variant="light" className="h-9 w-auto" />
         </Link>
 
         <nav
