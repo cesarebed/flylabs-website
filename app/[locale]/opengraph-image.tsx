@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
 import { DEFAULT_OG_ALT } from "@/lib/seo";
+import { OG_LOGO_RATIO, ogLogoDark } from "@/lib/og-logo";
 
 // L'export statico non è localizzabile: l'alt per lingua lo emette
 // buildMetadata (lib/seo.ts), che dichiara sempre og:image esplicita.
@@ -43,6 +44,7 @@ export default async function Image({
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const c = COPY[lang];
+  const logo = await ogLogoDark();
 
   return new ImageResponse(
     (
@@ -60,19 +62,7 @@ export default async function Image({
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            fontSize: 34,
-            fontWeight: 700,
-            color: "#fff",
-            letterSpacing: -0.5,
-          }}
-        >
-          flylabs
-          <span style={{ color: "#a5a8f7" }}>.ai</span>
-        </div>
+        <img src={logo} alt="flylabs.ai" height={48} width={Math.round(48 * OG_LOGO_RATIO)} />
 
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 920 }}>
           <div

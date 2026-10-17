@@ -1,5 +1,7 @@
 "use client";
 
+import { Logo } from "@/components/landing/logo";
+
 // Error boundary di fallback per l'intero sito sotto [locale] (home,
 // servizi, stack, privacy): prima d'ora solo work/ ne aveva uno, le altre
 // pagine mostravano la schermata di errore grezza di Next. Bilingue per lo
@@ -9,9 +11,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
     <main className="dark-paper flex flex-1 items-center justify-center px-6 py-24 text-white">
       <div className="max-w-lg text-center">
-        <div className="mb-8 font-display text-2xl font-bold">
-          flylabs<span className="logo-ai">.ai</span>
-        </div>
+        <Logo variant="dark" className="mx-auto mb-8 h-9 w-auto" />
         <h1 className="mb-5 font-display text-4xl font-semibold leading-tight">
           Qualcosa è andato storto.
           <br />
