@@ -78,6 +78,31 @@ MUST NOT pushare direttamente su `main`, mai force-push su `main`.
 
 ---
 
+## FlyLabs Kit
+
+Questo sito segue in parte il Playbook FlyLabs: https://github.com/flylabs-ai/flylabs-kit/blob/main/PLAYBOOK.md
+(repo interna all'organizzazione flylabs-ai). Il sito è marketing, non una web app: valgono le regole di stile
+del capitolo 2 sui token e sul contrasto, non quelle pensate per le app. Prima di una scelta di stile usa la skill
+`flylabs-playbook`.
+
+- `flylabs-kit.json` dichiara la versione del kit applicata, i moduli copiati e quelli non adottati con il motivo.
+  La Action `.github/workflows/kit-sync.yml` lo confronta ogni lunedì con l'ultimo kit e tiene aperta la issue
+  "FlyLabs Kit: allineamento" finché manca qualcosa (Playbook 9.7). Serve il secret `FLYLABS_KIT_TOKEN`
+  (fine-grained, "Contents: Read" su `flylabs-ai/flylabs-kit`); senza, il job avvisa e salta.
+- Modulo `tema`: solo `lib/contrast.ts` e il test di contrasto (`lib/theme-contrast.test.ts`), non la scelta del tema.
+
+Scostamenti voluti:
+
+| Regola | Oggi | Motivo |
+|---|---|---|
+| 2.2 Nomi dei token | `accent` è il blu del brand e `muted` il grigio del testo, non le superfici di shadcn | i nomi del sito vengono prima; i ruoli del kit sono alias in `app/globals.css` |
+| 2.3 Due temi | un solo tema chiaro, con sezioni scure come ritmo | sito marketing, un selettore non serve |
+| 2.7 shadcn e lucide | componenti propri (`btn-ink`, card, kicker...) | il sito non ha form o dialoghi complessi |
+| 2.8 Navigazione | nav del sito | regola per le app |
+| 2.9 Card senza ombra | card con lift e ombra, sfondi a punti e aloni | il Playbook lascia bagliori e gradienti alle pagine pubbliche |
+
+---
+
 ## CMS (Sanity)
 
 **Cosa va nel CMS e cosa nel codice**: se è un contenuto che ha senso modificare senza riaprire l'editor di codice (testi, immagini, liste di card/testimonianze/FAQ, link dei social, parametri di branding), va in Sanity. Layout, struttura, comportamento e stile restano nel codice. Non hardcodare un testo che ha senso poter cambiare via Studio.
