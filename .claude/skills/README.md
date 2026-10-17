@@ -9,3 +9,4 @@ Claude Code le trova da solo (frontmatter `description` di ogni `SKILL.md`), que
 | [`excalidraw-diagram`](excalidraw-diagram/SKILL.md) | Disegnare o esportare (bilingue IT/EN) un diagramma di flusso per un use case — di solito prima di `use-case-publish` |
 | [`visual-check`](visual-check/SKILL.md) | Dopo ogni modifica UI, prima di dichiararla finita |
 | [`design-taste-frontend`](design-taste-frontend/SKILL.md) | Redesign o audit visivo della landing e delle pagine (anti-slop, audit prima di cambiare) |
+| [`flylabs-playbook`](flylabs-playbook/SKILL.md) | Prima di una PR o di una scelta di stile/stack: controllo contro il Playbook di FlyLabs Kit (copiata dal kit, non modificarla qui: si aggiorna con `--sync-skills`) |

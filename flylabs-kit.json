@@ -1,0 +1,13 @@
+{
+  "app": "flylabs-website",
+  "kit": "0.11",
+  "modules": {
+    "tema": "1.0"
+  },
+  "notAdopted": {
+    "changelog": "sito marketing: niente changelog per gli utenti",
+    "console": "nessuna console né statistiche firmate: il sito non ha utenti iscritti",
+    "email": "il sito non manda email brandizzate (il form salva su Sanity)",
+    "guida": "nessuna guida in-app: è un sito marketing"
+  }
+}
