@@ -28,6 +28,25 @@
   --color-peri: #a5a8f7;
   --color-dark: #131217;
 
+  /* Token per ruolo del Playbook FlyLabs Kit (regola 2.2, nomi shadcn):
+     alias dei colori qui sopra, così sito e web app parlano la stessa
+     lingua e un cambio di palette si fa una volta sola. Non cambiano
+     niente a vista. Due nomi shadcn restano fuori di proposito, perché qui
+     hanno già un altro significato: `accent` è il blu del brand (in shadcn
+     è lo sfondo di hover) e `muted` è il grigio del testo (in shadcn è una
+     superficie). Il blu per ruolo è `primary`, il grigio `muted-foreground`.
+     Contrasto misurato in lib/contrast.test.ts. */
+  --color-background: var(--color-paper);
+  --color-foreground: var(--color-ink);
+  --color-card: #ffffff;
+  --color-card-foreground: var(--color-ink);
+  --color-primary: var(--color-accent);
+  --color-primary-foreground: #ffffff;
+  --color-primary-text: var(--color-accent);
+  --color-muted-foreground: var(--color-muted);
+  --color-border: var(--color-line);
+  --color-ring: var(--color-accent);
+
   --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
