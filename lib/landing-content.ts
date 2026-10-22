@@ -1947,7 +1947,7 @@ export const landing = {
         sector: { it: "No-profit, gruppi d'acquisto", en: "Non-profit, buying clubs", es: "Sin ánimo de lucro, grupos de compra", fr: "Associations, groupements d'achat" },
         href: "/wegrocery",
         preview: {
-          src: { it: "/products/wegrocery/preview-it.webp", en: "/products/wegrocery/preview-en.webp", es: "/products/wegrocery/preview-en.webp", fr: "/products/wegrocery/preview-en.webp" },
+          src: { it: "/products/wegrocery/preview-it.webp", en: "/products/wegrocery/preview-en.webp", es: "/products/wegrocery/preview-es.webp", fr: "/products/wegrocery/preview-fr.webp" },
           alt: {
             it: "Tre schermate di WeGrocery da telefono: il saldo del socio, l'ordine del ciclo aperto e la ricarica online con carta.",
             en: "Three WeGrocery phone screens: the member's balance, the order for the open cycle and the online card top-up.",
@@ -2302,12 +2302,12 @@ export const landing = {
     media: {
       // Video di lancio fatto con HyperFrames (HTML + GSAP renderizzato in MP4).
       launchVideo: {
-        src: { it: "/products/wegrocery/launch-it.mp4", en: "/products/wegrocery/launch-en.mp4", es: "/products/wegrocery/launch-en.mp4", fr: "/products/wegrocery/launch-en.mp4" },
+        src: { it: "/products/wegrocery/launch-it.mp4", en: "/products/wegrocery/launch-en.mp4", es: "/products/wegrocery/launch-es.mp4", fr: "/products/wegrocery/launch-fr.mp4" },
         poster: {
           it: "/products/wegrocery/launch-it-poster.jpg",
           en: "/products/wegrocery/launch-en-poster.jpg",
-          es: "/products/wegrocery/launch-en-poster.jpg",
-          fr: "/products/wegrocery/launch-en-poster.jpg",
+          es: "/products/wegrocery/launch-es-poster.jpg",
+          fr: "/products/wegrocery/launch-fr-poster.jpg",
         },
         caption: {
           it: "Video di lancio di WeGrocery",
@@ -2320,8 +2320,8 @@ export const landing = {
         transcript: {
           it: "Cosa mostra il video: ogni settimana lo stesso foglio di calcolo, con errori nelle formule. WeGrocery, rifatta da capo, mette ordini di gruppo, pagamenti e conti in un'unica app. Per i soci: il saldo sempre in vista e l'ordine in pochi tocchi. Pagamenti online con carta via Stripe: ricarica del saldo, pagamento per ordine, conguaglio e rimborsi sulla carta. Per gli admin: cicli, cassa e statistiche in un unico pannello. Conti che tornano: le correzioni non riscrivono la storia dei movimenti, pagamenti, rimborsi e addebiti sono verificati ogni notte e la chiusura del ciclo è tutto o niente. E poi ordini in famiglia, app sul telefono, guida con ricerca, italiano e inglese. Open source con licenza MIT: il tuo gruppo, il tuo marchio.",
           en: "What the video shows: every week, the same spreadsheet with broken formulas. WeGrocery, rebuilt from scratch, puts group orders, payments and accounts in one app. For members: the balance always in view and orders in a few taps. Online card payments through Stripe: balance top-ups, pay per order, settling up with refunds to the card. For admins: cycles, treasury and stats in one panel. Accounts that add up: corrections never rewrite the ledger's history, payments, refunds and charges are verified every night, and closing a cycle is all or nothing. Plus family orders, a phone app, a searchable guide, Italian and English. Open source under the MIT licence: your group, your brand.",
-          es: "Qué muestra el vídeo: cada semana, la misma hoja de cálculo con fórmulas rotas. WeGrocery, rehecha desde cero, reúne pedidos de grupo, pagos y cuentas en una sola app. Para los socios: el saldo siempre a la vista y pedidos en pocos toques. Pagos online con tarjeta a través de Stripe: recargas de saldo, pago por pedido, ajustes con reembolsos a la tarjeta. Para los administradores: ciclos, caja y estadísticas en un solo panel. Cuentas que cuadran: las correcciones nunca reescriben el historial del libro de cuentas, pagos, reembolsos y cargos se verifican cada noche, y el cierre de un ciclo es todo o nada. Además pedidos familiares, app para el móvil, guía con buscador, italiano e inglés. Open source con licencia MIT: tu grupo, tu marca.",
-          fr: "Ce que montre la vidéo : chaque semaine, le même tableur aux formules cassées. WeGrocery, reconstruite de zéro, réunit commandes groupées, paiements et comptes dans une seule application. Pour les membres : le solde toujours visible et des commandes en quelques gestes. Paiements en ligne par carte via Stripe : recharges du solde, paiement à la commande, régularisations avec remboursement sur la carte. Pour les administrateurs : cycles, trésorerie et statistiques dans un seul panneau. Des comptes justes : les corrections ne réécrivent jamais l'historique du registre, paiements, remboursements et prélèvements sont vérifiés chaque nuit, et la clôture d'un cycle se fait en tout ou rien. En plus : commandes familiales, application mobile, guide avec recherche, italien et anglais. Open source sous licence MIT : votre groupe, votre marque.",
+          es: "Qué muestra el vídeo: cada semana, la misma hoja de cálculo con fórmulas rotas. WeGrocery, rehecha desde cero, reúne pedidos de grupo, pagos y cuentas en una sola app. Para los socios: el saldo siempre a la vista y pedidos en pocos toques. Pagos online con tarjeta a través de Stripe: recargas de saldo, pago por pedido, ajustes con reembolsos a la tarjeta. Para los administradores: ciclos, caja y estadísticas en un solo panel. Cuentas que cuadran: las correcciones nunca reescriben el historial del libro de cuentas, pagos, reembolsos y cargos se verifican cada noche, y el cierre de un ciclo es todo o nada. Además pedidos familiares, app para el móvil, guía con buscador, cuatro idiomas. Código abierto con licencia MIT: tu grupo, tu marca.",
+          fr: "Ce que montre la vidéo : chaque semaine, le même tableur aux formules cassées. WeGrocery, reconstruite de zéro, réunit commandes groupées, paiements et comptes dans une seule application. Pour les membres : le solde toujours visible et des commandes en quelques gestes. Paiements en ligne par carte via Stripe : recharges du solde, paiement à la commande, régularisations avec remboursement sur la carte. Pour les administrateurs : cycles, trésorerie et statistiques dans un seul panneau. Des comptes justes : les corrections ne réécrivent jamais l'historique du registre, paiements, remboursements et prélèvements sont vérifiés chaque nuit, et la clôture d'un cycle se fait en tout ou rien. En plus : commandes familiales, application mobile, guide avec recherche, quatre langues. Open source sous licence MIT : votre groupe, votre marque.",
         },
       },
     },
@@ -2348,12 +2348,12 @@ export const landing = {
     screensIntro: {
       it: "Dalla demo pubblica, con dati finti. Il socio usa l'app dal telefono, l'admin anche dal computer.",
       en: "From the public demo, with fake data. Members use the app on their phone, admins on a computer too.",
-      es: "De la demo pública, con datos ficticios (interfaz en inglés). Los socios usan la app en el móvil, los administradores también en el ordenador.",
-      fr: "Tiré de la démo publique, avec des données fictives (interface en anglais). Les membres utilisent l'application sur leur téléphone, les administrateurs aussi sur ordinateur.",
+      es: "De la app en español, con datos ficticios. Los socios usan la app en el móvil, los administradores también en el ordenador.",
+      fr: "Tiré de l'app en français, avec des données fictives. Les membres utilisent l'application sur leur téléphone, les administrateurs aussi sur ordinateur.",
     },
     phoneScreens: [
       {
-        src: { it: "/products/wegrocery/screens/home-it.webp", en: "/products/wegrocery/screens/home-en.webp", es: "/products/wegrocery/screens/home-en.webp", fr: "/products/wegrocery/screens/home-en.webp" },
+        src: { it: "/products/wegrocery/screens/home-it.webp", en: "/products/wegrocery/screens/home-en.webp", es: "/products/wegrocery/screens/home-es.webp", fr: "/products/wegrocery/screens/home-fr.webp" },
         caption: { it: "Saldo e prossimo ritiro", en: "Balance and next pickup", es: "Saldo y próxima recogida", fr: "Solde et prochain retrait" },
         alt: {
           it: "Home del socio: saldo di 90 euro, costo dell'ordine in corso e saldo dopo l'ordine, prossimo ritiro tra 7 giorni.",
@@ -2363,7 +2363,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/order-edit-it.webp", en: "/products/wegrocery/screens/order-edit-en.webp", es: "/products/wegrocery/screens/order-edit-en.webp", fr: "/products/wegrocery/screens/order-edit-en.webp" },
+        src: { it: "/products/wegrocery/screens/order-edit-it.webp", en: "/products/wegrocery/screens/order-edit-en.webp", es: "/products/wegrocery/screens/order-edit-es.webp", fr: "/products/wegrocery/screens/order-edit-fr.webp" },
         caption: { it: "L'ordine del ciclo aperto", en: "The open cycle's order", es: "El pedido del ciclo abierto", fr: "La commande du cycle ouvert" },
         alt: {
           it: "Modulo d'ordine: prodotti per categoria con i pulsanti più e meno, totale dell'ordine e saldo dopo l'ordine.",
@@ -2373,7 +2373,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/topup-it.webp", en: "/products/wegrocery/screens/topup-en.webp", es: "/products/wegrocery/screens/topup-en.webp", fr: "/products/wegrocery/screens/topup-en.webp" },
+        src: { it: "/products/wegrocery/screens/topup-it.webp", en: "/products/wegrocery/screens/topup-en.webp", es: "/products/wegrocery/screens/topup-es.webp", fr: "/products/wegrocery/screens/topup-fr.webp" },
         caption: { it: "Ricarica con carta, via Stripe", en: "Card top-up, through Stripe", es: "Recarga con tarjeta, a través de Stripe", fr: "Recharge par carte, via Stripe" },
         alt: {
           it: "Pagina Ricarica il saldo: importi rapidi da 25, 50 e 100 euro e il pulsante Paga che apre il pagamento Stripe.",
@@ -2383,7 +2383,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/guide-it.webp", en: "/products/wegrocery/screens/guide-en.webp", es: "/products/wegrocery/screens/guide-en.webp", fr: "/products/wegrocery/screens/guide-en.webp" },
+        src: { it: "/products/wegrocery/screens/guide-it.webp", en: "/products/wegrocery/screens/guide-en.webp", es: "/products/wegrocery/screens/guide-es.webp", fr: "/products/wegrocery/screens/guide-fr.webp" },
         caption: { it: "Guida con ricerca", en: "Searchable guide", es: "Guía con buscador", fr: "Guide avec recherche" },
         alt: {
           it: "Guida dell'app: casella di ricerca e argomenti come Primi passi, Ordinare, Saldo e pagamenti, Notifiche.",
@@ -2395,7 +2395,7 @@ export const landing = {
     ],
     desktopScreens: [
       {
-        src: { it: "/products/wegrocery/screens/admin-cash-it.webp", en: "/products/wegrocery/screens/admin-cash-en.webp", es: "/products/wegrocery/screens/admin-cash-en.webp", fr: "/products/wegrocery/screens/admin-cash-en.webp" },
+        src: { it: "/products/wegrocery/screens/admin-cash-it.webp", en: "/products/wegrocery/screens/admin-cash-en.webp", es: "/products/wegrocery/screens/admin-cash-es.webp", fr: "/products/wegrocery/screens/admin-cash-fr.webp" },
         caption: { it: "Admin: la cassa", en: "Admin: the treasury", es: "Admin: la caja", fr: "Admin : la trésorerie" },
         alt: {
           it: "Pannello admin, scheda Cassa: saldo totale e medio dei soci, nuova ricarica, movimento in uscita e saldi dei soci per ruolo.",
@@ -2405,7 +2405,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/admin-stats-it.webp", en: "/products/wegrocery/screens/admin-stats-en.webp", es: "/products/wegrocery/screens/admin-stats-en.webp", fr: "/products/wegrocery/screens/admin-stats-en.webp" },
+        src: { it: "/products/wegrocery/screens/admin-stats-it.webp", en: "/products/wegrocery/screens/admin-stats-en.webp", es: "/products/wegrocery/screens/admin-stats-es.webp", fr: "/products/wegrocery/screens/admin-stats-fr.webp" },
         caption: { it: "Admin: le statistiche", en: "Admin: the stats", es: "Admin: las estadísticas", fr: "Admin : les statistiques" },
         alt: {
           it: "Pannello admin, scheda Statistiche: cicli chiusi, soci attivi, spesa totale, prodotto più ordinato e classifica dei 10 prodotti più ordinati.",
