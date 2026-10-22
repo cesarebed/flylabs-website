@@ -2545,10 +2545,10 @@ export const landing = {
             fr: "Un contrôle nocturne des paiements, remboursements et prélèvements, plus des sauvegardes automatiques de la base de données",
           },
           {
-            it: "Nome, logo, colori e lingua (italiano o inglese) del tuo gruppo da una sola configurazione, senza toccare il codice",
-            en: "Your group's name, logo, colours and language (Italian or English) from one setting, with no code changes",
-            es: "Nombre, logo, colores e idioma de tu grupo (italiano o inglés) desde un solo ajuste, sin tocar el código",
-            fr: "Nom, logo, couleurs et langue de votre groupe (italien ou anglais) depuis un seul réglage, sans toucher au code",
+            it: "Nome, logo, colori e lingua (italiano, inglese, spagnolo o francese) del tuo gruppo da una sola configurazione, senza toccare il codice",
+            en: "Your group's name, logo, colours and language (Italian, English, Spanish or French) from one setting, with no code changes",
+            es: "Nombre, logo, colores e idioma de tu grupo (italiano, inglés, español o francés) desde un solo ajuste, sin tocar el código",
+            fr: "Nom, logo, couleurs et langue de votre groupe (italien, anglais, espagnol ou français) depuis un seul réglage, sans toucher au code",
           },
         ] satisfies Localized[],
       },
@@ -2639,11 +2639,11 @@ export const landing = {
     app: {
       start: {
         label: { it: "Provalo gratis su gptchatbot.it", en: "Try it free on gptchatbot.it", es: "Pruébalo gratis en gptchatbot.it", fr: "Essayez-le gratuitement sur gptchatbot.it" },
-        href: { it: "https://gptchatbot.it/it", en: "https://gptchatbot.it", es: "https://gptchatbot.it/es", fr: "https://gptchatbot.it" },
+        href: { it: "https://gptchatbot.it/it", en: "https://gptchatbot.it", es: "https://gptchatbot.it/es", fr: "https://gptchatbot.it/fr" },
       },
       pricing: {
         label: { it: "Vedi i prezzi", en: "See pricing", es: "Ver precios", fr: "Voir les tarifs" },
-        href: { it: "https://gptchatbot.it/it/prezzi", en: "https://gptchatbot.it/pricing", es: "https://gptchatbot.it/es/precios", fr: "https://gptchatbot.it/pricing" },
+        href: { it: "https://gptchatbot.it/it/prezzi", en: "https://gptchatbot.it/pricing", es: "https://gptchatbot.it/es/precios", fr: "https://gptchatbot.it/fr/tarifs" },
       },
     },
     mediaTitle: { it: "GPT Chatbot in azione", en: "GPT Chatbot in action", es: "GPT Chatbot en acción", fr: "GPT Chatbot en action" },
@@ -2893,7 +2893,7 @@ export const landing = {
     ],
     allFeatures: {
       label: { it: "Tutte le funzionalità su gptchatbot.it →", en: "Every feature on gptchatbot.it →", es: "Todas las funciones en gptchatbot.it →", fr: "Toutes les fonctionnalités sur gptchatbot.it →" },
-      href: { it: "https://gptchatbot.it/it/funzionalita", en: "https://gptchatbot.it/features", es: "https://gptchatbot.it/es/funcionalidades", fr: "https://gptchatbot.it/features" },
+      href: { it: "https://gptchatbot.it/it/funzionalita", en: "https://gptchatbot.it/features", es: "https://gptchatbot.it/es/funcionalidades", fr: "https://gptchatbot.it/fr/fonctionnalites" },
     },
     modesTitle: { it: "Come lo attivi", en: "How to get it", es: "Cómo activarlo", fr: "Comment l'activer" },
     modeSaas: {
