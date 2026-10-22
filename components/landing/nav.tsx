@@ -156,7 +156,7 @@ export function Nav({
           ))}
         </nav>
 
-        <div className="flex items-center gap-1.5 md:gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <div className="hidden md:block">
             <LangToggle lang={lang} />
           </div>
@@ -176,7 +176,7 @@ export function Nav({
             aria-expanded={open}
             aria-controls={MENU_ID}
             aria-label={menuLabel}
-            className="-mr-2 flex h-10 w-10 items-center justify-center text-ink md:hidden"
+            className="-mr-3 flex h-12 w-12 items-center justify-center text-ink md:hidden"
           >
             <MenuGlyph open={open} />
           </button>
