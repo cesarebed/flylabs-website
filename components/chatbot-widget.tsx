@@ -4,6 +4,7 @@ import { useMotionValueEvent, useScroll } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useConsent } from "./consent/consent-provider";
 import { trackEvent } from "@/lib/google-analytics";
+import { defaultLocale, isLocale } from "@/lib/i18n";
 
 // Assistente flylabs.ai, ospitato sulla piattaforma gpt-trainer (via
 // gptchatbot.it). L'UUID identifica il chatbot pubblico (non è un segreto).
@@ -47,6 +48,18 @@ const labels = {
     note: "Chat with an AI · enables third-party cookies",
     aria: "Open the AI assistant (enables the provider's cookies)",
     loading: "Loading the assistant",
+  },
+  es: {
+    pill: "Asistente IA",
+    note: "Chat con una IA · activa cookies de terceros",
+    aria: "Abrir el asistente IA (activa las cookies del proveedor)",
+    loading: "Cargando el asistente",
+  },
+  fr: {
+    pill: "Assistant IA",
+    note: "Chat avec une IA · active des cookies tiers",
+    aria: "Ouvrir l'assistant IA (active les cookies du fournisseur)",
+    loading: "Chargement de l'assistant",
   },
 };
 
@@ -126,7 +139,7 @@ export function ChatbotWidget({ lang }: { lang: string }) {
   // (prima il banner), oppure il widget vero è caricato (evita doppia bollicina).
   if ((bannerOpen && !decided) || loaded) return spacer;
 
-  const t = labels[lang === "en" ? "en" : "it"];
+  const t = labels[isLocale(lang) ? lang : defaultLocale];
 
   return (
     <>

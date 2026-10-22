@@ -5,6 +5,16 @@ import { getSiteSettings } from "@/sanity/site-settings";
 import { ManageCookiesLink } from "@/components/consent/manage-cookies-link";
 import { Logo } from "./logo";
 
+const LEGAL_LABELS: Record<
+  Locale,
+  { privacy: string; cookies: string; terms: string; manage: string }
+> = {
+  it: { privacy: "Privacy", cookies: "Cookie policy", terms: "Termini", manage: "Gestisci cookie" },
+  en: { privacy: "Privacy", cookies: "Cookie policy", terms: "Terms", manage: "Manage cookies" },
+  es: { privacy: "Privacidad", cookies: "Cookies", terms: "Términos", manage: "Gestionar cookies" },
+  fr: { privacy: "Confidentialité", cookies: "Cookies", terms: "Conditions", manage: "Gérer les cookies" },
+};
+
 export async function Footer({ lang }: { lang: Locale }) {
   const settings = await getSiteSettings();
   // Compaiono solo i link con dati reali su Sanity: se un campo è vuoto il
@@ -51,16 +61,16 @@ export async function Footer({ lang }: { lang: Locale }) {
               </Link>
             ))}
             <Link href={`/${lang}/privacy`} className="hover:text-mark">
-              Privacy
+              {LEGAL_LABELS[lang].privacy}
             </Link>
             <Link href={`/${lang}/cookie-policy`} className="hover:text-mark">
-              Cookie policy
+              {LEGAL_LABELS[lang].cookies}
             </Link>
             <Link href={`/${lang}/terms`} className="hover:text-mark">
-              {lang === "en" ? "Terms" : "Termini"}
+              {LEGAL_LABELS[lang].terms}
             </Link>
             <ManageCookiesLink
-              label={lang === "en" ? "Manage cookies" : "Gestisci cookie"}
+              label={LEGAL_LABELS[lang].manage}
               className="cursor-pointer hover:text-mark"
             />
             {socialLinks.map((link) => (

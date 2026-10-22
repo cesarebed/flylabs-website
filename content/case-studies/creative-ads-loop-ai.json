@@ -4,23 +4,34 @@
   "title": {
     "_type": "localeString",
     "it": "Creative pubblicitarie sempre fresche, senza autopilota",
-    "en": "Always-fresh ad creatives, without autopilot"
+    "en": "Always-fresh ad creatives, without autopilot",
+    "es": "Creatividades publicitarias siempre frescas, sin piloto automático",
+    "fr": "Des créations publicitaires toujours fraîches, sans pilote automatique"
   },
-  "slug": { "_type": "slug", "current": "ai-ad-creative-loop" },
+  "slug": {
+    "_type": "slug",
+    "current": "ai-ad-creative-loop"
+  },
   "sector": {
     "_type": "localeString",
     "it": "Retail",
-    "en": "Retail"
+    "en": "Retail",
+    "es": "Retail",
+    "fr": "Commerce"
   },
   "problem": {
     "_type": "localeText",
     "it": "Le creative si consumano in fretta e produrne di nuove richiedeva giorni.",
-    "en": "Ad creatives wear out fast, and producing new ones took days."
+    "en": "Ad creatives wear out fast, and producing new ones took days.",
+    "es": "Las creatividades de los anuncios se desgastan rápido, y producir nuevas llevaba días.",
+    "fr": "Les créations publicitaires s'usent vite, et en produire de nouvelles prenait des jours."
   },
   "solution": {
     "_type": "localeText",
     "it": "Ogni settimana un'AI misura, propone e produce nuove creative; niente va online senza l'ok del cliente.",
-    "en": "Each week an AI measures, proposes and produces new creatives; nothing goes live without the client's OK."
+    "en": "Each week an AI measures, proposes and produces new creatives; nothing goes live without the client's OK.",
+    "es": "Cada semana una IA mide, propone y produce nuevas creatividades; nada se publica sin el visto bueno del cliente.",
+    "fr": "Chaque semaine, une IA mesure, propose et produit de nouvelles créations ; rien n'est mis en ligne sans l'accord du client."
   },
   "metrics": [
     {
@@ -29,16 +40,27 @@
       "value": {
         "_type": "localeString",
         "it": "1 sessione",
-        "en": "1 session"
+        "en": "1 session",
+        "es": "1 sesión",
+        "fr": "1 séance"
       },
       "label": {
         "_type": "localeString",
         "it": "per un giro completo di creative, da giorni",
-        "en": "for a full round of creatives, down from days"
+        "en": "for a full round of creatives, down from days",
+        "es": "para una ronda completa de creatividades, antes días",
+        "fr": "pour une série complète de créations, contre plusieurs jours avant"
       }
     }
   ],
-  "tech": ["Claude Code", "Python", "Meta Marketing API", "MCP", "Higgsfield", "GitHub Actions"],
+  "tech": [
+    "Claude Code",
+    "Python",
+    "Meta Marketing API",
+    "MCP",
+    "Higgsfield",
+    "GitHub Actions"
+  ],
   "featured": true,
   "diagrams": [
     {
@@ -55,19 +77,33 @@
       "alt": {
         "_type": "localeString",
         "it": "Diagramma del loop settimanale: analisi dei gruppi che costano di più, idee di nuovi angoli scelte dall'AI, produzione con foto AI e testo dal codice, approvazione del cliente e messa online controllata con ogni annuncio che nasce in pausa",
-        "en": "Weekly loop diagram: analysis of the ad sets that cost more, new angle ideas chosen by AI, production with AI photos and code-assembled text, client approval and controlled go-live with every ad created paused"
+        "en": "Weekly loop diagram: analysis of the ad sets that cost more, new angle ideas chosen by AI, production with AI photos and code-assembled text, client approval and controlled go-live with every ad created paused",
+        "es": "Diagrama del ciclo semanal: análisis de los conjuntos de anuncios que cuestan más, nuevas ideas de enfoque elegidas por la IA, producción con fotos de IA y textos montados por código, aprobación del cliente y publicación controlada con cada anuncio creado en pausa",
+        "fr": "Schéma de la boucle hebdomadaire : analyse des ensembles de publicités qui coûtent le plus, nouvelles idées d'angle choisies par l'IA, production avec photos IA et textes assemblés par le code, validation du client et mise en ligne contrôlée avec chaque publicité créée en pause"
       },
       "caption": {
         "_type": "localeString",
         "it": "Il loop settimanale: misura, proponi, produci, carica. Il cliente approva piano, creative e messa online.",
-        "en": "The weekly loop: measure, propose, produce, upload. The client signs off on the plan, the creatives and going live."
+        "en": "The weekly loop: measure, propose, produce, upload. The client signs off on the plan, the creatives and going live.",
+        "es": "El ciclo semanal: medir, proponer, producir, subir. El cliente aprueba el plan, las creatividades y la publicación.",
+        "fr": "La boucle hebdomadaire : mesurer, proposer, produire, mettre en ligne. Le client valide le plan, les créations et la mise en ligne."
+      },
+      "es": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/creative-ads-loop-ai-loop-es.png"
+      },
+      "fr": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/creative-ads-loop-ai-loop-fr.png"
       }
     }
   ],
   "body": {
     "_type": "localeText",
     "it": "Le campagne erano gestite in proprio, senza agenzia. Il problema del settore è la fatica creativa: gli annunci si consumano e il costo per contatto sale in silenzio, mentre produrre ricambi è lento. Il cliente voleva tenere il controllo (niente autopilota) senza dover diventare un tecnico.\n\nC'era anche un rischio concreto: l'AI generativa, lasciata libera sulle pubblicità, al primo test ha inventato di sana pianta un brand concorrente dentro una foto. Da lì la regola cardine: l'AI genera solo l'immagine pulita, il testo e i prezzi li monta il codice dal listino ufficiale del cliente. Niente numeri inventati.\n\nOgni settimana un assistente in Claude Code fa il giro completo, con una divisione dei ruoli netta: il codice decide tutto ciò che è misurabile a soglia fissa (quali gruppi costano di più, quando sostituire una creativa, quale vince con che margine statistico); l'AI sceglie l'angolo creativo e controlla il layout; il cliente approva due momenti, il piano e le creative, e poi la messa online, tutto in linguaggio semplice.\n\nNessun annuncio va online da solo: ogni creativa nasce in pausa e l'attivazione è un passo separato che parte solo su ok esplicito. I vincitori, misurati con un verdetto statistico, si propagano agli altri gruppi.",
-    "en": "The campaigns were run in-house, without an agency. The industry's real problem is creative fatigue: ads wear out and the cost per lead climbs silently, while producing replacements is slow. The client wanted to keep control (no autopilot) without having to become a technician.\n\nThere was also a concrete risk: generative AI, left free on ads, invented a competitor brand out of thin air inside a photo on the very first test. Hence the core rule: AI only generates the clean image, while text and prices are assembled by code from the client's official price list. No made-up numbers.\n\nEvery week an assistant in Claude Code runs the full loop, with a clear division of roles: code decides everything measurable against fixed thresholds (which ad sets cost more, when to replace a creative, which one wins and by what statistical margin); AI picks the creative angle and checks the layout; the client signs off at two points, the plan and the creatives, and then on going live, all in plain language.\n\nNothing goes online on its own: every creative is created paused and activation is a separate step that only happens on an explicit OK. Winners, measured with a statistical verdict, propagate to the other ad sets."
+    "en": "The campaigns were run in-house, without an agency. The industry's real problem is creative fatigue: ads wear out and the cost per lead climbs silently, while producing replacements is slow. The client wanted to keep control (no autopilot) without having to become a technician.\n\nThere was also a concrete risk: generative AI, left free on ads, invented a competitor brand out of thin air inside a photo on the very first test. Hence the core rule: AI only generates the clean image, while text and prices are assembled by code from the client's official price list. No made-up numbers.\n\nEvery week an assistant in Claude Code runs the full loop, with a clear division of roles: code decides everything measurable against fixed thresholds (which ad sets cost more, when to replace a creative, which one wins and by what statistical margin); AI picks the creative angle and checks the layout; the client signs off at two points, the plan and the creatives, and then on going live, all in plain language.\n\nNothing goes online on its own: every creative is created paused and activation is a separate step that only happens on an explicit OK. Winners, measured with a statistical verdict, propagate to the other ad sets.",
+    "es": "Las campañas se gestionaban internamente, sin agencia. El verdadero problema del sector es la fatiga creativa: los anuncios se desgastan y el coste por lead sube en silencio, mientras que producir sustitutos es lento. El cliente quería mantener el control (nada de piloto automático) sin tener que convertirse en técnico.\n\nHabía además un riesgo concreto: la IA generativa, libre sobre los anuncios, se inventó de la nada la marca de un competidor dentro de una foto en la primera prueba. De ahí la regla central: la IA solo genera la imagen limpia, mientras que textos y precios los monta el código a partir de la lista de precios oficial del cliente. Nada de cifras inventadas.\n\nCada semana un asistente en Claude Code ejecuta el ciclo completo, con un reparto de papeles claro: el código decide todo lo que es medible con umbrales fijos (qué conjuntos de anuncios cuestan más, cuándo sustituir una creatividad, cuál gana y con qué margen estadístico); la IA elige el enfoque creativo y revisa la maquetación; el cliente aprueba en dos momentos, el plan y las creatividades, y después la publicación, todo en un lenguaje claro.\n\nNada se publica solo: cada creatividad se crea en pausa y la activación es un paso aparte que solo ocurre con un OK explícito. Las ganadoras, medidas con un veredicto estadístico, se extienden a los demás conjuntos de anuncios.",
+    "fr": "Les campagnes étaient gérées en interne, sans agence. Le vrai problème du secteur, c'est la fatigue créative : les publicités s'usent et le coût par prospect grimpe en silence, alors que produire des remplaçantes est lent. Le client voulait garder le contrôle (pas de pilote automatique) sans devoir devenir technicien.\n\nIl y avait aussi un risque concret : l'IA générative, laissée libre sur les publicités, a inventé de toutes pièces la marque d'un concurrent dans une photo dès le premier test. D'où la règle centrale : l'IA ne génère que l'image nette, tandis que textes et prix sont assemblés par le code à partir de la grille tarifaire officielle du client. Aucun chiffre inventé.\n\nChaque semaine, un assistant dans Claude Code exécute toute la boucle, avec une répartition claire des rôles : le code décide de tout ce qui est mesurable selon des seuils fixes (quels ensembles de publicités coûtent le plus, quand remplacer une création, laquelle gagne et avec quelle marge statistique) ; l'IA choisit l'angle créatif et vérifie la mise en page ; le client valide à deux moments, le plan et les créations, puis la mise en ligne, le tout en langage clair.\n\nRien ne part en ligne tout seul : chaque création est créée en pause et l'activation est une étape distincte, qui n'a lieu qu'avec un feu vert explicite. Les gagnantes, mesurées avec un verdict statistique, sont étendues aux autres ensembles de publicités."
   },
   "date": "2026-07-05"
 }

@@ -167,6 +167,20 @@ export const caseStudy = defineType({
               type: "image",
             }),
             defineField({
+              name: "es",
+              title: "Immagine (spagnolo)",
+              description:
+                "Export con i testi in spagnolo. Se manca, la pagina ES mostra la versione inglese.",
+              type: "image",
+            }),
+            defineField({
+              name: "fr",
+              title: "Immagine (francese)",
+              description:
+                "Export con i testi in francese. Se manca, la pagina FR mostra la versione inglese.",
+              type: "image",
+            }),
+            defineField({
               name: "alt",
               title: "Testo alternativo",
               description:

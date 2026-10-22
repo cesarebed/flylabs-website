@@ -69,6 +69,20 @@ export type CaseStudy = {
       crop?: SanityImageCrop;
       _type: "image";
     };
+    es?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    fr?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
     alt?: LocaleString;
     caption?: LocaleString;
     _type: "diagram";
@@ -81,6 +95,8 @@ export type LocaleString = {
   _type: "localeString";
   it?: string;
   en?: string;
+  es?: string;
+  fr?: string;
 };
 
 export type SanityImageCrop = {
@@ -103,6 +119,8 @@ export type LocaleText = {
   _type: "localeText";
   it?: string;
   en?: string;
+  es?: string;
+  fr?: string;
 };
 
 export type Slug = {
@@ -367,7 +385,7 @@ export type FEATURED_CASE_STUDIES_QUERY_RESULT = Array<{
 
 // Source: sanity/queries.ts
 // Variable: CASE_STUDY_BY_SLUG_QUERY
-// Query: *[_type == "caseStudy" && slug.current in $slugs][0]{    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metrics,    tech,    body,    testimonial,    cover,    "coverAlt": cover.alt,    "diagrams": diagrams[]{      _key,      alt,      caption,      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }    },    date,    "updatedAt": _updatedAt  }
+// Query: *[_type == "caseStudy" && slug.current in $slugs][0]{    _id,    title,    "slug": slug.current,    sector,    problem,    solution,    metrics,    tech,    body,    testimonial,    cover,    "coverAlt": cover.alt,    "diagrams": diagrams[]{      _key,      alt,      caption,      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } },      "es": es{ ..., "dims": asset->metadata.dimensions{ width, height } },      "fr": fr{ ..., "dims": asset->metadata.dimensions{ width, height } }    },    date,    "updatedAt": _updatedAt  }
 export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
   _id: string;
   title: LocaleString | null;
@@ -412,6 +430,28 @@ export type CASE_STUDY_BY_SLUG_QUERY_RESULT = {
       } | null;
     } | null;
     en: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      dims: {
+        width: number | null;
+        height: number | null;
+      } | null;
+    } | null;
+    es: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      dims: {
+        width: number | null;
+        height: number | null;
+      } | null;
+    } | null;
+    fr: {
       asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
@@ -467,7 +507,7 @@ declare module "@sanity/client" {
     '*[_type == "siteSettings"][0]{\n    title,\n    description,\n    siteUrl,\n    "ogImage": ogImage.asset->url,\n    socialLinks[]{ _key, label, url },\n    contactEmail,\n    bookingUrl,\n    legalEntities[]{ _key, name, vatNumber, profileUrl }\n  }': SITE_SETTINGS_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc){\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech\n  }': CASE_STUDIES_QUERY_RESULT;
     '*[_type == "caseStudy" && featured == true && defined(slug.current)]\n    | order(coalesce(date, _createdAt) desc){\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech\n  }': FEATURED_CASE_STUDIES_QUERY_RESULT;
-    '*[_type == "caseStudy" && slug.current in $slugs][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    "diagrams": diagrams[]{\n      _key,\n      alt,\n      caption,\n      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },\n      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }\n    },\n    date,\n    "updatedAt": _updatedAt\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;
+    '*[_type == "caseStudy" && slug.current in $slugs][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    sector,\n    problem,\n    solution,\n    metrics,\n    tech,\n    body,\n    testimonial,\n    cover,\n    "coverAlt": cover.alt,\n    "diagrams": diagrams[]{\n      _key,\n      alt,\n      caption,\n      "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },\n      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } },\n      "es": es{ ..., "dims": asset->metadata.dimensions{ width, height } },\n      "fr": fr{ ..., "dims": asset->metadata.dimensions{ width, height } }\n    },\n    date,\n    "updatedAt": _updatedAt\n  }': CASE_STUDY_BY_SLUG_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)].slug.current': CASE_STUDY_SLUGS_QUERY_RESULT;
     '*[_type == "caseStudy" && defined(slug.current)]{\n    "slug": slug.current,\n    "updatedAt": _updatedAt\n  }': CASE_STUDY_SITEMAP_QUERY_RESULT;
     'count(*[_type == "consentEvent" && ipHash == $ipHash && at > $since])': CONSENT_RATE_COUNT_QUERY_RESULT;

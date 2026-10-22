@@ -24,11 +24,16 @@ function NotFoundView({ lang }: { lang: Locale }) {
   );
 }
 
-// Caso non trovato. not-found.tsx non riceve params: le due versioni sono
+// Caso non trovato. not-found.tsx non riceve params: le versioni per lingua sono
 // renderizzate sul server (Nav e Footer compresi) e LocaleSwitch mostra
 // quella della lingua nell'URL.
 export default function NotFound() {
   return (
-    <LocaleSwitch it={<NotFoundView lang="it" />} en={<NotFoundView lang="en" />} />
+    <LocaleSwitch
+      it={<NotFoundView lang="it" />}
+      en={<NotFoundView lang="en" />}
+      es={<NotFoundView lang="es" />}
+      fr={<NotFoundView lang="fr" />}
+    />
   );
 }

@@ -6,6 +6,8 @@ import { MarqueePause } from "./marquee-pause";
 const LABELS: Record<Locale, { pause: string; play: string }> = {
   it: { pause: "Ferma l'animazione dei loghi", play: "Riavvia l'animazione dei loghi" },
   en: { pause: "Stop the logo animation", play: "Restart the logo animation" },
+  es: { pause: "Detener la animación de los logos", play: "Reanudar la animación de los logos" },
+  fr: { pause: "Arrêter l'animation des logos", play: "Relancer l'animation des logos" },
 };
 
 /**

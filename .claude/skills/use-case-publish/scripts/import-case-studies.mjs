@@ -76,7 +76,7 @@ async function main() {
     if (Array.isArray(doc.diagrams)) {
       for (const diagram of doc.diagrams) {
         const prev = existing?.diagrams?.find((d) => d._key === diagram._key);
-        for (const lang of ["it", "en"]) {
+        for (const lang of ["it", "en", "es", "fr"]) {
           const image = diagram[lang];
           if (!image) continue;
           const localFile = image._localFile;

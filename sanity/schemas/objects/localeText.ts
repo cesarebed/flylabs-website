@@ -8,5 +8,7 @@ export const localeText = defineType({
   fields: [
     defineField({ name: "it", title: "Italiano", type: "text", rows: 3 }),
     defineField({ name: "en", title: "English", type: "text", rows: 3 }),
+    defineField({ name: "es", title: "Español", type: "text", rows: 3 }),
+    defineField({ name: "fr", title: "Français", type: "text", rows: 3 }),
   ],
 });

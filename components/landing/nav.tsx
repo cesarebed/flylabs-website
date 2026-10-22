@@ -50,6 +50,13 @@ function MenuGlyph({ open }: { open: boolean }) {
   );
 }
 
+const NAV_LABELS: Record<Locale, { nav: string; open: string; close: string }> = {
+  it: { nav: "Navigazione principale", open: "Apri il menu", close: "Chiudi il menu" },
+  en: { nav: "Primary navigation", open: "Open menu", close: "Close menu" },
+  es: { nav: "Navegación principal", open: "Abrir el menú", close: "Cerrar el menú" },
+  fr: { nav: "Navigation principale", open: "Ouvrir le menu", close: "Fermer le menu" },
+};
+
 export function Nav({
   lang,
   bookingUrl,
@@ -113,18 +120,12 @@ export function Nav({
 
   // path corrente senza il segmento di locale (es. "/it/work/x" → "/work/x"),
   // per evidenziare la voce di nav attiva
-  const rest = pathname.replace(/^\/(?:it|en)(?=\/|$)/, "");
+  const rest = pathname.replace(/^\/(?:it|en|es|fr)(?=\/|$)/, "");
   const isActive = (href: string) =>
     href === "" ? rest === "" : rest === href || rest.startsWith(`${href}/`);
 
-  const navLabel = lang === "it" ? "Navigazione principale" : "Primary navigation";
-  const menuLabel = open
-    ? lang === "it"
-      ? "Chiudi il menu"
-      : "Close menu"
-    : lang === "it"
-      ? "Apri il menu"
-      : "Open menu";
+  const navLabel = NAV_LABELS[lang].nav;
+  const menuLabel = open ? NAV_LABELS[lang].close : NAV_LABELS[lang].open;
 
   return (
     <motion.header

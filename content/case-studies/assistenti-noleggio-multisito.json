@@ -4,43 +4,70 @@
   "title": {
     "_type": "localeString",
     "it": "Un assistente che prenota, su ogni sito del gruppo",
-    "en": "A booking assistant on every site of the group"
+    "en": "A booking assistant on every site of the group",
+    "es": "Un asistente de reservas en cada web del grupo",
+    "fr": "Un assistant de réservation sur chaque site du groupe"
   },
-  "slug": { "_type": "slug", "current": "multi-site-rental-assistant" },
+  "slug": {
+    "_type": "slug",
+    "current": "multi-site-rental-assistant"
+  },
   "sector": {
     "_type": "localeString",
     "it": "Noleggio bici · Arizona (USA)",
-    "en": "Bike rental · Arizona (USA)"
+    "en": "Bike rental · Arizona (USA)",
+    "es": "Alquiler de bicis · Arizona (EE. UU.)",
+    "fr": "Location de vélos · Arizona (États-Unis)"
   },
   "problem": {
     "_type": "localeText",
     "it": "Più siti di prenotazione, richieste a ogni ora e in più lingue, tutte gestite a mano. E chi vuole una bici per oggi non aspetta.",
-    "en": "Several booking sites, inquiries at all hours and in many languages, all handled by hand. And someone who wants a bike today won't wait."
+    "en": "Several booking sites, inquiries at all hours and in many languages, all handled by hand. And someone who wants a bike today won't wait.",
+    "es": "Varias webs de reservas, consultas a todas horas y en muchos idiomas, todas gestionadas a mano. Y quien quiere una bici hoy no espera.",
+    "fr": "Plusieurs sites de réservation, des demandes à toute heure et en plusieurs langues, toutes traitées à la main. Et celui qui veut un vélo aujourd'hui n'attend pas."
   },
   "solution": {
     "_type": "localeText",
     "it": "Un assistente AI su ogni sito, addestrato sui suoi contenuti (mezzi, taglie, sedi, sentieri, prezzi), con la stessa voce ovunque e il passaggio a un operatore per i casi urgenti.",
-    "en": "An AI assistant on each site, trained on its own content (bikes, sizes, locations, trails, prices), with the same voice everywhere and a handoff to a human for urgent cases."
+    "en": "An AI assistant on each site, trained on its own content (bikes, sizes, locations, trails, prices), with the same voice everywhere and a handoff to a human for urgent cases.",
+    "es": "Un asistente de IA en cada web, entrenado con sus propios contenidos (bicis, tallas, puntos de alquiler, rutas, precios), con la misma voz en todas partes y el traspaso a una persona en los casos urgentes.",
+    "fr": "Un assistant IA sur chaque site, entraîné sur ses propres contenus (vélos, tailles, points de location, sentiers, prix), avec la même voix partout et un relais vers une personne pour les cas urgents."
   },
   "metrics": [
     {
       "_type": "metric",
       "_key": "m1",
-      "value": { "_type": "localeString", "it": "100+", "en": "100+" },
+      "value": {
+        "_type": "localeString",
+        "it": "100+",
+        "en": "100+",
+        "es": "100+",
+        "fr": "100+"
+      },
       "label": {
         "_type": "localeString",
         "it": "messaggi gestiti al giorno",
-        "en": "messages handled per day"
+        "en": "messages handled per day",
+        "es": "mensajes gestionados al día",
+        "fr": "messages traités par jour"
       }
     },
     {
       "_type": "metric",
       "_key": "m2",
-      "value": { "_type": "localeString", "it": "3", "en": "3" },
+      "value": {
+        "_type": "localeString",
+        "it": "3",
+        "en": "3",
+        "es": "3",
+        "fr": "3"
+      },
       "label": {
         "_type": "localeString",
         "it": "siti, un'unica voce",
-        "en": "sites, one voice"
+        "en": "sites, one voice",
+        "es": "webs, una sola voz",
+        "fr": "sites, une seule voix"
       }
     }
   ],
@@ -72,19 +99,33 @@
       "alt": {
         "_type": "localeString",
         "it": "Diagramma del flusso: i 3 siti del gruppo confluiscono su un unico GPT Chatbot, che gestisce i messaggi su più canali (sito, Instagram, Facebook Messenger, WhatsApp Business) rispondendo su mezzi, taglie, sedi e prezzi con appuntamenti e prenotazione online, ed effettua l'escalation a un operatore per richieste same-day e problemi durante il noleggio",
-        "en": "Flow diagram: the group's 3 sites feed into a single GPT Chatbot, which handles messages across multiple channels (website, Instagram, Facebook Messenger, WhatsApp Business), answering on bikes, sizes, locations and prices with appointments and online booking, and escalates to a human for same-day requests and issues during the rental"
+        "en": "Flow diagram: the group's 3 sites feed into a single GPT Chatbot, which handles messages across multiple channels (website, Instagram, Facebook Messenger, WhatsApp Business), answering on bikes, sizes, locations and prices with appointments and online booking, and escalates to a human for same-day requests and issues during the rental",
+        "es": "Diagrama de flujo: las 3 webs del grupo convergen en un único GPT Chatbot, que gestiona los mensajes en varios canales (web, Instagram, Facebook Messenger, WhatsApp Business), responde sobre bicis, tallas, puntos de alquiler y precios con citas y reserva online, y pasa a una persona las solicitudes para el mismo día y los problemas durante el alquiler",
+        "fr": "Schéma de flux : les 3 sites du groupe alimentent un seul GPT Chatbot, qui gère les messages sur plusieurs canaux (site web, Instagram, Facebook Messenger, WhatsApp Business), répond sur les vélos, les tailles, les points de location et les prix avec rendez-vous et réservation en ligne, et passe la main à une personne pour les demandes du jour même et les problèmes pendant la location"
       },
       "caption": {
         "_type": "localeString",
         "it": "Un assistente, tre siti, quattro canali, con l'operatore per gli urgenti",
-        "en": "One assistant, three sites, four channels, with a human for urgent cases"
+        "en": "One assistant, three sites, four channels, with a human for urgent cases",
+        "es": "Un asistente, tres webs, cuatro canales, con una persona para los casos urgentes",
+        "fr": "Un assistant, trois sites, quatre canaux, avec une personne pour les cas urgents"
+      },
+      "es": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/assistenti-noleggio-multisito-flusso-es.png"
+      },
+      "fr": {
+        "_type": "image",
+        "_localFile": "content/case-studies/assets/assistenti-noleggio-multisito-flusso-fr.png"
       }
     }
   ],
   "body": {
     "_type": "localeText",
     "it": "Il cliente gestisce il noleggio su più siti di prenotazione diversi, ognuno con il suo marchio e il suo pubblico. Le domande arrivavano a ogni ora, in più lingue, e finivano tutte sulle spalle del team: orari, taglie, sedi, disponibilità, prezzi, vicinanza ai sentieri.\n\nAbbiamo messo su ogni sito un assistente AI addestrato sui contenuti di quel sito: conosce i tipi di mezzo e le fasce di prezzo, consiglia la taglia giusta a partire dall'altezza, indica le sedi con gli orari e, per la mountain bike, la distanza dai sentieri migliori. Ogni sito ha la sua identità (nome, volto, colori), ma tutti si comportano nello stesso modo e con la stessa qualità, su desktop e su mobile.\n\nLa regola è portare l'utente alla prenotazione online (niente accessi senza prenotazione) con i link giusti. Quando la richiesta è urgente, come una prenotazione per lo stesso giorno o un problema durante il noleggio, l'assistente passa la palla a una persona con il contatto diretto del negozio. L'AI risponde, l'operatore interviene dove serve.\n\nOggi il sistema regge oltre 100 conversazioni al giorno tra i vari siti, con una voce coerente ovunque e il team libero dalle domande ripetitive.",
-    "en": "The client runs rentals across several different booking sites, each with its own brand and audience. Questions came in at all hours, in many languages, and all landed on the team: hours, sizes, locations, availability, prices, proximity to trails.\n\nWe put an AI assistant on each site, trained on that site's content: it knows the bike types and price ranges, recommends the right size from the rider's height, lists locations with opening hours and, for mountain bikes, the distance to the best trails. Each site keeps its own identity (name, face, colours), but they all behave the same way and to the same standard, on desktop and mobile.\n\nThe rule is to bring the user to an online booking (no walk-ins) with the right links. When a request is urgent, such as a same-day booking or a problem during the ride, the assistant hands off to a person via the shop's direct contact. The AI answers, the human steps in where it matters.\n\nToday the system handles more than 100 conversations a day across the sites, with a consistent voice everywhere and the team freed from repetitive questions."
+    "en": "The client runs rentals across several different booking sites, each with its own brand and audience. Questions came in at all hours, in many languages, and all landed on the team: hours, sizes, locations, availability, prices, proximity to trails.\n\nWe put an AI assistant on each site, trained on that site's content: it knows the bike types and price ranges, recommends the right size from the rider's height, lists locations with opening hours and, for mountain bikes, the distance to the best trails. Each site keeps its own identity (name, face, colours), but they all behave the same way and to the same standard, on desktop and mobile.\n\nThe rule is to bring the user to an online booking (no walk-ins) with the right links. When a request is urgent, such as a same-day booking or a problem during the ride, the assistant hands off to a person via the shop's direct contact. The AI answers, the human steps in where it matters.\n\nToday the system handles more than 100 conversations a day across the sites, with a consistent voice everywhere and the team freed from repetitive questions.",
+    "es": "El cliente gestiona alquileres en varias webs de reservas distintas, cada una con su propia marca y su público. Las preguntas llegaban a todas horas, en muchos idiomas, y todas acababan en el equipo: horarios, tallas, puntos de alquiler, disponibilidad, precios, cercanía a las rutas.\n\nPusimos un asistente de IA en cada web, entrenado con los contenidos de esa web: conoce los tipos de bici y las franjas de precio, recomienda la talla adecuada según la altura del ciclista, indica los puntos de alquiler con sus horarios y, para las bicis de montaña, la distancia a las mejores rutas. Cada web mantiene su identidad (nombre, cara, colores), pero todas se comportan igual y con el mismo nivel, en ordenador y en móvil.\n\nLa regla es llevar al usuario a una reserva online (sin clientes que se presenten sin reservar) con los enlaces correctos. Cuando una solicitud es urgente, como una reserva para el mismo día o un problema durante la ruta, el asistente pasa a una persona a través del contacto directo de la tienda. La IA responde, la persona interviene donde importa.\n\nHoy el sistema gestiona más de 100 conversaciones al día entre todas las webs, con una voz coherente en todas partes y el equipo liberado de las preguntas repetitivas.",
+    "fr": "Le client gère des locations sur plusieurs sites de réservation différents, chacun avec sa marque et son public. Les questions arrivaient à toute heure, dans de nombreuses langues, et retombaient toutes sur l'équipe : horaires, tailles, points de location, disponibilités, prix, proximité des sentiers.\n\nNous avons installé un assistant IA sur chaque site, entraîné sur les contenus de ce site : il connaît les types de vélos et les gammes de prix, recommande la bonne taille selon la taille du cycliste, indique les points de location avec leurs horaires et, pour les VTT, la distance jusqu'aux meilleurs sentiers. Chaque site garde son identité (nom, visage, couleurs), mais tous se comportent de la même façon et avec le même niveau d'exigence, sur ordinateur comme sur mobile.\n\nLa règle est d'amener l'utilisateur vers une réservation en ligne (pas de clients sans réservation) avec les bons liens. Quand une demande est urgente, comme une réservation pour le jour même ou un problème pendant la sortie, l'assistant passe le relais à une personne via le contact direct de la boutique. L'IA répond, l'humain intervient là où c'est important.\n\nAujourd'hui, le système gère plus de 100 conversations par jour sur l'ensemble des sites, avec une voix cohérente partout et une équipe libérée des questions répétitives."
   },
   "date": "2026-02-06"
 }
