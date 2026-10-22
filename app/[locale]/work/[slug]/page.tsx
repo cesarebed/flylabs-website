@@ -7,6 +7,7 @@ import {
   defaultLocale,
   pickLocale,
   pickLocaleLoose,
+  pickWithFallback,
   type Locale,
 } from "@/lib/i18n";
 import { cases } from "@/lib/cases-content";
@@ -116,8 +117,7 @@ export default async function CaseStudyPage({
       ? [urlFor(study.cover).width(1600).height(900).url()]
       : []),
     ...(study.diagrams ?? []).flatMap((diagram) => {
-      const image =
-        lang === "en" && diagram.en?.asset ? diagram.en : diagram.it;
+      const image = pickWithFallback(diagram, lang, (img) => !!img.asset);
       return image?.asset ? [urlFor(image).width(1600).url()] : [];
     }),
   ];
@@ -200,8 +200,7 @@ export default async function CaseStudyPage({
           </section>
           {(study.diagrams ?? []).map((diagram) => {
             // Immagine nella lingua della pagina, con fallback sull'italiano.
-            const image =
-              lang === "en" && diagram.en?.asset ? diagram.en : diagram.it;
+            const image = pickWithFallback(diagram, lang, (img) => !!img.asset);
             if (!image?.asset) return null;
             const caption = pickLocale(diagram.caption, lang);
             // Da mobile il testo del diagramma è di pochi pixel: il link apre

@@ -4,7 +4,9 @@
   "title": {
     "_type": "localeString",
     "it": "WeGrocery: la piattaforma open source per gli ordini di gruppo",
-    "en": "WeGrocery: the open-source platform for group orders"
+    "en": "WeGrocery: the open-source platform for group orders",
+    "es": "WeGrocery: la plataforma open source para pedidos de grupo",
+    "fr": "WeGrocery : la plateforme open source pour les commandes groupées"
   },
   "slug": {
     "_type": "slug",
@@ -13,17 +15,23 @@
   "sector": {
     "_type": "localeString",
     "it": "No-profit · Gruppi d'acquisto solidale (GAS)",
-    "en": "Non-profit · Group buying clubs"
+    "en": "Non-profit · Group buying clubs",
+    "es": "Sin ánimo de lucro · Grupos de compra",
+    "fr": "Associatif · Groupements d'achat"
   },
   "problem": {
     "_type": "localeText",
     "it": "I gruppi d'acquisto solidale coordinano gli ordini condivisi a mano, tra fogli di calcolo e messaggi WhatsApp, con errori e tempo perso a ogni ciclo.",
-    "en": "Group buying clubs coordinate shared orders by hand, between spreadsheets and WhatsApp threads, with mistakes and wasted time on every cycle."
+    "en": "Group buying clubs coordinate shared orders by hand, between spreadsheets and WhatsApp threads, with mistakes and wasted time on every cycle.",
+    "es": "Los grupos de compra coordinan los pedidos compartidos a mano, entre hojas de cálculo y chats de WhatsApp, con errores y tiempo perdido en cada ciclo.",
+    "fr": "Les groupements d'achat coordonnent les commandes partagées à la main, entre tableurs et fils WhatsApp, avec des erreurs et du temps perdu à chaque cycle."
   },
   "solution": {
     "_type": "localeText",
     "it": "WeGrocery: un'unica piattaforma open source (MIT) che ogni organizzazione attiva con il proprio marchio via variabili d'ambiente, senza fork né codice dedicato. Cicli d'ordine, saldo prepagato, pagamenti con carta via Stripe, cassa e due lingue native, in una nuova versione rifatta da capo.",
-    "en": "WeGrocery: a single open-source (MIT) platform that every organisation activates under its own brand via environment variables, with no forks or dedicated code. Order cycles, a prepaid balance, card payments through Stripe, a treasury and two native languages, in a new version rebuilt from scratch."
+    "en": "WeGrocery: a single open-source (MIT) platform that every organisation activates under its own brand via environment variables, with no forks or dedicated code. Order cycles, a prepaid balance, card payments through Stripe, a treasury and two native languages, in a new version rebuilt from scratch.",
+    "es": "WeGrocery: una única plataforma open source (MIT) que cada organización activa con su propia marca mediante variables de entorno, sin forks ni código dedicado. Ciclos de pedido, saldo prepago, pagos con tarjeta a través de Stripe, caja y dos idiomas nativos, en una nueva versión rehecha desde cero.",
+    "fr": "WeGrocery : une plateforme open source unique (MIT) que chaque organisation active sous sa propre marque via des variables d'environnement, sans fork ni code dédié. Cycles de commande, solde prépayé, paiements par carte via Stripe, trésorerie et deux langues natives, dans une nouvelle version reconstruite de zéro."
   },
   "metrics": [
     {
@@ -32,12 +40,16 @@
       "value": {
         "_type": "localeString",
         "it": "1",
-        "en": "1"
+        "en": "1",
+        "es": "1",
+        "fr": "1"
       },
       "label": {
         "_type": "localeString",
         "it": "sola piattaforma per tutti i gruppi, aggiornata per tutti insieme",
-        "en": "platform for every group, updated for all at once"
+        "en": "platform for every group, updated for all at once",
+        "es": "plataforma para todos los grupos, actualizada para todos a la vez",
+        "fr": "plateforme pour tous les groupes, mise à jour pour tous en même temps"
       }
     },
     {
@@ -46,12 +58,16 @@
       "value": {
         "_type": "localeString",
         "it": "2",
-        "en": "2"
+        "en": "2",
+        "es": "2",
+        "fr": "2"
       },
       "label": {
         "_type": "localeString",
         "it": "lingue native, italiano e inglese",
-        "en": "native languages, Italian and English"
+        "en": "native languages, Italian and English",
+        "es": "idiomas nativos, italiano e inglés",
+        "fr": "langues natives, italien et anglais"
       }
     }
   ],
@@ -66,7 +82,9 @@
   "body": {
     "_type": "localeText",
     "it": "Un'associazione milanese gestiva il proprio gruppo d'acquisto solidale (GAS) come fanno quasi tutti: fogli di calcolo condivisi, messaggi WhatsApp per ogni ciclo d'ordine, promemoria mandati a mano. Funzionava, ma ogni ciclo costava tempo e ogni errore di trascrizione diventava un ordine sbagliato.\n\nInvece di costruire un'app su misura per un solo cliente, abbiamo generalizzato il problema: WeGrocery è un'unica codebase open source (Next.js, licenza MIT) che qualsiasi gruppo d'acquisto o buying club può attivare con il proprio marchio, la propria lingua e i propri colori, impostati via variabili d'ambiente. Zero fork, zero branch dedicati: un aggiornamento alla piattaforma arriva a tutti i deploy insieme.\n\nOgni ciclo d'ordine ha una finestra di apertura e chiusura, i soci ordinano da un catalogo condiviso, il sistema manda notifiche automatiche all'apertura del ciclo e tiene traccia di chi ha ordinato cosa. L'interfaccia è bilingue nativamente (italiano e inglese, non tradotta a runtime), pensata per essere adottata anche fuori Italia.\n\nPoi la piattaforma è stata rifatta da capo, con un nuovo design pensato per il telefono. I soci ricaricano il saldo con la carta tramite Stripe, oppure, se il gruppo lo sceglie, pagano ogni ordine e a fine ciclo ricevono sulla carta il rimborso di quanto pagato in più. Ogni correzione in cassa è uno storno tracciato invece di una modifica, la chiusura del ciclo è tutto o niente e ogni notte un controllo verifica che pagamenti, rimborsi e addebiti tornino. Per i soci sono arrivati gli ordini in famiglia, l'accesso con un link o un codice via email, l'app da installare sul telefono e una guida con la ricerca.\n\nIl primo deploy in produzione è quello dell'associazione che ha fatto nascere il progetto: gestisce ordini reali di soci reali dal 2026. La piattaforma resta pubblica su GitHub, aperta a chiunque voglia adottarla o contribuire, con l'implementazione su misura (dominio, marchio, integrazioni) offerta come servizio a chi vuole il proprio deploy senza gestirselo da solo.",
-    "en": "A Milan-based association ran its own group buying club (GAS) the way almost everyone does: shared spreadsheets, WhatsApp messages for every order cycle, reminders sent by hand. It worked, but every cycle cost time, and every transcription mistake became a wrong order.\n\nInstead of building a one-off app for a single client, we generalised the problem: WeGrocery is a single open-source codebase (Next.js, MIT licence) that any buying club or GAS can activate under its own brand, language and colours, set via environment variables. No forks, no dedicated branches: a platform update reaches every deployment at once.\n\nEvery order cycle has an opening and closing window, members order from a shared catalogue, the system sends automatic notifications when a cycle opens and tracks who ordered what. The interface is natively bilingual (Italian and English, not translated at runtime), built to be adopted outside Italy too.\n\nThen the platform was rebuilt from scratch, with a new phone-first design. Members top up their balance by card through Stripe or, if the group chooses it, pay for each order and get any overpayment refunded to their card at the end of the cycle. Every treasury correction is a traceable reversal instead of an edit, closing a cycle is all or nothing, and every night a check verifies that payments, refunds and charges add up. Members also gained family orders, sign-in with an email link or code, an app to install on the phone and a searchable guide.\n\nThe first production deployment is the association that started the project: it has been running real orders for real members since 2026. The platform stays public on GitHub, open to anyone who wants to adopt or contribute to it, with a tailored implementation (domain, branding, integrations) offered as a service to whoever wants their own deployment without running it themselves."
+    "en": "A Milan-based association ran its own group buying club (GAS) the way almost everyone does: shared spreadsheets, WhatsApp messages for every order cycle, reminders sent by hand. It worked, but every cycle cost time, and every transcription mistake became a wrong order.\n\nInstead of building a one-off app for a single client, we generalised the problem: WeGrocery is a single open-source codebase (Next.js, MIT licence) that any buying club or GAS can activate under its own brand, language and colours, set via environment variables. No forks, no dedicated branches: a platform update reaches every deployment at once.\n\nEvery order cycle has an opening and closing window, members order from a shared catalogue, the system sends automatic notifications when a cycle opens and tracks who ordered what. The interface is natively bilingual (Italian and English, not translated at runtime), built to be adopted outside Italy too.\n\nThen the platform was rebuilt from scratch, with a new phone-first design. Members top up their balance by card through Stripe or, if the group chooses it, pay for each order and get any overpayment refunded to their card at the end of the cycle. Every treasury correction is a traceable reversal instead of an edit, closing a cycle is all or nothing, and every night a check verifies that payments, refunds and charges add up. Members also gained family orders, sign-in with an email link or code, an app to install on the phone and a searchable guide.\n\nThe first production deployment is the association that started the project: it has been running real orders for real members since 2026. The platform stays public on GitHub, open to anyone who wants to adopt or contribute to it, with a tailored implementation (domain, branding, integrations) offered as a service to whoever wants their own deployment without running it themselves.",
+    "es": "Una asociación de Milán gestionaba su grupo de compra solidaria (GAS) como casi todos: hojas de cálculo compartidas, mensajes de WhatsApp en cada ciclo de pedido, recordatorios enviados a mano. Funcionaba, pero cada ciclo costaba tiempo, y cada error al transcribir se convertía en un pedido equivocado.\n\nEn lugar de construir una app única para un solo cliente, generalizamos el problema: WeGrocery es un único código open source (Next.js, licencia MIT) que cualquier grupo de compra puede activar con su propia marca, idioma y colores, definidos mediante variables de entorno. Sin forks, sin ramas dedicadas: una actualización de la plataforma llega a todas las instalaciones a la vez.\n\nCada ciclo de pedido tiene una ventana de apertura y cierre, los socios piden de un catálogo compartido, el sistema envía notificaciones automáticas cuando se abre un ciclo y registra quién ha pedido qué. La interfaz es bilingüe de forma nativa (italiano e inglés, no traducida en tiempo real), pensada para adoptarse también fuera de Italia.\n\nDespués la plataforma se rehízo desde cero, con un nuevo diseño pensado para el móvil. Los socios recargan su saldo con tarjeta a través de Stripe o, si el grupo lo elige, pagan cada pedido y reciben en la tarjeta lo pagado de más al final del ciclo. Cada corrección de la caja es un asiento de anulación trazable en lugar de una edición, el cierre de un ciclo es todo o nada, y cada noche una comprobación verifica que pagos, reembolsos y cargos cuadran. Los socios ganaron además pedidos familiares, acceso con enlace o código por email, una app para instalar en el móvil y una guía con buscador.\n\nLa primera instalación en producción es la de la asociación que dio origen al proyecto: gestiona pedidos reales para socios reales desde 2026. La plataforma sigue siendo pública en GitHub, abierta a quien quiera adoptarla o contribuir, con una implementación a medida (dominio, marca, integraciones) ofrecida como servicio a quien quiera su propia instalación sin tener que gestionarla.",
+    "fr": "Une association milanaise gérait son groupement d'achat solidaire (GAS) comme presque tout le monde : tableurs partagés, messages WhatsApp à chaque cycle de commande, rappels envoyés à la main. Ça fonctionnait, mais chaque cycle coûtait du temps, et chaque erreur de saisie devenait une commande erronée.\n\nAu lieu de construire une application unique pour un seul client, nous avons généralisé le problème : WeGrocery est une base de code open source unique (Next.js, licence MIT) que tout groupement d'achat peut activer sous sa propre marque, sa langue et ses couleurs, définies via des variables d'environnement. Pas de fork, pas de branche dédiée : une mise à jour de la plateforme atteint tous les déploiements en même temps.\n\nChaque cycle de commande a une fenêtre d'ouverture et de clôture, les membres commandent dans un catalogue partagé, le système envoie des notifications automatiques à l'ouverture d'un cycle et garde la trace de qui a commandé quoi. L'interface est bilingue de façon native (italien et anglais, sans traduction à la volée), conçue pour être adoptée aussi hors d'Italie.\n\nPuis la plateforme a été reconstruite de zéro, avec un nouveau design pensé pour le mobile. Les membres rechargent leur solde par carte via Stripe ou, si le groupe le choisit, paient chaque commande et se voient rembourser le trop-perçu sur leur carte en fin de cycle. Chaque correction de trésorerie est une contre-passation traçable plutôt qu'une modification, la clôture d'un cycle se fait en tout ou rien, et chaque nuit un contrôle vérifie que paiements, remboursements et prélèvements concordent. Les membres ont aussi gagné les commandes familiales, la connexion par lien ou code envoyé par e-mail, une application à installer sur le téléphone et un guide avec recherche.\n\nLe premier déploiement en production est celui de l'association à l'origine du projet : elle gère de vraies commandes pour de vrais membres depuis 2026. La plateforme reste publique sur GitHub, ouverte à tous ceux qui veulent l'adopter ou y contribuer, avec une mise en place sur mesure (domaine, image de marque, intégrations) proposée comme service à ceux qui veulent leur propre déploiement sans avoir à le gérer."
   },
   "date": "2026-06-12"
 }

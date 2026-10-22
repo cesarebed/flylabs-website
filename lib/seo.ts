@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultLocale, locales, type Locale } from "@/lib/i18n";
+import { defaultLocale, locales, ogLocales, type Locale } from "@/lib/i18n";
 import { getSiteSettings, type SiteSettings } from "@/sanity/site-settings";
 
 const FALLBACK_SITE_URL = "https://www.flylabs.ai";
@@ -27,6 +27,8 @@ const OG_SIZE = { width: 1200, height: 630 } as const;
 export const DEFAULT_OG_ALT: Record<Locale, string> = {
   it: "flylabs.ai: il partner per integrare l'AI nei tuoi processi",
   en: "flylabs.ai: your partner for building AI into your processes",
+  es: "flylabs.ai: tu socio para integrar la IA en tus procesos",
+  fr: "flylabs.ai : votre partenaire pour intégrer l'IA dans vos processus",
 };
 
 /**
@@ -92,7 +94,8 @@ export async function buildMetadata(
       description: page.description,
       url: canonical,
       siteName: SITE_NAME,
-      locale: lang === "it" ? "it_IT" : "en_US",
+      locale: ogLocales[lang],
+      alternateLocale: locales.filter((l) => l !== lang).map((l) => ogLocales[l]),
       type: "website",
       images: [image],
     },

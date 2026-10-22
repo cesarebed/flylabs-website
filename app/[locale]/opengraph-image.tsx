@@ -28,6 +28,18 @@ const COPY: Record<
     after: "into your processes",
     tagline: "Custom solutions, fixed price, a trained team.",
   },
+  es: {
+    before: "Tu socio para",
+    mark: "integrar la IA",
+    after: "en tus procesos",
+    tagline: "Soluciones a medida, precio cerrado, equipo formado.",
+  },
+  fr: {
+    before: "Votre partenaire pour",
+    mark: "intégrer l'IA",
+    after: "dans vos processus",
+    tagline: "Solutions sur mesure, prix fixe, équipe formée.",
+  },
 };
 
 // Immagine di anteprima social generica per lingua. La home la usa

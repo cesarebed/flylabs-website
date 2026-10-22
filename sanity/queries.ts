@@ -66,7 +66,9 @@ export const CASE_STUDY_BY_SLUG_QUERY = defineQuery(
       alt,
       caption,
       "it": it{ ..., "dims": asset->metadata.dimensions{ width, height } },
-      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } }
+      "en": en{ ..., "dims": asset->metadata.dimensions{ width, height } },
+      "es": es{ ..., "dims": asset->metadata.dimensions{ width, height } },
+      "fr": fr{ ..., "dims": asset->metadata.dimensions{ width, height } }
     },
     date,
     "updatedAt": _updatedAt

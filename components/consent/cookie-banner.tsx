@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { type ConsentState } from "@/lib/consent";
 import { useConsent } from "./consent-provider";
+import { defaultLocale, isLocale } from "@/lib/i18n";
 
 const copy = {
   it: {
@@ -43,6 +44,44 @@ const copy = {
     assistantDesc:
       "The support chatbot, provided by gpt-trainer. Third-party cookies. Also turned on by opening the assistant from its button.",
     always: "Always on",
+  },
+  es: {
+    title: "Cookies y privacidad",
+    body: "Solo usamos herramientas técnicas, siempre activas. Con tu consentimiento activamos las estadísticas (Google Analytics) y el asistente IA (gpt-trainer). Puedes cambiar de opinión en cualquier momento desde «Gestionar cookies».",
+    acceptAll: "Aceptar todas",
+    rejectAll: "Rechazar todas",
+    customize: "Personalizar",
+    save: "Guardar preferencias",
+    policy: "Política de cookies",
+    privacy: "Privacidad",
+    necessary: "Necesarias",
+    necessaryDesc: "Imprescindibles para que el sitio funcione. Siempre activas.",
+    analytics: "Estadísticas",
+    analyticsDesc:
+      "Google Analytics: entendemos de forma agregada cómo se usa el sitio. Cookies de terceros (Google).",
+    assistant: "Asistente IA",
+    assistantDesc:
+      "El chatbot de soporte (proveedor gpt-trainer). Cookies de terceros. También se activa al abrir el asistente desde su botón.",
+    always: "Siempre activas",
+  },
+  fr: {
+    title: "Cookies et confidentialité",
+    body: "Nous n'utilisons que des outils techniques, toujours actifs. Avec votre consentement, nous activons les statistiques (Google Analytics) et l'assistant IA (gpt-trainer). Vous pouvez changer d'avis à tout moment via « Gérer les cookies ».",
+    acceptAll: "Tout accepter",
+    rejectAll: "Tout refuser",
+    customize: "Personnaliser",
+    save: "Enregistrer mes choix",
+    policy: "Politique de cookies",
+    privacy: "Confidentialité",
+    necessary: "Nécessaires",
+    necessaryDesc: "Indispensables au fonctionnement du site. Toujours actifs.",
+    analytics: "Statistiques",
+    analyticsDesc:
+      "Google Analytics : nous comprenons de façon agrégée comment le site est utilisé. Cookies tiers (Google).",
+    assistant: "Assistant IA",
+    assistantDesc:
+      "Le chatbot d'assistance (fournisseur gpt-trainer). Cookies tiers. Il s'active aussi en ouvrant l'assistant depuis son bouton.",
+    always: "Toujours actifs",
   },
 };
 
@@ -112,7 +151,7 @@ export function CookieBanner({ lang }: { lang: string }) {
 
   if (!visible) return null;
 
-  const t = copy[lang === "en" ? "en" : "it"];
+  const t = copy[isLocale(lang) ? lang : defaultLocale];
 
   return (
     <div

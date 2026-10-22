@@ -15,6 +15,8 @@ export const contentType = "image/png";
 const FALLBACK: Record<Locale, string> = {
   it: "Un caso di successo flylabs.ai",
   en: "A flylabs.ai success story",
+  es: "Un caso de éxito de flylabs.ai",
+  fr: "Une étude de cas flylabs.ai",
 };
 
 // Anteprima social del singolo caso: settore + problema + la metrica più

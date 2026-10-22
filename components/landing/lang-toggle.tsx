@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { locales, type Locale } from "@/lib/i18n";
 
 /** Nome esteso di ogni lingua, nella lingua stessa (letto solo dagli SR). */
-const LANG_NAMES: Record<Locale, string> = { it: "italiano", en: "English" };
+const LANG_NAMES: Record<Locale, string> = { it: "italiano", en: "English", es: "español", fr: "français" };
 
 /**
  * Toggle IT / EN: mantiene la pagina corrente cambiando solo il segmento
@@ -20,7 +20,7 @@ const LANG_NAMES: Record<Locale, string> = { it: "italiano", en: "English" };
 export function LangToggle({ lang }: { lang: Locale }) {
   const pathname = usePathname();
   // rimuove il locale iniziale, tenendo il resto del path (o "" per la home)
-  const rest = pathname.replace(/^\/(?:it|en)(?=\/|$)/, "");
+  const rest = pathname.replace(/^\/(?:it|en|es|fr)(?=\/|$)/, "");
 
   return (
     <div className="flex items-center gap-1.5 text-sm font-medium">

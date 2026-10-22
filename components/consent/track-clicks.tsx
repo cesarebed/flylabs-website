@@ -9,7 +9,7 @@ import { trackEvent } from "@/lib/google-analytics";
 // - caso studio: ogni link interno verso /<lang>/work/<slug>.
 // `placement` dice da dove è partito il click: la <section> con id più vicina
 // (hero, cta, lavori...) oppure header/footer.
-const CASE_PATH = /^\/(?:it|en)\/work\/([^/?#]+)/;
+const CASE_PATH = /^\/(?:it|en|es|fr)\/work\/([^/?#]+)/;
 
 function placementOf(el: Element) {
   const landmark = el.closest("header, footer");

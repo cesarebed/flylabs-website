@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/i18n";
+import { languageTags, locales, type Locale } from "@/lib/i18n";
 
 // Costruttori dei payload JSON-LD (issue #16). Solo dati reali: sameAs
 // arriva dai profili social su Sanity (vuoto = omesso), logo = app/icon.png,
@@ -54,7 +54,7 @@ export function organizationLd(
         url: `${base}/`,
         name: "flylabs.ai",
         alternateName: "flylabs",
-        inLanguage: ["it-IT", "en-US"],
+        inLanguage: locales.map((l) => languageTags[l]),
         publisher: { "@id": orgId(base) },
       },
     ],
@@ -122,7 +122,7 @@ export function caseStudyArticleLd(args: {
     "@type": "Article",
     headline: args.headline,
     description: args.description,
-    inLanguage: args.lang === "it" ? "it-IT" : "en-US",
+    inLanguage: languageTags[args.lang],
     mainEntityOfPage: args.url,
     ...(datePublished ? { datePublished } : {}),
     ...(args.dateModified ? { dateModified: args.dateModified } : {}),
@@ -155,7 +155,7 @@ export function servicesLd(args: {
       description: s.description,
       provider: { "@id": orgId(base) },
       areaServed: "IT",
-      inLanguage: args.lang === "it" ? "it-IT" : "en-US",
+      inLanguage: languageTags[args.lang],
     })),
   };
 }

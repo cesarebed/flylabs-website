@@ -30,6 +30,16 @@ const META: Record<Locale, { title: string; description: string }> = {
     description:
       "We build AI into your business processes: chatbots, automations, documents and team training. Fixed price agreed upfront, and you talk to the people who build it.",
   },
+  es: {
+    title: "Socio de IA para pymes: soluciones a medida y formación | flylabs.ai",
+    description:
+      "Integramos la IA en los procesos de tu empresa: chatbots, automatizaciones, documentos y formación del equipo. Precio cerrado acordado antes de empezar, y hablas con quien lo construye.",
+  },
+  fr: {
+    title: "Partenaire IA pour PME : solutions sur mesure et formation | flylabs.ai",
+    description:
+      "Nous intégrons l'IA dans les processus de votre entreprise : chatbots, automatisations, documents et formation de l'équipe. Prix fixe convenu à l'avance, et vous parlez à ceux qui construisent.",
+  },
 };
 
 export async function generateMetadata({

@@ -39,9 +39,14 @@ function NotFoundView({ lang }: { lang: Locale }) {
 
 // 404 di ogni path con prefisso /it o /en che non esiste (lo attiva
 // app/[locale]/[...rest]/page.tsx, che porta anche title e description).
-// not-found.tsx non riceve params: le due versioni sono renderizzate sul
+// not-found.tsx non riceve params: le versioni per lingua sono renderizzate sul
 // server e LocaleSwitch mostra quella della lingua nell'URL, come in
 // work/not-found.tsx.
 export default function NotFound() {
-  return <LocaleSwitch it={<NotFoundView lang="it" />} en={<NotFoundView lang="en" />} />;
+  return <LocaleSwitch
+      it={<NotFoundView lang="it" />}
+      en={<NotFoundView lang="en" />}
+      es={<NotFoundView lang="es" />}
+      fr={<NotFoundView lang="fr" />}
+    />;
 }
