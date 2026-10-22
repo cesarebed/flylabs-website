@@ -2101,22 +2101,22 @@ export const landing = {
         src: {
           it: "/products/stellar-reviews/demo-desktop-it.webp",
           en: "/products/stellar-reviews/demo-desktop-en.webp",
-          es: "/products/stellar-reviews/demo-desktop-en.webp",
-          fr: "/products/stellar-reviews/demo-desktop-en.webp",
+          es: "/products/stellar-reviews/demo-desktop-es.webp",
+          fr: "/products/stellar-reviews/demo-desktop-fr.webp",
         },
         alt: {
           it: "Stellar Reviews dal computer: a sinistra la coda delle recensioni a cui rispondere, a destra una recensione da una stella su TripAdvisor con la risposta proposta dall'AI e i pulsanti Copia risposta e Ho pubblicato.",
           en: "Stellar Reviews on a computer: on the left the queue of reviews to answer, on the right a Booking.com review rated 4 out of 10, about a long check-in wait, with the AI-suggested reply and the Copy reply and I've posted it buttons.",
-          es: "Stellar Reviews en un ordenador: a la izquierda la cola de reseñas por responder, a la derecha una reseña de Booking.com con nota 4 sobre 10, sobre una larga espera en el check-in, con la respuesta sugerida por la IA y los botones Copy reply e I've posted it.",
-          fr: "Stellar Reviews sur un ordinateur : à gauche la file des avis à traiter, à droite un avis Booking.com noté 4 sur 10, sur une longue attente au check-in, avec la réponse suggérée par l'IA et les boutons Copy reply et I've posted it.",
+          es: "Stellar Reviews en un ordenador: a la izquierda la cola de reseñas por responder, a la derecha una reseña de Booking.com con nota 4 sobre 10, sobre una larga espera en el check-in, con la respuesta sugerida por la IA y los botones Copiar respuesta y Ya la he publicado.",
+          fr: "Stellar Reviews sur un ordinateur : à gauche la file des avis à traiter, à droite un avis Booking.com noté 4 sur 10, sur une longue attente au check-in, avec la réponse suggérée par l'IA et les boutons Copier la réponse et Je l'ai publiée.",
         },
       },
       mobile: {
         src: {
           it: "/products/stellar-reviews/demo-mobile-it.webp",
           en: "/products/stellar-reviews/demo-mobile-en.webp",
-          es: "/products/stellar-reviews/demo-mobile-en.webp",
-          fr: "/products/stellar-reviews/demo-mobile-en.webp",
+          es: "/products/stellar-reviews/demo-mobile-es.webp",
+          fr: "/products/stellar-reviews/demo-mobile-fr.webp",
         },
         alt: {
           it: "Stellar Reviews dal telefono: la recensione da rivedere con cura e la risposta proposta dall'AI, da rileggere prima di pubblicarla.",
@@ -2128,8 +2128,8 @@ export const landing = {
       caption: {
         it: "Dalla demo pubblica, con dati di esempio. Stellar propone la risposta, tu la rileggi, la copi e la pubblichi sulla piattaforma.",
         en: "From the public demo, with sample data. Stellar suggests the reply, you read it through, copy it and post it on the platform.",
-        es: "De la demo pública, con datos de ejemplo (interfaz en inglés). Stellar sugiere la respuesta, tú la lees, la copias y la publicas en la plataforma.",
-        fr: "Tiré de la démo publique, avec des données d'exemple (interface en anglais). Stellar suggère la réponse, vous la relisez, la copiez et la publiez sur la plateforme.",
+        es: "De la demo pública, con datos de ejemplo. Stellar sugiere la respuesta, tú la lees, la copias y la publicas en la plataforma.",
+        fr: "Tiré de la démo publique, avec des données d'exemple. Stellar suggère la réponse, vous la relisez, la copiez et la publiez sur la plateforme.",
       },
     },
     problem: {
