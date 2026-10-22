@@ -1908,7 +1908,7 @@ export const landing = {
           fr: "C'est le même chatbot que vous voyez en bas à droite de ce site.",
         },
         preview: {
-          src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-en.jpg", fr: "/products/gpt-chatbot/chat-en.jpg" },
+          src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-es.jpg", fr: "/products/gpt-chatbot/chat-fr.jpg" },
           alt: {
             it: "Conversazione reale con l'assistente di flylabs.ai: a una domanda sulle richieste WhatsApp serali risponde che si possono gestire H24 con un assistente AI.",
             en: "Real conversation with the flylabs.ai assistant: asked about evening WhatsApp messages, it explains they can be handled 24/7 by an AI assistant.",
@@ -2639,11 +2639,11 @@ export const landing = {
     app: {
       start: {
         label: { it: "Provalo gratis su gptchatbot.it", en: "Try it free on gptchatbot.it", es: "Pruébalo gratis en gptchatbot.it", fr: "Essayez-le gratuitement sur gptchatbot.it" },
-        href: { it: "https://gptchatbot.it/it", en: "https://gptchatbot.it", es: "https://gptchatbot.it", fr: "https://gptchatbot.it" },
+        href: { it: "https://gptchatbot.it/it", en: "https://gptchatbot.it", es: "https://gptchatbot.it/es", fr: "https://gptchatbot.it" },
       },
       pricing: {
         label: { it: "Vedi i prezzi", en: "See pricing", es: "Ver precios", fr: "Voir les tarifs" },
-        href: { it: "https://gptchatbot.it/it/prezzi", en: "https://gptchatbot.it/pricing", es: "https://gptchatbot.it/pricing", fr: "https://gptchatbot.it/pricing" },
+        href: { it: "https://gptchatbot.it/it/prezzi", en: "https://gptchatbot.it/pricing", es: "https://gptchatbot.it/es/precios", fr: "https://gptchatbot.it/pricing" },
       },
     },
     mediaTitle: { it: "GPT Chatbot in azione", en: "GPT Chatbot in action", es: "GPT Chatbot en acción", fr: "GPT Chatbot en action" },
@@ -2651,18 +2651,18 @@ export const landing = {
       // Registrato dalla demo animata della home di gptchatbot.it (sito girato
       // in locale), una versione per lingua: le conversazioni sono di esempio.
       demoVideo: {
-        src: { it: "/products/gpt-chatbot/demo-it.mp4", en: "/products/gpt-chatbot/demo-en.mp4", es: "/products/gpt-chatbot/demo-en.mp4", fr: "/products/gpt-chatbot/demo-en.mp4" },
+        src: { it: "/products/gpt-chatbot/demo-it.mp4", en: "/products/gpt-chatbot/demo-en.mp4", es: "/products/gpt-chatbot/demo-es.mp4", fr: "/products/gpt-chatbot/demo-fr.mp4" },
         poster: {
           it: "/products/gpt-chatbot/demo-it-poster.jpg",
           en: "/products/gpt-chatbot/demo-en-poster.jpg",
-          es: "/products/gpt-chatbot/demo-en-poster.jpg",
-          fr: "/products/gpt-chatbot/demo-en-poster.jpg",
+          es: "/products/gpt-chatbot/demo-es-poster.jpg",
+          fr: "/products/gpt-chatbot/demo-fr-poster.jpg",
         },
         caption: {
           it: "Tre conversazioni di esempio, dalla demo di gptchatbot.it",
           en: "Three sample conversations, from the gptchatbot.it demo",
-          es: "Tres conversaciones de ejemplo, de la demo de gptchatbot.it (en inglés)",
-          fr: "Trois conversations d'exemple, tirées de la démo de gptchatbot.it (en anglais)",
+          es: "Tres conversaciones de ejemplo, de la demo de gptchatbot.it",
+          fr: "Trois conversations d'exemple, tirées de la démo de gptchatbot.it",
         },
         transcript: {
           it: "Cosa mostra il video: tre conversazioni di esempio con tre attività diverse. In una boutique il cliente chiede se un vestito è disponibile nella sua taglia: il chatbot controlla il magazzino, cita le fonti, lo tiene da parte e manda il link per il pagamento. In uno studio dentistico risponde sul costo di un trattamento leggendo il listino, propone due appuntamenti e lo aggiunge al calendario. In un noleggio bici verifica la disponibilità per il giorno dopo, propone caschi e assicurazione e conferma la prenotazione con il totale.",
@@ -2672,7 +2672,7 @@ export const landing = {
         },
       },
       realChat: {
-        src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-en.jpg", fr: "/products/gpt-chatbot/chat-en.jpg" },
+        src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-es.jpg", fr: "/products/gpt-chatbot/chat-fr.jpg" },
         caption: {
           it: "Una conversazione vera con l'assistente di questo sito",
           en: "A real conversation with this site's assistant",
@@ -2727,12 +2727,12 @@ export const landing = {
     screensIntro: {
       it: "Dal sito di GPT Chatbot: come gli agenti si dividono il lavoro e dove puoi collegarli.",
       en: "From the GPT Chatbot website: how the agents split the work and where you can connect them.",
-      es: "De la web de GPT Chatbot (en inglés): cómo se reparten el trabajo los agentes y dónde puedes conectarlos.",
-      fr: "Tiré du site de GPT Chatbot (en anglais) : comment les agents se répartissent le travail et où vous pouvez les connecter.",
+      es: "De la web de GPT Chatbot: cómo se reparten el trabajo los agentes y dónde puedes conectarlos.",
+      fr: "Tiré du site de GPT Chatbot : comment les agents se répartissent le travail et où vous pouvez les connecter.",
     },
     screens: [
       {
-        src: { it: "/products/gpt-chatbot/screens/orchestration-it.webp", en: "/products/gpt-chatbot/screens/orchestration-en.webp", es: "/products/gpt-chatbot/screens/orchestration-en.webp", fr: "/products/gpt-chatbot/screens/orchestration-en.webp" },
+        src: { it: "/products/gpt-chatbot/screens/orchestration-it.webp", en: "/products/gpt-chatbot/screens/orchestration-en.webp", es: "/products/gpt-chatbot/screens/orchestration-es.webp", fr: "/products/gpt-chatbot/screens/orchestration-fr.webp" },
         width: 1800,
         height: 1030,
         caption: { it: "Un supervisore AI e gli agenti specializzati", en: "An AI supervisor and specialised agents", es: "Un supervisor de IA y agentes especializados", fr: "Un superviseur IA et des agents spécialisés" },
@@ -2744,7 +2744,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/gpt-chatbot/screens/integrations-it.webp", en: "/products/gpt-chatbot/screens/integrations-en.webp", es: "/products/gpt-chatbot/screens/integrations-en.webp", fr: "/products/gpt-chatbot/screens/integrations-en.webp" },
+        src: { it: "/products/gpt-chatbot/screens/integrations-it.webp", en: "/products/gpt-chatbot/screens/integrations-en.webp", es: "/products/gpt-chatbot/screens/integrations-es.webp", fr: "/products/gpt-chatbot/screens/integrations-fr.webp" },
         width: 1940,
         height: 1210,
         caption: { it: "I canali e le integrazioni", en: "Channels and integrations", es: "Canales e integraciones", fr: "Canaux et intégrations" },
@@ -2893,7 +2893,7 @@ export const landing = {
     ],
     allFeatures: {
       label: { it: "Tutte le funzionalità su gptchatbot.it →", en: "Every feature on gptchatbot.it →", es: "Todas las funciones en gptchatbot.it →", fr: "Toutes les fonctionnalités sur gptchatbot.it →" },
-      href: { it: "https://gptchatbot.it/it/funzionalita", en: "https://gptchatbot.it/features", es: "https://gptchatbot.it/features", fr: "https://gptchatbot.it/features" },
+      href: { it: "https://gptchatbot.it/it/funzionalita", en: "https://gptchatbot.it/features", es: "https://gptchatbot.it/es/funcionalidades", fr: "https://gptchatbot.it/features" },
     },
     modesTitle: { it: "Come lo attivi", en: "How to get it", es: "Cómo activarlo", fr: "Comment l'activer" },
     modeSaas: {
