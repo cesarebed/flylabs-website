@@ -1908,7 +1908,7 @@ export const landing = {
           fr: "C'est le même chatbot que vous voyez en bas à droite de ce site.",
         },
         preview: {
-          src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-en.jpg", fr: "/products/gpt-chatbot/chat-en.jpg" },
+          src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-es.jpg", fr: "/products/gpt-chatbot/chat-fr.jpg" },
           alt: {
             it: "Conversazione reale con l'assistente di flylabs.ai: a una domanda sulle richieste WhatsApp serali risponde che si possono gestire H24 con un assistente AI.",
             en: "Real conversation with the flylabs.ai assistant: asked about evening WhatsApp messages, it explains they can be handled 24/7 by an AI assistant.",
@@ -1947,7 +1947,7 @@ export const landing = {
         sector: { it: "No-profit, gruppi d'acquisto", en: "Non-profit, buying clubs", es: "Sin ánimo de lucro, grupos de compra", fr: "Associations, groupements d'achat" },
         href: "/wegrocery",
         preview: {
-          src: { it: "/products/wegrocery/preview-it.webp", en: "/products/wegrocery/preview-en.webp", es: "/products/wegrocery/preview-en.webp", fr: "/products/wegrocery/preview-en.webp" },
+          src: { it: "/products/wegrocery/preview-it.webp", en: "/products/wegrocery/preview-en.webp", es: "/products/wegrocery/preview-es.webp", fr: "/products/wegrocery/preview-fr.webp" },
           alt: {
             it: "Tre schermate di WeGrocery da telefono: il saldo del socio, l'ordine del ciclo aperto e la ricarica online con carta.",
             en: "Three WeGrocery phone screens: the member's balance, the order for the open cycle and the online card top-up.",
@@ -2101,22 +2101,22 @@ export const landing = {
         src: {
           it: "/products/stellar-reviews/demo-desktop-it.webp",
           en: "/products/stellar-reviews/demo-desktop-en.webp",
-          es: "/products/stellar-reviews/demo-desktop-en.webp",
-          fr: "/products/stellar-reviews/demo-desktop-en.webp",
+          es: "/products/stellar-reviews/demo-desktop-es.webp",
+          fr: "/products/stellar-reviews/demo-desktop-fr.webp",
         },
         alt: {
           it: "Stellar Reviews dal computer: a sinistra la coda delle recensioni a cui rispondere, a destra una recensione da una stella su TripAdvisor con la risposta proposta dall'AI e i pulsanti Copia risposta e Ho pubblicato.",
           en: "Stellar Reviews on a computer: on the left the queue of reviews to answer, on the right a Booking.com review rated 4 out of 10, about a long check-in wait, with the AI-suggested reply and the Copy reply and I've posted it buttons.",
-          es: "Stellar Reviews en un ordenador: a la izquierda la cola de reseñas por responder, a la derecha una reseña de Booking.com con nota 4 sobre 10, sobre una larga espera en el check-in, con la respuesta sugerida por la IA y los botones Copy reply e I've posted it.",
-          fr: "Stellar Reviews sur un ordinateur : à gauche la file des avis à traiter, à droite un avis Booking.com noté 4 sur 10, sur une longue attente au check-in, avec la réponse suggérée par l'IA et les boutons Copy reply et I've posted it.",
+          es: "Stellar Reviews en un ordenador: a la izquierda la cola de reseñas por responder, a la derecha una reseña de Booking.com con nota 4 sobre 10, sobre una larga espera en el check-in, con la respuesta sugerida por la IA y los botones Copiar respuesta y Ya la he publicado.",
+          fr: "Stellar Reviews sur un ordinateur : à gauche la file des avis à traiter, à droite un avis Booking.com noté 4 sur 10, sur une longue attente au check-in, avec la réponse suggérée par l'IA et les boutons Copier la réponse et Je l'ai publiée.",
         },
       },
       mobile: {
         src: {
           it: "/products/stellar-reviews/demo-mobile-it.webp",
           en: "/products/stellar-reviews/demo-mobile-en.webp",
-          es: "/products/stellar-reviews/demo-mobile-en.webp",
-          fr: "/products/stellar-reviews/demo-mobile-en.webp",
+          es: "/products/stellar-reviews/demo-mobile-es.webp",
+          fr: "/products/stellar-reviews/demo-mobile-fr.webp",
         },
         alt: {
           it: "Stellar Reviews dal telefono: la recensione da rivedere con cura e la risposta proposta dall'AI, da rileggere prima di pubblicarla.",
@@ -2128,8 +2128,8 @@ export const landing = {
       caption: {
         it: "Dalla demo pubblica, con dati di esempio. Stellar propone la risposta, tu la rileggi, la copi e la pubblichi sulla piattaforma.",
         en: "From the public demo, with sample data. Stellar suggests the reply, you read it through, copy it and post it on the platform.",
-        es: "De la demo pública, con datos de ejemplo (interfaz en inglés). Stellar sugiere la respuesta, tú la lees, la copias y la publicas en la plataforma.",
-        fr: "Tiré de la démo publique, avec des données d'exemple (interface en anglais). Stellar suggère la réponse, vous la relisez, la copiez et la publiez sur la plateforme.",
+        es: "De la demo pública, con datos de ejemplo. Stellar sugiere la respuesta, tú la lees, la copias y la publicas en la plataforma.",
+        fr: "Tiré de la démo publique, avec des données d'exemple. Stellar suggère la réponse, vous la relisez, la copiez et la publiez sur la plateforme.",
       },
     },
     problem: {
@@ -2302,12 +2302,12 @@ export const landing = {
     media: {
       // Video di lancio fatto con HyperFrames (HTML + GSAP renderizzato in MP4).
       launchVideo: {
-        src: { it: "/products/wegrocery/launch-it.mp4", en: "/products/wegrocery/launch-en.mp4", es: "/products/wegrocery/launch-en.mp4", fr: "/products/wegrocery/launch-en.mp4" },
+        src: { it: "/products/wegrocery/launch-it.mp4", en: "/products/wegrocery/launch-en.mp4", es: "/products/wegrocery/launch-es.mp4", fr: "/products/wegrocery/launch-fr.mp4" },
         poster: {
           it: "/products/wegrocery/launch-it-poster.jpg",
           en: "/products/wegrocery/launch-en-poster.jpg",
-          es: "/products/wegrocery/launch-en-poster.jpg",
-          fr: "/products/wegrocery/launch-en-poster.jpg",
+          es: "/products/wegrocery/launch-es-poster.jpg",
+          fr: "/products/wegrocery/launch-fr-poster.jpg",
         },
         caption: {
           it: "Video di lancio di WeGrocery",
@@ -2320,8 +2320,8 @@ export const landing = {
         transcript: {
           it: "Cosa mostra il video: ogni settimana lo stesso foglio di calcolo, con errori nelle formule. WeGrocery, rifatta da capo, mette ordini di gruppo, pagamenti e conti in un'unica app. Per i soci: il saldo sempre in vista e l'ordine in pochi tocchi. Pagamenti online con carta via Stripe: ricarica del saldo, pagamento per ordine, conguaglio e rimborsi sulla carta. Per gli admin: cicli, cassa e statistiche in un unico pannello. Conti che tornano: le correzioni non riscrivono la storia dei movimenti, pagamenti, rimborsi e addebiti sono verificati ogni notte e la chiusura del ciclo è tutto o niente. E poi ordini in famiglia, app sul telefono, guida con ricerca, italiano e inglese. Open source con licenza MIT: il tuo gruppo, il tuo marchio.",
           en: "What the video shows: every week, the same spreadsheet with broken formulas. WeGrocery, rebuilt from scratch, puts group orders, payments and accounts in one app. For members: the balance always in view and orders in a few taps. Online card payments through Stripe: balance top-ups, pay per order, settling up with refunds to the card. For admins: cycles, treasury and stats in one panel. Accounts that add up: corrections never rewrite the ledger's history, payments, refunds and charges are verified every night, and closing a cycle is all or nothing. Plus family orders, a phone app, a searchable guide, Italian and English. Open source under the MIT licence: your group, your brand.",
-          es: "Qué muestra el vídeo: cada semana, la misma hoja de cálculo con fórmulas rotas. WeGrocery, rehecha desde cero, reúne pedidos de grupo, pagos y cuentas en una sola app. Para los socios: el saldo siempre a la vista y pedidos en pocos toques. Pagos online con tarjeta a través de Stripe: recargas de saldo, pago por pedido, ajustes con reembolsos a la tarjeta. Para los administradores: ciclos, caja y estadísticas en un solo panel. Cuentas que cuadran: las correcciones nunca reescriben el historial del libro de cuentas, pagos, reembolsos y cargos se verifican cada noche, y el cierre de un ciclo es todo o nada. Además pedidos familiares, app para el móvil, guía con buscador, italiano e inglés. Open source con licencia MIT: tu grupo, tu marca.",
-          fr: "Ce que montre la vidéo : chaque semaine, le même tableur aux formules cassées. WeGrocery, reconstruite de zéro, réunit commandes groupées, paiements et comptes dans une seule application. Pour les membres : le solde toujours visible et des commandes en quelques gestes. Paiements en ligne par carte via Stripe : recharges du solde, paiement à la commande, régularisations avec remboursement sur la carte. Pour les administrateurs : cycles, trésorerie et statistiques dans un seul panneau. Des comptes justes : les corrections ne réécrivent jamais l'historique du registre, paiements, remboursements et prélèvements sont vérifiés chaque nuit, et la clôture d'un cycle se fait en tout ou rien. En plus : commandes familiales, application mobile, guide avec recherche, italien et anglais. Open source sous licence MIT : votre groupe, votre marque.",
+          es: "Qué muestra el vídeo: cada semana, la misma hoja de cálculo con fórmulas rotas. WeGrocery, rehecha desde cero, reúne pedidos de grupo, pagos y cuentas en una sola app. Para los socios: el saldo siempre a la vista y pedidos en pocos toques. Pagos online con tarjeta a través de Stripe: recargas de saldo, pago por pedido, ajustes con reembolsos a la tarjeta. Para los administradores: ciclos, caja y estadísticas en un solo panel. Cuentas que cuadran: las correcciones nunca reescriben el historial del libro de cuentas, pagos, reembolsos y cargos se verifican cada noche, y el cierre de un ciclo es todo o nada. Además pedidos familiares, app para el móvil, guía con buscador, cuatro idiomas. Código abierto con licencia MIT: tu grupo, tu marca.",
+          fr: "Ce que montre la vidéo : chaque semaine, le même tableur aux formules cassées. WeGrocery, reconstruite de zéro, réunit commandes groupées, paiements et comptes dans une seule application. Pour les membres : le solde toujours visible et des commandes en quelques gestes. Paiements en ligne par carte via Stripe : recharges du solde, paiement à la commande, régularisations avec remboursement sur la carte. Pour les administrateurs : cycles, trésorerie et statistiques dans un seul panneau. Des comptes justes : les corrections ne réécrivent jamais l'historique du registre, paiements, remboursements et prélèvements sont vérifiés chaque nuit, et la clôture d'un cycle se fait en tout ou rien. En plus : commandes familiales, application mobile, guide avec recherche, quatre langues. Open source sous licence MIT : votre groupe, votre marque.",
         },
       },
     },
@@ -2348,12 +2348,12 @@ export const landing = {
     screensIntro: {
       it: "Dalla demo pubblica, con dati finti. Il socio usa l'app dal telefono, l'admin anche dal computer.",
       en: "From the public demo, with fake data. Members use the app on their phone, admins on a computer too.",
-      es: "De la demo pública, con datos ficticios (interfaz en inglés). Los socios usan la app en el móvil, los administradores también en el ordenador.",
-      fr: "Tiré de la démo publique, avec des données fictives (interface en anglais). Les membres utilisent l'application sur leur téléphone, les administrateurs aussi sur ordinateur.",
+      es: "De la app en español, con datos ficticios. Los socios usan la app en el móvil, los administradores también en el ordenador.",
+      fr: "Tiré de l'app en français, avec des données fictives. Les membres utilisent l'application sur leur téléphone, les administrateurs aussi sur ordinateur.",
     },
     phoneScreens: [
       {
-        src: { it: "/products/wegrocery/screens/home-it.webp", en: "/products/wegrocery/screens/home-en.webp", es: "/products/wegrocery/screens/home-en.webp", fr: "/products/wegrocery/screens/home-en.webp" },
+        src: { it: "/products/wegrocery/screens/home-it.webp", en: "/products/wegrocery/screens/home-en.webp", es: "/products/wegrocery/screens/home-es.webp", fr: "/products/wegrocery/screens/home-fr.webp" },
         caption: { it: "Saldo e prossimo ritiro", en: "Balance and next pickup", es: "Saldo y próxima recogida", fr: "Solde et prochain retrait" },
         alt: {
           it: "Home del socio: saldo di 90 euro, costo dell'ordine in corso e saldo dopo l'ordine, prossimo ritiro tra 7 giorni.",
@@ -2363,7 +2363,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/order-edit-it.webp", en: "/products/wegrocery/screens/order-edit-en.webp", es: "/products/wegrocery/screens/order-edit-en.webp", fr: "/products/wegrocery/screens/order-edit-en.webp" },
+        src: { it: "/products/wegrocery/screens/order-edit-it.webp", en: "/products/wegrocery/screens/order-edit-en.webp", es: "/products/wegrocery/screens/order-edit-es.webp", fr: "/products/wegrocery/screens/order-edit-fr.webp" },
         caption: { it: "L'ordine del ciclo aperto", en: "The open cycle's order", es: "El pedido del ciclo abierto", fr: "La commande du cycle ouvert" },
         alt: {
           it: "Modulo d'ordine: prodotti per categoria con i pulsanti più e meno, totale dell'ordine e saldo dopo l'ordine.",
@@ -2373,7 +2373,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/topup-it.webp", en: "/products/wegrocery/screens/topup-en.webp", es: "/products/wegrocery/screens/topup-en.webp", fr: "/products/wegrocery/screens/topup-en.webp" },
+        src: { it: "/products/wegrocery/screens/topup-it.webp", en: "/products/wegrocery/screens/topup-en.webp", es: "/products/wegrocery/screens/topup-es.webp", fr: "/products/wegrocery/screens/topup-fr.webp" },
         caption: { it: "Ricarica con carta, via Stripe", en: "Card top-up, through Stripe", es: "Recarga con tarjeta, a través de Stripe", fr: "Recharge par carte, via Stripe" },
         alt: {
           it: "Pagina Ricarica il saldo: importi rapidi da 25, 50 e 100 euro e il pulsante Paga che apre il pagamento Stripe.",
@@ -2383,7 +2383,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/guide-it.webp", en: "/products/wegrocery/screens/guide-en.webp", es: "/products/wegrocery/screens/guide-en.webp", fr: "/products/wegrocery/screens/guide-en.webp" },
+        src: { it: "/products/wegrocery/screens/guide-it.webp", en: "/products/wegrocery/screens/guide-en.webp", es: "/products/wegrocery/screens/guide-es.webp", fr: "/products/wegrocery/screens/guide-fr.webp" },
         caption: { it: "Guida con ricerca", en: "Searchable guide", es: "Guía con buscador", fr: "Guide avec recherche" },
         alt: {
           it: "Guida dell'app: casella di ricerca e argomenti come Primi passi, Ordinare, Saldo e pagamenti, Notifiche.",
@@ -2395,7 +2395,7 @@ export const landing = {
     ],
     desktopScreens: [
       {
-        src: { it: "/products/wegrocery/screens/admin-cash-it.webp", en: "/products/wegrocery/screens/admin-cash-en.webp", es: "/products/wegrocery/screens/admin-cash-en.webp", fr: "/products/wegrocery/screens/admin-cash-en.webp" },
+        src: { it: "/products/wegrocery/screens/admin-cash-it.webp", en: "/products/wegrocery/screens/admin-cash-en.webp", es: "/products/wegrocery/screens/admin-cash-es.webp", fr: "/products/wegrocery/screens/admin-cash-fr.webp" },
         caption: { it: "Admin: la cassa", en: "Admin: the treasury", es: "Admin: la caja", fr: "Admin : la trésorerie" },
         alt: {
           it: "Pannello admin, scheda Cassa: saldo totale e medio dei soci, nuova ricarica, movimento in uscita e saldi dei soci per ruolo.",
@@ -2405,7 +2405,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/wegrocery/screens/admin-stats-it.webp", en: "/products/wegrocery/screens/admin-stats-en.webp", es: "/products/wegrocery/screens/admin-stats-en.webp", fr: "/products/wegrocery/screens/admin-stats-en.webp" },
+        src: { it: "/products/wegrocery/screens/admin-stats-it.webp", en: "/products/wegrocery/screens/admin-stats-en.webp", es: "/products/wegrocery/screens/admin-stats-es.webp", fr: "/products/wegrocery/screens/admin-stats-fr.webp" },
         caption: { it: "Admin: le statistiche", en: "Admin: the stats", es: "Admin: las estadísticas", fr: "Admin : les statistiques" },
         alt: {
           it: "Pannello admin, scheda Statistiche: cicli chiusi, soci attivi, spesa totale, prodotto più ordinato e classifica dei 10 prodotti più ordinati.",
@@ -2545,10 +2545,10 @@ export const landing = {
             fr: "Un contrôle nocturne des paiements, remboursements et prélèvements, plus des sauvegardes automatiques de la base de données",
           },
           {
-            it: "Nome, logo, colori e lingua (italiano o inglese) del tuo gruppo da una sola configurazione, senza toccare il codice",
-            en: "Your group's name, logo, colours and language (Italian or English) from one setting, with no code changes",
-            es: "Nombre, logo, colores e idioma de tu grupo (italiano o inglés) desde un solo ajuste, sin tocar el código",
-            fr: "Nom, logo, couleurs et langue de votre groupe (italien ou anglais) depuis un seul réglage, sans toucher au code",
+            it: "Nome, logo, colori e lingua (italiano, inglese, spagnolo o francese) del tuo gruppo da una sola configurazione, senza toccare il codice",
+            en: "Your group's name, logo, colours and language (Italian, English, Spanish or French) from one setting, with no code changes",
+            es: "Nombre, logo, colores e idioma de tu grupo (italiano, inglés, español o francés) desde un solo ajuste, sin tocar el código",
+            fr: "Nom, logo, couleurs et langue de votre groupe (italien, anglais, espagnol ou français) depuis un seul réglage, sans toucher au code",
           },
         ] satisfies Localized[],
       },
@@ -2639,11 +2639,11 @@ export const landing = {
     app: {
       start: {
         label: { it: "Provalo gratis su gptchatbot.it", en: "Try it free on gptchatbot.it", es: "Pruébalo gratis en gptchatbot.it", fr: "Essayez-le gratuitement sur gptchatbot.it" },
-        href: { it: "https://gptchatbot.it/it", en: "https://gptchatbot.it", es: "https://gptchatbot.it", fr: "https://gptchatbot.it" },
+        href: { it: "https://gptchatbot.it/it", en: "https://gptchatbot.it", es: "https://gptchatbot.it/es", fr: "https://gptchatbot.it/fr" },
       },
       pricing: {
         label: { it: "Vedi i prezzi", en: "See pricing", es: "Ver precios", fr: "Voir les tarifs" },
-        href: { it: "https://gptchatbot.it/it/prezzi", en: "https://gptchatbot.it/pricing", es: "https://gptchatbot.it/pricing", fr: "https://gptchatbot.it/pricing" },
+        href: { it: "https://gptchatbot.it/it/prezzi", en: "https://gptchatbot.it/pricing", es: "https://gptchatbot.it/es/precios", fr: "https://gptchatbot.it/fr/tarifs" },
       },
     },
     mediaTitle: { it: "GPT Chatbot in azione", en: "GPT Chatbot in action", es: "GPT Chatbot en acción", fr: "GPT Chatbot en action" },
@@ -2651,18 +2651,18 @@ export const landing = {
       // Registrato dalla demo animata della home di gptchatbot.it (sito girato
       // in locale), una versione per lingua: le conversazioni sono di esempio.
       demoVideo: {
-        src: { it: "/products/gpt-chatbot/demo-it.mp4", en: "/products/gpt-chatbot/demo-en.mp4", es: "/products/gpt-chatbot/demo-en.mp4", fr: "/products/gpt-chatbot/demo-en.mp4" },
+        src: { it: "/products/gpt-chatbot/demo-it.mp4", en: "/products/gpt-chatbot/demo-en.mp4", es: "/products/gpt-chatbot/demo-es.mp4", fr: "/products/gpt-chatbot/demo-fr.mp4" },
         poster: {
           it: "/products/gpt-chatbot/demo-it-poster.jpg",
           en: "/products/gpt-chatbot/demo-en-poster.jpg",
-          es: "/products/gpt-chatbot/demo-en-poster.jpg",
-          fr: "/products/gpt-chatbot/demo-en-poster.jpg",
+          es: "/products/gpt-chatbot/demo-es-poster.jpg",
+          fr: "/products/gpt-chatbot/demo-fr-poster.jpg",
         },
         caption: {
           it: "Tre conversazioni di esempio, dalla demo di gptchatbot.it",
           en: "Three sample conversations, from the gptchatbot.it demo",
-          es: "Tres conversaciones de ejemplo, de la demo de gptchatbot.it (en inglés)",
-          fr: "Trois conversations d'exemple, tirées de la démo de gptchatbot.it (en anglais)",
+          es: "Tres conversaciones de ejemplo, de la demo de gptchatbot.it",
+          fr: "Trois conversations d'exemple, tirées de la démo de gptchatbot.it",
         },
         transcript: {
           it: "Cosa mostra il video: tre conversazioni di esempio con tre attività diverse. In una boutique il cliente chiede se un vestito è disponibile nella sua taglia: il chatbot controlla il magazzino, cita le fonti, lo tiene da parte e manda il link per il pagamento. In uno studio dentistico risponde sul costo di un trattamento leggendo il listino, propone due appuntamenti e lo aggiunge al calendario. In un noleggio bici verifica la disponibilità per il giorno dopo, propone caschi e assicurazione e conferma la prenotazione con il totale.",
@@ -2672,7 +2672,7 @@ export const landing = {
         },
       },
       realChat: {
-        src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-en.jpg", fr: "/products/gpt-chatbot/chat-en.jpg" },
+        src: { it: "/products/gpt-chatbot/chat-it.jpg", en: "/products/gpt-chatbot/chat-en.jpg", es: "/products/gpt-chatbot/chat-es.jpg", fr: "/products/gpt-chatbot/chat-fr.jpg" },
         caption: {
           it: "Una conversazione vera con l'assistente di questo sito",
           en: "A real conversation with this site's assistant",
@@ -2727,12 +2727,12 @@ export const landing = {
     screensIntro: {
       it: "Dal sito di GPT Chatbot: come gli agenti si dividono il lavoro e dove puoi collegarli.",
       en: "From the GPT Chatbot website: how the agents split the work and where you can connect them.",
-      es: "De la web de GPT Chatbot (en inglés): cómo se reparten el trabajo los agentes y dónde puedes conectarlos.",
-      fr: "Tiré du site de GPT Chatbot (en anglais) : comment les agents se répartissent le travail et où vous pouvez les connecter.",
+      es: "De la web de GPT Chatbot: cómo se reparten el trabajo los agentes y dónde puedes conectarlos.",
+      fr: "Tiré du site de GPT Chatbot : comment les agents se répartissent le travail et où vous pouvez les connecter.",
     },
     screens: [
       {
-        src: { it: "/products/gpt-chatbot/screens/orchestration-it.webp", en: "/products/gpt-chatbot/screens/orchestration-en.webp", es: "/products/gpt-chatbot/screens/orchestration-en.webp", fr: "/products/gpt-chatbot/screens/orchestration-en.webp" },
+        src: { it: "/products/gpt-chatbot/screens/orchestration-it.webp", en: "/products/gpt-chatbot/screens/orchestration-en.webp", es: "/products/gpt-chatbot/screens/orchestration-es.webp", fr: "/products/gpt-chatbot/screens/orchestration-fr.webp" },
         width: 1800,
         height: 1030,
         caption: { it: "Un supervisore AI e gli agenti specializzati", en: "An AI supervisor and specialised agents", es: "Un supervisor de IA y agentes especializados", fr: "Un superviseur IA et des agents spécialisés" },
@@ -2744,7 +2744,7 @@ export const landing = {
         },
       },
       {
-        src: { it: "/products/gpt-chatbot/screens/integrations-it.webp", en: "/products/gpt-chatbot/screens/integrations-en.webp", es: "/products/gpt-chatbot/screens/integrations-en.webp", fr: "/products/gpt-chatbot/screens/integrations-en.webp" },
+        src: { it: "/products/gpt-chatbot/screens/integrations-it.webp", en: "/products/gpt-chatbot/screens/integrations-en.webp", es: "/products/gpt-chatbot/screens/integrations-es.webp", fr: "/products/gpt-chatbot/screens/integrations-fr.webp" },
         width: 1940,
         height: 1210,
         caption: { it: "I canali e le integrazioni", en: "Channels and integrations", es: "Canales e integraciones", fr: "Canaux et intégrations" },
@@ -2893,7 +2893,7 @@ export const landing = {
     ],
     allFeatures: {
       label: { it: "Tutte le funzionalità su gptchatbot.it →", en: "Every feature on gptchatbot.it →", es: "Todas las funciones en gptchatbot.it →", fr: "Toutes les fonctionnalités sur gptchatbot.it →" },
-      href: { it: "https://gptchatbot.it/it/funzionalita", en: "https://gptchatbot.it/features", es: "https://gptchatbot.it/features", fr: "https://gptchatbot.it/features" },
+      href: { it: "https://gptchatbot.it/it/funzionalita", en: "https://gptchatbot.it/features", es: "https://gptchatbot.it/es/funcionalidades", fr: "https://gptchatbot.it/fr/fonctionnalites" },
     },
     modesTitle: { it: "Come lo attivi", en: "How to get it", es: "Cómo activarlo", fr: "Comment l'activer" },
     modeSaas: {
