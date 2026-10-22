@@ -286,7 +286,7 @@ export function HeroScenarios({
           role="tablist"
           aria-labelledby="hero-scenarios-label"
           onKeyDown={onKeyDown}
-          className="flex shrink-0 gap-1.5"
+          className="flex shrink-0 gap-2"
         >
           {scenarios.map((s, i) => {
             const selected = i === active;
@@ -303,7 +303,7 @@ export function HeroScenarios({
                 aria-controls={`hero-panel-${s.id}`}
                 tabIndex={selected ? 0 : -1}
                 onClick={() => select(i, false)}
-                className={`rounded-full border px-2.5 py-1.5 text-[13px] font-medium transition-colors ${
+                className={`rounded-full border px-2.5 py-2 text-[13px] font-medium transition-colors ${
                   selected
                     ? "border-white/55 bg-white/[0.12] text-white"
                     : "border-white/15 text-white/65 hover:border-white/35 hover:text-white"
