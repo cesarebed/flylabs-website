@@ -1925,10 +1925,10 @@ export const landing = {
         lockup: "/products/stellar-reviews/logo-orizzontale.svg",
         name: "Stellar Reviews",
         tagline: {
-          it: "Bozze di risposta alle recensioni di Google, Tripadvisor e Booking, pronte ogni mattina.",
-          en: "Reply drafts for your Google, Tripadvisor and Booking reviews, ready every morning.",
-          es: "Borradores de respuesta para tus reseñas de Google, Tripadvisor y Booking, listos cada mañana.",
-          fr: "Des brouillons de réponse pour vos avis Google, Tripadvisor et Booking, prêts chaque matin.",
+          it: "Bozze di risposta alle recensioni di Google, Tripadvisor, Booking ed Expedia, pronte ogni mattina.",
+          en: "Reply drafts for your Google, Tripadvisor, Booking and Expedia reviews, ready every morning.",
+          es: "Borradores de respuesta para tus reseñas de Google, Tripadvisor, Booking y Expedia, listos cada mañana.",
+          fr: "Des brouillons de réponse pour vos avis Google, Tripadvisor, Booking et Expedia, prêts chaque matin.",
         },
         sector: { it: "Ricettivo e retail", en: "Hospitality and retail", es: "Hostelería y retail", fr: "Hôtellerie et commerce" },
         href: "/stellar-reviews",
@@ -1967,22 +1967,22 @@ export const landing = {
       it: {
         title: "Stellar Reviews: gestione delle recensioni con l'AI | flylabs.ai",
         description:
-          "Non perdere più nessuna recensione: Stellar Reviews raccoglie le recensioni di Google, Tripadvisor e Booking e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
+          "Non perdere più nessuna recensione: Stellar Reviews raccoglie le recensioni di Google, Tripadvisor, Booking ed Expedia e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
       },
       en: {
         title: "Stellar Reviews: AI-powered review management | flylabs.ai",
         description:
-          "Never miss a review again: Stellar Reviews gathers your Google, Tripadvisor and Booking reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
+          "Never miss a review again: Stellar Reviews gathers your Google, Tripadvisor, Booking and Expedia reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
       },
       es: {
         title: "Stellar Reviews: gestión de reseñas con IA | flylabs.ai",
         description:
-          "No vuelvas a perder ninguna reseña: Stellar Reviews reúne tus reseñas de Google, Tripadvisor y Booking y prepara con IA borradores de respuesta con tu estilo. Tú los revisas y los publicas. Desde 24 € al mes, con plan gratuito.",
+          "No vuelvas a perder ninguna reseña: Stellar Reviews reúne tus reseñas de Google, Tripadvisor, Booking y Expedia y prepara con IA borradores de respuesta con tu estilo. Tú los revisas y los publicas. Desde 24 € al mes, con plan gratuito.",
       },
       fr: {
         title: "Stellar Reviews : la gestion des avis avec l'IA | flylabs.ai",
         description:
-          "Ne manquez plus aucun avis : Stellar Reviews rassemble vos avis Google, Tripadvisor et Booking et prépare avec l'IA des brouillons de réponse dans votre style. Vous les relisez et les publiez. À partir de 24 € par mois, avec une offre gratuite.",
+          "Ne manquez plus aucun avis : Stellar Reviews rassemble vos avis Google, Tripadvisor, Booking et Expedia et prépare avec l'IA des brouillons de réponse dans votre style. Vous les relisez et les publiez. À partir de 24 € par mois, avec une offre gratuite.",
       },
     },
     // Anteprima link del kit del marchio (05-social), solo in italiano: la
@@ -2016,14 +2016,19 @@ export const landing = {
     // Una sola fonte per i prezzi: qui solo il "da", il resto sulla pagina
     // prezzi dell'app (verificata il 2026-10-10).
     priceNote: {
-      it: "Web app online su stellar.flylabs.ai. Da 24 € al mese (IVA esclusa), con piano gratuito.",
-      en: "Web app live at stellar.flylabs.ai. From €24 a month (excl. VAT), with a free plan.",
-      es: "Web app disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA no incluido), con plan gratuito.",
-      fr: "Application web disponible sur stellar.flylabs.ai. À partir de 24 € HT par mois, avec une offre gratuite.",
+      it: "Web app online su stellar.flylabs.ai. Da 24 € al mese (IVA inclusa), con piano gratuito.",
+      en: "Web app live at stellar.flylabs.ai. From €24 a month (VAT included), with a free plan.",
+      es: "Web app disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA incluido), con plan gratuito.",
+      fr: "Application web disponible sur stellar.flylabs.ai. À partir de 24 € TTC par mois, avec une offre gratuite.",
     },
-    // Link all'app. L'iscrizione oggi è su invito: niente "iscriviti ora"
-    // finché l'iscrizione libera non è attiva.
+    // Link all'app. L'iscrizione è libera (dal 2026-10-13): "Inizia gratis"
+    // porta alla pagina d'iscrizione ed è l'azione principale, la demo resta
+    // come seconda strada per chi vuole guardare senza account.
     app: {
+      signup: {
+        label: { it: "Inizia gratis", en: "Start for free", es: "Empieza gratis", fr: "Commencer gratuitement" },
+        href: "https://stellar.flylabs.ai/iscrizione",
+      },
       demo: {
         label: { it: "Prova la demo", en: "Try the demo", es: "Prueba la demo", fr: "Essayer la démo" },
         href: "https://stellar.flylabs.ai/demo",
@@ -2032,17 +2037,13 @@ export const landing = {
         label: { it: "Vedi i prezzi", en: "See pricing", es: "Ver precios", fr: "Voir les tarifs" },
         href: "https://stellar.flylabs.ai/prezzi",
       },
-      access: {
-        label: { it: "Richiedi l'accesso", en: "Request access", es: "Solicitar acceso", fr: "Demander un accès" },
-        href: "https://stellar.flylabs.ai/richiedi-accesso",
-      },
       verify: {
         label: { it: "stellar.flylabs.ai/verifica", en: "stellar.flylabs.ai/verifica", es: "stellar.flylabs.ai/verifica", fr: "stellar.flylabs.ai/verifica" },
         href: "https://stellar.flylabs.ai/verifica",
       },
     },
-    // Piattaforme (decisione di Federico 2026-10-12). Oggi: le tre lette
-    // davvero. In arrivo: mai mostrate come disponibili (Codice del Consumo,
+    // Piattaforme (decisione di Federico 2026-10-12, Expedia disponibile dal
+    // 2026-10-23). Oggi: le quattro lette davvero. In arrivo: mai mostrate come disponibili (Codice del Consumo,
     // artt. 21-22), sempre dietro "In arrivo", senza date. Loghi Simple Icons
     // (CC0) nel colore ufficiale; Google usa la "G" ufficiale a quattro colori
     // del set logos (Simple Icons la ha solo in tinta unita). Solo accanto al
@@ -2053,9 +2054,9 @@ export const landing = {
         { name: "Google", icon: "logos:google-icon", color: "#4285F4" },
         { name: "Booking.com", icon: "simple-icons:bookingdotcom", color: "#003A9A" },
         { name: "Tripadvisor", icon: "simple-icons:tripadvisor", color: "#34E0A1" },
+        { name: "Expedia", icon: "simple-icons:expedia", color: "#191E3B" },
       ],
       coming: [
-        { name: "Expedia", icon: "simple-icons:expedia", color: "#191E3B" },
         { name: "Hotels.com", icon: "simple-icons:hotelsdotcom", color: "#EF3346" },
         { name: "Airbnb", icon: "simple-icons:airbnb", color: "#FF5A5F" },
       ],
@@ -2070,10 +2071,10 @@ export const landing = {
           fr: "Est-ce que ça marche avec Booking et Tripadvisor ?",
         },
         a: {
-          it: "Sì, insieme a Google. Stiamo aggiungendo Expedia (con Vrbo), Hotels.com e Airbnb. Usi un'altra piattaforma?",
-          en: "Yes, together with Google. We are adding Expedia (with Vrbo), Hotels.com and Airbnb. Do you use another platform?",
-          es: "Sí, junto con Google. Estamos añadiendo Expedia (con Vrbo), Hotels.com y Airbnb. ¿Usas otra plataforma?",
-          fr: "Oui, en plus de Google. Nous ajoutons Expedia (avec Vrbo), Hotels.com et Airbnb. Vous utilisez une autre plateforme ?",
+          it: "Sì, insieme a Google ed Expedia. Stiamo aggiungendo Hotels.com, Vrbo e Airbnb. Usi un'altra piattaforma?",
+          en: "Yes, together with Google and Expedia. We are adding Hotels.com, Vrbo and Airbnb. Do you use another platform?",
+          es: "Sí, junto con Google y Expedia. Estamos añadiendo Hotels.com, Vrbo y Airbnb. ¿Usas otra plataforma?",
+          fr: "Oui, en plus de Google et Expedia. Nous ajoutons Hotels.com, Vrbo et Airbnb. Vous utilisez une autre plateforme ?",
         },
         contact: {
           label: { it: "Scrivici a stellar@flylabs.ai", en: "Write to stellar@flylabs.ai", es: "Escríbenos a stellar@flylabs.ai", fr: "Écrivez-nous à stellar@flylabs.ai" },
@@ -2093,9 +2094,8 @@ export const landing = {
       },
     },
     // Schermate reali della demo pubblica (dati di esempio), una per lingua:
-    // l'interfaccia è nei pixel. Il filtro "Expedia" della demo è nascosto
-    // nello scatto: sul sito una piattaforma in arrivo non deve mai sembrare
-    // già disponibile (vedi platforms qui sopra).
+    // l'interfaccia è nei pixel. Una piattaforma in arrivo non deve mai
+    // sembrare già disponibile negli scatti (vedi platforms qui sopra).
     screens: {
       desktop: {
         src: {
@@ -2133,26 +2133,26 @@ export const landing = {
       },
     },
     problem: {
-      it: "Chi gestisce una struttura ricettiva risponde alle recensioni a mano: le legge su tre piattaforme diverse, le scrive una a una, spesso in un'altra lingua. E quelle senza risposta restano lì per mesi.",
-      en: "People running a hospitality business answer reviews by hand: they read them on three different platforms and write each reply one by one, often in another language. And the unanswered ones sit there for months.",
-      es: "Quien gestiona un negocio de hostelería responde las reseñas a mano: las lee en tres plataformas distintas y escribe cada respuesta una a una, a menudo en otro idioma. Y las que quedan sin respuesta se acumulan durante meses.",
-      fr: "Ceux qui gèrent un établissement d'hébergement répondent aux avis à la main : ils les lisent sur trois plateformes différentes et rédigent chaque réponse une par une, souvent dans une autre langue. Et celles restées sans réponse s'accumulent pendant des mois.",
+      it: "Chi gestisce una struttura ricettiva risponde alle recensioni a mano: le legge su piattaforme diverse, le scrive una a una, spesso in un'altra lingua. E quelle senza risposta restano lì per mesi.",
+      en: "People running a hospitality business answer reviews by hand: they read them on several different platforms and write each reply one by one, often in another language. And the unanswered ones sit there for months.",
+      es: "Quien gestiona un negocio de hostelería responde las reseñas a mano: las lee en varias plataformas distintas y escribe cada respuesta una a una, a menudo en otro idioma. Y las que quedan sin respuesta se acumulan durante meses.",
+      fr: "Ceux qui gèrent un établissement d'hébergement répondent aux avis à la main : ils les lisent sur plusieurs plateformes différentes et rédigent chaque réponse une par une, souvent dans une autre langue. Et celles restées sans réponse s'accumulent pendant des mois.",
     },
     solution: {
-      it: "Stellar Reviews è un sistema completo di gestione delle recensioni su più piattaforme (Google, Tripadvisor e Booking), integrato con i modelli di AI più avanzati. Raccoglie ogni giorno le recensioni nuove e prepara per te bozze di risposta personalizzate nel tuo stile, che migliora nel tempo grazie ai tuoi feedback. Tu le rileggi e le pubblichi: l'ultima parola resta sempre tua.",
-      en: "Stellar Reviews is a complete review management system across platforms (Google, Tripadvisor and Booking), built on the most advanced AI models. Every day it gathers new reviews and prepares personalised reply drafts in your style, getting better over time from your feedback. You read them and publish them: the final word is always yours.",
-      es: "Stellar Reviews es un sistema completo de gestión de reseñas multiplataforma (Google, Tripadvisor y Booking), construido sobre los modelos de IA más avanzados. Cada día reúne las nuevas reseñas y prepara borradores de respuesta personalizados con tu estilo, que mejoran con el tiempo gracias a tus comentarios. Tú los lees y los publicas: la última palabra es siempre tuya.",
-      fr: "Stellar Reviews est un système complet de gestion des avis multiplateforme (Google, Tripadvisor et Booking), construit sur les modèles d'IA les plus avancés. Chaque jour, il rassemble les nouveaux avis et prépare des brouillons de réponse personnalisés dans votre style, qui s'améliorent avec le temps grâce à vos retours. Vous les relisez et les publiez : le dernier mot vous revient toujours.",
+      it: "Stellar Reviews è un sistema completo di gestione delle recensioni su più piattaforme (Google, Tripadvisor, Booking ed Expedia), integrato con i modelli di AI più avanzati. Raccoglie ogni giorno le recensioni nuove e prepara per te bozze di risposta personalizzate nel tuo stile, che migliora nel tempo grazie ai tuoi feedback. Tu le rileggi e le pubblichi: l'ultima parola resta sempre tua.",
+      en: "Stellar Reviews is a complete review management system across platforms (Google, Tripadvisor, Booking and Expedia), built on the most advanced AI models. Every day it gathers new reviews and prepares personalised reply drafts in your style, getting better over time from your feedback. You read them and publish them: the final word is always yours.",
+      es: "Stellar Reviews es un sistema completo de gestión de reseñas multiplataforma (Google, Tripadvisor, Booking y Expedia), construido sobre los modelos de IA más avanzados. Cada día reúne las nuevas reseñas y prepara borradores de respuesta personalizados con tu estilo, que mejoran con el tiempo gracias a tus comentarios. Tú los lees y los publicas: la última palabra es siempre tuya.",
+      fr: "Stellar Reviews est un système complet de gestion des avis multiplateforme (Google, Tripadvisor, Booking et Expedia), construit sur les modèles d'IA les plus avancés. Chaque jour, il rassemble les nouveaux avis et prépare des brouillons de réponse personnalisés dans votre style, qui s'améliorent avec le temps grâce à vos retours. Vous les relisez et les publiez : le dernier mot vous revient toujours.",
     },
     featuresTitle: { it: "Cosa fa", en: "What it does", es: "Qué hace", fr: "Ce qu'il fait" },
     features: [
       {
         title: { it: "Ogni mattina", en: "Every morning", es: "Cada mañana", fr: "Chaque matin" },
         body: {
-          it: "Legge le recensioni nuove da Google, Tripadvisor e Booking e prepara una bozza di risposta, nella lingua di chi ha scritto.",
-          en: "It reads new reviews from Google, Tripadvisor and Booking and drafts a reply in the reviewer's own language.",
-          es: "Lee las nuevas reseñas de Google, Tripadvisor y Booking y redacta una respuesta en el idioma de quien la escribió.",
-          fr: "Il lit les nouveaux avis Google, Tripadvisor et Booking et rédige une réponse dans la langue de leur auteur.",
+          it: "Legge le recensioni nuove da Google, Tripadvisor, Booking ed Expedia e prepara una bozza di risposta, nella lingua di chi ha scritto.",
+          en: "It reads new reviews from Google, Tripadvisor, Booking and Expedia and drafts a reply in the reviewer's own language.",
+          es: "Lee las nuevas reseñas de Google, Tripadvisor, Booking y Expedia y redacta una respuesta en el idioma de quien la escribió.",
+          fr: "Il lit les nouveaux avis Google, Tripadvisor, Booking et Expedia et rédige une réponse dans la langue de leur auteur.",
         },
       },
       {
@@ -2244,10 +2244,10 @@ export const landing = {
     modeSaas: {
       title: { it: "Self-service, la web app", en: "Self-service, the web app", es: "Self-service, la web app", fr: "En libre-service, l'application web" },
       body: {
-        it: "Stellar Reviews è online su stellar.flylabs.ai. Da 24 € al mese (IVA esclusa), con piano gratuito e 14 giorni di prova delle funzioni Premium. Per ora l'accesso è su invito.",
-        en: "Stellar Reviews is live at stellar.flylabs.ai. From €24 a month (excl. VAT), with a free plan and a 14-day trial of the Premium features. For now, access is by invitation.",
-        es: "Stellar Reviews está disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA no incluido), con plan gratuito y 14 días de prueba de las funciones Premium. Por ahora el acceso es por invitación.",
-        fr: "Stellar Reviews est disponible sur stellar.flylabs.ai. À partir de 24 € HT par mois, avec une offre gratuite et un essai de 14 jours des fonctions Premium. Pour l'instant, l'accès se fait sur invitation.",
+        it: "Stellar Reviews è online su stellar.flylabs.ai. Da 24 € al mese (IVA inclusa), con piano gratuito e 14 giorni di prova delle funzioni Premium. Ti iscrivi da solo con la tua email, senza carta.",
+        en: "Stellar Reviews is live at stellar.flylabs.ai. From €24 a month (VAT included), with a free plan and a 14-day trial of the Premium features. Sign up on your own with your email, no card needed.",
+        es: "Stellar Reviews está disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA incluido), con plan gratuito y 14 días de prueba de las funciones Premium. Te registras tú mismo con tu email, sin tarjeta.",
+        fr: "Stellar Reviews est disponible sur stellar.flylabs.ai. À partir de 24 € TTC par mois, avec une offre gratuite et un essai de 14 jours des fonctions Premium. Vous vous inscrivez vous-même avec votre e-mail, sans carte.",
       },
     } satisfies ProductMode,
     modeCustom: {

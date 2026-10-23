@@ -145,9 +145,16 @@ export default async function StellarReviewsPage({
         </dl>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
-            href={app.demo.href}
+            href={app.signup.href}
             {...external}
             className="btn-accent inline-block rounded-lg px-5 py-2.5 text-sm font-semibold"
+          >
+            {app.signup.label[lang]}
+          </a>
+          <a
+            href={app.demo.href}
+            {...external}
+            className="inline-block rounded-lg border border-ink/20 bg-white px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink/50"
           >
             {app.demo.label[lang]}
           </a>
@@ -304,11 +311,18 @@ export default async function StellarReviewsPage({
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <a
-                  href={app.demo.href}
+                  href={app.signup.href}
                   {...external}
                   className="btn-accent btn-accent-dark inline-block rounded-lg px-5 py-2.5 text-sm font-semibold"
                 >
-                  {app.demo.label[lang]}
+                  {app.signup.label[lang]}
+                </a>
+                <a
+                  href={app.demo.href}
+                  {...external}
+                  className="text-sm font-medium text-peri transition-colors hover:text-white"
+                >
+                  <WithArrow>{app.demo.label[lang]}</WithArrow>
                 </a>
                 <a
                   href={app.pricing.href}
@@ -316,13 +330,6 @@ export default async function StellarReviewsPage({
                   className="text-sm font-medium text-peri transition-colors hover:text-white"
                 >
                   <WithArrow>{app.pricing.label[lang]}</WithArrow>
-                </a>
-                <a
-                  href={app.access.href}
-                  {...external}
-                  className="text-sm font-medium text-peri transition-colors hover:text-white"
-                >
-                  <WithArrow>{app.access.label[lang]}</WithArrow>
                 </a>
               </div>
               <p className="mt-5 text-sm text-white/60">
