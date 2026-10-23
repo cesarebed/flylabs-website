@@ -2016,14 +2016,19 @@ export const landing = {
     // Una sola fonte per i prezzi: qui solo il "da", il resto sulla pagina
     // prezzi dell'app (verificata il 2026-10-10).
     priceNote: {
-      it: "Web app online su stellar.flylabs.ai. Da 24 € al mese (IVA esclusa), con piano gratuito.",
-      en: "Web app live at stellar.flylabs.ai. From €24 a month (excl. VAT), with a free plan.",
-      es: "Web app disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA no incluido), con plan gratuito.",
-      fr: "Application web disponible sur stellar.flylabs.ai. À partir de 24 € HT par mois, avec une offre gratuite.",
+      it: "Web app online su stellar.flylabs.ai. Da 24 € al mese (IVA inclusa), con piano gratuito.",
+      en: "Web app live at stellar.flylabs.ai. From €24 a month (VAT included), with a free plan.",
+      es: "Web app disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA incluido), con plan gratuito.",
+      fr: "Application web disponible sur stellar.flylabs.ai. À partir de 24 € TTC par mois, avec une offre gratuite.",
     },
-    // Link all'app. L'iscrizione oggi è su invito: niente "iscriviti ora"
-    // finché l'iscrizione libera non è attiva.
+    // Link all'app. L'iscrizione è libera (dal 2026-10-13): "Inizia gratis"
+    // porta alla pagina d'iscrizione ed è l'azione principale, la demo resta
+    // come seconda strada per chi vuole guardare senza account.
     app: {
+      signup: {
+        label: { it: "Inizia gratis", en: "Start for free", es: "Empieza gratis", fr: "Commencer gratuitement" },
+        href: "https://stellar.flylabs.ai/iscrizione",
+      },
       demo: {
         label: { it: "Prova la demo", en: "Try the demo", es: "Prueba la demo", fr: "Essayer la démo" },
         href: "https://stellar.flylabs.ai/demo",
@@ -2031,10 +2036,6 @@ export const landing = {
       pricing: {
         label: { it: "Vedi i prezzi", en: "See pricing", es: "Ver precios", fr: "Voir les tarifs" },
         href: "https://stellar.flylabs.ai/prezzi",
-      },
-      access: {
-        label: { it: "Richiedi l'accesso", en: "Request access", es: "Solicitar acceso", fr: "Demander un accès" },
-        href: "https://stellar.flylabs.ai/richiedi-accesso",
       },
       verify: {
         label: { it: "stellar.flylabs.ai/verifica", en: "stellar.flylabs.ai/verifica", es: "stellar.flylabs.ai/verifica", fr: "stellar.flylabs.ai/verifica" },
@@ -2244,10 +2245,10 @@ export const landing = {
     modeSaas: {
       title: { it: "Self-service, la web app", en: "Self-service, the web app", es: "Self-service, la web app", fr: "En libre-service, l'application web" },
       body: {
-        it: "Stellar Reviews è online su stellar.flylabs.ai. Da 24 € al mese (IVA esclusa), con piano gratuito e 14 giorni di prova delle funzioni Premium. Per ora l'accesso è su invito.",
-        en: "Stellar Reviews is live at stellar.flylabs.ai. From €24 a month (excl. VAT), with a free plan and a 14-day trial of the Premium features. For now, access is by invitation.",
-        es: "Stellar Reviews está disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA no incluido), con plan gratuito y 14 días de prueba de las funciones Premium. Por ahora el acceso es por invitación.",
-        fr: "Stellar Reviews est disponible sur stellar.flylabs.ai. À partir de 24 € HT par mois, avec une offre gratuite et un essai de 14 jours des fonctions Premium. Pour l'instant, l'accès se fait sur invitation.",
+        it: "Stellar Reviews è online su stellar.flylabs.ai. Da 24 € al mese (IVA inclusa), con piano gratuito e 14 giorni di prova delle funzioni Premium. Ti iscrivi da solo con la tua email, senza carta.",
+        en: "Stellar Reviews is live at stellar.flylabs.ai. From €24 a month (VAT included), with a free plan and a 14-day trial of the Premium features. Sign up on your own with your email, no card needed.",
+        es: "Stellar Reviews está disponible en stellar.flylabs.ai. Desde 24 € al mes (IVA incluido), con plan gratuito y 14 días de prueba de las funciones Premium. Te registras tú mismo con tu email, sin tarjeta.",
+        fr: "Stellar Reviews est disponible sur stellar.flylabs.ai. À partir de 24 € TTC par mois, avec une offre gratuite et un essai de 14 jours des fonctions Premium. Vous vous inscrivez vous-même avec votre e-mail, sans carte.",
       },
     } satisfies ProductMode,
     modeCustom: {
