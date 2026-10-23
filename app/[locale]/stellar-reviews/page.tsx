@@ -7,14 +7,14 @@ import { landing } from "@/lib/landing-content";
 import { buildMetadata, getSiteUrl } from "@/lib/seo";
 import { siteBreadcrumbLd } from "@/lib/structured-data";
 import { JsonLd } from "@/components/json-ld";
-import { Icon } from "@/components/landing/icon";
+import { Icon, type IconProps } from "@/components/landing/icon";
 import { PageHeader } from "@/components/landing/page-header";
 import { PageShell } from "@/components/landing/page-shell";
 import { Reveal } from "@/components/landing/reveal";
 
 export const revalidate = 3600;
 
-type Platform = { name: string; icon: string; color: string };
+type Platform = { name: string; icon: IconProps["icon"]; color: string };
 
 /** "A, B e C" con logo accanto a ogni nome (il nome è scritto, logo aria-hidden). */
 function PlatformList({
