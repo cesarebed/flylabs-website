@@ -1925,10 +1925,10 @@ export const landing = {
         lockup: "/products/stellar-reviews/logo-orizzontale.svg",
         name: "Stellar Reviews",
         tagline: {
-          it: "Bozze di risposta alle recensioni di Google, Tripadvisor, Booking ed Expedia, pronte ogni mattina.",
-          en: "Reply drafts for your Google, Tripadvisor, Booking and Expedia reviews, ready every morning.",
-          es: "Borradores de respuesta para tus reseñas de Google, Tripadvisor, Booking y Expedia, listos cada mañana.",
-          fr: "Des brouillons de réponse pour vos avis Google, Tripadvisor, Booking et Expedia, prêts chaque matin.",
+          it: "Bozze di risposta alle recensioni di Google, Tripadvisor, Booking, Expedia, Hotels.com e Vrbo, pronte ogni mattina.",
+          en: "Reply drafts for your Google, Tripadvisor, Booking, Expedia, Hotels.com and Vrbo reviews, ready every morning.",
+          es: "Borradores de respuesta para tus reseñas de Google, Tripadvisor, Booking, Expedia, Hotels.com y Vrbo, listos cada mañana.",
+          fr: "Des brouillons de réponse pour vos avis Google, Tripadvisor, Booking, Expedia, Hotels.com et Vrbo, prêts chaque matin.",
         },
         sector: { it: "Ricettivo e retail", en: "Hospitality and retail", es: "Hostelería y retail", fr: "Hôtellerie et commerce" },
         href: "/stellar-reviews",
@@ -1967,22 +1967,22 @@ export const landing = {
       it: {
         title: "Stellar Reviews: gestione delle recensioni con l'AI | flylabs.ai",
         description:
-          "Non perdere più nessuna recensione: Stellar Reviews raccoglie le recensioni di Google, Tripadvisor, Booking ed Expedia e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
+          "Non perdere più nessuna recensione: Stellar Reviews raccoglie le recensioni di Google, Tripadvisor, Booking, Expedia, Hotels.com e Vrbo e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
       },
       en: {
         title: "Stellar Reviews: AI-powered review management | flylabs.ai",
         description:
-          "Never miss a review again: Stellar Reviews gathers your Google, Tripadvisor, Booking and Expedia reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
+          "Never miss a review again: Stellar Reviews gathers your Google, Tripadvisor, Booking, Expedia, Hotels.com and Vrbo reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
       },
       es: {
         title: "Stellar Reviews: gestión de reseñas con IA | flylabs.ai",
         description:
-          "No vuelvas a perder ninguna reseña: Stellar Reviews reúne tus reseñas de Google, Tripadvisor, Booking y Expedia y prepara con IA borradores de respuesta con tu estilo. Tú los revisas y los publicas. Desde 24 € al mes, con plan gratuito.",
+          "No vuelvas a perder ninguna reseña: Stellar Reviews reúne tus reseñas de Google, Tripadvisor, Booking, Expedia, Hotels.com y Vrbo y prepara con IA borradores de respuesta con tu estilo. Tú los revisas y los publicas. Desde 24 € al mes, con plan gratuito.",
       },
       fr: {
         title: "Stellar Reviews : la gestion des avis avec l'IA | flylabs.ai",
         description:
-          "Ne manquez plus aucun avis : Stellar Reviews rassemble vos avis Google, Tripadvisor, Booking et Expedia et prépare avec l'IA des brouillons de réponse dans votre style. Vous les relisez et les publiez. À partir de 24 € par mois, avec une offre gratuite.",
+          "Ne manquez plus aucun avis : Stellar Reviews rassemble vos avis Google, Tripadvisor, Booking, Expedia, Hotels.com et Vrbo et prépare avec l'IA des brouillons de réponse dans votre style. Vous les relisez et les publiez. À partir de 24 € par mois, avec une offre gratuite.",
       },
     },
     // Anteprima link del kit del marchio (05-social), solo in italiano: la
@@ -2042,24 +2042,34 @@ export const landing = {
         href: "https://stellar.flylabs.ai/verifica",
       },
     },
-    // Piattaforme (decisione di Federico 2026-10-12, Expedia disponibile dal
-    // 2026-10-23). Oggi: le quattro lette davvero. In arrivo: mai mostrate come disponibili (Codice del Consumo,
-    // artt. 21-22), sempre dietro "In arrivo", senza date. Loghi Simple Icons
-    // (CC0) nel colore ufficiale; Google usa la "G" ufficiale a quattro colori
-    // del set logos (Simple Icons la ha solo in tinta unita). Solo accanto al
-    // nome: indicano con cosa lavora Stellar, non una partnership. Vrbo non ha
-    // logo, solo nel testo.
+    // Piattaforme (decisione di Federico 2026-10-12; Expedia disponibile dal
+    // 2026-10-23, Hotels.com e Vrbo dalla 0.21.0 di Stellar). Oggi: le sei
+    // lette davvero. In arrivo: mai mostrate come disponibili (Codice del
+    // Consumo, artt. 21-22), sempre dietro "In arrivo", senza date. Loghi
+    // Simple Icons (CC0) nel colore ufficiale; Google usa la "G" ufficiale a
+    // quattro colori del set logos (Simple Icons la ha solo in tinta unita).
+    // Vrbo non è in Simple Icons: il segno è lo stesso dell'app Stellar
+    // (ComingLogo.tsx), ricalcato dalla favicon di vrbo.com, quadrato blu con
+    // la V scavata (evenodd). Solo accanto al nome: indicano con cosa lavora
+    // Stellar, non una partnership.
     platforms: {
       today: [
         { name: "Google", icon: "logos:google-icon", color: "#4285F4" },
         { name: "Booking.com", icon: "simple-icons:bookingdotcom", color: "#003A9A" },
         { name: "Tripadvisor", icon: "simple-icons:tripadvisor", color: "#34E0A1" },
         { name: "Expedia", icon: "simple-icons:expedia", color: "#191E3B" },
-      ],
-      coming: [
         { name: "Hotels.com", icon: "simple-icons:hotelsdotcom", color: "#EF3346" },
-        { name: "Airbnb", icon: "simple-icons:airbnb", color: "#FF5A5F" },
+        {
+          name: "Vrbo",
+          icon: {
+            body: '<path fill="currentColor" fill-rule="evenodd" d="M0 0h24v24H0ZM9.96 20.32C9.99 20.29 10 20.25 9.99 20.22C9.99 20.19 9.94 19.99 9.9 19.78C9.85 19.56 9.81 19.35 9.79 19.3C9.78 19.24 9.74 19.05 9.7 18.86C9.66 18.68 9.62 18.48 9.61 18.43C9.59 18.38 9.54 18.13 9.49 17.89C9.44 17.65 9.38 17.38 9.36 17.29C9.34 17.21 9.3 17.01 9.26 16.86C9.23 16.7 9.18 16.49 9.16 16.38C9.12 16.19 8.99 15.61 8.87 15.03C8.83 14.88 8.79 14.68 8.77 14.6C8.75 14.51 8.71 14.32 8.68 14.16C8.65 14.01 8.61 13.84 8.6 13.79C8.58 13.74 8.54 13.54 8.5 13.35C8.46 13.17 8.42 12.97 8.41 12.92C8.4 12.87 8.36 12.7 8.33 12.55C8.29 12.39 8.24 12.15 8.21 12.01C8.12 11.58 7.94 10.79 7.87 10.44C7.83 10.26 7.78 10.02 7.75 9.91C7.73 9.8 7.67 9.51 7.61 9.27C7.56 9.02 7.5 8.73 7.47 8.62C7.45 8.51 7.4 8.29 7.37 8.14C7.23 7.5 7.11 6.97 7.04 6.65C6.83 5.79 6.74 5.34 6.63 4.66C6.6 4.48 6.57 4.36 6.55 4.33C6.52 4.3 6.43 4.3 6.06 4.29C5.44 4.28 5.4 4.3 5.57 4.54C5.83 4.91 5.98 5.34 6.26 6.48C6.47 7.33 6.48 7.37 6.63 8.05C6.68 8.29 6.74 8.58 6.77 8.69C6.79 8.8 6.88 9.19 6.96 9.55C7.03 9.91 7.11 10.27 7.13 10.35C7.15 10.44 7.19 10.63 7.23 10.79C7.26 10.94 7.32 11.23 7.37 11.43C7.41 11.63 7.49 12.02 7.55 12.29C7.61 12.56 7.68 12.87 7.71 12.98C7.73 13.09 7.79 13.37 7.84 13.61C8.02 14.41 8.22 15.36 8.27 15.56C8.29 15.67 8.35 15.95 8.41 16.19C8.68 17.45 8.79 17.96 8.83 18.14C8.86 18.25 8.92 18.53 8.97 18.77C9.02 19.01 9.11 19.4 9.16 19.64C9.21 19.87 9.26 20.11 9.27 20.16C9.28 20.21 9.31 20.28 9.34 20.31C9.39 20.36 9.41 20.36 9.65 20.36C9.88 20.36 9.92 20.36 9.96 20.32ZM8.69 20.31C8.72 20.27 8.72 20.17 8.68 20.01C8.66 19.94 8.6 19.66 8.54 19.39C8.48 19.12 8.35 18.53 8.26 18.09C8.16 17.64 8.05 17.16 8.02 17.01C7.99 16.86 7.93 16.58 7.88 16.38C7.84 16.18 7.78 15.89 7.74 15.73C7.71 15.58 7.65 15.29 7.6 15.09C7.56 14.89 7.49 14.6 7.46 14.44C7.43 14.29 7.39 14.12 7.38 14.07C7.37 14.02 7.31 13.75 7.25 13.48C7.19 13.21 7.12 12.9 7.1 12.79C7.07 12.68 7.01 12.4 6.96 12.16C6.91 11.92 6.84 11.6 6.81 11.46C6.77 11.31 6.69 10.92 6.62 10.6C6.42 9.68 6.22 8.78 6.07 8.07C5.85 7.06 5.7 6.47 5.56 6.04C5.29 5.23 4.98 4.73 4.55 4.4L4.42 4.3L3.91 4.29C3.39 4.28 3.3 4.29 3.3 4.37C3.3 4.38 3.39 4.45 3.51 4.5C4.27 4.9 4.69 5.52 5.05 6.78C5.14 7.1 5.2 7.34 5.37 8.16C5.44 8.49 5.49 8.7 5.55 8.97C5.58 9.08 5.62 9.3 5.66 9.45C5.69 9.61 5.73 9.78 5.74 9.83C5.75 9.88 5.79 10.05 5.82 10.2C5.85 10.36 5.92 10.65 5.97 10.86C6.01 11.07 6.05 11.26 6.06 11.29C6.07 11.35 6.11 11.55 6.21 11.97C6.23 12.08 6.28 12.29 6.31 12.44C6.34 12.59 6.43 12.97 6.5 13.3C6.57 13.62 6.69 14.17 6.77 14.53C7.07 15.94 7.29 16.92 7.33 17.1C7.35 17.21 7.42 17.5 7.47 17.75C7.52 17.99 7.59 18.28 7.61 18.39C7.64 18.5 7.72 18.89 7.8 19.25C8 20.18 8.01 20.23 8.05 20.29C8.08 20.34 8.1 20.34 8.37 20.34C8.56 20.34 8.67 20.33 8.69 20.31ZM10.68 18.96C10.78 18.74 10.87 18.55 10.87 18.52C10.87 18.49 10.86 18.4 10.84 18.32C10.82 18.24 10.78 18.07 10.76 17.95C10.73 17.83 10.67 17.53 10.62 17.29C10.56 17.05 10.51 16.8 10.5 16.73C10.47 16.59 10.4 16.28 10.27 15.69C10.14 15.07 10.08 14.8 9.99 14.37C9.89 13.9 9.84 13.65 9.76 13.28C9.73 13.14 9.64 12.74 9.57 12.39C9.5 12.05 9.43 11.73 9.42 11.68C9.39 11.58 9.29 11.09 9.19 10.65C9.14 10.37 8.9 9.24 8.84 9C8.74 8.5 8.68 8.24 8.62 7.94C8.58 7.75 8.51 7.44 8.46 7.24C8.21 6.11 8.14 5.29 8.26 4.71C8.33 4.35 8.33 4.34 8.26 4.31C8.18 4.28 7.52 4.28 7.44 4.31C7.4 4.32 7.37 4.36 7.36 4.39C7.34 4.49 7.39 5.38 7.45 5.71C7.5 6.03 7.58 6.49 7.66 6.84C7.69 6.96 7.72 7.14 7.74 7.23C7.78 7.38 7.91 7.97 7.98 8.29C7.99 8.38 8.04 8.57 8.07 8.71C8.1 8.86 8.15 9.11 8.19 9.27C8.22 9.42 8.26 9.59 8.27 9.64C8.28 9.69 8.32 9.86 8.35 10.02C8.38 10.17 8.43 10.36 8.44 10.45C8.46 10.53 8.5 10.72 8.54 10.88C8.57 11.03 8.62 11.28 8.66 11.43C8.75 11.85 8.87 12.43 8.92 12.65C8.95 12.76 8.99 12.96 9.02 13.09C9.05 13.21 9.09 13.41 9.11 13.52C9.15 13.7 9.23 14.06 9.45 15.08C9.5 15.28 9.57 15.63 9.62 15.84C9.66 16.05 9.73 16.35 9.76 16.5C9.79 16.64 9.84 16.85 9.86 16.96C9.89 17.07 9.94 17.32 9.98 17.5C10.02 17.69 10.06 17.89 10.07 17.95C10.12 18.16 10.28 18.9 10.32 19.09C10.36 19.29 10.4 19.36 10.46 19.35C10.47 19.35 10.57 19.17 10.68 18.96ZM11.34 17.56C11.36 17.53 11.46 17.34 11.56 17.13L11.75 16.75L11.7 16.52C11.67 16.4 11.6 16.09 11.55 15.83C11.5 15.57 11.43 15.26 11.41 15.15C11.38 15.03 11.34 14.83 11.32 14.7C11.22 14.25 11.1 13.66 11.04 13.38C11.01 13.26 10.9 12.74 10.8 12.24C10.7 11.74 10.59 11.23 10.57 11.11C10.54 10.99 10.5 10.79 10.47 10.67C10.43 10.46 10.41 10.35 10.29 9.78C10.26 9.66 10.22 9.47 10.19 9.35C10.01 8.48 9.77 7.27 9.72 7C9.65 6.52 9.62 6.02 9.65 5.68C9.7 5.18 9.8 4.88 10.04 4.57C10.11 4.47 10.17 4.38 10.17 4.36C10.17 4.3 10.07 4.28 9.63 4.29C9.11 4.3 9.13 4.29 9.03 4.55C8.92 4.86 8.88 5.07 8.86 5.46C8.84 6.09 8.91 6.63 9.15 7.75C9.18 7.9 9.25 8.23 9.3 8.48C9.35 8.73 9.42 9.06 9.45 9.21C9.49 9.35 9.53 9.55 9.55 9.64C9.56 9.73 9.6 9.9 9.62 10.02C9.65 10.13 9.77 10.71 9.9 11.29C10.02 11.88 10.15 12.51 10.19 12.69C10.23 12.87 10.27 13.06 10.28 13.12C10.3 13.18 10.34 13.39 10.39 13.6C10.47 13.98 10.49 14.06 10.57 14.44C10.59 14.56 10.64 14.78 10.67 14.93C10.7 15.07 10.79 15.5 10.87 15.87C11.17 17.28 11.22 17.53 11.25 17.57C11.28 17.61 11.3 17.6 11.34 17.56ZM12.39 15.42C12.5 15.2 12.58 15 12.58 14.96C12.58 14.93 12.5 14.47 12.39 13.96C11.97 11.84 11.63 10.13 11.4 8.94C11.26 8.24 11.14 7.62 11.13 7.56C11.07 7.28 11.03 6.92 11.02 6.59C10.99 5.84 11.16 5.31 11.54 4.97C11.76 4.76 12.09 4.59 12.42 4.51C12.5 4.49 12.6 4.45 12.66 4.42C12.76 4.39 12.77 4.37 12.75 4.34C12.72 4.31 12.61 4.31 12.02 4.31C11.35 4.31 11.31 4.31 11.22 4.36C10.9 4.52 10.61 4.86 10.46 5.25C10.33 5.6 10.3 5.8 10.3 6.35C10.3 6.89 10.32 7.07 10.45 7.74C10.49 7.93 10.63 8.64 10.77 9.3C10.9 9.96 11.11 11 11.23 11.61C11.36 12.21 11.52 13.05 11.61 13.46C11.69 13.87 11.83 14.55 11.91 14.97C12 15.39 12.07 15.75 12.08 15.78C12.09 15.8 12.11 15.82 12.14 15.81C12.18 15.81 12.24 15.72 12.39 15.42ZM15.26 10.1C15.28 10.08 15.32 10.01 15.36 9.94C15.39 9.88 15.44 9.79 15.47 9.74C15.5 9.69 15.62 9.48 15.74 9.26C17.33 6.42 18.46 5.23 20.19 4.6C20.74 4.4 20.77 4.38 20.72 4.33C20.7 4.3 20.49 4.3 19.84 4.3L18.99 4.3L18.75 4.47C18.4 4.7 18.14 4.93 17.88 5.23C17.35 5.86 16.85 6.66 16.18 7.99C15.9 8.55 15.7 8.91 15.7 8.87C15.7 8.79 16.68 6.53 17.08 5.69C17.25 5.33 17.52 4.84 17.68 4.58C17.8 4.4 17.81 4.34 17.72 4.31C17.69 4.29 17.42 4.28 17.12 4.28C16.68 4.28 16.57 4.29 16.53 4.32C16.48 4.35 16.48 4.38 16.47 4.91C16.45 5.53 16.42 5.78 16.27 6.39C16.08 7.15 15.46 9.03 15.42 8.93C15.42 8.92 15.49 8.6 15.59 8.23C15.82 7.35 15.83 7.28 15.9 6.93C16 6.39 16.01 6.22 16.01 5.78C16.01 5.41 16.01 5.32 15.96 5.16C15.86 4.78 15.62 4.36 15.46 4.31C15.42 4.29 15.18 4.28 14.86 4.28C14.15 4.28 14.09 4.32 14.49 4.52C15.04 4.81 15.36 5.31 15.47 6.07C15.5 6.32 15.5 6.98 15.47 7.34C15.42 7.81 15.29 8.58 15.16 9.16C15.1 9.4 15.06 9.63 15.01 9.84C14.98 9.99 15 10.02 15.12 10.1C15.21 10.15 15.21 10.15 15.26 10.1Z"/>',
+            width: 24,
+            height: 24,
+          },
+          color: "#0F51EC",
+        },
       ],
+      coming: [{ name: "Airbnb", icon: "simple-icons:airbnb", color: "#FF5A5F" }],
       todayLabel: { it: "Oggi:", en: "Today:", es: "Hoy:", fr: "Aujourd'hui :" },
       comingLabel: { it: "In arrivo:", en: "Coming soon:", es: "Próximamente:", fr: "Bientôt :" },
       and: { it: "e", en: "and", es: "y", fr: "et" },
@@ -2071,10 +2081,10 @@ export const landing = {
           fr: "Est-ce que ça marche avec Booking et Tripadvisor ?",
         },
         a: {
-          it: "Sì, insieme a Google ed Expedia. Stiamo aggiungendo Hotels.com, Vrbo e Airbnb. Usi un'altra piattaforma?",
-          en: "Yes, together with Google and Expedia. We are adding Hotels.com, Vrbo and Airbnb. Do you use another platform?",
-          es: "Sí, junto con Google y Expedia. Estamos añadiendo Hotels.com, Vrbo y Airbnb. ¿Usas otra plataforma?",
-          fr: "Oui, en plus de Google et Expedia. Nous ajoutons Hotels.com, Vrbo et Airbnb. Vous utilisez une autre plateforme ?",
+          it: "Sì, insieme a Google, Expedia, Hotels.com e Vrbo. Stiamo aggiungendo Airbnb. Usi un'altra piattaforma?",
+          en: "Yes, together with Google, Expedia, Hotels.com and Vrbo. We are adding Airbnb. Do you use another platform?",
+          es: "Sí, junto con Google, Expedia, Hotels.com y Vrbo. Estamos añadiendo Airbnb. ¿Usas otra plataforma?",
+          fr: "Oui, en plus de Google, Expedia, Hotels.com et Vrbo. Nous ajoutons Airbnb. Vous utilisez une autre plateforme ?",
         },
         contact: {
           label: { it: "Scrivici a stellar@flylabs.ai", en: "Write to stellar@flylabs.ai", es: "Escríbenos a stellar@flylabs.ai", fr: "Écrivez-nous à stellar@flylabs.ai" },
@@ -2139,20 +2149,20 @@ export const landing = {
       fr: "Ceux qui gèrent un établissement d'hébergement répondent aux avis à la main : ils les lisent sur plusieurs plateformes différentes et rédigent chaque réponse une par une, souvent dans une autre langue. Et celles restées sans réponse s'accumulent pendant des mois.",
     },
     solution: {
-      it: "Stellar Reviews è un sistema completo di gestione delle recensioni su più piattaforme (Google, Tripadvisor, Booking ed Expedia), integrato con i modelli di AI più avanzati. Raccoglie ogni giorno le recensioni nuove e prepara per te bozze di risposta personalizzate nel tuo stile, che migliora nel tempo grazie ai tuoi feedback. Tu le rileggi e le pubblichi: l'ultima parola resta sempre tua.",
-      en: "Stellar Reviews is a complete review management system across platforms (Google, Tripadvisor, Booking and Expedia), built on the most advanced AI models. Every day it gathers new reviews and prepares personalised reply drafts in your style, getting better over time from your feedback. You read them and publish them: the final word is always yours.",
-      es: "Stellar Reviews es un sistema completo de gestión de reseñas multiplataforma (Google, Tripadvisor, Booking y Expedia), construido sobre los modelos de IA más avanzados. Cada día reúne las nuevas reseñas y prepara borradores de respuesta personalizados con tu estilo, que mejoran con el tiempo gracias a tus comentarios. Tú los lees y los publicas: la última palabra es siempre tuya.",
-      fr: "Stellar Reviews est un système complet de gestion des avis multiplateforme (Google, Tripadvisor, Booking et Expedia), construit sur les modèles d'IA les plus avancés. Chaque jour, il rassemble les nouveaux avis et prépare des brouillons de réponse personnalisés dans votre style, qui s'améliorent avec le temps grâce à vos retours. Vous les relisez et les publiez : le dernier mot vous revient toujours.",
+      it: "Stellar Reviews è un sistema completo di gestione delle recensioni su più piattaforme (Google, Tripadvisor, Booking, Expedia, Hotels.com e Vrbo), integrato con i modelli di AI più avanzati. Raccoglie ogni giorno le recensioni nuove e prepara per te bozze di risposta personalizzate nel tuo stile, che migliora nel tempo grazie ai tuoi feedback. Tu le rileggi e le pubblichi: l'ultima parola resta sempre tua.",
+      en: "Stellar Reviews is a complete review management system across platforms (Google, Tripadvisor, Booking, Expedia, Hotels.com and Vrbo), built on the most advanced AI models. Every day it gathers new reviews and prepares personalised reply drafts in your style, getting better over time from your feedback. You read them and publish them: the final word is always yours.",
+      es: "Stellar Reviews es un sistema completo de gestión de reseñas multiplataforma (Google, Tripadvisor, Booking, Expedia, Hotels.com y Vrbo), construido sobre los modelos de IA más avanzados. Cada día reúne las nuevas reseñas y prepara borradores de respuesta personalizados con tu estilo, que mejoran con el tiempo gracias a tus comentarios. Tú los lees y los publicas: la última palabra es siempre tuya.",
+      fr: "Stellar Reviews est un système complet de gestion des avis multiplateforme (Google, Tripadvisor, Booking, Expedia, Hotels.com et Vrbo), construit sur les modèles d'IA les plus avancés. Chaque jour, il rassemble les nouveaux avis et prépare des brouillons de réponse personnalisés dans votre style, qui s'améliorent avec le temps grâce à vos retours. Vous les relisez et les publiez : le dernier mot vous revient toujours.",
     },
     featuresTitle: { it: "Cosa fa", en: "What it does", es: "Qué hace", fr: "Ce qu'il fait" },
     features: [
       {
         title: { it: "Ogni mattina", en: "Every morning", es: "Cada mañana", fr: "Chaque matin" },
         body: {
-          it: "Legge le recensioni nuove da Google, Tripadvisor, Booking ed Expedia e prepara una bozza di risposta, nella lingua di chi ha scritto.",
-          en: "It reads new reviews from Google, Tripadvisor, Booking and Expedia and drafts a reply in the reviewer's own language.",
-          es: "Lee las nuevas reseñas de Google, Tripadvisor, Booking y Expedia y redacta una respuesta en el idioma de quien la escribió.",
-          fr: "Il lit les nouveaux avis Google, Tripadvisor, Booking et Expedia et rédige une réponse dans la langue de leur auteur.",
+          it: "Legge le recensioni nuove da Google, Tripadvisor, Booking, Expedia, Hotels.com e Vrbo e prepara una bozza di risposta, nella lingua di chi ha scritto.",
+          en: "It reads new reviews from Google, Tripadvisor, Booking, Expedia, Hotels.com and Vrbo and drafts a reply in the reviewer's own language.",
+          es: "Lee las nuevas reseñas de Google, Tripadvisor, Booking, Expedia, Hotels.com y Vrbo y redacta una respuesta en el idioma de quien la escribió.",
+          fr: "Il lit les nouveaux avis Google, Tripadvisor, Booking, Expedia, Hotels.com et Vrbo et rédige une réponse dans la langue de leur auteur.",
         },
       },
       {
