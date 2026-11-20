@@ -388,7 +388,7 @@ export const landing = {
           {
             label: { it: "GPT Chatbot", en: "GPT Chatbot", es: "GPT Chatbot", fr: "GPT Chatbot" },
             href: "/gpt-chatbot",
-            logo: "/logos/gpt-chatbot.png",
+            logo: "/products/gpt-chatbot/logo.png",
           },
           {
             label: {
@@ -1891,7 +1891,7 @@ export const landing = {
       {
         slug: "gpt-chatbot",
         icon: "lucide:message-circle",
-        logo: "/logos/gpt-chatbot.png",
+        logo: "/products/gpt-chatbot/logo.png",
         name: "GPT Chatbot",
         tagline: {
           it: "Chatbot AI addestrato sui tuoi contenuti, sul tuo sito in pochi minuti.",
@@ -2636,7 +2636,7 @@ export const landing = {
       },
     },
     title: { it: "GPT Chatbot", en: "GPT Chatbot", es: "GPT Chatbot", fr: "GPT Chatbot" },
-    logo: "/logos/gpt-chatbot.png",
+    logo: "/products/gpt-chatbot/logo.png",
     tagline: {
       it: "Il chatbot AI addestrato sui tuoi contenuti, che risponde ai tuoi clienti sul sito, su WhatsApp e su Instagram. Anche di notte.",
       en: "The AI chatbot trained on your content that answers your customers on your website, WhatsApp and Instagram. Even at night.",

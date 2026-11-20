@@ -67,7 +67,7 @@ const TECH_ICONS: Record<string, string> = {
  * descrittivo farebbe leggere il nome due volte allo screen reader.
  */
 const TECH_IMAGE_LOGOS: Record<string, { src: string; alt: string }> = {
-  "gpt chatbot": { src: "/logos/gpt-chatbot.png", alt: "" },
+  "gpt chatbot": { src: "/products/gpt-chatbot/logo.png", alt: "" },
 };
 
 export function techIcon(name: string): string | undefined {

@@ -26,6 +26,8 @@ export async function generateMetadata({
     title: m.title,
     description: m.description,
     path: "/gpt-chatbot",
+    ogImage: `/products/gpt-chatbot/og-${lang}.png`,
+    ogImageAlt: "GPT Chatbot by flylabs.ai",
   });
 }
 
