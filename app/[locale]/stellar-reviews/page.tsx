@@ -51,13 +51,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const lang: Locale = isLocale(locale) ? locale : defaultLocale;
   const m = landing.stellarReviews.meta[lang];
-  const og = landing.stellarReviews.og[lang];
   return buildMetadata(lang, {
     title: m.title,
     description: m.description,
     path: "/stellar-reviews",
-    ogImage: og?.src,
-    ogImageAlt: og?.alt,
+    ogImage: `/products/stellar-reviews/og-${lang}.png`,
+    ogImageAlt: landing.stellarReviews.ogAlt[lang],
   });
 }
 
@@ -84,7 +83,7 @@ export default async function StellarReviewsPage({
     caseLink,
     back,
     logo,
-    logoAlt,
+    video,
     platforms,
     screens,
   } = landing.stellarReviews;
@@ -119,7 +118,7 @@ export default async function StellarReviewsPage({
         back={{ href: `/${lang}/products`, label: landing.products.kicker[lang] }}
         logo={
           <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl">
-            <Image src={logo} alt={logoAlt} width={64} height={64} />
+            <Image src={logo} alt="" width={64} height={64} />
           </div>
         }
         title={title[lang]}
@@ -168,6 +167,36 @@ export default async function StellarReviewsPage({
         </div>
         <p className="mt-4 text-sm text-muted">{priceNote[lang]}</p>
       </PageHeader>
+
+      <section aria-labelledby="stellar-demo-title" className="bg-paper py-16 md:py-[88px]">
+        <div className="mx-auto max-w-[1120px] px-6">
+          <Reveal>
+            <div className="mx-auto max-w-[880px]">
+              <h2 id="stellar-demo-title" className="font-display text-2xl font-semibold">
+                {video.title[lang]}
+              </h2>
+              <div className="mt-6 overflow-hidden rounded-xl border border-line bg-ink">
+                {/* The silent video has a localized text alternative below. */}
+                <video
+                  key={lang}
+                  src={`/products/stellar-reviews/demo-${lang}.mp4`}
+                  poster={`/products/stellar-reviews/demo-${lang}-poster.jpg`}
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-labelledby="stellar-demo-title"
+                  aria-describedby="stellar-demo-transcript"
+                  className="aspect-video w-full"
+                />
+              </div>
+              <p id="stellar-demo-transcript" className="mt-4 text-sm leading-relaxed text-muted">
+                {video.transcript[lang]}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       {/* Schermate reali della demo: dal computer in cornice browser, il
           telefono sovrapposto in basso a destra; sotto md solo il telefono. */}
