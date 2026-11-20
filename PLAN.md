@@ -60,9 +60,11 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-10-15 (Federico - pagi
 | 34 | **Stellar Reviews: iscrizione aperta** (richiesta Federico 2026-10-23): l'iscrizione self-service è libera dal 2026-10-13, quindi su `/stellar-reviews` (hero e card "Self-service") l'azione principale diventa "Inizia gratis" verso `stellar.flylabs.ai/iscrizione`, "Prova la demo" resta come seconda strada, via "Richiedi l'accesso" e "Per ora l'accesso è su invito". Prezzi corretti in "IVA inclusa" come sulla pagina prezzi dell'app. Expedia passa da "in arrivo" a "oggi" (disponibile nell'app, conferma di Federico 2026-10-23): righe piattaforme, tagline della card di /prodotti, meta, soluzione, "Cosa fa" e FAQ; in arrivo restano Hotels.com e Airbnb (Vrbo solo nel testo). Il caso studio resta con le tre piattaforme del cliente | Federico (agente) | branch `claude/project-thread-ttgtov` | ✅ mergiata (2026-10-23, #100) |
 | 35 | **Stellar Reviews: Hotels.com e Vrbo disponibili** (richiesta Federico 2026-10-23, dopo la 0.21.0 di Stellar): Hotels.com e Vrbo passano da "in arrivo" a "oggi" su `/stellar-reviews` (righe piattaforme, tagline della card di /prodotti, meta, soluzione, "Cosa fa" e FAQ, nelle quattro lingue); in arrivo resta solo Airbnb. Vrbo ha ora il suo logo accanto al nome, lo stesso dell'app Stellar (ricalcato dalla favicon di vrbo.com, non in Simple Icons), passato a `Icon` come dati Iconify. Il caso studio resta con le tre piattaforme del cliente | Federico (agente) | branch `claude/project-thread-n7y524` | 🔨 PR aperta |
 | 36 | Aggiornamento del marchio e dei media WeGrocery nelle quattro lingue | Federico (Codex) | [PR #102](https://github.com/cesarebed/flylabs-website/pull/102) | ✅ |
-| 37 | Marchio Stellar Reviews, nuove immagini e video dimostrativo nelle quattro lingue | Federico (Codex) | `feat/stellar-brand-refresh` | 🔨 |
+| 37 | Marchio Stellar Reviews, nuove immagini e video dimostrativo nelle quattro lingue | Federico (Codex) | [PR #103](https://github.com/cesarebed/flylabs-website/pull/103) | ✅ |
 
 ## Decisioni prese
+
+- **Marchio Stellar Reviews (2026-11-20)**: icona e marchio orizzontale del nuovo kit, anteprime social per lingua, schermate della demo con dati di esempio e un video localizzato sul flusso recensione, bozza e revisione.
 
 - **Marchio WeGrocery (2026-11-20)**: kit ufficiale per il logo di prodotto e la condivisione social. Video, poster e schermate dimostrative riprendono la palette WeGrocery. La pagina prodotto usa la navigazione e le CTA FlyLabs.
 
