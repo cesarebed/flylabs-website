@@ -1967,51 +1967,57 @@ export const landing = {
       it: {
         title: "Stellar Reviews: gestione delle recensioni con l'AI | flylabs.ai",
         description:
-          "Non perdere più nessuna recensione: Stellar Reviews raccoglie le recensioni di Google, Tripadvisor, Booking, Expedia, Hotels.com e Vrbo e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
+          "Stellar Reviews raccoglie le recensioni di Google, Tripadvisor, Booking, Expedia, Hotels.com e Vrbo e prepara con l'AI bozze di risposta nel tuo stile. Tu le rivedi e le pubblichi. Da 24 € al mese, con piano gratuito.",
       },
       en: {
         title: "Stellar Reviews: AI-powered review management | flylabs.ai",
         description:
-          "Never miss a review again: Stellar Reviews gathers your Google, Tripadvisor, Booking, Expedia, Hotels.com and Vrbo reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
+          "Stellar Reviews gathers your Google, Tripadvisor, Booking, Expedia, Hotels.com and Vrbo reviews and uses AI to draft replies in your style. You review them and publish. From €24 a month, with a free plan.",
       },
       es: {
         title: "Stellar Reviews: gestión de reseñas con IA | flylabs.ai",
         description:
-          "No vuelvas a perder ninguna reseña: Stellar Reviews reúne tus reseñas de Google, Tripadvisor, Booking, Expedia, Hotels.com y Vrbo y prepara con IA borradores de respuesta con tu estilo. Tú los revisas y los publicas. Desde 24 € al mes, con plan gratuito.",
+          "Stellar Reviews reúne tus reseñas de Google, Tripadvisor, Booking, Expedia, Hotels.com y Vrbo y prepara con IA borradores de respuesta con tu estilo. Tú los revisas y los publicas. Desde 24 € al mes, con plan gratuito.",
       },
       fr: {
         title: "Stellar Reviews : la gestion des avis avec l'IA | flylabs.ai",
         description:
-          "Ne manquez plus aucun avis : Stellar Reviews rassemble vos avis Google, Tripadvisor, Booking, Expedia, Hotels.com et Vrbo et prépare avec l'IA des brouillons de réponse dans votre style. Vous les relisez et les publiez. À partir de 24 € par mois, avec une offre gratuite.",
+          "Stellar Reviews rassemble vos avis Google, Tripadvisor, Booking, Expedia, Hotels.com et Vrbo et prépare avec l'IA des brouillons de réponse dans votre style. Vous les relisez et les publiez. À partir de 24 € par mois, avec une offre gratuite.",
       },
     },
-    // Anteprima link del kit del marchio (05-social), solo in italiano: la
-    // pagina inglese resta sulla OG generica di flylabs.ai.
-    og: {
-      it: {
-        src: "/products/stellar-reviews/og-it.png",
-        alt: "Stellar Reviews: le risposte alle recensioni, pronte ogni mattina",
-      },
-    } as Partial<Record<Locale, { src: string; alt: string }>>,
+    ogAlt: {
+      it: "Stellar Reviews: bozze di risposta, pronte ogni mattina",
+      en: "Stellar Reviews: draft replies, ready every morning",
+      es: "Stellar Reviews: respuestas en borrador, listas cada mañana",
+      fr: "Stellar Reviews : des brouillons de réponse chaque matin",
+    },
     title: { it: "Stellar Reviews", en: "Stellar Reviews", es: "Stellar Reviews", fr: "Stellar Reviews" },
-    // Icona del kit (01-logo/icona/stellar-icona.svg) e logo orizzontale su
-    // chiaro (01-logo/orizzontale): la scritta è già in tracciati, non va
-    // riscritta in HTML accanto all'icona.
     logo: "/products/stellar-reviews/logo.svg",
-    logoAlt: "Stellar Reviews",
-    // Il giallo Stella fa da evidenziatore su una sola parte del tagline
-    // (testo inchiostro, come da manuale): `highlight` deve comparire nel testo.
     tagline: {
-      it: "Non perdere più nessuna recensione: Stellar Reviews automatizza la gestione delle recensioni e, con l'aiuto dell'AI, ti fa rispondere a tutte.",
-      en: "Never miss a review again: Stellar Reviews automates review management and, with the help of AI, lets you answer every single one.",
-      es: "No vuelvas a perder ninguna reseña: Stellar Reviews automatiza la gestión de las reseñas y, con la ayuda de la IA, te permite responder a todas.",
-      fr: "Ne manquez plus aucun avis : Stellar Reviews automatise la gestion des avis et, grâce à l'IA, vous permet de répondre à chacun.",
+      it: "Bozze di risposta alle recensioni, pronte ogni mattina nel tuo tono. Tu le rivedi e le pubblichi.",
+      en: "Draft replies to reviews, ready every morning in your voice. You review and publish.",
+      es: "Borradores de respuesta a reseñas, listos cada mañana con tu tono. Tú los revisas y los publicas.",
+      fr: "Des brouillons de réponse aux avis, prêts chaque matin dans votre ton. Vous les relisez et les publiez.",
     },
     taglineHighlight: {
-      it: "rispondere a tutte",
-      en: "answer every single one",
-      es: "responder a todas",
-      fr: "répondre à chacun",
+      it: "pronte ogni mattina",
+      en: "ready every morning",
+      es: "listos cada mañana",
+      fr: "prêts chaque matin",
+    },
+    video: {
+      title: {
+        it: "Stellar Reviews in azione",
+        en: "Stellar Reviews in action",
+        es: "Stellar Reviews en acción",
+        fr: "Stellar Reviews en action",
+      },
+      transcript: {
+        it: "Stellar Reviews riunisce le recensioni delle piattaforme collegate in un’unica coda. Ogni mattina trovi le bozze nel tono della tua attività. Nell’esempio si legge la recensione e si confronta con la risposta proposta dall’AI. Puoi chiedere una modifica, copiare la risposta e pubblicarla sulla piattaforma. Puoi fare la stessa cosa anche da telefono.",
+        en: "Stellar Reviews brings reviews from your connected platforms into one queue. Each morning, you find drafts in your business’s voice. In the example, you read the review and compare it with the AI draft. You can request a change, copy the reply and publish it on the platform. You can do the same on your phone.",
+        es: "Stellar Reviews reúne en una sola cola las reseñas de las plataformas conectadas. Cada mañana encuentras borradores con el tono de tu negocio. En el ejemplo, lees la reseña y la comparas con el borrador de la IA. Puedes pedir un cambio, copiar la respuesta y publicarla en la plataforma. También puedes hacerlo desde el móvil.",
+        fr: "Stellar Reviews rassemble les avis de vos plateformes connectées au même endroit. Chaque matin, vous retrouvez des brouillons dans le ton de votre établissement. L’exemple montre comment comparer un avis avec la réponse proposée par l’IA. Vous pouvez demander une modification, copier la réponse et la publier sur la plateforme, y compris depuis votre téléphone.",
+      },
     },
     // Una sola fonte per i prezzi: qui solo il "da", il resto sulla pagina
     // prezzi dell'app (verificata il 2026-10-10).
@@ -2115,10 +2121,10 @@ export const landing = {
           fr: "/products/stellar-reviews/demo-desktop-fr.webp",
         },
         alt: {
-          it: "Stellar Reviews dal computer: a sinistra la coda delle recensioni a cui rispondere, a destra una recensione da una stella su TripAdvisor con la risposta proposta dall'AI e i pulsanti Copia risposta e Ho pubblicato.",
-          en: "Stellar Reviews on a computer: on the left the queue of reviews to answer, on the right a Booking.com review rated 4 out of 10, about a long check-in wait, with the AI-suggested reply and the Copy reply and I've posted it buttons.",
-          es: "Stellar Reviews en un ordenador: a la izquierda la cola de reseñas por responder, a la derecha una reseña de Booking.com con nota 4 sobre 10, sobre una larga espera en el check-in, con la respuesta sugerida por la IA y los botones Copiar respuesta y Ya la he publicado.",
-          fr: "Stellar Reviews sur un ordinateur : à gauche la file des avis à traiter, à droite un avis Booking.com noté 4 sur 10, sur une longue attente au check-in, avec la réponse suggérée par l'IA et les boutons Copier la réponse et Je l'ai publiée.",
+          it: "Stellar Reviews su computer. A sinistra la coda delle recensioni, a destra una recensione di Tripadvisor con la bozza di risposta dell’AI e le azioni di revisione.",
+          en: "Stellar Reviews on a computer. The review queue is on the left, and a Tripadvisor review with an AI draft and review actions is on the right.",
+          es: "Stellar Reviews en un ordenador. A la izquierda, la lista de reseñas y, a la derecha, una reseña de Tripadvisor con el borrador de la IA y las acciones para revisarlo.",
+          fr: "Stellar Reviews sur un ordinateur. À gauche, la file des avis et, à droite, un avis Tripadvisor avec le brouillon et les actions de révision.",
         },
       },
       mobile: {
@@ -2129,10 +2135,10 @@ export const landing = {
           fr: "/products/stellar-reviews/demo-mobile-fr.webp",
         },
         alt: {
-          it: "Stellar Reviews dal telefono: la recensione da rivedere con cura e la risposta proposta dall'AI, da rileggere prima di pubblicarla.",
-          en: "Stellar Reviews on a phone: a Booking.com review about a long check-in wait and the AI-suggested reply, to read through before publishing.",
-          es: "Stellar Reviews en un móvil: una reseña de Booking.com sobre una larga espera en el check-in y la respuesta sugerida por la IA, para leerla antes de publicarla.",
-          fr: "Stellar Reviews sur un téléphone : un avis Booking.com sur une longue attente au check-in et la réponse suggérée par l'IA, à relire avant de la publier.",
+          it: "Stellar Reviews su telefono. Una recensione di Tripadvisor e la bozza di risposta dell’AI, da rileggere prima di pubblicare.",
+          en: "Stellar Reviews on a phone. A Tripadvisor review with an AI-drafted reply to read before publishing.",
+          es: "Stellar Reviews en un móvil. Una reseña de Tripadvisor y el borrador de la IA para revisar antes de publicar.",
+          fr: "Stellar Reviews sur un téléphone. Un avis Tripadvisor et le brouillon de réponse à relire avant publication.",
         },
       },
       caption: {
