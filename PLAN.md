@@ -62,7 +62,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-10-15 (Federico - pagi
 | 36 | Aggiornamento del marchio e dei media WeGrocery nelle quattro lingue | Federico (Codex) | [PR #102](https://github.com/cesarebed/flylabs-website/pull/102) | ✅ |
 | 37 | Marchio Stellar Reviews, nuove immagini e video dimostrativo nelle quattro lingue | Federico (Codex) | [PR #103](https://github.com/cesarebed/flylabs-website/pull/103) | ✅ |
 | 38 | Revisione del marchio FlyLabs.ai su sito, condivisione e icone | Federico (Codex) | [PR #104](https://github.com/cesarebed/flylabs-website/pull/104) | ✅ |
-| 39 | Nuovo marchio GPT Chatbot su FlyLabs, con immagini social in IT/EN/ES/FR | Federico (Codex) | `feat/gpt-chatbot-brand` | 🔨 in corso |
+| 39 | Nuovo marchio GPT Chatbot su FlyLabs, con immagini social in IT/EN/ES/FR | Federico (Codex) | [PR #105](https://github.com/cesarebed/flylabs-website/pull/105) | ✅ |
 
 ## Decisioni prese
 
