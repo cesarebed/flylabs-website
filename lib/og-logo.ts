@@ -3,8 +3,8 @@ import { join } from "node:path";
 
 // Logo orizzontale per le immagini OG (next/og non legge i file di public/
 // da URL relativo): l'SVG del kit come data URI, da passare a <img>.
-// Proporzioni dal viewBox del file (202,9 × 45,5).
-export const OG_LOGO_RATIO = 202.9 / 45.5;
+// Proporzioni dal viewBox del file (207,8 × 45,5).
+export const OG_LOGO_RATIO = 207.8 / 45.5;
 
 export async function ogLogoDark(): Promise<string> {
   const svg = await readFile(join(process.cwd(), "public/logo/flylabs-lockup-dark.svg"));

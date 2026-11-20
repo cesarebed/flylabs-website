@@ -156,7 +156,7 @@ export function Nav({
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex min-w-0 items-center gap-2 md:gap-4">
           <div className="hidden md:block">
             <LangToggle lang={lang} />
           </div>
@@ -164,7 +164,7 @@ export function Nav({
             href={ctaLink.href}
             {...ctaLink.external}
             onClick={() => setOpen(false)}
-            className="btn-ink inline-block whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-semibold max-[349px]:hidden md:px-5 md:py-2.5"
+            className="btn-ink inline-block rounded-lg px-2.5 py-2 text-center text-sm font-semibold max-[349px]:hidden md:whitespace-nowrap md:px-5 md:py-2.5"
           >
             {ctaLink.label}
             {newTab}
@@ -176,7 +176,7 @@ export function Nav({
             aria-expanded={open}
             aria-controls={MENU_ID}
             aria-label={menuLabel}
-            className="-mr-3 flex h-12 w-12 items-center justify-center text-ink md:hidden"
+            className="-mr-3 flex h-12 w-12 shrink-0 items-center justify-center text-ink md:hidden"
           >
             <MenuGlyph open={open} />
           </button>
