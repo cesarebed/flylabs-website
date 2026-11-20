@@ -61,6 +61,7 @@ Regole d'uso in fondo al file. Ultimo aggiornamento: 2026-10-15 (Federico - pagi
 | 35 | **Stellar Reviews: Hotels.com e Vrbo disponibili** (richiesta Federico 2026-10-23, dopo la 0.21.0 di Stellar): Hotels.com e Vrbo passano da "in arrivo" a "oggi" su `/stellar-reviews` (righe piattaforme, tagline della card di /prodotti, meta, soluzione, "Cosa fa" e FAQ, nelle quattro lingue); in arrivo resta solo Airbnb. Vrbo ha ora il suo logo accanto al nome, lo stesso dell'app Stellar (ricalcato dalla favicon di vrbo.com, non in Simple Icons), passato a `Icon` come dati Iconify. Il caso studio resta con le tre piattaforme del cliente | Federico (agente) | branch `claude/project-thread-n7y524` | 🔨 PR aperta |
 | 36 | Aggiornamento del marchio e dei media WeGrocery nelle quattro lingue | Federico (Codex) | [PR #102](https://github.com/cesarebed/flylabs-website/pull/102) | ✅ |
 | 37 | Marchio Stellar Reviews, nuove immagini e video dimostrativo nelle quattro lingue | Federico (Codex) | [PR #103](https://github.com/cesarebed/flylabs-website/pull/103) | ✅ |
+| 38 | Revisione del marchio FlyLabs.ai su sito, condivisione e icone | Federico (Codex) | `feat/flylabs-brand-rollout` | 🔨 |
 
 ## Decisioni prese
 
