@@ -27,6 +27,7 @@ export async function generateMetadata({
     title: m.title,
     description: m.description,
     path: "/wegrocery",
+    ogImage: `/products/wegrocery/social-og-${lang}.png`,
   });
 }
 
